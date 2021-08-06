@@ -8,13 +8,14 @@ let camera, scene, renderer, controls,scene2,scene3,scene4,sprite,sprite2,sprite
 
 var imageCount =1;
 trigerBool = false
-var counter = 1;
+var counter = 0;
 const startButton = document.getElementById( 'startButton' );
 startButton.addEventListener( 'click', function () {
   main();
-
+  trigerBool = true
+  counter++
   document.getElementById('overlay').style.display = 'none';
-  
+ 
 } );
 
 
@@ -24,12 +25,12 @@ const mouse = new THREE.Vector2();
 function main() {
 
   const canvas = document.querySelector('#c');
-  renderer = new THREE.WebGLRenderer({canvas});
+  renderer = new THREE.WebGLRenderer({canvas,alpha: true,});
 
   const fov = 75;
   const aspect = 2;  // the canvas default
   const near = 0.1;
-  const far = 100;
+  const far = 2000;
   camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
   camera.position.z = 3;
   camera.rotation.set(0, 10, 0);
@@ -64,10 +65,10 @@ function main() {
     scene.add(light);
   }
 
-  const boxWidth = 1;
-  const boxHeight = 1;
-  const boxDepth = 1;
-  const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+  // const boxWidth = 1;
+  // const boxHeight = 1;
+  // const boxDepth = 1;
+  // const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 
 
 //***********************BUTTONS********************
@@ -95,6 +96,9 @@ function main() {
   var texture_scene1 = "YOUSPA 360_2_v2"
   textureLoad(texture_scene1);
 
+  // var texture_scene2 = "YOUSPA 360_1_v2"
+  // textureLoad(texture_scene2);
+
 
 //***********************VIDEO********************
   const geometry2 = new THREE.BoxGeometry( 24, 48, 1 );
@@ -118,8 +122,9 @@ function main() {
   const textTexture = new THREE.TextureLoader().load( "images/text.png" );
   const textMat = new THREE.MeshBasicMaterial( {map: textTexture,transparent:true, opacity: 0} );
   const text = new THREE.Mesh( textGeo, textMat );
+  text.position.set(0, 1.2, 0);
   scene.add(text);
-
+  
   
   
   function resizeRendererToDisplaySize(renderer) {
@@ -153,12 +158,12 @@ function main() {
     // console.log(vector.x)
     var testBool = false
     if (vector.x > 0.0005 && vector.x <0.013 && testBool == false){
-      new TWEEN.Tween( text.material ).to( { opacity: 1 }, 1000 ).start();
+      new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
       animate()
       // console.log("tween started")
       testBool = true;
     } if(vector.x >0.013 || vector.x <0){
-      new TWEEN.Tween( text.material ).to( { opacity: 0 }, 500 ).start();
+      new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
       testBool = false;
     }
 
@@ -167,6 +172,7 @@ function main() {
 
 
     requestAnimationFrame(render);
+
 
   }
 
@@ -177,47 +183,63 @@ function main() {
     event => {
      
       mouse.x = event.clientX / window.innerWidth * 2 - 1;
-      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 +1 ;
    
       raycaster.setFromCamera( mouse, camera );
 
       var intersects = raycaster.intersectObjects( scene2.children, false );
       var intersects2 = raycaster.intersectObjects( scene3.children, false );
       var intersects3 = raycaster.intersectObjects( scene4.children, false );
-      if(trigerBool == true){
-        counter++;
-      }
-      trigerBool = true;
 
-      if ( intersects.length > 0 ) {
-            
-    
-       
-        console.log(counter)
-        if(counter ==2 ){
+
+      if ( intersects.length > 0  && trigerBool == true) {
+        console.log("worked")
         
+        counter++
+ 
+       
+        if(counter ==3 ){
           var texture_scene2 = "YOUSPA 360_1_v2"
           textureLoad(texture_scene2);
+  
+          scene.remove( scene2 );
+          scene.remove( scene3 );
+          scene.remove( scene4 );
+          cube.position.set(-5, 30, -200);
+          text.position.set(-.2, 0.9, -2);
           
+    
         } 
     }
-    if ( intersects2.length > 0 ) {
-  
+    else if ( intersects2.length > 0 && trigerBool == true) {
+      counter++
+    
       if(counter ==3 ){
-        
+        console.log(counter)
         var texture_scene3 = "scene2"
         textureLoad(texture_scene3);
+    
+        scene.remove( scene2 );
+        scene.remove( scene3 );
+        scene.remove( scene4 );
         
       } 
   }
-  if ( intersects3.length > 0 ) {
-        
+  else if ( intersects3.length > 0 && trigerBool == true) {
+    counter++
+    
 
     console.log("thirt button")
+    console.log(counter)
     if(counter ==3 ){
-        
+      console.log(counter)
       var texture_scene4 = "scene3"
       textureLoad(texture_scene4);
+      scene.remove( scene2 );
+      scene.remove( scene3 );
+      scene.remove( scene4 );
+      cube.position.set(-5, 30, -200);
+      text.position.set(-.2, 0.9, -2);
     }
     } 
     },
@@ -230,16 +252,17 @@ function textureLoad(TextureName){
     const texture = loader.load(
       'images/'+TextureName+'.jpg',
       () => {
-        console.log("a" + imageCount);
+      
         const rt = new THREE.WebGLCubeRenderTarget(texture.image.height);
   
         rt.fromEquirectangularTexture(renderer, texture);
-        
+    
         scene.background = rt.texture;
+        scene.background.opacity = 0.1
 
-        
       });
-  
+     
+
 };
 
 
