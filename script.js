@@ -14,7 +14,7 @@ startButton.addEventListener( 'click', function () {
   document.getElementById('overlay').style.display = 'none';
   trigerBool = true
   // counter++
-  // document.getElementById('change').style.display = 'flex';
+  document.getElementById('change').style.display = 'flex';
 } );
 
 const raycaster = new THREE.Raycaster();
