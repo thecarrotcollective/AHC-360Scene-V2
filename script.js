@@ -141,12 +141,12 @@ function main() {
     var testBool = false
   
     animate()
-    if (Math.abs(vector.x)> 0 && Math.abs(vector.x) <0.003 && testBool == false){
-      new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
+    if (Math.abs(vector.x)> 0 && Math.abs(vector.x) < 0.003 && testBool == false){
+      new TWEEN.Tween( text.material ).to( { opacity: 1 }, 1000 ).start();
       // console.log("tween started")
       testBool = true;
     }else {
-      new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
+      new TWEEN.Tween( text.material ).to( { opacity: 0 }, 1000 ).start();
       testBool = false;
     }
     // } if(vector.x >0.013 || vector.x < -0.003){
