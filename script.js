@@ -188,7 +188,7 @@ function main() {
         counter++
  
        
-        if(counter ==3 ){
+        if(counter ==5){
           var texture_scene2 = "YOUSPA 360_1_v2"
           textureLoad(texture_scene2);
   
