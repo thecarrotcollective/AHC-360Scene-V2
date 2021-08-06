@@ -4,8 +4,10 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
 
 
 //Update4
-let camera, scene, renderer, controls,scene2;
+let camera, scene, renderer, controls,scene2,scene3,scene4,sprite,sprite2,sprite3,TextureName,trigerBool;
+
 var imageCount =1;
+trigerBool = false
 var counter = 1;
 const startButton = document.getElementById( 'startButton' );
 startButton.addEventListener( 'click', function () {
@@ -18,7 +20,6 @@ startButton.addEventListener( 'click', function () {
 
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
-var sprite;
 
 function main() {
 
@@ -49,7 +50,11 @@ function main() {
 
   scene = new THREE.Scene();
   scene2= new THREE.Scene();
+  scene3= new THREE.Scene();
+  scene4= new THREE.Scene();
   scene.add(scene2)
+  scene.add(scene3)
+  scene.add(scene4)
 
   {
     const color = 0xFFFFFF;
@@ -72,7 +77,24 @@ function main() {
   sprite.position.set(2,-2,7);
   sprite.scale.set(2,1,1.25)
   scene2.add(sprite);
-  textureLoad();
+
+  var map2 = new THREE.TextureLoader().load( "arrow_black.png" );
+  var material3 = new THREE.SpriteMaterial( { map: map2,rotation: 0.1} );
+  sprite2 = new THREE.Sprite( material3 );
+  sprite2.position.set(-5,-2,6);
+  sprite2.scale.set(2,1,1.25)
+  scene3.add(sprite2);
+
+  
+  var map3 = new THREE.TextureLoader().load( "arrow_black.png" );
+  var material4 = new THREE.SpriteMaterial( { map: map3,rotation: 1} );
+  sprite3 = new THREE.Sprite( material4 );
+  sprite3.position.set(3,-2,2);
+  sprite3.scale.set(1.5,1,1.25)
+  scene4.add(sprite3);
+  var texture_scene1 = "YOUSPA 360_2_v2"
+  textureLoad(texture_scene1);
+
 
 //***********************VIDEO********************
   const geometry2 = new THREE.BoxGeometry( 24, 48, 1 );
@@ -128,12 +150,12 @@ function main() {
     renderer.render(scene, camera);
 
     var vector = camera.position.clone();
-    console.log(vector.x)
+    // console.log(vector.x)
     var testBool = false
     if (vector.x > 0.0005 && vector.x <0.013 && testBool == false){
       new TWEEN.Tween( text.material ).to( { opacity: 1 }, 1000 ).start();
       animate()
-      console.log("tween started")
+      // console.log("tween started")
       testBool = true;
     } if(vector.x >0.013 || vector.x <0){
       new TWEEN.Tween( text.material ).to( { opacity: 0 }, 500 ).start();
@@ -153,34 +175,60 @@ function main() {
   document.addEventListener(
     "click",
     event => {
-   
+     
       mouse.x = event.clientX / window.innerWidth * 2 - 1;
       mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
    
       raycaster.setFromCamera( mouse, camera );
 
       var intersects = raycaster.intersectObjects( scene2.children, false );
-      
+      var intersects2 = raycaster.intersectObjects( scene3.children, false );
+      var intersects3 = raycaster.intersectObjects( scene4.children, false );
+      if(trigerBool == true){
+        counter++;
+      }
+      trigerBool = true;
 
       if ( intersects.length > 0 ) {
+            
     
-        counter++;
-        if(counter ==3 ){
+       
+        console.log(counter)
+        if(counter ==2 ){
         
-          location.href='indexsWeb/index2.html'
+          var texture_scene2 = "YOUSPA 360_1_v2"
+          textureLoad(texture_scene2);
           
-        }
-         
+        } 
     }
+    if ( intersects2.length > 0 ) {
+  
+      if(counter ==3 ){
+        
+        var texture_scene3 = "scene2"
+        textureLoad(texture_scene3);
+        
+      } 
+  }
+  if ( intersects3.length > 0 ) {
+        
+
+    console.log("thirt button")
+    if(counter ==3 ){
+        
+      var texture_scene4 = "scene3"
+      textureLoad(texture_scene4);
+    }
+    } 
     },
     false );
 }
 
-function textureLoad(){
+function textureLoad(TextureName){
   
     const loader = new THREE.TextureLoader();
     const texture = loader.load(
-      'images/YOUSPA 360_2_v2.jpg',
+      'images/'+TextureName+'.jpg',
       () => {
         console.log("a" + imageCount);
         const rt = new THREE.WebGLCubeRenderTarget(texture.image.height);
