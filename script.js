@@ -139,15 +139,16 @@ function main() {
     var vector = camera.position.clone();
     // console.log(vector.x)
     var testBool = false
-    if (Math.abs(vector.x)> 0 && Math.abs(vector.x) <0.003 && testBool == false){
+    if (Math.abs(vector.x)> 0 && Math.abs(vector.x) <0.01 && testBool == false){
       new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
       animate()
       // console.log("tween started")
       testBool = true;
-    } if(vector.x >0.013 || vector.x < -0.003){
-      new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
-      testBool = false;
     }
+    // } if(vector.x >0.013 || vector.x < -0.003){
+    //   new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
+    //   testBool = false;
+    // }
 
     // var vector = camera.position.clone();
     // var testBool = false
