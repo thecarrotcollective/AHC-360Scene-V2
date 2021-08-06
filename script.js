@@ -141,7 +141,7 @@ function main() {
     var testBool = false
   
    
-    if (vector.x< 0  && testBool == false){
+    if (Math.abs(vector.x)< 2&& vector.x > 0 && testBool == false){
       new TWEEN.Tween( text.material ).to( { opacity: 1 }, 1000 ).start();
       // console.log("tween started")
       animate()
