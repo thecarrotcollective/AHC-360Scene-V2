@@ -133,7 +133,7 @@ function main() {
     }
 
     renderer.render(scene, camera);
-    controls.update();
+  
 
 
     var vector = camera.position.clone();
@@ -147,6 +147,7 @@ function main() {
       animate()
       testBool = true;
     }
+    controls.update();
     // else {
     //   new TWEEN.Tween( text.material ).to( { opacity: 0 }, 10000 ).start();
     //   testBool = false;
