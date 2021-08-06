@@ -105,7 +105,7 @@ function main() {
   const textTexture = new THREE.TextureLoader().load( "images/text.png" );
   const textMat = new THREE.MeshBasicMaterial( {map: textTexture,transparent:true, opacity: 0} );
   const text = new THREE.Mesh( textGeo, textMat );
-  text.position.set(0, 1.2, -.2);
+  text.position.set(0, 1.2, -1);
   scene.add(text);
 
 
