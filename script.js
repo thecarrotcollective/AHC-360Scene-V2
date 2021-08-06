@@ -13,7 +13,7 @@ startButton.addEventListener( 'click', function () {
 
   document.getElementById('overlay').style.display = 'none';
   trigerBool = true
-  counter++
+  // counter++
   // document.getElementById('change').style.display = 'flex';
 } );
 
