@@ -155,7 +155,7 @@ function main() {
     renderer.render(scene, camera);
 
     var vector = camera.position.clone();
-    // console.log(vector.x)
+    console.log(vector.x)
     var testBool = false
     if (vector.x > 0.0005 && vector.x <0.013 && testBool == false){
       new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
