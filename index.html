@@ -1,0 +1,72 @@
+<html>
+  <head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="text/javascript" src="enquire.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+  <script type="text/javascript">
+
+    // This loads JS files in the head element
+        function loadJS(url)
+        {
+            // adding the script tag to the head
+           var head = document.getElementsByTagName('head')[0];
+           var script = document.createElement('script');
+           script.type = 'module';
+           script.src = url;
+    
+           // fire the loading
+           head.appendChild(script);
+        }
+    
+    
+    </script>
+  </head>
+  <body>
+   
+      <div id="overlay">
+        <button id="startButton">Start Demo</button>
+      </div>
+      <!-- <div id="change">
+        <button id="changeButton">Change</button>
+      </div> -->
+      <canvas id="c" style="position: absolute;">
+        <video id="video" playsinline webkit-playsinline muted loop autoplay width="320" height="240" src="images/aniamtion4.mp4" style="display: none;"></video>
+
+      </canvas>
+
+
+  
+     
+  <script type="text/javascript">
+
+    enquire.register("screen and (max-width: 599px)", {
+        match : function() {
+            // Load a mobile JS file
+            loadJS('script.js');
+            console.log('phone loaded');
+        }
+    });
+
+
+    enquire.register("screen and (min-width: 600px) and (max-width: 899px)", {
+        match : function() {
+            // Load a tablet JS file
+            loadJS('script.js');
+            //console.log('tablet loaded');
+        }
+    });
+
+
+    enquire.register("screen and (min-width: 900px)", {
+        match : function() {
+            // Load a desktop JS file
+            loadJS('scriptWeb.js');
+            console.log('desktop loaded');
+        }
+    });
+    </script>
+  </body>
+
+</html>
