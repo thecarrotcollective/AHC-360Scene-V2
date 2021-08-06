@@ -141,7 +141,7 @@ function main() {
     var testBool = false
   
    
-    if ( vector.x > 0 && testBool == false){
+    if ( vector.x < 0 && testBool == false){
       new TWEEN.Tween( text.material ).to( { opacity: 1 }, 5000 ).start();
       // console.log("tween started")
       animate()
@@ -197,7 +197,7 @@ function main() {
         counter++
  
        
-        if(counter ==5){
+        if(counter ==3){
           console.log("scene1")
           var texture_scene2 = "YOUSPA 360_1_v2"
           textureLoad(texture_scene2);
