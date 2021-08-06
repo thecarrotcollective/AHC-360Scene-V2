@@ -145,6 +145,9 @@ function main() {
       new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
       // console.log("tween started")
       testBool = true;
+    }else {
+      new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
+      testBool = false;
     }
     // } if(vector.x >0.013 || vector.x < -0.003){
     //   new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
