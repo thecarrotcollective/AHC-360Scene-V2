@@ -14,7 +14,7 @@ startButton.addEventListener( 'click', function () {
   document.getElementById('overlay').style.display = 'none';
   trigerBool = true
   // counter++
-  document.getElementById('change').style.display = 'flex';
+  
 } );
 
 const raycaster = new THREE.Raycaster();
@@ -189,6 +189,7 @@ function main() {
  
        
         if(counter ==5){
+          console.log("scene1")
           var texture_scene2 = "YOUSPA 360_1_v2"
           textureLoad(texture_scene2);
   
@@ -205,6 +206,7 @@ function main() {
       counter++
     
       if(counter ==3 ){
+        console.log("scene2")
         console.log(counter)
         var texture_scene3 = "scene2"
         textureLoad(texture_scene3);
@@ -222,6 +224,7 @@ function main() {
     console.log("thirt button")
     console.log(counter)
     if(counter ==3 ){
+      console.log("scene3")
       console.log(counter)
       var texture_scene4 = "scene3"
       textureLoad(texture_scene4);
@@ -248,7 +251,7 @@ function textureLoad(TextureName){
       rt.fromEquirectangularTexture(renderer, texture);
   
       scene.background = rt.texture;
-      scene.background.opacity = 0.1
+ 
 
     });
    
