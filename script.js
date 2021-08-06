@@ -141,8 +141,8 @@ function main() {
     var testBool = false
   
    
-    if ( vector.x < 0 && testBool == false){
-      new TWEEN.Tween( text.material ).to( { opacity: 1 }, 1000 ).start();
+    if ( vector.x > 0 && testBool == false){
+      new TWEEN.Tween( text.material ).to( { opacity: 1 }, 5000 ).start();
       // console.log("tween started")
       animate()
       testBool = true;
