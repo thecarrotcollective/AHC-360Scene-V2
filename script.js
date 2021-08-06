@@ -139,9 +139,10 @@ function main() {
     var vector = camera.position.clone();
     // console.log(vector.x)
     var testBool = false
+    new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
+    animate()
     if (Math.abs(vector.x)> 0 && Math.abs(vector.x) <0.01 && testBool == false){
-      new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
-      animate()
+    
       // console.log("tween started")
       testBool = true;
     }
