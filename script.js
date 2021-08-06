@@ -103,9 +103,9 @@ function main() {
   //***********************TEXT********************
   const textGeo = new THREE.PlaneGeometry( 1, 1, 1 );
   const textTexture = new THREE.TextureLoader().load( "images/text.png" );
-  const textMat = new THREE.MeshBasicMaterial( {map: textTexture,transparent:true, opacity: 0} );
+  const textMat = new THREE.MeshBasicMaterial( {map: textTexture,transparent:true, opacity: 1} );
   const text = new THREE.Mesh( textGeo, textMat );
-  text.position.set(0, 1.2, -1);
+  text.position.set(0, 1.2, -0.6);
   scene.add(text);
 
 
