@@ -147,7 +147,7 @@ function main() {
       animate()
       testBool = true;
     }else {
-      new TWEEN.Tween( text.material ).to( { opacity: 0 }, 1000 ).start();
+      new TWEEN.Tween( text.material ).to( { opacity: 0 }, 10000 ).start();
       testBool = false;
     }
     // } if(vector.x >0.013 || vector.x < -0.003){
