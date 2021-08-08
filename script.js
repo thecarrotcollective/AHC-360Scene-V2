@@ -3,7 +3,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 import { DeviceOrientationControls } from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/DeviceOrientationControls.js';
 
 
-//Update6
+//Update7
 let camera, scene, renderer, controls,scene2,scene3,scene4,scene5,sprite,sprite2,sprite3,TextureName,trigerBool,material4,material3,material;
 
 var imageCount =1;
@@ -283,7 +283,7 @@ scene5.add( cube )
         sprite.material.rotation =-0.2;
         console.log()
         sprite2.position.set(-5,-2,6);
-        sprite.material.rotation = 0.4;
+        sprite2.material.rotation = 0.4;
         scene.add( scene2 );
         scene.add( scene3 );
         scene.add( scene4 );

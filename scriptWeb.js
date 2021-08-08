@@ -162,21 +162,21 @@ function main() {
 
     renderer.render(scene, camera);
 
-    const bounce = () => {
-      new TWEEN.Tween(sprite.position)
-        .to({z: 6}, 500)
-        .easing(TWEEN.Easing.Cubic.Out)
-        .start()
-        .onComplete(() => {
-          new TWEEN.Tween(sprite.position)
-            .to({z: 7}, 500)
-            .easing(TWEEN.Easing.Cubic.In)
-            .start()
-         }
-      )
-      animate()
-    }
-    setInterval(bounce, 100)
+    // const bounce = () => {
+    //   new TWEEN.Tween(sprite.position)
+    //     .to({z: 6}, 500)
+    //     .easing(TWEEN.Easing.Cubic.Out)
+    //     .start()
+    //     .onComplete(() => {
+    //       new TWEEN.Tween(sprite.position)
+    //         .to({z: 7}, 500)
+    //         .easing(TWEEN.Easing.Cubic.In)
+    //         .start()
+    //      }
+    //   )
+    //   animate()
+    // }
+    // setInterval(bounce, 100)
     
 
     
@@ -309,7 +309,7 @@ function main() {
         sprite.material.rotation =-0.2;
         console.log()
         sprite2.position.set(-5,-2,6);
-        sprite.material.rotation = 0.4;
+        sprite2.material.rotation = 0.4;
         scene.add( scene2 );
         scene.add( scene3 );
         scene.add( scene4 );
