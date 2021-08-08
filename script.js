@@ -120,7 +120,7 @@ scene5.add( cube )
 //***********************TEXT********************
   const textGeo = new THREE.PlaneGeometry( 1, 1, 1 );
   const textTexture = new THREE.TextureLoader().load( "clickText.png" );
-  const textMat = new THREE.MeshBasicMaterial( {map: textTexture,transparent:true, opacity: 1} );
+  const textMat = new THREE.MeshBasicMaterial( {map: textTexture,transparent:true, opacity: 0} );
   const text = new THREE.Mesh( textGeo, textMat );
   text.position.set(0, 1.5, -0.6);
   scene.add(text);
