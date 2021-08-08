@@ -21,9 +21,9 @@ startButton.addEventListener( 'click', function () {
 var clickableVideo = true
 const closeButton = document.getElementById( 'closeButton' );
 closeButton.addEventListener( 'click', function () {
-  if(clickableVideo == true){
+  if(clickableVideo == false){
     document.getElementById('video_id').style.display = 'none';
-    controls.enableRotate = true
+    setTimeout(function(){ clickableVideo = true }, 500);
   }
 
  
@@ -370,6 +370,7 @@ scene5.add( cube )
       document.getElementById('video2').style.display = 'block';
       document.getElementById('video_id').style.display = 'block';
       controls.enableRotate = false
+      clickableVideo=false
     }
    
     }

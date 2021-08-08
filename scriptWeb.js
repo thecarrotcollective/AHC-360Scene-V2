@@ -21,9 +21,11 @@ startButton.addEventListener( 'click', function () {
 var clickableVideo = true
 const closeButton = document.getElementById( 'closeButton' );
 closeButton.addEventListener( 'click', function () {
-  if(clickableVideo == true){
+  if(clickableVideo == false){
     document.getElementById('video_id').style.display = 'none';
     controls.enableRotate = true
+    // clickableVideo = true
+    setTimeout(function(){ clickableVideo = true }, 500);
   }
 
  
@@ -394,7 +396,10 @@ function main() {
    
       document.getElementById('video2').style.display = 'block';
       document.getElementById('video_id').style.display = 'block';
+      // scene.remove(scene5)
+      // scene.remove( text );
       controls.enableRotate = false
+      clickableVideo = false
     }
    
     }
