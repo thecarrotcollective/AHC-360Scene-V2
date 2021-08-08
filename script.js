@@ -159,7 +159,7 @@ scene5.add( cube )
     // console.log(vector.x)
     var testBool = false
     if (vector.x > 0.0005 ){
-      new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
+      new TWEEN.Tween( text.material ).to( { opacity: 1 }, 1000 ).start();
       animate()
       // console.log("tween started")
       testBool = true;
