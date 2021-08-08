@@ -154,20 +154,19 @@ scene5.add( cube )
 
     renderer.render(scene, camera);
     controls.update();
-    // camera.rotation.set(200,0,0)
-    // var vector = camera.rotation.clone();
- 
-    // var testBool = false
-    // if (vector.x > 0.0005 ){
-    //   new TWEEN.Tween( text.material ).to( { opacity: 1 }, 1000 ).start();
-    //   animate()
-    //   // console.log("tween started")
-    //   testBool = true;
-    // } 
-    // if(vector.x >0.013 || vector.x <0){
-    //   new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
-    //   testBool = false;
-    // }
+    var vector = camera.rotation.clone();
+    // console.log(vector.x)
+    var testBool = false
+    if (vector.x > 0.0005 && vector.x <0.013 && testBool == false){
+      new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
+      animate()
+      // console.log("tween started")
+      testBool = true;
+    } if(vector.x >0.013 || vector.x <0){
+      new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
+      testBool = false;
+    }
+
    
 
 
