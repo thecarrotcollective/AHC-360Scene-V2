@@ -155,7 +155,7 @@ scene5.add( cube )
     renderer.render(scene, camera);
     controls.update();
     var vector = camera.rotation.clone();
-    // console.log(vector.x)
+    console.log(vector.x)
     var testBool = false
     if (vector.x > -10 && vector.x <10 && testBool == false){
       new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
