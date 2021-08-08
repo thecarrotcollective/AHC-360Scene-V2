@@ -161,11 +161,25 @@ function main() {
     }
 
     renderer.render(scene, camera);
-    new TWEEN.Tween(sprite.position)
-    .to({ z: -0.5}, 1000) 
-    .repeat(Infinity)
-    .yoyo(true)
-    .start();
+
+    const bounce = () => {
+      new TWEEN.Tween(sprite.position)
+        .to({z: 6}, 500)
+        .easing(TWEEN.Easing.Cubic.Out)
+        .start()
+        .onComplete(() => {
+          new TWEEN.Tween(sprite.position)
+            .to({z: 7}, 500)
+            .easing(TWEEN.Easing.Cubic.In)
+            .start()
+         }
+      )
+      animate()
+    }
+    setInterval(bounce, 100)
+    
+
+    
     var vector = camera.position.clone();
     // console.log(vector.x)
     var testBool = false
@@ -418,5 +432,6 @@ function animate() {
 	requestAnimationFrame(animate)
 	// [...]
 	TWEEN.update()
+  
 	// [...]
 }
