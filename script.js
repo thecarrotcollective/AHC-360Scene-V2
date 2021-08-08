@@ -153,8 +153,8 @@ scene5.add( cube )
     }
 
     renderer.render(scene, camera);
-
-    camera.rotation.set(200,0,0)
+    controls.update();
+    // camera.rotation.set(200,0,0)
     var vector = camera.rotation.clone();
  
     var testBool = false
@@ -168,7 +168,7 @@ scene5.add( cube )
     //   new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
     //   testBool = false;
     // }
-    controls.update();
+   
 
 
 
