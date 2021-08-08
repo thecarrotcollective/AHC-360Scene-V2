@@ -3,7 +3,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 import { DeviceOrientationControls } from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/DeviceOrientationControls.js';
 
 
-//Update4
+//Update5
 let camera, scene, renderer, controls,scene2,scene3,scene4,scene5,sprite,sprite2,sprite3,TextureName,trigerBool,material4,material3,material;
 
 var imageCount =1;
@@ -155,15 +155,15 @@ scene5.add( cube )
     renderer.render(scene, camera);
     controls.update();
     // camera.rotation.set(200,0,0)
-    var vector = camera.rotation.clone();
+    // var vector = camera.rotation.clone();
  
-    var testBool = false
-    if (vector.x > 0.0005 ){
-      new TWEEN.Tween( text.material ).to( { opacity: 1 }, 1000 ).start();
-      animate()
-      // console.log("tween started")
-      testBool = true;
-    } 
+    // var testBool = false
+    // if (vector.x > 0.0005 ){
+    //   new TWEEN.Tween( text.material ).to( { opacity: 1 }, 1000 ).start();
+    //   animate()
+    //   // console.log("tween started")
+    //   testBool = true;
+    // } 
     // if(vector.x >0.013 || vector.x <0){
     //   new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
     //   testBool = false;
