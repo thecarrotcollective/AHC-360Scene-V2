@@ -174,11 +174,12 @@ function main() {
       new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
       testBool = false;
     }
-    // new TWEEN.Tween(sprite.position.set())
-    // .to(new Vec3(4, 0, 0), 1.0, SineOut)
-    // .loop(true)
-    // .yoyo(true)
-    // .start();
+    new TWEEN.Tween(sprite.position)
+    .to({ y: -0.5}, 1000)
+    .loop(-1)
+    .yoyo(true)
+    .start();
+    animate();
 
 
 
