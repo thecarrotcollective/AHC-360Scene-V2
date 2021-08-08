@@ -128,15 +128,15 @@ button {
     }
   
 
-@media screen and (max-width: 599px) {
+@media only screen and (max-width: 599px) {
   #closeButton{
     height: 50px;
     width: 50px;
     transform: scale(0.5);
     display:block;
 
-    margin-top: 22.5%;
-    margin-left: 65%;
+    margin-top: 27.5%;
+    margin-left: 60%;
     border-radius: 50%;
     border: none;
     /* 
