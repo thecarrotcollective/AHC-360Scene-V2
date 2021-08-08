@@ -110,7 +110,7 @@ button {
      
      
   }
-  @media screen and (min-width: 900px) {
+
     #closeButton{
       height: 50px;
       width: 50px;
@@ -127,7 +127,7 @@ button {
       flex-direction: column; */
     }
   
-}
+
 @media screen and (max-width: 599px) {
   #closeButton{
     height: 50px;
