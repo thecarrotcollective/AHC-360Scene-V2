@@ -158,15 +158,16 @@ scene5.add( cube )
     var vector = camera.position.clone();
     // console.log(vector.x)
     var testBool = false
-    if (vector.x > 0.0005 && vector.x <0.013 && testBool == false){
+    if (vector.x > 0.0005 ){
       new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
       animate()
       // console.log("tween started")
       testBool = true;
-    } if(vector.x >0.013 || vector.x <0){
-      new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
-      testBool = false;
-    }
+    } 
+    // if(vector.x >0.013 || vector.x <0){
+    //   new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
+    //   testBool = false;
+    // }
 
 
 
