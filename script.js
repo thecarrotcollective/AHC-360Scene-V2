@@ -157,7 +157,7 @@ scene5.add( cube )
     var vector = camera.rotation.clone();
     console.log(vector.x)
     var testBool = false
-    if (Math.abs(vector.x) > 0.02 && Math.abs(vector.x) < 0.06  && testBool == false){
+    if (Math.abs(vector.x) > 0 && Math.abs(vector.x) < 0.08  && testBool == false){
       new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
       animate()
       // console.log("tween started")

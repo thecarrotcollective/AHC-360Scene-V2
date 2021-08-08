@@ -3,7 +3,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 import { DeviceOrientationControls } from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/DeviceOrientationControls.js';
 
 
-//Update4
+//Update5
 let camera, scene, renderer, controls,scene2,scene3,scene4,scene5,sprite,sprite2,sprite3,TextureName,trigerBool,material4,material3,material;
 
 var imageCount =1;
