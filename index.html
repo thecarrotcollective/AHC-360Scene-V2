@@ -1,8 +1,9 @@
 <html>
   <head>
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
   <meta name="viewport" content="width=device-width">
-
+  <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
   <script type="text/javascript" src="enquire.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
   <script type="text/javascript">
@@ -28,13 +29,44 @@
       <div id="overlay">
         <button id="startButton">Start Demo</button>
       </div>
+      
+      
       <!-- <div id="change">
         <button id="changeButton">Change</button>
       </div> -->
-      <canvas id="c" style="position: absolute;">
-        <video id="video" playsinline webkit-playsinline muted loop autoplay width="320" height="240" src="images/aniamtion4.mp4" style="display: none;"></video>
+      <div id="div" class="div">
+        <canvas id="c" class="canvas_class" style="position: absolute;">
+          <video id="video" playsinline webkit-playsinline muted loop autoplay width="600" height="240" src="images/test-video.mp4" style="display: none;"></video>
+      
+        </canvas>
+      </div>
+      <div id="video_id" style="display: none;">
+       
+        <!-- <video id="video2"   muted loop autoplay src="images/aniamtion4.mp4"style="display: none;" >
+          <div style="height: 100%; width: 100%; z-index: 3;">
+            <button id="closeButton" style="background-color: rgba(102, 95, 95, 1); " ><img src="closeButton.png"></button>
+          </div> -->
+          <video
+            id="video2"
+            class="video-js"
+            controls
+            autoplay 
+            preload="auto"
+            width="640"
+            height="264"
 
-      </canvas>
+            data-setup="{}"
+          >
+            <source src="images/test-video.mp4" type="video/mp4" />
+           
+          
+          </video>
+          <button id="closeButton" style="background-color: rgba(102, 95, 95, 0); " ><img src="closeButton.png"></button>
+ 
+       
+      
+      </div>
+ 
 
 
   
@@ -63,6 +95,7 @@
         match : function() {
             // Load a desktop JS file
             loadJS('scriptWeb.js');
+
             console.log('desktop loaded');
         }
     });
