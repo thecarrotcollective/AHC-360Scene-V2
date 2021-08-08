@@ -98,7 +98,7 @@ function main() {
 
 
 //***********************VIDEO********************
-const geometry2 = new THREE.BoxGeometry( 24, 48, 1 );
+const geometry2 = new THREE.PlaneGeometry( 36, 24, 1 );
 let video = document.getElementById( 'video' );
 video.play();
 video.addEventListener( 'play', function () {
@@ -111,8 +111,9 @@ const texture5 = new THREE.VideoTexture(video)
 
 const material2 = new THREE.MeshBasicMaterial( {map: texture5} );
 const cube = new THREE.Mesh( geometry2, material2 );
-cube.position.set(0, 1, -80);
-scene.add( cube )
+cube.position.set(0, 1, -50);
+scene5.add( cube )
+  
   
 
 
@@ -121,7 +122,7 @@ scene.add( cube )
   const textTexture = new THREE.TextureLoader().load( "clickText.png" );
   const textMat = new THREE.MeshBasicMaterial( {map: textTexture,transparent:true, opacity: 1} );
   const text = new THREE.Mesh( textGeo, textMat );
-  text.position.set(0, 1.2, -0.6);
+  text.position.set(0, 2, -0.6);
   scene.add(text);
   
   
