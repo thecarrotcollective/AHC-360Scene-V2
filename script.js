@@ -137,7 +137,7 @@ function main() {
 
 
     var vector = camera.position.clone();
-    // console.log(vector.x)
+    console.log(vector.x)
     var testBool = false
   
    
