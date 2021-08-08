@@ -154,6 +154,7 @@ scene5.add( cube )
 
     renderer.render(scene, camera);
     controls.update();
+    camera.position.set(10,0,0)
     var vector = camera.position.clone();
     // console.log(vector.x)
     var testBool = false
