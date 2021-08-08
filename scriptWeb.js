@@ -162,8 +162,8 @@ function main() {
 
     renderer.render(scene, camera);
     new TWEEN.Tween(sprite.position)
-    .to({ y: -0.5}, 1000) 
-    .repeat(1)
+    .to({ z: -0.5}, 1000) 
+    .repeat(Infinity)
     .yoyo(true)
     .start();
     var vector = camera.position.clone();
