@@ -44,7 +44,7 @@ function main() {
   camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
   camera.position.z = 3;
   controls = new DeviceOrientationControls( camera );
-
+  // controls.update();
   scene = new THREE.Scene();
   scene2= new THREE.Scene();
   scene3= new THREE.Scene();
@@ -153,10 +153,10 @@ scene5.add( cube )
     }
 
     renderer.render(scene, camera);
-    controls.update();
-    camera.position.set(10,0,0)
+
+    camera.position.set(10,90,0)
     var vector = camera.position.clone();
-    // console.log(vector.x)
+    console.log(camera.position)
     var testBool = false
     if (vector.x > 0.0005 ){
       new TWEEN.Tween( text.material ).to( { opacity: 1 }, 1000 ).start();
@@ -168,6 +168,7 @@ scene5.add( cube )
     //   new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
     //   testBool = false;
     // }
+    
 
 
 
