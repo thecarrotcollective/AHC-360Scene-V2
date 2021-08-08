@@ -161,7 +161,11 @@ function main() {
     }
 
     renderer.render(scene, camera);
-
+    new TWEEN.Tween(sprite.position)
+    .to({ y: -0.5}, 1000) 
+    .repeat(1)
+    .yoyo(true)
+    .start();
     var vector = camera.position.clone();
     // console.log(vector.x)
     var testBool = false
@@ -174,12 +178,8 @@ function main() {
       new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
       testBool = false;
     }
-    new TWEEN.Tween(sprite.position)
-    .to({ y: -0.5}, 1000)
-    .loop(-1)
-    .yoyo(true)
-    .start();
-    animate();
+
+
 
 
 

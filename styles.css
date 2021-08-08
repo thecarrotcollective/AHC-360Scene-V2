@@ -128,7 +128,7 @@ button {
     }
   
 
-@media only screen and (max-width: 599px) {
+/* @media only screen and (max-width: 599px) {
   #closeButton{
     height: 50px;
     width: 50px;
@@ -139,10 +139,7 @@ button {
     margin-left: 60%;
     border-radius: 50%;
     border: none;
-    /* 
-    align-items: center;
-    justify-content: center;
-    flex-direction: column; */
+  
   }
 
-}
+} */
