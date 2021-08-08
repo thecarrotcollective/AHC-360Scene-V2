@@ -174,6 +174,11 @@ function main() {
       new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
       testBool = false;
     }
+    // new TWEEN.Tween(sprite.position.set())
+    // .to(new Vec3(4, 0, 0), 1.0, SineOut)
+    // .loop(true)
+    // .yoyo(true)
+    // .start();
 
 
 
