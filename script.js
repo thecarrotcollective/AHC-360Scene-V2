@@ -157,12 +157,12 @@ scene5.add( cube )
     var vector = camera.rotation.clone();
     console.log(vector.x)
     var testBool = false
-    if (Math.abs(vector.x) > 0 && Math.abs(vector.x) < 0.08  && testBool == false){
+    if (Math.abs(vector.y) > 0.01 && Math.abs(vector.y) < 0.08  && testBool == false){
       new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
       animate()
       // console.log("tween started")
       testBool = true;
-    } else if(Math.abs(vector.x) > 0.08 || vector.x <-0.03){
+    } else if(Math.abs(vector.y) > 0.08 || vector.y <-0.01){
       new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
       testBool = false;
     }
