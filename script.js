@@ -115,13 +115,27 @@ scene5.add( cube )
 
 
 //***********************TEXT********************
+const colorMesh = new THREE.PlaneGeometry( 36, 24, 1 );
+const materialColor = new THREE.MeshBasicMaterial( {color: 0x000000,transparent:true, opacity: 0} );
+const cubeColor = new THREE.Mesh( colorMesh, materialColor );
+cubeColor.position.set(-5, 1, -49.99);
+scene.add( cubeColor );
+
   const textGeo = new THREE.PlaneGeometry( 1, 1, 1 );
-  const textTexture = new THREE.TextureLoader().load( "startExperience.png" );
+  const textTexture = new THREE.TextureLoader().load( "Energize-your-Brain.png");
   const textMat = new THREE.MeshBasicMaterial( {map: textTexture, transparent:true, opacity: 0} );
   const text = new THREE.Mesh( textGeo, textMat );
-  text.position.set(-0.08, 0.05, 2);
+  text.position.set(-0.08, 0.32, 2);
   scene.add(text);
   
+  
+  const textGeo2 = new THREE.PlaneGeometry( 1, 1, 1 );
+  const textTexture2 = new THREE.TextureLoader().load( "Start-Experience.png" );
+  const textMat2 = new THREE.MeshBasicMaterial( {map: textTexture2, transparent:true, opacity: 0} );
+  const text2 = new THREE.Mesh( textGeo2, textMat2 );
+  text2.position.set(-0.2, 0.05, 1);
+  scene.add(text2);
+
   
   function resizeRendererToDisplaySize(renderer) {
    
@@ -155,11 +169,15 @@ scene5.add( cube )
     var testBool = false
     if (vector.y > -0.4 && Math.abs(vector.y) < 0.4  && testBool == false){
       new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
+      new TWEEN.Tween( cubeColor.material ).to( { opacity: 0.5 }, 100 ).start();
+      new TWEEN.Tween( text2.material ).to( { opacity: 1 }, 100 ).start();
       animate()
       // console.log("tween started")
       testBool = true;
     } else if(Math.abs(vector.y)> 0.4 || vector.y <-0.4){
       new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
+      new TWEEN.Tween( text2.material ).to( { opacity: 0 }, 100 ).start();
+      new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
       testBool = false;
     }
 
