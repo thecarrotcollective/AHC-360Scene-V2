@@ -121,20 +121,12 @@ const cubeColor = new THREE.Mesh( colorMesh, materialColor );
 cubeColor.position.set(-5, 1, -49.99);
 scene.add( cubeColor );
 
-  const textGeo = new THREE.PlaneGeometry( 1, 1, 1 );
-  const textTexture = new THREE.TextureLoader().load( "Energize-your-Brain.png");
-  const textMat = new THREE.MeshBasicMaterial( {map: textTexture, transparent:true, opacity: 0} );
-  const text = new THREE.Mesh( textGeo, textMat );
-  text.position.set(-0.08, 0.32, 2);
-  scene.add(text);
-  
-  
-  const textGeo2 = new THREE.PlaneGeometry( 1, 1, 1 );
-  const textTexture2 = new THREE.TextureLoader().load( "Start-Experience.png" );
-  const textMat2 = new THREE.MeshBasicMaterial( {map: textTexture2, transparent:true, opacity: 0} );
-  const text2 = new THREE.Mesh( textGeo2, textMat2 );
-  text2.position.set(-0.2, 0.05, 1);
-  scene.add(text2);
+const textGeo = new THREE.PlaneGeometry( 1, 1, 1 );
+const textTexture = new THREE.TextureLoader().load( "startExperience.png" );
+const textMat = new THREE.MeshBasicMaterial( {map: textTexture, transparent:true, opacity: 0} );
+const text = new THREE.Mesh( textGeo, textMat );
+text.position.set(-0.08, 0.05, 2);
+scene.add(text)
 
   
   function resizeRendererToDisplaySize(renderer) {
@@ -170,13 +162,13 @@ scene.add( cubeColor );
     if (vector.y > -0.4 && Math.abs(vector.y) < 0.4  && testBool == false){
       new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
       new TWEEN.Tween( cubeColor.material ).to( { opacity: 0.5 }, 100 ).start();
-      new TWEEN.Tween( text2.material ).to( { opacity: 1 }, 100 ).start();
+      
       animate()
       // console.log("tween started")
       testBool = true;
     } else if(Math.abs(vector.y)> 0.4 || vector.y <-0.4){
       new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
-      new TWEEN.Tween( text2.material ).to( { opacity: 0 }, 100 ).start();
+     
       new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
       testBool = false;
     }
@@ -236,6 +228,7 @@ scene.add( cubeColor );
           scene.remove( scene3 );
           scene.remove( scene5 );
           scene.remove( text );
+          scene.remove( cubeColor );
           SecondScene = true
           // scene.remove( scene4 );
           // cube.position.set(-5, 30, -200);
@@ -259,6 +252,7 @@ scene.add( cubeColor );
           SceneBool1 =false
           scene.remove( scene5 );
           scene.remove( text );
+          scene.remove( cubeColor );
           clickableVideo=false
         }
     }
@@ -278,6 +272,7 @@ scene.add( cubeColor );
         scene.remove( scene4 );
         scene.remove( scene5 );
         scene.remove( text );
+        scene.remove( cubeColor );
         SceneBool2 = false
         SceneBool1 = false
         ThirdScene = true
@@ -303,6 +298,7 @@ scene.add( cubeColor );
         scene.add( scene4 );
         scene.add( scene5 );
         scene.add( text );
+        scene.add( cubeColor );
     
         SecondScene = false
         MainScene = false
@@ -339,6 +335,7 @@ scene.add( cubeColor );
       scene.add( scene4 );
       scene.add( scene5 );
       scene.add( text );
+      scene.add( cubeColor );
       SecondScene = false
       MainScene = false
       SceneBool1 = true
@@ -365,6 +362,7 @@ scene.add( cubeColor );
       scene.remove( scene4 );
       scene.remove( scene5 );
       scene.remove( text );
+      scene.remove( cubeColor );
       SceneBool3 = false
       SceneBool1 = false
       SceneBool2 = false
