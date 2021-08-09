@@ -110,13 +110,13 @@ button {
      
   }
   #closeButton{
-    height: 50px;
-    width: 50px;
+    height: 100px;
+    width: 100px;
     transform: scale(1);
     display:block;
 
     margin-top: 10%;
-    margin-left: 75%;
+    margin-left: 72.5%;
     border-radius: 50%;
     border: none;
     /* 
@@ -160,7 +160,7 @@ button {
     position: absolute;
     top: 27.5%;
  
-    margin-left: 80%;
+    margin-left: 81%;
     border-radius: 50%;
     border: none;
     align-items: center;
