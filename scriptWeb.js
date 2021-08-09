@@ -18,7 +18,7 @@ startButton.addEventListener( 'click', function () {
   counter++
   document.getElementById('overlay').style.display = 'none';
 
- 
+    
 } );
 var clickableVideo = true
 const closeButton = document.getElementById( 'closeButton' );
@@ -34,6 +34,8 @@ closeButton.addEventListener( 'click', function () {
 } );
 
 const raycaster = new THREE.Raycaster();
+
+
 const mouse = new THREE.Vector2();
 
 function main() {

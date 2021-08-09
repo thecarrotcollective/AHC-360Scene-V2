@@ -16,7 +16,7 @@ startButton.addEventListener( 'click', function () {
   trigerBool = true
   counter++
   document.getElementById('overlay').style.display = 'none';
- 
+   
 } );
 var clickableVideo = true
 const closeButton = document.getElementById( 'closeButton' );
@@ -63,10 +63,6 @@ function main() {
     scene.add(light);
   }
 
-  // const boxWidth = 1;
-  // const boxHeight = 1;
-  // const boxDepth = 1;
-  // const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 
 
 //***********************BUTTONS********************
