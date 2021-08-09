@@ -13,9 +13,11 @@ var counter = 0;
 const startButton = document.getElementById( 'startButton' );
 startButton.addEventListener( 'click', function () {
   main();
+
   trigerBool = true
   counter++
   document.getElementById('overlay').style.display = 'none';
+
  
 } );
 var clickableVideo = true
@@ -87,7 +89,7 @@ function main() {
 
 //***********************BUTTONS********************
   var map = new THREE.TextureLoader().load( "arrow_black.png" );
-  material = new THREE.SpriteMaterial( { map: map,rotation: -0.2} );
+  material = new THREE.SpriteMaterial( { map: map,rotation: -0.2, depthTest: false } );
   sprite = new THREE.Sprite( material );
   sprite.position.set(2,-2,7);
   sprite.scale.set(2,1,1.25)
@@ -120,7 +122,7 @@ function main() {
   video.autoplay = "autoplay"; // To set up playback
   video.loop = true;
   const texture5 = new THREE.VideoTexture(video)
-  const material2 = new THREE.MeshBasicMaterial( {map: texture5,transparent: true,alphaTest:0.01} );
+  const material2 = new THREE.MeshBasicMaterial( {map: texture5,transparent: true,alphaTest:0.01,} );
   const cube = new THREE.Mesh( geometry2, material2 );
   cube.position.set(0, 1, -50);
   scene5.add( cube )
