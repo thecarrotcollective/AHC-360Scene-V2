@@ -90,14 +90,14 @@ function main() {
 
 
 //***********************BUTTONS********************
-  var map = new THREE.TextureLoader().load( "arrow_black.png" );
+  var map = new THREE.TextureLoader().load( "arrow_white.png" );
   material = new THREE.SpriteMaterial( { map: map,rotation: -0.2, depthTest: false } );
   sprite = new THREE.Sprite( material );
   sprite.position.set(2,-2,7);
   sprite.scale.set(2,1,1.25)
   scene2.add(sprite);
 
-  var map2 = new THREE.TextureLoader().load( "arrow_black.png" );
+  var map2 = new THREE.TextureLoader().load( "arrow_white.png" );
   material3 = new THREE.SpriteMaterial( { map: map2,rotation: 0.4} );
   sprite2 = new THREE.Sprite( material3 );
   sprite2.position.set(-5,-2,6);
@@ -105,7 +105,7 @@ function main() {
   scene3.add(sprite2);
 
   
-  var map3 = new THREE.TextureLoader().load( "arrow_black.png" );
+  var map3 = new THREE.TextureLoader().load( "arrow_white.png" );
 
   material4 = new THREE.SpriteMaterial( { map: map3,rotation: 1} );
   sprite3 = new THREE.Sprite( material4 );
@@ -126,17 +126,17 @@ function main() {
   const texture5 = new THREE.VideoTexture(video)
   const material2 = new THREE.MeshBasicMaterial( {map: texture5,transparent: true,alphaTest:0.01,} );
   const cube = new THREE.Mesh( geometry2, material2 );
-  cube.position.set(0, 1, -50);
+  cube.position.set(-5, 1, -50);
   scene5.add( cube )
   
 
 
 //***********************TEXT********************
   const textGeo = new THREE.PlaneGeometry( 1, 1, 1 );
-  const textTexture = new THREE.TextureLoader().load( "clickText.png" );
+  const textTexture = new THREE.TextureLoader().load( "startExperience.png" );
   const textMat = new THREE.MeshBasicMaterial( {map: textTexture, transparent:true, opacity: 0} );
   const text = new THREE.Mesh( textGeo, textMat );
-  text.position.set(0, 1.2, 0);
+  text.position.set(-0.08, 0.05, 2);
   scene.add(text);
   
   
