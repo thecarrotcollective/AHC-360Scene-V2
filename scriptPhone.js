@@ -1,12 +1,12 @@
 import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/build/three.module.js';
-
-import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
 import { DeviceOrientationControls } from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/DeviceOrientationControls.js';
+import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
+
 
 			let camera, controls;
 			let renderer;
 			let scene,spriteScene,spriteScene2,text,cubeColor,materials,skyBox,opacityValue,transparentBool,sprite,sprite2,sprite3,sprite4;
-            let videoScene,textScene ,spriteScene3,spriteScene4,videoMesh,filterScene,controlsOrbit;
+            let videoScene,textScene ,spriteScene3,spriteScene4,videoMesh,filterScene;
             const mouse = new THREE.Vector2();
             const startButton = document.getElementById( 'start-btn' );
             startButton.addEventListener( 'click', function () {
@@ -15,12 +15,15 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
          
             document.getElementById('overlay').style.display = 'none';
             setTimeout(function(){  
-                    setTimeout(function(){ clickableVideo = true }, 1000);
+                  
                     spriteScene.add(sprite);
                     spriteScene2.add(sprite2);
 
             }, 1000);
-     
+          
+           
+      
+                
             } );
             var clickableVideo = true
             const closeButton = document.getElementById( 'closeButton' );
@@ -35,8 +38,11 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                 }, 500);
                 
             }
+
             
             } );
+
+         
 
 			function init() {
 
@@ -63,42 +69,20 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                 scene.add(spriteScene4)
                 scene.add(filterScene)
 				
-				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 3000 );
-                controls = new OrbitControls(camera, renderer.domElement);
-                // controls.rotateUp(Math.PI / 4);
-                // controls.rotateLeft(-Math.PI/2);
-                controls.target.set(
-                  camera.position.x + 0.1,
-                  camera.position.y,
-                  camera.position.z
-                );
-                controls.noZoom = true;
-                controls.noPan = true;
-              
-                function setOrientationControls(e) {
-                  console.log('setOrientationControls', e);
-                  if (!e.alpha) {
-                    return;
-                  }
-              
-                  controls = new DeviceOrientationControls(camera, true);
-                  controls.connect();
-                  controls.update();
-              
-                  //element.addEventListener('click', fullscreen, false);
-              
-                  window.removeEventListener('deviceorientation', setOrientationControls);
-                }
-                window.addEventListener('deviceorientation', setOrientationControls, true);
-              
-				// controls = new DeviceOrientationControls( camera );
-				// controls.enableZoom = false;
-				// controls.enablePan = false;
-				// controls.enableDamping = true;
-				// controls.rotateSpeed = - 0.25;
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 1000 );
+				camera.position.z = 0.00001;
+                camera.rotation.z = 100
+                
+               
 
-                 //***********************CUBE MAP********************
-				envLoad("test_scene2.jpg")
+				controls = new OrbitControls( camera, renderer.domElement );
+				controls.enableZoom = false;
+				controls.enablePan = false;
+				controls.enableDamping = true;
+				controls.rotateSpeed = - 0.25;
+
+                //***********************CUBE MAP********************
+				envLoad("scenes/test_scene2.jpg")
                 
                 
 			
@@ -110,27 +94,27 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                 scene.add(light);
 
                 //***********************SPRITES********************
-                var spriteTexture1 = new THREE.TextureLoader().load( "arrow_white.png" );
+                var spriteTexture1 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat1 = new THREE.SpriteMaterial( { map: spriteTexture1 ,rotation:.2,transparent: true,opacity:1} );
 				sprite = new THREE.Sprite( spriteMat1 );
 				sprite.position.set(-8,-5,-12);
 				sprite.scale.set(6,3,3)
 				
 
-				var spriteTexture2 = new THREE.TextureLoader().load( "arrow_white.png" );
+				var spriteTexture2 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat2 = new THREE.SpriteMaterial( { map: spriteTexture2,rotation: -0.1 } );
 				sprite2 = new THREE.Sprite( spriteMat2 );
 				sprite2.position.set(-8,-4,4);
 				sprite2.scale.set(4,2,2)
 				
 
-                var spriteTexture3 = new THREE.TextureLoader().load( "arrow_white.png" );
+                var spriteTexture3 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat3 = new THREE.SpriteMaterial( { map: spriteTexture3,rotation: -0.1 } );
 				sprite3 = new THREE.Sprite( spriteMat3 );
 				sprite3.position.set(8,-4,3);
 				sprite3.scale.set(4,2,2)
 
-                var spriteTexture4 = new THREE.TextureLoader().load( "arrow_black.png" );
+                var spriteTexture4 = new THREE.TextureLoader().load( "UIAssets/arrow_black.png" );
 				var spriteMat4 = new THREE.SpriteMaterial( { map: spriteTexture4,rotation: -0.1 } );
 				sprite4 = new THREE.Sprite( spriteMat4 );
 				sprite4.position.set(12,-4,-2);
@@ -141,7 +125,7 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                 //***********************VIDEO********************
                 const videoPlane = new THREE.PlaneGeometry( 36, 24, 1 );
                 let video = document.createElement('video');
-                video.src = "images/test-video.mp4"; // Set video address
+                video.src = "video/test-video.mp4"; // Set video address
                 video.autoplay = "autoplay"; // To set up playback
                 video.loop = true;
                 const videoTexture = new THREE.VideoTexture(video)
@@ -160,7 +144,7 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
 
                 //***********************TEXT********************
                 const textGeo = new THREE.PlaneGeometry( 36, 36, 36 );
-                const textTexture = new THREE.TextureLoader().load( "startExperience.png" );
+                const textTexture = new THREE.TextureLoader().load( "UIAssets/startExperience.png" );
                 const textMat = new THREE.MeshBasicMaterial( {map: textTexture, transparent:true, opacity: 0} );
                 text = new THREE.Mesh( textGeo, textMat );
                 text.position.set(49.8, 1, -10);
@@ -241,107 +225,7 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                   }
                   
             
-                // THREE.OrbitControls = function (object, domElement) {
-                //     const scope = this;
-                //     let lastBeta = 0;
-                //     let lastGamma = 0;
-                //     this.deviceOrientation = {};
-                // controls.update = function () {
-                //     // Z
-                //     const alpha = scope.deviceOrientation.alpha 
-                //       ? THREE.Math.degToRad(scope.deviceOrientation.alpha)
-                //       : 0;
-                  
-                //     // X'
-                //     const beta = scope.deviceOrientation.beta
-                //       ? THREE.Math.degToRad(scope.deviceOrientation.beta)
-                //       : 0;
-                  
-                //     // Y''
-                //     const gamma = scope.deviceOrientation.gamma 
-                //       ? THREE.Math.degToRad(scope.deviceOrientation.gamma)
-                //       : 0;
-                  
-                //     // O
-                //     const orient = scope.screenOrientation
-                //       ? THREE.Math.degToRad(scope.screenOrientation) 
-                //       : 0;
-                  
-                //     const currentQ = new THREE.Quaternion().copy(scope.object.quaternion);
-                  
-                //     setObjectQuaternion(currentQ, alpha, beta, gamma, orient);
-                //     const currentAngle = Quat2Angle(currentQ.x, currentQ.y, currentQ.z, currentQ.w);
-                  
-                //     // currentAngle.z = left - right
-                //     this.rotateLeft((lastGamma - currentAngle.z) / 2);
-                //     lastGamma = currentAngle.z;
-                  
-                //     // currentAngle.y = up - down
-                //     this.rotateUp(lastBeta - currentAngle.y);
-                //     lastBeta = currentAngle.y;
-                //   }
-                //   function onDeviceOrientationChangeEvent(event) {
-                //     scope.deviceOrientation = event;
-                //   }
-                  
-                //   window.addEventListener('deviceorientation', onDeviceOrientationChangeEvent, false);
-                //   function onScreenOrientationChangeEvent(event) {
-                //     scope.screenOrientation = window.orientation || 0;
-                //   }
-                  
-                //   window.addEventListener('orientationchange', onScreenOrientationChangeEvent, false)
-                //   var setObjectQuaternion = function () {
-                //     const zee = new THREE.Vector3(0, 0, 1);
-                //     const euler = new THREE.Euler();
-                //     const q0 = new THREE.Quaternion();
-                //     const q1 = new THREE.Quaternion(-Math.sqrt(0.5), 0, 0,  Math.sqrt(0.5));
-                  
-                //     return function (quaternion, alpha, beta, gamma, orient) {
-                //       // 'ZXY' for the device, but 'YXZ' for us
-                //       euler.set(beta, alpha, -gamma, 'YXZ');
-                  
-                //       // Orient the device
-                //       quaternion.setFromEuler(euler);
-                  
-                //       // camera looks out the back of the device, not the top
-                //       quaternion.multiply(q1);
-                  
-                //       // adjust for screen orientation
-                //       quaternion.multiply(q0.setFromAxisAngle(zee, -orient));
-                //     }
-                //   } ();
-                //   function Quat2Angle(x, y, z, w) {
-                //     let pitch, roll, yaw;
-                  
-                //     const test = x * y + z * w;
-                //     // singularity at north pole
-                //     if (test > 0.499) {
-                //       yaw = Math.atan2(x, w) * 2;
-                //       pitch = Math.PI / 2;
-                //       roll = 0;
-                  
-                //       return new THREE.Vector3(pitch, roll, yaw);
-                //     }
-                  
-                //     // singularity at south pole
-                //     if (test < -0.499) {
-                //       yaw = -2 * Math.atan2(x, w);
-                //       pitch = -Math.PI / 2;
-                //       roll = 0;
-                //       return new THREE.Vector3(pitch, roll, yaw);
-                //     }
-                  
-                //     const sqx = x * x;
-                //     const sqy = y * y;
-                //     const sqz = z * z;
-                  
-                //     yaw = Math.atan2((2 * y * w) - (2 * x * z), 1 - (2 * sqy) - (2 * sqz));
-                //     pitch = Math.asin(2 * test);
-                //     roll = Math.atan2((2 * x * w) - (2 * y * z), 1 - (2 * sqx) - (2 * sqz));
-                  
-                //     return new THREE.Vector3(pitch, roll, yaw);
-                //   }
-                controls.update();
+				controls.update(); // required when damping is enabled
 				renderer.render( scene, camera );
                 runTween()
 
@@ -366,12 +250,11 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                     var intersectsVideo = raycaster.intersectObjects( videoScene.children, false );
                     if ( intersects.length > 0 ) {
                         setTimeout(function(){  
-                            spriteScene3.add(sprite3);
                             scene.add(spriteScene3);
-                           
+                            spriteScene3.add(sprite3);
         
                         }, 1000);
-                        envLoad("test_scene_2.jpg")
+                        envLoad("scenes/test_scene_2.jpg")
                         scene.remove(spriteScene);
                         scene.remove(spriteScene2);
                         scene.remove(filterScene);
@@ -386,7 +269,7 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                             spriteScene4.add(sprite4);
         
                         }, 1000);
-                        envLoad("test_scene3.jpg")
+                        envLoad("scenes/test_scene3.jpg")
                         scene.remove(spriteScene);
                         scene.remove(spriteScene2);
                         scene.remove(videoScene);
@@ -396,7 +279,7 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                       
                         
                     } if(intersects4.length > 0  ) {
-                        // console.log("clicked")
+                        console.log("clicked")
                         setTimeout(function(){  
                                 videoMesh.position.set(50, 1, -10);
                                 scene.add(spriteScene);
@@ -413,7 +296,7 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                             new TWEEN.Tween( text.material ).to( { opacity: 1 }, 2000 ).start();
                         }, 900);
                             
-                            envLoad("test_scene2.jpg")
+                            envLoad("scenes/test_scene2.jpg")
                             scene.remove(spriteScene4);
                             new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
                             new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
@@ -427,49 +310,46 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                             videoMesh.position.set(50, 1, -10);
                             scene.add(spriteScene);
                             scene.add(spriteScene2);
-                   
+                            // scene.add(videoScene);
                             scene.add(textScene);
                             scene.add(filterScene);
-                            
+                            spriteScene3.remove(sprite3);
                     
                     }, 1000);
                     setTimeout(function(){  
                         new TWEEN.Tween( videoMesh.material ).to( { opacity: 1 }, 2000 ).start();
                         // new TWEEN.Tween( cubeColor.material ).to( { opacity: 0.5 }, 4000 ).start();
                         new TWEEN.Tween( text.material ).to( { opacity: 1 }, 2000 ).start();
-                        // clickableVideo = true
                     }, 900);
                       
-                        envLoad("test_scene2.jpg")
+                        envLoad("scenes/test_scene2.jpg")
                         console.log("clicked")
-                        scene.remove(spriteScene3);
-                        spriteScene3.remove(sprite3);
                         new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
                         new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
                         new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
                   
-                    
+                        clickableVideo = true
                         
                     }
-                    // else if ( intersectsVideo.length > 0 && clickableVideo == true) {
-                    //     setTimeout(function(){  
+                    else if ( intersectsVideo.length > 0 && clickableVideo == true) {
+                        setTimeout(function(){  
                 
-                    //         var player = videojs('#video2');
-                    //         var video = document.getElementById('video2');
-                    //         video.requestFullscreen();
-                    //         player.play();
-                    // }, 1500);
-                    // document.getElementById('video2').style.display = 'block';
-                    // document.getElementById('video_id').style.display = 'block';
-                    // document.getElementById('blackScreen').style.display = 'block';
-                    // controls.enableRotate = false
-                    // clickableVideo = false
+                            var player = videojs('#video2');
+                            var video = document.getElementById('video2');
+                            video.requestFullscreen();
+                            player.play();
+                    }, 1500);
+                    document.getElementById('video2').style.display = 'block';
+                    document.getElementById('video_id').style.display = 'block';
+                    document.getElementById('blackScreen').style.display = 'block';
+                    controls.enableRotate = false
+                    clickableVideo = false
                   
                         
                      
                         
                         
-                    //   }
+                      }
                     });
             }
         
@@ -520,4 +400,5 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
               
                 TWEEN.update()
                 // [...]
-            };
+            }
+           
