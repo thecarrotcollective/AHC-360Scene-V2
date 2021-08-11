@@ -69,8 +69,10 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                 scene.add(spriteScene4)
                 scene.add(filterScene)
 				
-				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 3000 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 1000 );
 				camera.position.z = 0.00001;
+                camera.rotation.z = 100
+                
                
 
 				controls = new OrbitControls( camera, renderer.domElement );
@@ -79,8 +81,8 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 				controls.enableDamping = true;
 				controls.rotateSpeed = - 0.25;
 
-                 //***********************CUBE MAP********************
-				envLoad("test_scene2.jpg")
+                //***********************CUBE MAP********************
+				envLoad("scenes/test_scene2.jpg")
                 
                 
 			
@@ -92,27 +94,27 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                 scene.add(light);
 
                 //***********************SPRITES********************
-                var spriteTexture1 = new THREE.TextureLoader().load( "arrow_white.png" );
+                var spriteTexture1 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat1 = new THREE.SpriteMaterial( { map: spriteTexture1 ,rotation:.2,transparent: true,opacity:1} );
 				sprite = new THREE.Sprite( spriteMat1 );
 				sprite.position.set(-8,-5,-12);
 				sprite.scale.set(6,3,3)
 				
 
-				var spriteTexture2 = new THREE.TextureLoader().load( "arrow_white.png" );
+				var spriteTexture2 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat2 = new THREE.SpriteMaterial( { map: spriteTexture2,rotation: -0.1 } );
 				sprite2 = new THREE.Sprite( spriteMat2 );
 				sprite2.position.set(-8,-4,4);
 				sprite2.scale.set(4,2,2)
 				
 
-                var spriteTexture3 = new THREE.TextureLoader().load( "arrow_white.png" );
+                var spriteTexture3 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat3 = new THREE.SpriteMaterial( { map: spriteTexture3,rotation: -0.1 } );
 				sprite3 = new THREE.Sprite( spriteMat3 );
 				sprite3.position.set(8,-4,3);
 				sprite3.scale.set(4,2,2)
 
-                var spriteTexture4 = new THREE.TextureLoader().load( "arrow_black.png" );
+                var spriteTexture4 = new THREE.TextureLoader().load( "UIAssets/arrow_black.png" );
 				var spriteMat4 = new THREE.SpriteMaterial( { map: spriteTexture4,rotation: -0.1 } );
 				sprite4 = new THREE.Sprite( spriteMat4 );
 				sprite4.position.set(12,-4,-2);
@@ -123,7 +125,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                 //***********************VIDEO********************
                 const videoPlane = new THREE.PlaneGeometry( 36, 24, 1 );
                 let video = document.createElement('video');
-                video.src = "images/test-video.mp4"; // Set video address
+                video.src = "video/test-video.mp4"; // Set video address
                 video.autoplay = "autoplay"; // To set up playback
                 video.loop = true;
                 const videoTexture = new THREE.VideoTexture(video)
@@ -142,7 +144,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 
                 //***********************TEXT********************
                 const textGeo = new THREE.PlaneGeometry( 36, 36, 36 );
-                const textTexture = new THREE.TextureLoader().load( "startExperience.png" );
+                const textTexture = new THREE.TextureLoader().load( "UIAssets/startExperience.png" );
                 const textMat = new THREE.MeshBasicMaterial( {map: textTexture, transparent:true, opacity: 0} );
                 text = new THREE.Mesh( textGeo, textMat );
                 text.position.set(49.8, 1, -10);
@@ -252,7 +254,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                             spriteScene3.add(sprite3);
         
                         }, 1000);
-                        envLoad("test_scene_2.jpg")
+                        envLoad("scenes/test_scene_2.jpg")
                         scene.remove(spriteScene);
                         scene.remove(spriteScene2);
                         scene.remove(filterScene);
@@ -267,7 +269,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                             spriteScene4.add(sprite4);
         
                         }, 1000);
-                        envLoad("test_scene3.jpg")
+                        envLoad("scenes/test_scene3.jpg")
                         scene.remove(spriteScene);
                         scene.remove(spriteScene2);
                         scene.remove(videoScene);
@@ -294,7 +296,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                             new TWEEN.Tween( text.material ).to( { opacity: 1 }, 2000 ).start();
                         }, 900);
                             
-                            envLoad("test_scene2.jpg")
+                            envLoad("scenes/test_scene2.jpg")
                             scene.remove(spriteScene4);
                             new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
                             new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
@@ -320,7 +322,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                         new TWEEN.Tween( text.material ).to( { opacity: 1 }, 2000 ).start();
                     }, 900);
                       
-                        envLoad("test_scene2.jpg")
+                        envLoad("scenes/test_scene2.jpg")
                         console.log("clicked")
                         new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
                         new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();

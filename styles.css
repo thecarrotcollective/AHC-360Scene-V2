@@ -56,6 +56,22 @@ body {
   opacity: 0;
   animation: opacityAnim2 1.5s ease-in-out forwards;
 }
+/* #test{
+  position: absolute;
+	transform: scale(0.5);
+	z-index: 0;
+	top: 0;
+	left: 0;
+
+  padding-left: 25%;
+	display: block;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+  opacity: 1;
+  animation: opacityAnim2 1.5s ease-in-out forwards;
+} */
 #overlay {
 	position: absolute;
 	

@@ -20,10 +20,7 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                     spriteScene2.add(sprite2);
 
             }, 1000);
-          
-           
-      
-                
+     
             } );
             var clickableVideo = true
             const closeButton = document.getElementById( 'closeButton' );
@@ -38,11 +35,8 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                 }, 500);
                 
             }
-
             
             } );
-
-         
 
 			function init() {
 
@@ -372,8 +366,9 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                     var intersectsVideo = raycaster.intersectObjects( videoScene.children, false );
                     if ( intersects.length > 0 ) {
                         setTimeout(function(){  
-                            scene.add(spriteScene3);
                             spriteScene3.add(sprite3);
+                            scene.add(spriteScene3);
+                           
         
                         }, 1000);
                         envLoad("test_scene_2.jpg")
@@ -401,7 +396,7 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                       
                         
                     } if(intersects4.length > 0  ) {
-                        console.log("clicked")
+                        // console.log("clicked")
                         setTimeout(function(){  
                                 videoMesh.position.set(50, 1, -10);
                                 scene.add(spriteScene);
@@ -432,25 +427,28 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                             videoMesh.position.set(50, 1, -10);
                             scene.add(spriteScene);
                             scene.add(spriteScene2);
-                            // scene.add(videoScene);
+                   
                             scene.add(textScene);
                             scene.add(filterScene);
-                            spriteScene3.remove(sprite3);
+                            
                     
                     }, 1000);
                     setTimeout(function(){  
                         new TWEEN.Tween( videoMesh.material ).to( { opacity: 1 }, 2000 ).start();
                         // new TWEEN.Tween( cubeColor.material ).to( { opacity: 0.5 }, 4000 ).start();
                         new TWEEN.Tween( text.material ).to( { opacity: 1 }, 2000 ).start();
+                        // clickableVideo = true
                     }, 900);
                       
                         envLoad("test_scene2.jpg")
                         console.log("clicked")
+                        scene.remove(spriteScene3);
+                        spriteScene3.remove(sprite3);
                         new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
                         new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
                         new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
                   
-                        clickableVideo = true
+                    
                         
                     }
                     // else if ( intersectsVideo.length > 0 && clickableVideo == true) {
