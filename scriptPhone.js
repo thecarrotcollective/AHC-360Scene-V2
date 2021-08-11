@@ -6,7 +6,7 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
 			let camera, controls;
 			let renderer;
 			let scene,spriteScene,spriteScene2,text,cubeColor,materials,skyBox,opacityValue,transparentBool,sprite,sprite2,sprite3,sprite4;
-            let videoScene,textScene ,spriteScene3,spriteScene4,videoMesh,filterScene;
+            let videoScene,textScene ,spriteScene3,spriteScene4,videoMesh,filterScene,controlsOrbit;
             const mouse = new THREE.Vector2();
             const startButton = document.getElementById( 'start-btn' );
             startButton.addEventListener( 'click', function () {
@@ -72,8 +72,9 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
 				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 3000 );
 				camera.position.z = 0.00001;
                
-                controls = new DeviceOrientationControls( camera, renderer.domElement );
-				controls.connect();
+                controls = new DeviceOrientationControls( camera);
+                controlsOrbit = new OrbitControls( camera, renderer.domElement );
+				controls += controlsOrbit
 
 				
 				// controls = new DeviceOrientationControls( camera );
@@ -326,6 +327,7 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                   
                 //     return new THREE.Vector3(pitch, roll, yaw);
                 //   }
+                // controls.update();
 				renderer.render( scene, camera );
                 runTween()
 
