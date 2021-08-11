@@ -15,7 +15,7 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
          
             document.getElementById('overlay').style.display = 'none';
             setTimeout(function(){  
-                  
+                    setTimeout(function(){ clickableVideo = true }, 1000);
                     spriteScene.add(sprite);
                     spriteScene2.add(sprite2);
 
