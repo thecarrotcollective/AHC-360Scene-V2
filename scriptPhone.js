@@ -347,7 +347,7 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                   
                 //     return new THREE.Vector3(pitch, roll, yaw);
                 //   }
-                // controls.update();
+                controls.update();
 				renderer.render( scene, camera );
                 runTween()
 
