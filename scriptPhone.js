@@ -87,7 +87,7 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                     return;
                   }
               
-                  controls = new THREE.DeviceOrientationControls(camera, true);
+                  controls = new DeviceOrientationControls(camera, true);
                   controls.connect();
                   controls.update();
               
