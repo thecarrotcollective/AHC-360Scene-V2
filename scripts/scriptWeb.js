@@ -6,7 +6,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 			let camera, controls;
 			let renderer;
 			let scene,spriteScene,spriteScene2,text,cubeColor,materials,skyBox,opacityValue,transparentBool,sprite,sprite2,sprite3,sprite4;
-            let videoScene,textScene ,spriteScene3,spriteScene4,videoMesh,filterScene;
+            let videoScene,textScene ,spriteScene3,spriteScene4,videoMesh,filterScene,clickableVideoMesh,SceneObjectVideo1;
             const mouse = new THREE.Vector2();
             const startButton = document.getElementById( 'start-btn' );
             startButton.addEventListener( 'click', function () {
@@ -15,9 +15,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
          
             document.getElementById('overlay').style.display = 'none';
             setTimeout(function(){  
-                  
-                    spriteScene.add(sprite);
-                    spriteScene2.add(sprite2);
+                    spriteScene3.add(sprite3);
 
             }, 1000);
           
@@ -58,6 +56,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 				spriteScene2 = new THREE.Scene()
                 spriteScene3 = new THREE.Scene()
                 spriteScene4 = new THREE.Scene()
+                SceneObjectVideo1 = new THREE.Scene()
                 videoScene = new THREE.Scene();
                 textScene = new THREE.Scene();
                 filterScene = new THREE.Scene();
@@ -68,6 +67,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                 scene.add(spriteScene3)
                 scene.add(spriteScene4)
                 scene.add(filterScene)
+                scene.add(SceneObjectVideo1)
 				
 				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 1000 );
 				camera.position.z = 0.00001;
@@ -82,7 +82,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 				controls.rotateSpeed = - 0.25;
 
                 //***********************CUBE MAP********************
-				envLoad("scenes/test_scene2.jpg")
+				envLoad("scenes/AHCScene1.png")
                 
                 
 			
@@ -95,31 +95,30 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 
                 //***********************SPRITES********************
                 var spriteTexture1 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
-				var spriteMat1 = new THREE.SpriteMaterial( { map: spriteTexture1 ,rotation:.2,transparent: true,opacity:1} );
+				var spriteMat1 = new THREE.SpriteMaterial( { map: spriteTexture1 ,rotation:0,transparent: true,opacity:1} );
 				sprite = new THREE.Sprite( spriteMat1 );
-				sprite.position.set(-8,-5,-12);
-				sprite.scale.set(6,3,3)
+				sprite.position.set(-18,-8,25);
+				sprite.scale.set(9,6,6)
 				
 
 				var spriteTexture2 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat2 = new THREE.SpriteMaterial( { map: spriteTexture2,rotation: -0.1 } );
 				sprite2 = new THREE.Sprite( spriteMat2 );
-				sprite2.position.set(-8,-4,4);
+				sprite2.position.set(9,-4,4);
 				sprite2.scale.set(4,2,2)
 				
 
                 var spriteTexture3 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat3 = new THREE.SpriteMaterial( { map: spriteTexture3,rotation: -0.1 } );
 				sprite3 = new THREE.Sprite( spriteMat3 );
-				sprite3.position.set(8,-4,3);
-				sprite3.scale.set(4,2,2)
+				sprite3.position.set(0,-12,-22);
+				sprite3.scale.set(10,10,10)
 
-                var spriteTexture4 = new THREE.TextureLoader().load( "UIAssets/arrow_black.png" );
+                var spriteTexture4 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat4 = new THREE.SpriteMaterial( { map: spriteTexture4,rotation: -0.1 } );
 				sprite4 = new THREE.Sprite( spriteMat4 );
-				sprite4.position.set(12,-4,-2);
-				sprite4.scale.set(4,2,2)
-				
+				sprite4.position.set(12,-7,-18);
+				sprite4.scale.set(6,3,3)
 				
 
                 //***********************VIDEO********************
@@ -141,6 +140,15 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                 cubeColor.position.set(49.9, 1, -10);
                 cubeColor.rotation.set(0,-1.5,0)
                 filterScene.add( cubeColor );
+
+                const clickableVideoGeo = new THREE.BoxGeometry( 3, 3, 3 );
+                const clickableVideoMat = new THREE.MeshBasicMaterial( {color: 0xffff00,transparent:true, opacity: 0} );
+               clickableVideoMesh = new THREE.Mesh( clickableVideoGeo, clickableVideoMat );
+                clickableVideoMesh.position.set(-3, -1.5, -20);
+                
+                // videoPlane1.rotation.set(90,0,0)
+             
+               
 
                 //***********************TEXT********************
                 const textGeo = new THREE.PlaneGeometry( 36, 36, 36 );
@@ -248,13 +256,17 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                     var intersects3 = raycaster.intersectObjects( spriteScene.children, false );
                     var intersects4 = raycaster.intersectObjects( spriteScene4.children, false );
                     var intersectsVideo = raycaster.intersectObjects( videoScene.children, false );
+                    var intersectsObjectVideo = raycaster.intersectObjects( SceneObjectVideo1.children, false );
+
+                    //***********************POOL SCENE********************SPRITE2******
                     if ( intersects.length > 0 ) {
                         setTimeout(function(){  
                             scene.add(spriteScene3);
                             spriteScene3.add(sprite3);
-        
+                            sprite3.position.set(-20,-10,-10);
+				            sprite3.scale.set(8,8,8)
                         }, 1000);
-                        envLoad("scenes/test_scene_2.jpg")
+                        envLoad("scenes/AHCScene4.png")
                         scene.remove(spriteScene);
                         scene.remove(spriteScene2);
                         scene.remove(filterScene);
@@ -263,13 +275,17 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                         videoMesh.position.set(135, 15, -15);
                         
                     }
+                     //***********************COACH SCENE********************SPRITE******    
                     if ( intersects3.length > 0 ) {
                         setTimeout(function(){  
                             scene.add(spriteScene4)
                             spriteScene4.add(sprite4);
-        
+                            scene.add(spriteScene3)
+                            spriteScene3.add(sprite3);
+                            sprite3.position.set(-10,-7,-15);
+				            sprite3.scale.set(5,5,5)
                         }, 1000);
-                        envLoad("scenes/test_scene3.jpg")
+                        envLoad("scenes/AHCScene5.png")
                         scene.remove(spriteScene);
                         scene.remove(spriteScene2);
                         scene.remove(videoScene);
@@ -277,42 +293,57 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                         scene.remove(textScene);
                         clickableVideo = false
                       
-                        
+                    //***********************ROOOM SCENE********************SPRITE4******    
                     } if(intersects4.length > 0  ) {
-                        console.log("clicked")
+                        console.log("joined room")
                         setTimeout(function(){  
                                 videoMesh.position.set(50, 1, -10);
                                 scene.add(spriteScene);
                                 scene.add(spriteScene2);
-                                scene.add(videoScene);
-                                scene.add(textScene);
-                                scene.add(filterScene);
-                                
+                                sprite.position.set(-18,-8,5);
+				                sprite.scale.set(4,2,2)
+                                sprite3.position.set(-10,-4,-5);
+				                sprite3.scale.set(4,2,2);
+                                scene.add(SceneObjectVideo1)
+                                SceneObjectVideo1.add(clickableVideoMesh)
+                                clickableVideo = true
+                           
                                 
                         }, 1000);
                         setTimeout(function(){  
-                            new TWEEN.Tween( videoMesh.material ).to( { opacity: 1 }, 2000 ).start();
-                            // new TWEEN.Tween( cubeColor.material ).to( { opacity: 0.5 }, 4000 ).start();
-                            new TWEEN.Tween( text.material ).to( { opacity: 1 }, 2000 ).start();
+                            // new TWEEN.Tween( videoMesh.material ).to( { opacity: 1 }, 2000 ).start();
+                            // // new TWEEN.Tween( cubeColor.material ).to( { opacity: 0.5 }, 4000 ).start();
+                            // new TWEEN.Tween( text.material ).to( { opacity: 1 }, 2000 ).start();
                         }, 900);
-                            
-                            envLoad("scenes/test_scene2.jpg")
+                           
+                            envLoad("scenes/AHCScene3.png")
                             scene.remove(spriteScene4);
-                            new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
-                            new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
-                            new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
+                            // new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
+                            // new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
+                            // new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
                             clickableVideo = true
                            
                             
                         }
+
+
+                    //***********************BACK TO MAIN SCENE********************SPRITE3******
+
                     if(intersects2.length > 0  ) {
+                        console.log("main Scene")
                     setTimeout(function(){  
+                            scene.remove(spriteScene4)
                             videoMesh.position.set(50, 1, -10);
-                            scene.add(spriteScene);
-                            scene.add(spriteScene2);
+                         
+                            scene.add(spriteScene2)
+                            scene.add(spriteScene)
+                            spriteScene2.add(sprite2);
+                            spriteScene.add(sprite);
+                            sprite.position.set(-18,-8,25);
+                            sprite.scale.set(9,6,6)
                             // scene.add(videoScene);
-                            scene.add(textScene);
-                            scene.add(filterScene);
+                            // scene.add(textScene);
+                            // scene.add(filterScene);
                             spriteScene3.remove(sprite3);
                     
                     }, 1000);
@@ -322,15 +353,33 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                         new TWEEN.Tween( text.material ).to( { opacity: 1 }, 2000 ).start();
                     }, 900);
                       
-                        envLoad("scenes/test_scene2.jpg")
+                        envLoad("scenes/AHCScene2.png")
                         console.log("clicked")
                         new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
                         new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
                         new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
                   
-                        clickableVideo = true
+                        // clickableVideo = true
                         
                     }
+                    if(intersectsObjectVideo.length > 0  ) {
+                        console.log("video clicked")
+                        setTimeout(function(){  
+    
+                            var player = videojs('#video2');
+                            var video = document.getElementById('video2');
+                            video.requestFullscreen();
+                            player.play();
+                    }, 1500);
+                    document.getElementById('video2').style.display = 'block';
+                    document.getElementById('video_id').style.display = 'block';
+                    document.getElementById('blackScreen').style.display = 'block';
+                
+                    clickableVideo = false
+                    }
+
+
+
                     else if ( intersectsVideo.length > 0 && clickableVideo == true) {
                         setTimeout(function(){  
                 
