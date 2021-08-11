@@ -1,7 +1,7 @@
 import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/build/three.module.js';
 import { DeviceOrientationControls } from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/DeviceOrientationControls.js';
 import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
-
+import { DeviceOrientationControls } from 'scripts/DeviceOrientationControls';
 
 			let camera, controls;
 			let renderer;
@@ -20,10 +20,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                     spriteScene2.add(sprite2);
 
             }, 1000);
-          
-           
-      
-                
+
             } );
             var clickableVideo = true
             const closeButton = document.getElementById( 'closeButton' );
@@ -31,7 +28,8 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
             if(clickableVideo == false){
                 document.getElementById('video_id').style.display = 'none';
                 document.getElementById('blackScreen').style.display = 'none';
-                controls.enableRotate = true
+                // controls.enableRotate = true
+                controls.enabled = true
                 // clickableVideo = true
                 setTimeout(function(){ clickableVideo = true 
                    
@@ -41,8 +39,6 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 
             
             } );
-
-         
 
 			function init() {
 
@@ -75,11 +71,14 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                 
                
 
-				controls = new OrbitControls( camera, renderer.domElement );
-				controls.enableZoom = false;
-				controls.enablePan = false;
-				controls.enableDamping = true;
-				controls.rotateSpeed = - 0.25;
+				// controls = new OrbitControls( camera, renderer.domElement );
+				// controls.enableZoom = false;
+				// controls.enablePan = false;
+				// controls.enableDamping = true;
+				// controls.rotateSpeed = - 0.25;
+
+                controls = new DeviceOrientationControls( camera );
+
 
                 //***********************CUBE MAP********************
 				envLoad("scenes/test_scene2.jpg")
@@ -342,7 +341,8 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                     document.getElementById('video2').style.display = 'block';
                     document.getElementById('video_id').style.display = 'block';
                     document.getElementById('blackScreen').style.display = 'block';
-                    controls.enableRotate = false
+                    // controls.enableRotate = false
+                    controls.enabled = false
                     clickableVideo = false
                   
                         
