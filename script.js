@@ -16,7 +16,7 @@ startButton.addEventListener( 'click', function () {
   trigerBool = true
   counter++
   document.getElementById('overlay').style.display = 'none';
-   
+ 
 } );
 var clickableVideo = true
 const closeButton = document.getElementById( 'closeButton' );
