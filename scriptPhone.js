@@ -70,13 +70,33 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
                 scene.add(filterScene)
 				
 				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 3000 );
-				camera.position.z = 0.00001;
-               
-                controls = new DeviceOrientationControls( camera);
-                controlsOrbit = new OrbitControls( camera, renderer.domElement );
-				controls += controlsOrbit
-
-				
+                controls = new OrbitControls(camera, renderer.domElement);
+                // controls.rotateUp(Math.PI / 4);
+                // controls.rotateLeft(-Math.PI/2);
+                controls.target.set(
+                  camera.position.x + 0.1,
+                  camera.position.y,
+                  camera.position.z
+                );
+                controls.noZoom = true;
+                controls.noPan = true;
+              
+                function setOrientationControls(e) {
+                  console.log('setOrientationControls', e);
+                  if (!e.alpha) {
+                    return;
+                  }
+              
+                  controls = new THREE.DeviceOrientationControls(camera, true);
+                  controls.connect();
+                  controls.update();
+              
+                  //element.addEventListener('click', fullscreen, false);
+              
+                  window.removeEventListener('deviceorientation', setOrientationControls);
+                }
+                window.addEventListener('deviceorientation', setOrientationControls, true);
+              
 				// controls = new DeviceOrientationControls( camera );
 				// controls.enableZoom = false;
 				// controls.enablePan = false;
@@ -502,6 +522,4 @@ import { DeviceOrientationControls } from 'https://threejsfundamentals.org/three
               
                 TWEEN.update()
                 // [...]
-            }
-           
-           
+            };
