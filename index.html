@@ -2,10 +2,12 @@
   <head>
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+  <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet"/>
   <meta name="viewport" content="width=device-width">
   <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
   <script type="text/javascript" src="enquire.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
   <script src="//vjs.zencdn.net/5.4.6/video.min.js"></script>
   <script type="text/javascript">
 
@@ -28,20 +30,17 @@
   <body>
    
       <div id="overlay">
-        <button id="startButton">Start Demo</button>
+        <img src="AHCLOGO.png" alt="logo" style="width:20%; margin-bottom: 5%;">
+        <button id="start-btn" class="bn3637 bn37" >START EXPERIENCE</button>
+        
       </div>
+      <div id="blackScreen"></div>
       
-      
-      <!-- <div id="change">
-        <button id="changeButton">Change</button>
-      </div> -->
-      <div id="div" class="div">
-        <canvas id="c" class="canvas_class" style="position: absolute;">
-          <video id="video" playsinline webkit-playsinline muted loop autoplay width="auto" height="auto" src="images/test-video.mp4" style="display: none;"></video>
-      
-        </canvas>
-      </div>
-      <div id="video_id" style="display: none;">
+      <div id="container">
+        
+        <video id="video" playsinline webkit-playsinline muted loop autoplay width="auto" height="auto" src="images/test-video.mp4" style="display: none;"></video>
+              
+        <div id="video_id" style="display: none;">
        
         <!-- <video id="video2"   muted loop autoplay src="images/aniamtion4.mp4"style="display: none;" >
           <div style="height: 100%; width: 100%; z-index: 3;">
@@ -49,13 +48,14 @@
           </div> -->
           <video
             id="video2"
-            class="video-js vjs-default-skin vjs-big-play-centered"
+            class="video-js vjs-theme-city vjs-big-play-centered"
             controls
-            autoplay 
+            
             preload="auto"
             width="auto"
             height="auto"
             aspectRatio= '9:16'
+            
 
             data-setup='{"fluid": true}'
           >
@@ -65,9 +65,16 @@
           </video>
           <button id="closeButton" style="background-color: rgba(102, 95, 95, 0); " ><img src="closeButton2.png"></button>
  
-       
-      
+        </div>
       </div>
+      <!-- <div id="change">
+        <button id="changeButton">Change</button>
+      </div> -->
+
+      <!-- <div id="div" class="div">
+        
+      </div> -->
+
 
 
   
@@ -77,7 +84,7 @@
     enquire.register("screen and (max-width: 599px)", {
         match : function() {
             // Load a mobile JS file
-            loadJS('script.js');
+            loadJS('scriptPhone.js');
             console.log('phone loaded');
         }
     });
@@ -86,7 +93,7 @@
     enquire.register("screen and (min-width: 600px) and (max-width: 899px)", {
         match : function() {
             // Load a tablet JS file
-            loadJS('script.js');
+            loadJS('scriptPhone.js');
             //console.log('tablet loaded');
         }
     });
@@ -95,7 +102,7 @@
     enquire.register("screen and (min-width: 900px)", {
         match : function() {
             // Load a desktop JS file
-            loadJS('scriptWeb.js');
+            loadJS('scriptWebTest.js');
 
             console.log('desktop loaded');
         }
