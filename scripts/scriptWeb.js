@@ -360,9 +360,10 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                         new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
                   
                         // clickableVideo = true
+                        clickableVideo == false
                         
                     }
-                    if(intersectsObjectVideo.length > 0  ) {
+                    if(intersectsObjectVideo.length > 0  && clickableVideo == true) {
                         console.log("video clicked")
                         setTimeout(function(){  
     
