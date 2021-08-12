@@ -1,3 +1,16 @@
+@font-face {
+  font-family: "Pangram-Regular";
+  src:url("fonts/Pangram-Regular.otf") format("opentype");  
+}
+@font-face {
+  font-family: "Pangram-Light";
+  src:url("fonts/Pangram-Light.otf") format("opentype");  
+}
+@font-face {
+  font-family: "Pangram-ExtraBold";
+  src:url("fonts/Pangram-ExtraBold.otf") format("opentype");  
+}
+
 body {
   height: 100%;
   margin: -0.1;
@@ -102,7 +115,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(102, 95, 95, 0.3);
+    background: rgb(0, 0, 0);
     display: none;
     text-align: center;
     opacity: 0;
@@ -123,7 +136,7 @@ body {
     }
   
     100% {
-      opacity: 0.8;
+      opacity: 1;
     }
   }
   @keyframes opacityAnimReverse {
@@ -230,7 +243,7 @@ body {
 
   }
   .bn3637 {
-    filter: drop-shadow(2px 4px 8px #58585888);
+   
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -251,7 +264,7 @@ body {
 .bn37 {
     border-color: transparent;
     background-color: rgb(255, 255, 255);
-    color: #000;
+    color: rgb(255, 255, 255);
     transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
 }
     
@@ -261,31 +274,32 @@ body {
 } 
 
 .bn3637 {
-    filter: drop-shadow(2px 4px 8px #58585888);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 3rem 5rem;
-    font-family: "Pangram-Regular";
-    letter-spacing: 5px;
-    font-weight: 700;
-    font-size: 30px;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    backface-visibility: hidden;
-    border: 0.3rem solid transparent;
-    border-radius: 3rem;
-    height: 30px;
+  filter: drop-shadow(1px 2px 4px #58585838);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 5rem;
+  font-family: "Pangram-Regular";
+  letter-spacing: 5px;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  text-decoration: none;
+  color: rgb(255, 0, 0);
+  backface-visibility: hidden;
+  border: 0.5rem solid rgb(255, 255, 255) ;
+  border-radius: 300rem;
+  height: 30px;
+}
+
+.bn37 {
+
+  background-color: rgba(255, 255, 255, 0);
+
+  color: rgb(255, 255, 255);
+  transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
 }
   
-.bn37 {
-    border-color: transparent;
-    background-color: rgb(255, 255, 255);
-    color: #000;
-    transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
-}
-    
 .bn37:hover {
-    transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
+  transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
 }
