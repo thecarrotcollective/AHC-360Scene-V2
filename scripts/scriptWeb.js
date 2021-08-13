@@ -149,8 +149,8 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                 videoPlane = new THREE.PlaneGeometry( 16, 9 );
                 video = document.createElement('video');
                 video.src = "video/Ahc-Spa- Home-Sensorial-Treatment-Introverts- -Thinke3-1.mp4"; // Set video address
-                video.autoplay = "autoplay";
-                video.play();
+           
+              
                 video.loop = true;
                 const videoTexture = new THREE.VideoTexture(video)
                 const videoMat = new THREE.MeshBasicMaterial( {map: videoTexture,transparent: true,opacity:1,side: THREE.DoubleSide} );
@@ -338,7 +338,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                             RoomVideoPlay.position.set(-190,-40,120)
                             RoomVideoPlay.rotation.set(0,2.7,0)
                             RoomVideoPlay.scale.set(13.2,13,1)    
-
+                            video.play()
                             runVideo =true
                             poolSceneVideo = true
                         }, 300);
@@ -515,8 +515,8 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                             CoachRoomArrow.scale.set(9,6,6)
                             PoolRoomArrow.position.set(9,-4,4);
                             PoolRoomArrow.scale.set(4,2,2)
-                      
-            
+                            video.play()
+                           
                             runVideo =true
                             poolSceneVideo =false
                     
@@ -632,7 +632,8 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
             }
             function DisableEverything(){
                 clickableVideo = false
-         
+                video.pause();
+               
                 let ArrowArray = [MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay]
                 let ArrowScene = [MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene]
                 for (var i = 0; i < ArrowArray.length; i++) {
