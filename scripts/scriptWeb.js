@@ -7,7 +7,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
             let poolSceneVideo,vector,selfieScene,VideoRoomScene, BottleRoomScene,videoRoomArrow,BottleRoomArrow,MainRoomScene,MainRoomArrow,PoolRoomArrow,PoolRoomScene,CoachRoomScene,CoachRoomArrow;
 			let scene,text,cubeColor,materials,skyBox,opacityValue,transparentBool,ProductRoomScene,ProductRoomArrow;
             let textScene,RoomVideoPlay,RoomVideoPlayScene,filterScene,clickableVideoMesh,SceneObjectVideo1,videoPlane,runVideo,selfieRoomArrow;
-    
+            let arrowUrl ="UIAssets/arrow_white.png";
             const mouse = new THREE.Vector2();
             const startButton = document.getElementById( 'start-btn' );
             startButton.addEventListener( 'click', function () {
@@ -96,47 +96,47 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                 scene.add(light);
 
                 //***********************ARROWS********************
-                var spriteTexture1 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
+                var spriteTexture1 = new THREE.TextureLoader().load( arrowUrl );
 				var spriteMat1 = new THREE.SpriteMaterial( { map: spriteTexture1 ,rotation:0,transparent: true,opacity:1} );
 				CoachRoomArrow = new THREE.Sprite( spriteMat1 );
 				CoachRoomArrow.position.set(-18,-8,25);
 				CoachRoomArrow.scale.set(9,6,6)
 			
 
-				var spriteTexture2 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
+				var spriteTexture2 = new THREE.TextureLoader().load( arrowUrl );
 				var spriteMat2 = new THREE.SpriteMaterial( { map: spriteTexture2,rotation: -0.1 } );
 				PoolRoomArrow = new THREE.Sprite( spriteMat2 );
 				PoolRoomArrow.position.set(9,-4,4);
 				PoolRoomArrow.scale.set(4,2,2)
 				
 
-                var spriteTexture3 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
+                var spriteTexture3 = new THREE.TextureLoader().load(arrowUrl);
 				var spriteMat3 = new THREE.SpriteMaterial( { map: spriteTexture3,rotation: -0.1 } );
 				MainRoomArrow = new THREE.Sprite( spriteMat3 );
 				MainRoomArrow.position.set(0,-12,-22);
 				MainRoomArrow.scale.set(10,10,10)
                
 
-                var spriteTexture4 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
+                var spriteTexture4 = new THREE.TextureLoader().load(arrowUrl );
 				var spriteMat4 = new THREE.SpriteMaterial( { map: spriteTexture4,rotation: -0.1 } );
 				ProductRoomArrow = new THREE.Sprite( spriteMat4 );
 				ProductRoomArrow.position.set(-5,-7,-10);
 				ProductRoomArrow.scale.set(6,3,3)
                 
-                var spriteTexture5 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
+                var spriteTexture5 = new THREE.TextureLoader().load(arrowUrl );
 				var spriteMat5 = new THREE.SpriteMaterial( { map: spriteTexture5,rotation: -0.1 } );
 				selfieRoomArrow = new THREE.Sprite( spriteMat5 );
 				selfieRoomArrow.position.set(12,-7,-18);
 				selfieRoomArrow.scale.set(6,3,3)
 
-                var spriteTexture6 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
+                var spriteTexture6 = new THREE.TextureLoader().load(arrowUrl );
 				var spriteMat6 = new THREE.SpriteMaterial( { map: spriteTexture6,rotation: 0.1 } );
 				videoRoomArrow = new THREE.Sprite( spriteMat6 );
 				videoRoomArrow.position.set(-5,-7,-20);
 				videoRoomArrow.scale.set(6,3,3)
                 
 
-                var spriteTexture7 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
+                var spriteTexture7 = new THREE.TextureLoader().load( arrowUrl );
 				var spriteMat7 = new THREE.SpriteMaterial( { map: spriteTexture7,rotation: -0.1 } );
 				BottleRoomArrow = new THREE.Sprite( spriteMat7 );
 				BottleRoomArrow.position.set(8,-7,-20);
