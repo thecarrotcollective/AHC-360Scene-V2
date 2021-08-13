@@ -158,15 +158,15 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                 videoPlane = new THREE.PlaneGeometry( 9, 16 );
                 video = document.createElement('video');
                 video.src = "video/test-video.mp4"; // Set video address
-                video.autoplay = "autoplay";
-                video.play();
-                video.loop = true;
+                // video.autoplay = "autoplay";
+                // video.play();
+                // video.loop = true;
                 const videoTexture = new THREE.VideoTexture(video)
                 const videoMat = new THREE.MeshBasicMaterial( {map: videoTexture,transparent: true,opacity:1,side: THREE.DoubleSide} );
                 RoomVideoPlay = new THREE.Mesh( videoPlane, videoMat );
                 RoomVideoPlay.position.set(0,0,-1)
                 RoomVideoPlay.scale.normalize().multiplyScalar(0.1);
-                RoomVideoPlayScene.add(RoomVideoPlay)
+                // RoomVideoPlayScene.add(RoomVideoPlay)
             
 
                 const colorMesh = new THREE.PlaneGeometry( 36, 24, 1 );
