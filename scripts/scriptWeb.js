@@ -162,7 +162,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                
             
                   
-                const count = 128;
+                const count = 32;
 				const radius = 32;
               
 			
@@ -177,7 +177,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                         RoomVideoPlay = new THREE.Mesh( videoPlane, videoMat );
                         RoomVideoPlay.position.setFromSphericalCoords( radius, phi, theta );
                         RoomVideoPlay.lookAt( camera.position );
-                   
+                        RoomVideoPlayScene.add(RoomVideoPlay)
                     }
 
                 // videoScene.add( videoMesh )
@@ -399,7 +399,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 				            MainRoomSprite.scale.set(6,6,6)
                             ProductRoomSprite.position.set(-5,-7,-10);
                             ProductRoomSprite.scale.set(6,3,3)
-                        }, 1000);
+                        }, 300);
                         setTimeout(function(){ 
                             envLoad("scenes/360Scene3.png") 
                             skyBox.rotation.y =0
@@ -439,7 +439,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                                 clickableVideo = true
                                 runVideo =false
                                 
-                        }, 1000);
+                        }, 300);
                         setTimeout(function(){ 
                             envLoad("scenes/360Scene4.png") 
                             skyBox.rotation.y =0
@@ -465,7 +465,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                                 ProductRoomScene.add(ProductRoomSprite)
                                 ProductRoomSprite.position.set(2,-10,10);
                                 ProductRoomSprite.scale.set(8,4,4)
-                            }, 1000);
+                            }, 300);
                             setTimeout(function(){ 
                                 envLoad("scenes/360Scene5.png") 
                                 skyBox.rotation.y =0
@@ -490,7 +490,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                                 ProductRoomSprite.position.set(-5,-7,10);
                                 ProductRoomSprite.scale.set(8,4,4);
                                 // RoomVideoPlayScene.add(RoomVideoPlay);
-                            }, 1000);
+                            }, 300);
                             setTimeout(function(){ 
                                 envLoad("scenes/360Scene6.png") 
                                 skyBox.rotation.y =0
