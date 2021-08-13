@@ -1,35 +1,31 @@
 import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/build/three.module.js';
-
 import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
 
 
 			let camera, controls;
 			let renderer,video,skydome;
-            let poolSceneVideo,vector,selfieScene,VideoRoomScene, BottleRoomScene,videoRoomSprite,BottleRoomSprite,MainRoomScene,MainRoomSprite,PoolRoomSprite,PoolRoomScene,CoachRoomScene,CoachRoomSprite;
-			let scene,text,cubeColor,materials,skyBox,opacityValue,transparentBool,ProductRoomScene,ProductRoomSprite;
-            let textScene,RoomVideoPlay,RoomVideoPlayScene,filterScene,clickableVideoMesh,SceneObjectVideo1,videoPlane,runVideo,selfieRoomSprite;
+            let poolSceneVideo,vector,selfieScene,VideoRoomScene, BottleRoomScene,videoRoomArrow,BottleRoomArrow,MainRoomScene,MainRoomArrow,PoolRoomArrow,PoolRoomScene,CoachRoomScene,CoachRoomArrow;
+			let scene,text,cubeColor,materials,skyBox,opacityValue,transparentBool,ProductRoomScene,ProductRoomArrow;
+            let textScene,RoomVideoPlay,RoomVideoPlayScene,filterScene,clickableVideoMesh,SceneObjectVideo1,videoPlane,runVideo,selfieRoomArrow;
+    
             const mouse = new THREE.Vector2();
             const startButton = document.getElementById( 'start-btn' );
             startButton.addEventListener( 'click', function () {
                 init();
                 animate();
+                renderer.autoclear = false;
                 runVideo = false;
                 // scene.add(videoScene)
                 // clickableVideo = false
             document.getElementById('overlay').style.display = 'none';
             setTimeout(function(){  
-                    MainRoomScene.add(MainRoomSprite);
+                    MainRoomScene.add(MainRoomArrow);
                     clickableVideo = true
+                    
             }, 1000);
           
-           
-      
-                
             } );
-            var clickableVideo = true
-
-
-         
+            var clickableVideo = false
 
 			function init() {
 
@@ -39,10 +35,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
-                skydome = {
-                    scene: new THREE.Scene(),
-                    camera: new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 20000 ),
-                };
+                renderer.autoclear = false
                 
 				scene = new THREE.Scene();
 				CoachRoomScene = new THREE.Scene()
@@ -56,6 +49,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                 RoomVideoPlayScene = new THREE.Scene();
                 textScene = new THREE.Scene();
                 filterScene = new THREE.Scene();
+                scene.add(MainRoomScene)
 				scene.add(CoachRoomScene)
                 scene.add(VideoRoomScene)
                 scene.add(BottleRoomScene)
@@ -63,32 +57,29 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 				scene.add(PoolRoomScene)
                 scene.add(RoomVideoPlayScene)
                 scene.add(textScene)
-                scene.add(MainRoomScene)
                 scene.add(ProductRoomScene)
                 scene.add(filterScene)
                 scene.add(SceneObjectVideo1)
+             
+                camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 );
 
-
-
-				const aspect = 2; 
-				camera = new THREE.PerspectiveCamera( 75, aspect, 0.1, 100 );
-				camera.position.z =0.01;
-                
-                
-               
-
-				
-
-                const direction = new THREE.Vector3();
-                camera.getWorldDirection(direction);
-                controls = new OrbitControls( camera, renderer.domElement );
-                camera.getWorldPosition(controls.target);
-                controls.target.addScaledVector(direction, 0.01);
+                skydome = {
+                    scene: new THREE.Scene(),
+                    camera : new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 ),
+                };
+                camera.rotation.z = 0
+			
+			
+				skydome.camera.position.z =0.01;
+              
+                              
+                controls = new OrbitControls( skydome.camera, renderer.domElement );
+              
                 // controls.target.set(0, 0, 0);
-                controls.rotateSpeed = - 0.25;
-                controls.enableZoom = false;
-				controls.enablePan = false;
-				controls.enableDamping = true;
+                // controls.rotateSpeed = - 0.25;
+                // controls.enableZoom = false;
+				// controls.enablePan = false;
+				// controls.enableDamping = true;
 				controls.rotateSpeed = - 0.25;
                 controls.update();
  
@@ -104,69 +95,70 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                 light.position.set(-1, 2, 4);
                 scene.add(light);
 
-                //***********************SPRITES********************
+                //***********************ARROWS********************
                 var spriteTexture1 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat1 = new THREE.SpriteMaterial( { map: spriteTexture1 ,rotation:0,transparent: true,opacity:1} );
-				CoachRoomSprite = new THREE.Sprite( spriteMat1 );
-				CoachRoomSprite.position.set(-18,-8,25);
-				CoachRoomSprite.scale.set(9,6,6)
+				CoachRoomArrow = new THREE.Sprite( spriteMat1 );
+				CoachRoomArrow.position.set(-18,-8,25);
+				CoachRoomArrow.scale.set(9,6,6)
 			
 
 				var spriteTexture2 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat2 = new THREE.SpriteMaterial( { map: spriteTexture2,rotation: -0.1 } );
-				PoolRoomSprite = new THREE.Sprite( spriteMat2 );
-				PoolRoomSprite.position.set(9,-4,4);
-				PoolRoomSprite.scale.set(4,2,2)
+				PoolRoomArrow = new THREE.Sprite( spriteMat2 );
+				PoolRoomArrow.position.set(9,-4,4);
+				PoolRoomArrow.scale.set(4,2,2)
 				
 
                 var spriteTexture3 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat3 = new THREE.SpriteMaterial( { map: spriteTexture3,rotation: -0.1 } );
-				MainRoomSprite = new THREE.Sprite( spriteMat3 );
-				MainRoomSprite.position.set(0,-12,-22);
-				MainRoomSprite.scale.set(10,10,10)
+				MainRoomArrow = new THREE.Sprite( spriteMat3 );
+				MainRoomArrow.position.set(0,-12,-22);
+				MainRoomArrow.scale.set(10,10,10)
                
 
                 var spriteTexture4 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat4 = new THREE.SpriteMaterial( { map: spriteTexture4,rotation: -0.1 } );
-				ProductRoomSprite = new THREE.Sprite( spriteMat4 );
-				ProductRoomSprite.position.set(-5,-7,-10);
-				ProductRoomSprite.scale.set(6,3,3)
+				ProductRoomArrow = new THREE.Sprite( spriteMat4 );
+				ProductRoomArrow.position.set(-5,-7,-10);
+				ProductRoomArrow.scale.set(6,3,3)
                 
                 var spriteTexture5 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat5 = new THREE.SpriteMaterial( { map: spriteTexture5,rotation: -0.1 } );
-				selfieRoomSprite = new THREE.Sprite( spriteMat5 );
-				selfieRoomSprite.position.set(12,-7,-18);
-				selfieRoomSprite.scale.set(6,3,3)
+				selfieRoomArrow = new THREE.Sprite( spriteMat5 );
+				selfieRoomArrow.position.set(12,-7,-18);
+				selfieRoomArrow.scale.set(6,3,3)
 
                 var spriteTexture6 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat6 = new THREE.SpriteMaterial( { map: spriteTexture6,rotation: 0.1 } );
-				videoRoomSprite = new THREE.Sprite( spriteMat6 );
-				videoRoomSprite.position.set(-5,-7,-20);
-				videoRoomSprite.scale.set(6,3,3)
+				videoRoomArrow = new THREE.Sprite( spriteMat6 );
+				videoRoomArrow.position.set(-5,-7,-20);
+				videoRoomArrow.scale.set(6,3,3)
                 
 
                 var spriteTexture7 = new THREE.TextureLoader().load( "UIAssets/arrow_white.png" );
 				var spriteMat7 = new THREE.SpriteMaterial( { map: spriteTexture7,rotation: -0.1 } );
-				BottleRoomSprite = new THREE.Sprite( spriteMat7 );
-				BottleRoomSprite.position.set(8,-7,-20);
-				BottleRoomSprite.scale.set(6,3,3)
+				BottleRoomArrow = new THREE.Sprite( spriteMat7 );
+				BottleRoomArrow.position.set(8,-7,-20);
+				BottleRoomArrow.scale.set(6,3,3)
                 
                 
 				
 
                 //***********************VIDEO********************
-                videoPlane = new THREE.PlaneGeometry( 9, 16 );
+                videoPlane = new THREE.PlaneGeometry( 16, 9 );
                 video = document.createElement('video');
-                video.src = "video/test-video.mp4"; // Set video address
-                // video.autoplay = "autoplay";
-                // video.play();
-                // video.loop = true;
+                video.src = "video/Ahc-Spa- Home-Sensorial-Treatment-Introverts- -Thinke3-1.mp4"; // Set video address
+                video.autoplay = "autoplay";
+                video.play();
+                video.loop = true;
                 const videoTexture = new THREE.VideoTexture(video)
                 const videoMat = new THREE.MeshBasicMaterial( {map: videoTexture,transparent: true,opacity:1,side: THREE.DoubleSide} );
                 RoomVideoPlay = new THREE.Mesh( videoPlane, videoMat );
-                RoomVideoPlay.position.set(0,0,-1)
-                RoomVideoPlay.scale.normalize().multiplyScalar(0.1);
+              
+                // RoomVideoPlay.scale.normalize().multiplyScalar(0.1);
                 // RoomVideoPlayScene.add(RoomVideoPlay)
+                
             
 
                 const colorMesh = new THREE.PlaneGeometry( 36, 24, 1 );
@@ -184,7 +176,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                 clickableVideoMesh.position.set(-2, -1.5, -20);
         
      
-                  //***********************TEXT********************
+                //***********************TEXT********************
                 const textGeo = new THREE.PlaneGeometry( 36, 36, 36 );
                 const textTexture = new THREE.TextureLoader().load( "UIAssets/startExperience.png" );
                 const textMat = new THREE.MeshBasicMaterial( {map: textTexture, transparent:true, opacity: 0} );
@@ -194,6 +186,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                 textScene.add(text);
 				window.addEventListener( 'resize', onWindowResize );
                 clickTrigger()
+                renderer.autoclear = false; 
                 
 			
 			}
@@ -247,10 +240,10 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 
 			function animate() {
                
-				requestAnimationFrame( animate );
+			
                 
                 //***********************TWEEN********************
-                controls.update();
+              
                
                 var testBool = false
                
@@ -286,8 +279,23 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                   //0.000009339746910191843
                
 				 // required when damping is enabled
-				renderer.render( scene, camera );
+                // 
+               
+
+        
+                requestAnimationFrame( animate );
+                renderer.autoClear = true;
+                controls.update();
+                renderer.render(skydome.scene, skydome.camera);
+                
+                renderer.autoClear = false;
+              
+                renderer.render(scene, camera );
+                camera.quaternion.copy( skydome.camera.quaternion );
                 runTween()
+           
+               
+           
                 
                 
               
@@ -303,7 +311,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                     mouse.y = -(event.clientY / window.innerHeight) * 2 +1 ;
                 
                     raycaster.setFromCamera( mouse, camera );
-                    
+                
                     var intersectsPoolRoom = raycaster.intersectObjects( PoolRoomScene.children, false );
                     var intersectsMainRoom = raycaster.intersectObjects( MainRoomScene.children, false );
                     var intersectsCoachRoom = raycaster.intersectObjects( CoachRoomScene.children, false );
@@ -315,21 +323,22 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                     var intersectsBottleRoom = raycaster.intersectObjects( BottleRoomScene.children, false );
 
 
-                    //***********************POOL SCENE********************SPRITE2******
+                    //***********************POOL SCENE**************************
                     if ( intersectsPoolRoom.length > 0 ) {
                         console.log("POOOL SCENE - 1")
                         setTimeout(function(){  
                            
-                            MainRoomScene.add(MainRoomSprite);
-                            selfieScene.add(selfieRoomSprite);
+                            MainRoomScene.add(MainRoomArrow);
+                            selfieScene.add(selfieRoomArrow);
                            
-                            MainRoomSprite.position.set(-20,-10,-10);
-				            MainRoomSprite.scale.set(8,8,8)
-                            CoachRoomScene.remove(CoachRoomSprite);
-                            PoolRoomScene.remove(PoolRoomSprite);
-                            // videoMesh.position.set(-280, -15, 200);
-                            // videoMesh.rotation.set(0,-3.7,-0.002)
-                            // videoMesh.scale.set(3.4,2.7,1)
+                            MainRoomArrow.position.set(-20,-10,-10);
+				            MainRoomArrow.scale.set(8,8,8)
+
+                            RoomVideoPlayScene.add(RoomVideoPlay);
+                            RoomVideoPlay.position.set(-190,-40,120)
+                            RoomVideoPlay.rotation.set(0,2.7,0)
+                            RoomVideoPlay.scale.set(13.2,13,1)    
+
                             runVideo =true
                             poolSceneVideo = true
                         }, 300);
@@ -342,25 +351,23 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                     
                             controls.reset();
                         }, 250);
-                       
+                        DisableEverything()
        
-                        // scene.remove(filterScene);
-                        // scene.remove(textScene);
-                        clickableVideo = false
-                        // videoMesh.position.set(135, 15, -15);
+       
+                        clickableVideo = true
+             
                         
                     }
                        //***********************SELFIE SCENE**************************
                        if ( intersectsSelfie.length > 0 ) {
                         console.log("SELFIE SCENE - 1")
                         setTimeout(function(){  
-                            selfieScene.remove(selfieRoomSprite)
-                            PoolRoomScene.add(PoolRoomSprite);
-                            PoolRoomSprite.position.set(-5,-4,10);
-                            PoolRoomSprite.scale.set(4,2,2)
-                                               
-                            CoachRoomScene.remove(CoachRoomSprite);
-                            PoolRoomScene.remove(PoolRoomSprite);
+                            MainRoomScene.add(MainRoomArrow)
+                            PoolRoomScene.add(PoolRoomArrow);
+                            PoolRoomArrow.position.set(-5,-4,10);
+                            PoolRoomArrow.scale.set(4,2,2)
+                
+               
                         }, 300);
                         setTimeout(function(){ 
                             envLoad("scenes/360Scene8.png") 
@@ -371,26 +378,23 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                     
                             controls.reset();
                         }, 250);
-    
+                        DisableEverything()
                         clickableVideo = false
                         // videoMesh.position.set(135, 15, -15);
                         
                     }
-                     //***********************COACH SCENE********************SPRITE******    
+                     //***********************COACH SCENE********************Arrow******    
                     if ( intersectsCoachRoom.length > 0 ) {
                         console.log("COACH SCENE - 1")
                         setTimeout(function(){  
                            
-                            ProductRoomScene.add(ProductRoomSprite);
-                            MainRoomScene.add(MainRoomSprite);
-                            MainRoomSprite.position.set(-20,-10,0);
-				            MainRoomSprite.scale.set(6,6,6)
-                            ProductRoomSprite.position.set(-5,-7,-10);
-                            ProductRoomSprite.scale.set(6,3,3)
-                            VideoRoomScene.remove(videoRoomSprite)
-                            BottleRoomScene.remove(BottleRoomSprite)
-                            CoachRoomScene.remove(CoachRoomSprite);
-                            PoolRoomScene.remove(PoolRoomSprite);
+                            ProductRoomScene.add(ProductRoomArrow);
+                            MainRoomScene.add(MainRoomArrow);
+                            MainRoomArrow.position.set(-20,-10,0);
+				            MainRoomArrow.scale.set(6,6,6)
+                            ProductRoomArrow.position.set(-5,-7,-10);
+                            ProductRoomArrow.scale.set(6,3,3)
+                     
                         }, 300);
                         setTimeout(function(){ 
                             envLoad("scenes/360Scene3.png") 
@@ -401,7 +405,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                     
                             controls.reset();
                         }, 250);
-         
+                        DisableEverything()
                         // scene.remove(videoScene);
                         // scene.remove(filterScene);
                         // scene.remove(textScene);
@@ -409,25 +413,25 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                         clickableVideo = false
                         runVideo =false
                       
-                    //***********************ROOOM SCENE********************SPRITE4******    
+                    //***********************ROOOM SCENE********************Arrow4******    
                     } if(intersectsProductRoom.length > 0  ) {
                         console.log("ROOM ENTREANCE SCENE - 1")
                         setTimeout(function(){  
-                                VideoRoomScene.add(videoRoomSprite)
-                                BottleRoomScene.add(BottleRoomSprite)
+                                VideoRoomScene.add(videoRoomArrow)
+                                BottleRoomScene.add(BottleRoomArrow)
                                 RoomVideoPlayScene.add(RoomVideoPlay)
-                                CoachRoomScene.add(CoachRoomSprite)
-                                MainRoomScene.add(MainRoomSprite);
-                                PoolRoomScene.remove(PoolRoomSprite);
-                                CoachRoomSprite.position.set(18,-10,2);
-				                CoachRoomSprite.scale.set(8,4,4)
-                                MainRoomSprite.position.set(-18,-10,0);
-				                MainRoomSprite.scale.set(8,4,4);
+                                CoachRoomScene.add(CoachRoomArrow)
+                                MainRoomScene.add(MainRoomArrow);
+                           
+                                CoachRoomArrow.position.set(18,-10,2);
+				                CoachRoomArrow.scale.set(8,4,4)
+                                MainRoomArrow.position.set(-18,-10,0);
+				                MainRoomArrow.scale.set(8,4,4);
                                 // scene.add(SceneObjectVideo1)
                                 // SceneObjectVideo1.add(clickableVideoMesh)
-                                clickableVideo = true
+                                clickableVideo = false
                                 runVideo =false
-                                ProductRoomScene.remove(ProductRoomSprite);
+                     
                         }, 300);
                         setTimeout(function(){ 
                             envLoad("scenes/360Scene4.png") 
@@ -438,11 +442,11 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                     
                             controls.reset();
                         }, 250);
-                         
+                        DisableEverything()
                             // new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
                             // new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
                             // new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
-                            clickableVideo = true
+                            clickableVideo = false
                            
                             
                         }
@@ -451,14 +455,10 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                             console.log("VIDEO ROOM SCENE - 1")
                             setTimeout(function(){  
                                
-                                ProductRoomScene.add(ProductRoomSprite)
-                                ProductRoomSprite.position.set(2,-10,10);
-                                ProductRoomSprite.scale.set(8,4,4)
-                                CoachRoomScene.remove(CoachRoomSprite)
-                                MainRoomScene.remove(MainRoomSprite)
-                                
-                                BottleRoomScene.remove(BottleRoomSprite)
-                                VideoRoomScene.remove(videoRoomSprite)
+                                ProductRoomScene.add(ProductRoomArrow)
+                                ProductRoomArrow.position.set(2,-10,10);
+                                ProductRoomArrow.scale.set(8,4,4)
+                
                             }, 300);
                             setTimeout(function(){ 
                                 envLoad("scenes/360Scene5.png") 
@@ -469,22 +469,18 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                         
                                 controls.reset();
                             }, 250);
-                               
+                            DisableEverything()
                             }
                           //***********************BOTTLE ROOOM SCENE**************************  
                         if(intersectsBottleRoom.length > 0  ) {
                             console.log("BOTTLE ROOM SCENE - 1")
                             setTimeout(function(){  
                                
-                                ProductRoomScene.add(ProductRoomSprite)
-                                ProductRoomSprite.position.set(-5,-7,10);
-                                ProductRoomSprite.scale.set(8,4,4);
+                                ProductRoomScene.add(ProductRoomArrow)
+                                ProductRoomArrow.position.set(-5,-7,10);
+                                ProductRoomArrow.scale.set(8,4,4);
                                 // RoomVideoPlayScene.add(RoomVideoPlay);
-                                CoachRoomScene.remove(CoachRoomSprite)
-                                MainRoomScene.remove(MainRoomSprite)
-                         
-                                BottleRoomScene.remove(BottleRoomSprite)
-                                VideoRoomScene.remove(videoRoomSprite)
+          
                             }, 300);
                             setTimeout(function(){ 
                                 envLoad("scenes/360Scene6.png") 
@@ -495,40 +491,37 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                         
                                 controls.reset();
                             }, 250);
-           
+                                DisableEverything()
                             }
                         
 
 
-                    //***********************BACK TO MAIN SCENE********************SPRITE3******
+                    //***********************BACK TO MAIN SCENE********************Arrow3******
 
                     if(intersectsMainRoom.length > 0  ) {
                         console.log("MAIN SCENE - 1")
                     setTimeout(function(){  
-                            ProductRoomScene.remove(ProductRoomSprite)
-                            CoachRoomScene.add(CoachRoomSprite)
-                            PoolRoomScene.add(PoolRoomSprite);
-                            selfieScene.remove(selfieRoomSprite)
-                            CoachRoomSprite.position.set(-18,-8,25);
-                            CoachRoomSprite.scale.set(9,6,6)
-                            PoolRoomSprite.position.set(9,-4,4);
-                            PoolRoomSprite.scale.set(4,2,2)
-                            MainRoomScene.remove(MainRoomSprite);
-                            VideoRoomScene.remove(videoRoomSprite)
-                            BottleRoomScene.remove(BottleRoomSprite)
-                            // videoScene.add( videoMesh )
-                            // videoPlane = new THREE.PlaneGeometry( 36, 24, 1 );
-                            // videoMesh.position.set(87, 1, 110);
-                            // videoMesh.rotation.set(0,-3.4,0)
+                            
+                            CoachRoomScene.add(CoachRoomArrow)
+                            PoolRoomScene.add(PoolRoomArrow);
+                            RoomVideoPlayScene.add(RoomVideoPlay);
+
+                            RoomVideoPlay.position.set(94,-7,90)
+                   
+                            RoomVideoPlay.scale.set(1.8,2.1,1)
+                            // RoomVideoPlay.rotation.set(0,90,0)
+
+                            CoachRoomArrow.position.set(-18,-8,25);
+                            CoachRoomArrow.scale.set(9,6,6)
+                            PoolRoomArrow.position.set(9,-4,4);
+                            PoolRoomArrow.scale.set(4,2,2)
+                      
+            
                             runVideo =true
                             poolSceneVideo =false
                     
                     }, 300);
-                    setTimeout(function(){  
-                        // new TWEEN.Tween( videoMesh.material ).to( { opacity: 1 }, 2000 ).start();
-                        // // new TWEEN.Tween( cubeColor.material ).to( { opacity: 0.5 }, 4000 ).start();
-                        // new TWEEN.Tween( text.material ).to( { opacity: 1 }, 2000 ).start();
-                    }, 900);
+
                     setTimeout(function(){
                         envLoad("scenes/360Scene2.png")
                         skyBox.rotation.y = -1.7
@@ -537,16 +530,11 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                     
                         controls.reset();
                     }, 250);
-                      
+                    DisableEverything()
+                
                        
-                        console.log("clicked")
-                        // new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
-                        // new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
-                        // new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
-                        
-                        // clickableVideo = true
-                        clickableVideo == false
-                        
+                  
+                     
                     }
                     if(intersectsObjectVideo.length > 0  && clickableVideo == true) {
                         console.log("video clicked")
@@ -583,6 +571,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                                     document.getElementById('video2').style.display = 'none';
                                     document.getElementById('blackScreen').style.display = 'none';
                                     document.getElementById('video_id').style.display = 'none';
+                                    player.pause()
                                 }
                             })
                     }, 1500);
@@ -595,6 +584,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
             }
         
             function envLoad(textureUrl){
+               
                 const textures = getTexturesFromAtlasFile( textureUrl, 6 );
 				materials = [];
                 transparentBool = true
@@ -629,7 +619,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 
                 }, 1000);
             
-				scene.add( skyBox );
+				skydome.scene.add( skyBox );
             }
 
 
@@ -639,4 +629,15 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
               
                 TWEEN.update()
                 // [...]
+            }
+            function DisableEverything(){
+                clickableVideo = false
+         
+                let ArrowArray = [MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay]
+                let ArrowScene = [MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene]
+                for (var i = 0; i < ArrowArray.length; i++) {
+       
+                    ArrowScene[i].remove(ArrowArray[i]);
+                  
+                }
             }
