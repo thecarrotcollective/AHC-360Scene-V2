@@ -162,23 +162,23 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                
             
                   
-                const count = 32;
-				const radius = 32;
+                // const count = 32;
+				// const radius = 32;
               
 			
 
                   
 					
-                    for ( let i = 1, l = count; i <= l; i ++ ) {
+                //     for ( let i = 1, l = count; i <= l; i ++ ) {
 
-                        const phi = Math.acos( - 1 + ( 2 * i ) / l );
-                        const theta = Math.sqrt( l * Math.PI ) * phi;
+                //         const phi = Math.acos( - 1 + ( 2 * i ) / l );
+                //         const theta = Math.sqrt( l * Math.PI ) * phi;
     
-                        RoomVideoPlay = new THREE.Mesh( videoPlane, videoMat );
-                        RoomVideoPlay.position.setFromSphericalCoords( radius, phi, theta );
-                        RoomVideoPlay.lookAt( camera.position );
-                        RoomVideoPlayScene.add(RoomVideoPlay)
-                    }
+                //         RoomVideoPlay = new THREE.Mesh( videoPlane, videoMat );
+                //         RoomVideoPlay.position.setFromSphericalCoords( radius, phi, theta );
+                //         RoomVideoPlay.lookAt( camera.position );
+                //         RoomVideoPlayScene.add(RoomVideoPlay)
+                //     }
 
                 // videoScene.add( videoMesh )
                 // videoMesh.rotation.set(0,-3.4,0)
