@@ -338,7 +338,8 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                            
                             MainRoomSprite.position.set(-20,-10,-10);
 				            MainRoomSprite.scale.set(8,8,8)
-                            
+                            CoachRoomScene.remove(CoachRoomSprite);
+                            PoolRoomScene.remove(PoolRoomSprite);
                             // videoMesh.position.set(-280, -15, 200);
                             // videoMesh.rotation.set(0,-3.7,-0.002)
                             // videoMesh.scale.set(3.4,2.7,1)
@@ -355,8 +356,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                             controls.reset();
                         }, 250);
                        
-                        CoachRoomScene.remove(CoachRoomSprite);
-                        PoolRoomScene.remove(PoolRoomSprite);
+       
                         // scene.remove(filterScene);
                         // scene.remove(textScene);
                         clickableVideo = false
@@ -371,6 +371,9 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                             PoolRoomScene.add(PoolRoomSprite);
                             PoolRoomSprite.position.set(-5,-4,10);
                             PoolRoomSprite.scale.set(4,2,2)
+                                               
+                            CoachRoomScene.remove(CoachRoomSprite);
+                            PoolRoomScene.remove(PoolRoomSprite);
                         }, 300);
                         setTimeout(function(){ 
                             envLoad("scenes/360Scene8.png") 
@@ -381,9 +384,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                     
                             controls.reset();
                         }, 250);
-                       
-                        CoachRoomScene.remove(CoachRoomSprite);
-                        PoolRoomScene.remove(PoolRoomSprite);
+    
                         clickableVideo = false
                         // videoMesh.position.set(135, 15, -15);
                         
@@ -399,6 +400,10 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 				            MainRoomSprite.scale.set(6,6,6)
                             ProductRoomSprite.position.set(-5,-7,-10);
                             ProductRoomSprite.scale.set(6,3,3)
+                            VideoRoomScene.remove(videoRoomSprite)
+                            BottleRoomScene.remove(BottleRoomSprite)
+                            CoachRoomScene.remove(CoachRoomSprite);
+                            PoolRoomScene.remove(PoolRoomSprite);
                         }, 300);
                         setTimeout(function(){ 
                             envLoad("scenes/360Scene3.png") 
@@ -409,10 +414,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                     
                             controls.reset();
                         }, 250);
-                        VideoRoomScene.remove(videoRoomSprite)
-                        BottleRoomScene.remove(BottleRoomSprite)
-                        CoachRoomScene.remove(CoachRoomSprite);
-                        PoolRoomScene.remove(PoolRoomSprite);
+         
                         // scene.remove(videoScene);
                         // scene.remove(filterScene);
                         // scene.remove(textScene);
@@ -438,7 +440,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                                 // SceneObjectVideo1.add(clickableVideoMesh)
                                 clickableVideo = true
                                 runVideo =false
-                                
+                                ProductRoomScene.remove(ProductRoomSprite);
                         }, 300);
                         setTimeout(function(){ 
                             envLoad("scenes/360Scene4.png") 
@@ -449,7 +451,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                     
                             controls.reset();
                         }, 250);
-                            ProductRoomScene.remove(ProductRoomSprite);
+                         
                             // new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
                             // new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
                             // new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
@@ -465,6 +467,11 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                                 ProductRoomScene.add(ProductRoomSprite)
                                 ProductRoomSprite.position.set(2,-10,10);
                                 ProductRoomSprite.scale.set(8,4,4)
+                                CoachRoomScene.remove(CoachRoomSprite)
+                                MainRoomScene.remove(MainRoomSprite)
+                                
+                                BottleRoomScene.remove(BottleRoomSprite)
+                                VideoRoomScene.remove(videoRoomSprite)
                             }, 300);
                             setTimeout(function(){ 
                                 envLoad("scenes/360Scene5.png") 
@@ -475,11 +482,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                         
                                 controls.reset();
                             }, 250);
-                                CoachRoomScene.remove(CoachRoomSprite)
-                                MainRoomScene.remove(MainRoomSprite)
-                                
-                                BottleRoomScene.remove(BottleRoomSprite)
-                                VideoRoomScene.remove(videoRoomSprite)
+                               
                             }
                           //***********************BOTTLE ROOOM SCENE**************************  
                         if(intersectsBottleRoom.length > 0  ) {
@@ -490,6 +493,11 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                                 ProductRoomSprite.position.set(-5,-7,10);
                                 ProductRoomSprite.scale.set(8,4,4);
                                 // RoomVideoPlayScene.add(RoomVideoPlay);
+                                CoachRoomScene.remove(CoachRoomSprite)
+                                MainRoomScene.remove(MainRoomSprite)
+                         
+                                BottleRoomScene.remove(BottleRoomSprite)
+                                VideoRoomScene.remove(videoRoomSprite)
                             }, 300);
                             setTimeout(function(){ 
                                 envLoad("scenes/360Scene6.png") 
@@ -500,11 +508,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                         
                                 controls.reset();
                             }, 250);
-                                CoachRoomScene.remove(CoachRoomSprite)
-                                MainRoomScene.remove(MainRoomSprite)
-                         
-                                BottleRoomScene.remove(BottleRoomSprite)
-                                VideoRoomScene.remove(videoRoomSprite)
+           
                             }
                         
 
