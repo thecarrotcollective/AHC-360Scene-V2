@@ -4,7 +4,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 
 
 			let camera, controls;
-			let renderer,video;
+			let renderer,video,skydome;
             let poolSceneVideo,vector,selfieScene,VideoRoomScene, BottleRoomScene,videoRoomSprite,BottleRoomSprite,MainRoomScene,MainRoomSprite,PoolRoomSprite,PoolRoomScene,CoachRoomScene,CoachRoomSprite;
 			let scene,text,cubeColor,materials,skyBox,opacityValue,transparentBool,ProductRoomScene,ProductRoomSprite;
             let textScene,RoomVideoPlay,RoomVideoPlayScene,filterScene,clickableVideoMesh,SceneObjectVideo1,videoPlane,runVideo,selfieRoomSprite;
@@ -35,11 +35,15 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 
 				const container = document.getElementById( 'container' );
 
-				renderer = new THREE.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
-
+                skydome = {
+                    scene: new THREE.Scene(),
+                    camera: new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 20000 ),
+                };
+                
 				scene = new THREE.Scene();
 				CoachRoomScene = new THREE.Scene()
                 selfieScene = new THREE.Scene()
@@ -159,30 +163,11 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                 video.loop = true;
                 const videoTexture = new THREE.VideoTexture(video)
                 const videoMat = new THREE.MeshBasicMaterial( {map: videoTexture,transparent: true,opacity:1,side: THREE.DoubleSide} );
-               
+                RoomVideoPlay = new THREE.Mesh( videoPlane, videoMat );
+                RoomVideoPlay.position.set(0,0,-1)
+                RoomVideoPlay.scale.normalize().multiplyScalar(0.1);
+                RoomVideoPlayScene.add(RoomVideoPlay)
             
-                  
-                // const count = 32;
-				// const radius = 32;
-              
-			
-
-                  
-					
-                //     for ( let i = 1, l = count; i <= l; i ++ ) {
-
-                //         const phi = Math.acos( - 1 + ( 2 * i ) / l );
-                //         const theta = Math.sqrt( l * Math.PI ) * phi;
-    
-                //         RoomVideoPlay = new THREE.Mesh( videoPlane, videoMat );
-                //         RoomVideoPlay.position.setFromSphericalCoords( radius, phi, theta );
-                //         RoomVideoPlay.lookAt( camera.position );
-                //         RoomVideoPlayScene.add(RoomVideoPlay)
-                //     }
-
-                // videoScene.add( videoMesh )
-                // videoMesh.rotation.set(0,-3.4,0)
-                
 
                 const colorMesh = new THREE.PlaneGeometry( 36, 24, 1 );
                 
@@ -328,6 +313,8 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
                     var intersectsSelfie = raycaster.intersectObjects( selfieScene.children, false );
                     var intersectsVideoRoom = raycaster.intersectObjects( VideoRoomScene.children, false );
                     var intersectsBottleRoom = raycaster.intersectObjects( BottleRoomScene.children, false );
+
+
                     //***********************POOL SCENE********************SPRITE2******
                     if ( intersectsPoolRoom.length > 0 ) {
                         console.log("POOOL SCENE - 1")
