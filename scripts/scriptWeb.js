@@ -74,7 +74,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 
 
         controls = new OrbitControls( skydome.camera, renderer.domElement );
-              
+
         // controls.target.set(0, 0, 0);
         // controls.rotateSpeed = - 0.25;
         // controls.enableZoom = false;
@@ -82,10 +82,10 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 				// controls.enableDamping = true;
 				controls.rotateSpeed = - 0.25;
         controls.update();
-
                 //***********************CUBE MAP********************
 				envLoad("scenes/360Scene1.png")
 
+												console.log(controls);
 
 
                 //***********************LIGHT********************
