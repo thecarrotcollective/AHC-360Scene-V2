@@ -173,8 +173,8 @@ var DeviceOrientationControls = function ( object, domElement ) {
 	} )();
 
 	function rotateLeft( angle ) {
-		sphericalDelta.theta -= angle;
 		console.log(angle);
+		// sphericalDelta.theta -= angle;
 	}
 
 	function handleTouchStartRotate( event ) {
