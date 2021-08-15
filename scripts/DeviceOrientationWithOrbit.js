@@ -200,7 +200,7 @@ var DeviceOrientationControls = function ( object, domElement ) {
 		console.log(event);
 		diffX = lastX - event.touches[ 0 ].pageX
 		console.log(diffX);
-		var deltaAmt = (2 * Math.PI * diffX.x) 
+		var deltaAmt = (2 * Math.PI * diffX) / (scope.domElement.clientHeight)
 		console.log(deltaAmt);
 		console.log(scope.domElement.clientHeight);
 		scope.alphaOffset += deltaAmt
