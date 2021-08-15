@@ -1,7 +1,9 @@
 import * as THREE from './three.module.js';
 
 import {OrbitControls} from './Orbit.js';
-import { DeviceOrientationControls } from './DeviceOrientation.js';
+// import { DeviceOrientationControls } from './DeviceOrientation.js';
+import { DeviceOrientationControls } from './DeviceOrientationWithOrbit.js';
+
 
 
 			let camera, controls;
