@@ -1,6 +1,6 @@
 import * as THREE from './three.module.js';
 
-import {OrbitControls} from './Orbit.js';
+// import {OrbitControls} from './Orbit.js';
 // import { DeviceOrientationControls } from './DeviceOrientation.js';
 import { DeviceOrientationControls } from './DeviceOrientationWithOrbit.js';
 
@@ -66,7 +66,7 @@ import { DeviceOrientationControls } from './DeviceOrientationWithOrbit.js';
 
         camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 3000 );
 				camera.position.z =0.01;
-        controls = new DeviceOrientationControls( camera );
+        controls = new DeviceOrientationControls( camera, renderer.domElement);
 				console.log(controls);
         // controls.target.set(0, 0, 0);
 

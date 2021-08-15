@@ -12,7 +12,7 @@ import {
  * W3C Device Orientation control (http://w3c.github.io/deviceorientation/spec-source-orientation.html)
  */
 
-var DeviceOrientationControls = function ( object,domElement ) {
+var DeviceOrientationControls = function ( object, domElement ) {
 	console.log("loaded Dev Orientation with Orb");
 	if ( window.isSecureContext === false ) {
 
