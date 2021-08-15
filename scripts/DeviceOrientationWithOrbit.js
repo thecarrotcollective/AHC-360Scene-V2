@@ -34,6 +34,23 @@ var DeviceOrientationControls = function ( object, domElement ) {
 	this.object.rotation.reorder( 'YXZ' );
 	this.domElement = domElement;
 
+	var rotateStart = new Vector2();
+	var rotateEnd = new Vector2();
+	var rotateDelta = new Vector2();
+
+	var STATE = {
+		NONE: - 1,
+		ROTATE: 0,
+		DOLLY: 1,
+		PAN: 2,
+		TOUCH_ROTATE: 3,
+		TOUCH_PAN: 4,
+		TOUCH_DOLLY_PAN: 5,
+		TOUCH_DOLLY_ROTATE: 6
+	};
+
+	var state = STATE.NONE;
+
 	this.enabled = true;
 
 	this.target = new Vector3();
