@@ -157,7 +157,7 @@ var DeviceOrientationControls = function ( object, domElement ) {
 
 				var beta = device.beta ? MathUtils.degToRad( device.beta ) : 0; // X'
 
-				var gamma = device.gamma ? MathUtils.degToRad( device.gamma + 45) : 0; // Y''
+				var gamma = device.gamma ? MathUtils.degToRad( device.gamma + 90) : 0; // Y''
 
 				var orient = scope.screenOrientation ? MathUtils.degToRad( scope.screenOrientation ) : 0; // O
 
@@ -188,6 +188,7 @@ var DeviceOrientationControls = function ( object, domElement ) {
 	}
 
 	function handleTouchMoveRotate( event ) {
+		console.log(event);
 		if ( event.touches.length == 1 ) {
 			rotateEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
 		} else {
