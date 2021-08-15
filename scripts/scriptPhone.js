@@ -1,7 +1,7 @@
-import * as THREE from '../three.module.js';
+import * as THREE from './three.module.js';
 
-import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
-import { DeviceOrientationControls } from '../DeviceOrientation.js';
+import {OrbitControls} from './Orbit.js';
+import { DeviceOrientationControls } from './DeviceOrientation.js';
 
 
 			let camera, controls;
