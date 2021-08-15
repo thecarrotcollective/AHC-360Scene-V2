@@ -173,7 +173,7 @@ var DeviceOrientationControls = function ( object, domElement ) {
 	} )();
 
 	function rotateLeft( angle ) {
-		console.log(angle);
+		console.log('angle : ' + angle);
 		// sphericalDelta.theta -= angle;
 	}
 
