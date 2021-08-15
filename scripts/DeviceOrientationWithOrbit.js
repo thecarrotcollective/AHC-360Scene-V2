@@ -201,7 +201,8 @@ var DeviceOrientationControls = function ( object, domElement ) {
 		diffX = lastX - event.touches[ 0 ].pageX
 		console.log(diffX);
 		console.log(2 * Math.PI * diffX.x / scope.domElement.clientHeight);
-		scope.alphaOffset = 1
+		console.log(scope.domElement.clientHeight);
+		scope.alphaOffset = -1
 		// var element = scope.domElement;
 		// rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientHeight ); // yes, height
 
