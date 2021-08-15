@@ -195,6 +195,8 @@ var DeviceOrientationControls = function ( object, domElement ) {
 			var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
 			rotateEnd.set( x, y );
 		}
+		console.log('touches : ' + event.touches[ 0 ].pageX + ' ---> ' + event.touches[ 1 ].pageX);
+		console.log('points : ' + rotateEnd + ' - ' + rotateStart);
 		rotateDelta.subVectors( rotateEnd, rotateStart ).multiplyScalar( scope.rotateSpeed );
 		var element = scope.domElement;
 		rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientHeight ); // yes, height
