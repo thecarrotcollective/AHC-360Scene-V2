@@ -38,6 +38,8 @@ var DeviceOrientationControls = function ( object, domElement ) {
 	var rotateEnd = new Vector2();
 	var rotateDelta = new Vector2();
 
+	var lastX = 0;
+
 	var STATE = {
 		NONE: - 1,
 		ROTATE: 0,
@@ -157,7 +159,7 @@ var DeviceOrientationControls = function ( object, domElement ) {
 
 				var beta = device.beta ? MathUtils.degToRad( device.beta ) : 0; // X'
 
-				var gamma = device.gamma ? MathUtils.degToRad( device.gamma + 90) : 0; // Y''
+				var gamma = device.gamma ? MathUtils.degToRad( device.gamma) : 0; // Y''
 
 				var orient = scope.screenOrientation ? MathUtils.degToRad( scope.screenOrientation ) : 0; // O
 
@@ -178,32 +180,40 @@ var DeviceOrientationControls = function ( object, domElement ) {
 	}
 
 	function handleTouchStartRotate( event ) {
-		if ( event.touches.length == 1 ) {
-			rotateStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
-		} else {
-			var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
-			var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
-			rotateStart.set( x, y );
-		}
+		lastX = event.touches[ 0 ].pageX
+		// if ( event.touches.length == 1 ) {
+		// 	rotateStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+		// } else {
+		// 	var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
+		// 	var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
+		// 	rotateStart.set( x, y );
+		// }
 	}
 
 	function handleTouchMoveRotate( event ) {
 		console.log(event);
-		if ( event.touches.length == 1 ) {
-			rotateEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
-		} else {
-			var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
-			var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
-			rotateEnd.set( x, y );
-		}
-		console.log('touches : ' + event.touches[ 0 ].pageX + ' ---> ' + event.touches[ 1 ].pageX);
-		console.log('points : ' + rotateEnd + ' - ' + rotateStart);
-		rotateDelta.subVectors( rotateEnd, rotateStart ).multiplyScalar( scope.rotateSpeed );
-		var element = scope.domElement;
-		rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientHeight ); // yes, height
+		var diff = lastX - event.touches[ 0 ].pageX
+		console.log(diff);
+		// if ( event.touches.length == 1 ) {
+		// 	rotateEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+		// } else {
+		// 	var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
+		// 	var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
+		// 	rotateEnd.set( x, y );
+		// }
+		// console.log('touches : ' + event.touches[ 0 ].pageX + ' ---> ' + event.touches[ 1 ].pageX);
+		// console.log('points : ' + rotateEnd + ' - ' + rotateStart);
+		// rotateDelta.subVectors( rotateEnd, rotateStart ).multiplyScalar( scope.rotateSpeed );
+
+
+		// var element = scope.domElement;
+		// rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientHeight ); // yes, height
+
+
 		// rotateUp( 2 * Math.PI * rotateDelta.y / element.clientHeight );
-		rotateStart.copy( rotateEnd );
+		// rotateStart.copy( rotateEnd );
 		// console.log();
+		lastX = event.touches[ 0 ].pageX
 	}
 
 	function onTouchStart( event ) {
