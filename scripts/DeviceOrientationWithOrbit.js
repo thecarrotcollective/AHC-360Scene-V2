@@ -203,7 +203,7 @@ var DeviceOrientationControls = function ( object, domElement ) {
 		var deltaAmt = (2 * Math.PI * diffX) / (scope.domElement.clientHeight)
 		console.log(deltaAmt);
 		console.log(scope.domElement.clientHeight);
-		scope.alphaOffset += deltaAmt
+		scope.alphaOffset -= deltaAmt
 		// var element = scope.domElement;
 		// rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientHeight ); // yes, height
 
