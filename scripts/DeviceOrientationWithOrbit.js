@@ -39,6 +39,7 @@ var DeviceOrientationControls = function ( object, domElement ) {
 	var rotateDelta = new Vector2();
 
 	var lastX = 0;
+	var diffX = 0;
 
 	var STATE = {
 		NONE: - 1,
@@ -161,7 +162,12 @@ var DeviceOrientationControls = function ( object, domElement ) {
 
 				var gamma = device.gamma ? MathUtils.degToRad( device.gamma) : 0; // Y''
 
-				var orient = scope.screenOrientation ? MathUtils.degToRad( scope.screenOrientation ) : 0; // O
+				var orient = scope.screenOrientation ? MathUtils.degToRad( scope.screenOrientation + diff) : 0; // O
+
+				console.log('a ' + device.alpha)
+				console.log('b ' + device.beta)
+				console.log('g ' + device.gamma)
+				console.log('o ' + scope.screenOrientation)
 
 				setObjectQuaternion( scope.object.quaternion, alpha, beta, gamma, orient );
 
@@ -192,27 +198,12 @@ var DeviceOrientationControls = function ( object, domElement ) {
 
 	function handleTouchMoveRotate( event ) {
 		console.log(event);
-		var diff = lastX - event.touches[ 0 ].pageX
+		diffX = lastX - event.touches[ 0 ].pageX
 		console.log(diff);
-		// if ( event.touches.length == 1 ) {
-		// 	rotateEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
-		// } else {
-		// 	var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
-		// 	var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
-		// 	rotateEnd.set( x, y );
-		// }
-		// console.log('touches : ' + event.touches[ 0 ].pageX + ' ---> ' + event.touches[ 1 ].pageX);
-		// console.log('points : ' + rotateEnd + ' - ' + rotateStart);
-		// rotateDelta.subVectors( rotateEnd, rotateStart ).multiplyScalar( scope.rotateSpeed );
-
 
 		// var element = scope.domElement;
 		// rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientHeight ); // yes, height
 
-
-		// rotateUp( 2 * Math.PI * rotateDelta.y / element.clientHeight );
-		// rotateStart.copy( rotateEnd );
-		// console.log();
 		lastX = event.touches[ 0 ].pageX
 	}
 
@@ -247,6 +238,7 @@ var DeviceOrientationControls = function ( object, domElement ) {
 		// handleTouchEnd( event );
 		scope.dispatchEvent( endEvent );
 		state = STATE.NONE;
+		diffX = 0;
 	}
 
 	this.dispose = function () {
