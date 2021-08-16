@@ -34,6 +34,10 @@ function init() {
 	container.appendChild( renderer.domElement );
 	renderer.autoclear = false
 
+	/* Custom variables */
+
+	const navArrowScale = new THREE.Vector3(2,2,2)
+
 	scene = new THREE.Scene();
 	CoachRoomScene = new THREE.Scene()
 	selfieScene = new THREE.Scene()
@@ -93,51 +97,44 @@ function init() {
 	scene.add(light);
 
 	//***********************ARROWS********************
-	var spriteTexture1 = new THREE.TextureLoader().load( arrowUrl );
-	var spriteMat1 = new THREE.SpriteMaterial( { map: spriteTexture1 ,rotation:0,transparent: true,opacity:1} );
-	CoachRoomArrow = new THREE.Sprite( spriteMat1 );
+	var arrowTexture = new THREE.TextureLoader().load( arrowUrl );
+	var arrowMat = new THREE.SpriteMaterial( { map: arrowTexture ,rotation:0,transparent: true,opacity:1} );
+	CoachRoomArrow = new THREE.Sprite( arrowMat );
 	CoachRoomArrow.position.set(-18,-8,25);
-	CoachRoomArrow.scale.set(9,6,6)
+	CoachRoomArrow.scale.copy(navArrowScale)
 
-
-	var spriteTexture2 = new THREE.TextureLoader().load( arrowUrl );
-	var spriteMat2 = new THREE.SpriteMaterial( { map: spriteTexture2,rotation: -0.1 } );
-	PoolRoomArrow = new THREE.Sprite( spriteMat2 );
+	PoolRoomArrow = new THREE.Sprite( arrowMat );
 	PoolRoomArrow.position.set(9,-4,4);
-	PoolRoomArrow.scale.set(4,2,2)
+	PoolRoomArrow.scale.copy(navArrowScale)
 
-
-	var spriteTexture3 = new THREE.TextureLoader().load(arrowUrl);
-	var spriteMat3 = new THREE.SpriteMaterial( { map: spriteTexture3,rotation: -0.1 } );
-	MainRoomArrow = new THREE.Sprite( spriteMat3 );
+	MainRoomArrow = new THREE.Sprite( arrowMat );
 	MainRoomArrow.position.set(0,-12,-22);
-	MainRoomArrow.scale.set(10,10,10)
+	MainRoomArrow.scale.copy(navArrowScale)
 
-
-	var spriteTexture4 = new THREE.TextureLoader().load(arrowUrl );
-	var spriteMat4 = new THREE.SpriteMaterial( { map: spriteTexture4,rotation: -0.1 } );
-	ProductRoomArrow = new THREE.Sprite( spriteMat4 );
+	// var spriteTexture4 = new THREE.TextureLoader().load(arrowUrl );
+	// var spriteMat4 = new THREE.SpriteMaterial( { map: spriteTexture4,rotation: -0.1 } );
+	ProductRoomArrow = new THREE.Sprite( arrowMat );
 	ProductRoomArrow.position.set(-5,-7,-10);
-	ProductRoomArrow.scale.set(6,3,3)
+	ProductRoomArrow.scale.copy(navArrowScale)
 
-	var spriteTexture5 = new THREE.TextureLoader().load(arrowUrl );
-	var spriteMat5 = new THREE.SpriteMaterial( { map: spriteTexture5,rotation: -0.1 } );
-	selfieRoomArrow = new THREE.Sprite( spriteMat5 );
+	// var spriteTexture5 = new THREE.TextureLoader().load(arrowUrl );
+	// var spriteMat5 = new THREE.SpriteMaterial( { map: spriteTexture5,rotation: -0.1 } );
+	selfieRoomArrow = new THREE.Sprite( arrowMat );
 	selfieRoomArrow.position.set(12,-7,-18);
-	selfieRoomArrow.scale.set(6,3,3)
+	selfieRoomArrow.scale.copy(navArrowScale)
 
-	var spriteTexture6 = new THREE.TextureLoader().load(arrowUrl );
-	var spriteMat6 = new THREE.SpriteMaterial( { map: spriteTexture6,rotation: 0.1 } );
-	videoRoomArrow = new THREE.Sprite( spriteMat6 );
+	// var spriteTexture6 = new THREE.TextureLoader().load(arrowUrl );
+	// var spriteMat6 = new THREE.SpriteMaterial( { map: spriteTexture6,rotation: 0.1 } );
+	videoRoomArrow = new THREE.Sprite( arrowMat );
 	videoRoomArrow.position.set(-5,-7,-20);
-	videoRoomArrow.scale.set(6,3,3)
+	videoRoomArrow.scale.copy(navArrowScale)
 
 
-	var spriteTexture7 = new THREE.TextureLoader().load( arrowUrl );
-	var spriteMat7 = new THREE.SpriteMaterial( { map: spriteTexture7,rotation: -0.1 } );
-	BottleRoomArrow = new THREE.Sprite( spriteMat7 );
+	// var spriteTexture7 = new THREE.TextureLoader().load( arrowUrl );
+	// var spriteMat7 = new THREE.SpriteMaterial( { map: spriteTexture7,rotation: -0.1 } );
+	BottleRoomArrow = new THREE.Sprite( arrowMat );
 	BottleRoomArrow.position.set(8,-7,-20);
-	BottleRoomArrow.scale.set(6,3,3)
+	BottleRoomArrow.scale.copy(navArrowScale)
 
 
 
@@ -155,7 +152,7 @@ function init() {
 
 	// RoomVideoPlay.scale.normalize().multiplyScalar(0.1);
 	// RoomVideoPlayScene.add(RoomVideoPlay)
-	
+
 
 
 	const colorMesh = new THREE.PlaneGeometry( 36, 24, 1 );
@@ -318,7 +315,7 @@ function clickTrigger(){
 					selfieScene.add(selfieRoomArrow);
 
 					MainRoomArrow.position.set(-20,-10,-10);
-					MainRoomArrow.scale.set(8,8,8)
+					MainRoomArrow.scale.copy(navArrowScale)
 
 					RoomVideoPlayScene.add(RoomVideoPlay);
 					RoomVideoPlay.position.set(-190,-40,120)
@@ -351,7 +348,7 @@ function clickTrigger(){
 					MainRoomScene.add(MainRoomArrow)
 					PoolRoomScene.add(PoolRoomArrow);
 					PoolRoomArrow.position.set(-5,-4,10);
-					PoolRoomArrow.scale.set(4,2,2)
+					PoolRoomArrow.scale.copy(navArrowScale)
 
 
 				}, 300);
@@ -377,9 +374,9 @@ function clickTrigger(){
 					ProductRoomScene.add(ProductRoomArrow);
 					MainRoomScene.add(MainRoomArrow);
 					MainRoomArrow.position.set(-20,-10,0);
-					MainRoomArrow.scale.set(6,6,6)
+					MainRoomArrow.scale.copy(navArrowScale)
 					ProductRoomArrow.position.set(-5,-7,-10);
-					ProductRoomArrow.scale.set(6,3,3)
+					ProductRoomArrow.scale.copy(navArrowScale)
 
 				}, 300);
 				setTimeout(function(){
@@ -410,9 +407,9 @@ function clickTrigger(){
 					MainRoomScene.add(MainRoomArrow);
 
 					CoachRoomArrow.position.set(18,-10,2);
-					CoachRoomArrow.scale.set(8,4,4)
+					CoachRoomArrow.scale.copy(navArrowScale)
 					MainRoomArrow.position.set(-18,-10,0);
-					MainRoomArrow.scale.set(8,4,4);
+					MainRoomArrow.scale.copy(navArrowScale)
 					// scene.add(SceneObjectVideo1)
 					// SceneObjectVideo1.add(clickableVideoMesh)
 					clickableVideo = false
@@ -443,7 +440,7 @@ function clickTrigger(){
 
 					ProductRoomScene.add(ProductRoomArrow)
 					ProductRoomArrow.position.set(2,-10,10);
-					ProductRoomArrow.scale.set(8,4,4)
+					ProductRoomArrow.scale.copy(navArrowScale)
 
 				}, 300);
 				setTimeout(function(){
@@ -464,7 +461,7 @@ function clickTrigger(){
 
 					ProductRoomScene.add(ProductRoomArrow)
 					ProductRoomArrow.position.set(-5,-7,10);
-					ProductRoomArrow.scale.set(8,4,4);
+					ProductRoomArrow.scale.copy(navArrowScale)
 					// RoomVideoPlayScene.add(RoomVideoPlay);
 
 				}, 300);
@@ -498,9 +495,9 @@ function clickTrigger(){
 					// RoomVideoPlay.rotation.set(0,90,0)
 
 					CoachRoomArrow.position.set(-18,-8,25);
-					CoachRoomArrow.scale.set(9,6,6)
+					CoachRoomArrow.scale.copy(navArrowScale)
 					PoolRoomArrow.position.set(9,-4,4);
-					PoolRoomArrow.scale.set(4,2,2)
+					PoolRoomArrow.scale.copy(navArrowScale)
 					video.play()
 
 					runVideo =true
