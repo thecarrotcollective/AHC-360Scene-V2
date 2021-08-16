@@ -236,12 +236,13 @@ function animate() {
 	requestAnimationFrame( animate );
 	renderer.autoClear = true;
 	controls.update();
+	camera.quaternion.copy( skydome.camera.quaternion );
+
 	renderer.render(skydome.scene, skydome.camera);
 
 	renderer.autoClear = false;
 
 	renderer.render(scene, camera );
-	camera.quaternion.copy( skydome.camera.quaternion );
 	runTween()
 }
 
