@@ -29,7 +29,7 @@ startButton.addEventListener( 'click', function () {
 	}, 1000);
 } );
 var clickableVideo = false
-
+const navArrowScale = new THREE.Vector3(2,2,2)
 function init() {
 
 	const container = document.getElementById( 'container' );
@@ -42,7 +42,7 @@ function init() {
 
 	/* Custom variables */
 
-	const navArrowScale = new THREE.Vector3(2,2,2)
+	
 
 	scene = new THREE.Scene();
 	CoachRoomScene = new THREE.Scene()

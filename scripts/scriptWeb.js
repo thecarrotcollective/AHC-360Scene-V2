@@ -27,6 +27,29 @@ startButton.addEventListener( 'click', function () {
 } );
 var clickableVideo = false
 
+
+var textureManager = new THREE.LoadingManager();
+textureManager.onProgress = function ( item, loaded, total ) {
+    // this gets called after any item has been loaded
+};
+
+textureManager.onLoad = function () {
+    // all textures are loaded
+    // ...
+    console.log("loaded" )
+};
+
+var textureLoader = new THREE.ImageLoader( textureManager );
+var myTextureArray = [];
+var myTexture = new THREE.Texture();
+myTextureArray.push( myTexture );
+
+textureLoader.load( "scenes/4kEXTROVERT00.png", function ( image ) {
+    myTexture.image = image;
+    console.log( myTexture.image )
+} );
+
+const navArrowScale = new THREE.Vector3(2,2,2)
 function init() {
 
 	const container = document.getElementById( 'container' );
@@ -39,7 +62,7 @@ function init() {
 
 	/* Custom variables */
 
-	const navArrowScale = new THREE.Vector3(2,2,2)
+
 
 	scene = new THREE.Scene();
 	CoachRoomScene = new THREE.Scene()
