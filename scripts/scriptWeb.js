@@ -83,7 +83,7 @@ function init() {
 	controls.rotateSpeed = - 0.25;
 	controls.update();
 	//***********************CUBE MAP********************
-	envLoad("scenes/360Scene1.png")
+	envLoad("scenes/4kEXTROVERT00.png")
 
 	//***********************LIGHT********************
 	const color = 0xFFFFFF;
@@ -282,8 +282,8 @@ function clickTrigger(){
 				poolSceneVideo = true
 			}, 300);
 			setTimeout(function(){
-				envLoad("scenes/360Scene7.png")
-				skyBox.rotation.y = -2
+				envLoad("scenes/4kEXTROVERT06.png")
+				// skyBox.rotation.y = -2
 
 			}, 200);
 			setTimeout(function(){
@@ -305,8 +305,8 @@ function clickTrigger(){
 			}, 300);
 
 			setTimeout(function(){
-				envLoad("scenes/360Scene8.png")
-				skyBox.rotation.y = -2.5
+				envLoad("scenes/4kEXTROVERT07.png")
+				// skyBox.rotation.y = -2.5
 			}, 200);
 
 			setTimeout(function(){
@@ -330,8 +330,8 @@ function clickTrigger(){
 			}, 300);
 
 			setTimeout(function(){
-				envLoad("scenes/360Scene3.png")
-				skyBox.rotation.y =0
+				envLoad("scenes/4kEXTROVERT02.png")
+				// skyBox.rotation.y =0
 			}, 200);
 
 			setTimeout(function(){
@@ -367,8 +367,8 @@ function clickTrigger(){
 			}, 300);
 
 			setTimeout(function(){
-				envLoad("scenes/360Scene4.png")
-				skyBox.rotation.y =0
+				envLoad("scenes/4kEXTROVERT03.png")
+				// skyBox.rotation.y =0
 			}, 200);
 
 			setTimeout(function(){
@@ -392,8 +392,8 @@ function clickTrigger(){
 			}, 300);
 
 			setTimeout(function(){
-				envLoad("scenes/360Scene5.png")
-				skyBox.rotation.y =0
+				envLoad("scenes/4kEXTROVERT04.png")
+				// skyBox.rotation.y =0
 			}, 200);
 
 			setTimeout(function(){
@@ -414,8 +414,8 @@ function clickTrigger(){
 			}, 300);
 
 			setTimeout(function(){
-				envLoad("scenes/360Scene6.png")
-				skyBox.rotation.y =0
+				envLoad("scenes/4kEXTROVERT05.png")
+				// skyBox.rotation.y =0
 			}, 200);
 
 			setTimeout(function(){
@@ -446,8 +446,8 @@ function clickTrigger(){
 			}, 300);
 
 			setTimeout(function(){
-				envLoad("scenes/360Scene2.png")
-				skyBox.rotation.y = -1.7
+				envLoad("scenes/4kEXTROVERT01.png")
+				// skyBox.rotation.y = -1.7
 			}, 200);
 
 			setTimeout(function(){
