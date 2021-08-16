@@ -131,7 +131,7 @@ function init() {
 	controls.rotateSpeed = - 0.25;
 	controls.update();
 	//***********************CUBE MAP********************
-	envLoad("scenes/4kEXTROVERT000.png")
+	envLoad("scenes/4kEXTROVERT00.png")
 
 	//***********************LIGHT********************
 	const color = 0xFFFFFF;
@@ -352,7 +352,7 @@ function clickTrigger(){
 				clickableVideo = true
 			}, 500);
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT006.png")
+				envLoad("scenes/4kEXTROVERT06.png")
 
 			
 
@@ -386,7 +386,7 @@ function clickTrigger(){
 			}, 500);
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT007.png")
+				envLoad("scenes/4kEXTROVERT07.png")
 			
 			}, 200);
 
@@ -417,7 +417,7 @@ function clickTrigger(){
 			}, 300);
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT002.png")
+				envLoad("scenes/4kEXTROVERT02.png")
 		
 				// skyBox.rotation.y =0
 			}, 200);
@@ -457,7 +457,7 @@ function clickTrigger(){
 			}, 300);
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT003.png")
+				envLoad("scenes/4kEXTROVERT03.png")
 				// skyBox.rotation.y =0
 			}, 200);
 
@@ -485,7 +485,7 @@ function clickTrigger(){
 			}, 300);
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT004.png")
+				envLoad("scenes/4kEXTROVERT04.png")
 			}, 200);
 
 
@@ -512,7 +512,7 @@ function clickTrigger(){
 			}, 300);
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT005.png")
+				envLoad("scenes/4kEXTROVERT05.png")
 				// skyBox.rotation.y =0
 			}, 200);
 
@@ -551,7 +551,7 @@ function clickTrigger(){
 			}, 500);
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT001.png")
+				envLoad("scenes/4kEXTROVERT01.png")
 			
 				// skyBox.rotation.y = -1.7
 			}, 200);
