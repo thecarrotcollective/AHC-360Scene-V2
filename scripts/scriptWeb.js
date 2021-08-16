@@ -3,11 +3,14 @@ import {OrbitControls} from './Orbit.js';
 
 let camera, controls;
 let renderer,video,skydome;
-let poolSceneVideo,vector,selfieScene,VideoRoomScene, BottleRoomScene,videoRoomArrow,BottleRoomArrow,MainRoomScene,MainRoomArrow,PoolRoomArrow,PoolRoomScene,CoachRoomScene,CoachRoomArrow;
+let poolSceneVideo,vector,selfieScene,VideoRoomScene, BottleRoomScene, videoRoomArrow, BottleRoomArrow,MainRoomScene,MainRoomArrow,PoolRoomArrow,PoolRoomScene,CoachRoomScene,CoachRoomArrow;
 let scene,text,cubeColor,materials,skyBox,opacityValue,transparentBool,ProductRoomScene,ProductRoomArrow;
 let textScene,RoomVideoPlay,RoomVideoPlayScene,filterScene,clickableVideoMesh,SceneObjectVideo1,videoPlane,runVideo,selfieRoomArrow;
 let arrowUrl ="UIAssets/arrow_white.png";
+
 const mouse = new THREE.Vector2();
+
+/* The below code triggers the experience. We will likely remove / refactor it later */
 const startButton = document.getElementById( 'start-btn' );
 startButton.addEventListener( 'click', function () {
 	init();
@@ -69,11 +72,7 @@ function init() {
 		camera : new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 ),
 	};
 	camera.rotation.z = 0
-
-
 	skydome.camera.position.z =0.01;
-
-
 	controls = new OrbitControls( skydome.camera, renderer.domElement );
 
 	// controls.target.set(0, 0, 0);
@@ -85,9 +84,6 @@ function init() {
 	controls.update();
 	//***********************CUBE MAP********************
 	envLoad("scenes/360Scene1.png")
-
-	console.log(controls);
-
 
 	//***********************LIGHT********************
 	const color = 0xFFFFFF;
@@ -129,21 +125,16 @@ function init() {
 	videoRoomArrow.position.set(-5,-7,-20);
 	videoRoomArrow.scale.copy(navArrowScale)
 
-
 	// var spriteTexture7 = new THREE.TextureLoader().load( arrowUrl );
 	// var spriteMat7 = new THREE.SpriteMaterial( { map: spriteTexture7,rotation: -0.1 } );
 	BottleRoomArrow = new THREE.Sprite( arrowMat );
 	BottleRoomArrow.position.set(8,-7,-20);
 	BottleRoomArrow.scale.copy(navArrowScale)
 
-
-
-
 	//***********************VIDEO********************
 	videoPlane = new THREE.PlaneGeometry( 16, 9 );
 	video = document.createElement('video');
 	video.src = "video/Ahc-Spa- Home-Sensorial-Treatment-Introverts- -Thinke3-1.mp4"; // Set video address
-
 
 	video.loop = true;
 	const videoTexture = new THREE.VideoTexture(video)
@@ -152,9 +143,6 @@ function init() {
 
 	// RoomVideoPlay.scale.normalize().multiplyScalar(0.1);
 	// RoomVideoPlayScene.add(RoomVideoPlay)
-
-
-
 	const colorMesh = new THREE.PlaneGeometry( 36, 24, 1 );
 
 	const materialColor = new THREE.MeshBasicMaterial( {color: 0x000000,transparent:true, opacity: 0} );
@@ -168,7 +156,6 @@ function init() {
 	const clickableVideoMat = new THREE.MeshBasicMaterial( {map:testTesture,alphaMap:alphAmapTex ,transparent:true, opacity: 1} );
 	clickableVideoMesh = new THREE.Mesh( clickableVideoGeo, clickableVideoMat );
 	clickableVideoMesh.position.set(-2, -1.5, -20);
-
 
 	//***********************TEXT********************
 	const textGeo = new THREE.PlaneGeometry( 36, 36, 36 );
@@ -195,7 +182,6 @@ function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
 		const tileWidth = image.height;
 
 		for ( let i = 0; i < textures.length; i ++ ) {
-
 			canvas = document.createElement( 'canvas' );
 			context = canvas.getContext( '2d' );
 			canvas.height = tileWidth;
@@ -204,39 +190,22 @@ function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
 			textures[ i ].image = canvas;
 			textures[ i ].needsUpdate = true;
 		}
-
 	} );
-
 	return textures;
-
 }
 
 function onWindowResize() {
-
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
-
-
 	renderer.setSize( window.innerWidth, window.innerHeight );
-
 }
 
 function animate() {
-
-
-
 	//***********************TWEEN********************
-
-
 	var testBool = false
-
-
 	// if (  testBool == false){
 	//     new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
 	//     new TWEEN.Tween( cubeColor.material ).to( { opacity: 0.5 }, 100 ).start();
-
-
-
 	//     testBool = true;
 	// } if( Math.abs(vector.x) > 0.0000010130538922770067 && Math.abs(vector.x) <0.000006352257762340783){
 	//     new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
@@ -264,8 +233,6 @@ function animate() {
 	// required when damping is enabled
 	//
 
-
-
 	requestAnimationFrame( animate );
 	renderer.autoClear = true;
 	controls.update();
@@ -276,23 +243,15 @@ function animate() {
 	renderer.render(scene, camera );
 	camera.quaternion.copy( skydome.camera.quaternion );
 	runTween()
-
-
-
-
-
-
-
 }
+
 function clickTrigger(){
 	const raycaster = new THREE.Raycaster();
 	document.addEventListener(
 		"click",
 		event => {
-
 			mouse.x = event.clientX / window.innerWidth * 2 - 1;
 			mouse.y = -(event.clientY / window.innerHeight) * 2 +1 ;
-
 			raycaster.setFromCamera( mouse, camera );
 
 			var intersectsPoolRoom = raycaster.intersectObjects( PoolRoomScene.children, false );
@@ -305,12 +264,10 @@ function clickTrigger(){
 			var intersectsVideoRoom = raycaster.intersectObjects( VideoRoomScene.children, false );
 			var intersectsBottleRoom = raycaster.intersectObjects( BottleRoomScene.children, false );
 
-
 			//***********************POOL SCENE**************************
 			if ( intersectsPoolRoom.length > 0 ) {
 				console.log("POOOL SCENE - 1")
 				setTimeout(function(){
-
 					MainRoomScene.add(MainRoomArrow);
 					selfieScene.add(selfieRoomArrow);
 
@@ -336,10 +293,7 @@ function clickTrigger(){
 				}, 250);
 				DisableEverything()
 
-
 				clickableVideo = true
-
-
 			}
 			//***********************SELFIE SCENE**************************
 			if ( intersectsSelfie.length > 0 ) {
@@ -349,55 +303,52 @@ function clickTrigger(){
 					PoolRoomScene.add(PoolRoomArrow);
 					PoolRoomArrow.position.set(-5,-4,10);
 					PoolRoomArrow.scale.copy(navArrowScale)
-
-
 				}, 300);
+
 				setTimeout(function(){
 					envLoad("scenes/360Scene8.png")
 					skyBox.rotation.y = -2.5
-
 				}, 200);
-				setTimeout(function(){
 
+				setTimeout(function(){
 					controls.reset();
 				}, 250);
+
 				DisableEverything()
 				clickableVideo = false
 				// videoMesh.position.set(135, 15, -15);
-
 			}
 			//***********************COACH SCENE********************Arrow******
 			if ( intersectsCoachRoom.length > 0 ) {
 				console.log("COACH SCENE - 1")
 				setTimeout(function(){
-
 					ProductRoomScene.add(ProductRoomArrow);
 					MainRoomScene.add(MainRoomArrow);
 					MainRoomArrow.position.set(-20,-10,0);
 					MainRoomArrow.scale.copy(navArrowScale)
 					ProductRoomArrow.position.set(-5,-7,-10);
 					ProductRoomArrow.scale.copy(navArrowScale)
-
 				}, 300);
+
 				setTimeout(function(){
 					envLoad("scenes/360Scene3.png")
 					skyBox.rotation.y =0
-
 				}, 200);
-				setTimeout(function(){
 
+				setTimeout(function(){
 					controls.reset();
 				}, 250);
+
 				DisableEverything()
 				// scene.remove(videoScene);
 				// scene.remove(filterScene);
 				// scene.remove(textScene);
-
 				clickableVideo = false
 				runVideo =false
+			}
 
-				//***********************ROOOM SCENE********************Arrow4******
-			} if(intersectsProductRoom.length > 0  ) {
+			//***********************ROOOM SCENE********************Arrow4******
+			if(intersectsProductRoom.length > 0  ) {
 				console.log("ROOM ENTREANCE SCENE - 1")
 				setTimeout(function(){
 					VideoRoomScene.add(videoRoomArrow)
@@ -414,86 +365,77 @@ function clickTrigger(){
 					// SceneObjectVideo1.add(clickableVideoMesh)
 					clickableVideo = false
 					runVideo =false
-
 				}, 300);
+
 				setTimeout(function(){
 					envLoad("scenes/360Scene4.png")
 					skyBox.rotation.y =0
-
 				}, 200);
-				setTimeout(function(){
 
+				setTimeout(function(){
 					controls.reset();
 				}, 250);
+
 				DisableEverything()
 				// new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
 				// new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
 				// new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
 				clickableVideo = false
-
-
 			}
+
 			//***********************Video ROOM SCENE**************************
 			if(intersectsVideoRoom.length > 0  ) {
 				console.log("VIDEO ROOM SCENE - 1")
 				setTimeout(function(){
-
 					ProductRoomScene.add(ProductRoomArrow)
 					ProductRoomArrow.position.set(2,-10,10);
 					ProductRoomArrow.scale.copy(navArrowScale)
-
 				}, 300);
+
 				setTimeout(function(){
 					envLoad("scenes/360Scene5.png")
 					skyBox.rotation.y =0
-
 				}, 200);
-				setTimeout(function(){
 
+				setTimeout(function(){
 					controls.reset();
 				}, 250);
+
 				DisableEverything()
 			}
+
 			//***********************BOTTLE ROOOM SCENE**************************
 			if(intersectsBottleRoom.length > 0  ) {
 				console.log("BOTTLE ROOM SCENE - 1")
 				setTimeout(function(){
-
 					ProductRoomScene.add(ProductRoomArrow)
 					ProductRoomArrow.position.set(-5,-7,10);
 					ProductRoomArrow.scale.copy(navArrowScale)
 					// RoomVideoPlayScene.add(RoomVideoPlay);
-
 				}, 300);
+
 				setTimeout(function(){
 					envLoad("scenes/360Scene6.png")
 					skyBox.rotation.y =0
-
 				}, 200);
-				setTimeout(function(){
 
+				setTimeout(function(){
 					controls.reset();
 				}, 250);
+
 				DisableEverything()
 			}
 
-
-
 			//***********************BACK TO MAIN SCENE********************Arrow3******
-
 			if(intersectsMainRoom.length > 0  ) {
 				console.log("MAIN SCENE - 1")
 				setTimeout(function(){
-
 					CoachRoomScene.add(CoachRoomArrow)
 					PoolRoomScene.add(PoolRoomArrow);
 					RoomVideoPlayScene.add(RoomVideoPlay);
-
 					RoomVideoPlay.position.set(94,-7,90)
-
 					RoomVideoPlay.scale.set(1.8,2.1,1)
 					// RoomVideoPlay.rotation.set(0,90,0)
-
 					CoachRoomArrow.position.set(-18,-8,25);
 					CoachRoomArrow.scale.copy(navArrowScale)
 					PoolRoomArrow.position.set(9,-4,4);
@@ -502,23 +444,20 @@ function clickTrigger(){
 
 					runVideo =true
 					poolSceneVideo =false
-
 				}, 300);
 
 				setTimeout(function(){
 					envLoad("scenes/360Scene2.png")
 					skyBox.rotation.y = -1.7
 				}, 200);
-				setTimeout(function(){
 
+				setTimeout(function(){
 					controls.reset();
 				}, 250);
+
 				DisableEverything()
-
-
-
-
 			}
+
 			if(intersectsObjectVideo.length > 0  && clickableVideo == true) {
 				console.log("video clicked")
 				setTimeout(function(){
@@ -536,7 +475,6 @@ function clickTrigger(){
 				// window.open(intersectsObjectVideo[0].clickableVideoMesh.userData.URL);
 				// document.getElementById('blackScreen').style.display = 'block';
 			}
-
 
 			//***********************PLAY VIDEO ON PRODUCT SCENE**************************
 			else if ( intersectsRoomVideoPlay.length > 0 && clickableVideo == true) {
@@ -561,58 +499,44 @@ function clickTrigger(){
 				document.getElementById('blackScreen').style.display = 'block';
 				// controls.enableRotate = false
 				// clickableVideo = false
-
 			}
 		});
 	}
 
 	function envLoad(textureUrl){
-
 		const textures = getTexturesFromAtlasFile( textureUrl, 6 );
 		materials = [];
 		transparentBool = true
 		opacityValue = 0
 		for ( let i = 0; i < 6; i ++ ) {
-
 			materials.push( new THREE.MeshBasicMaterial( { map: textures[ i ] ,opacity: 0,
 				transparent: true, depthWrite:false, depthTest :false} ) );
-
-
 			}
 
 			skyBox = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1 ), materials );
 			// skyBox.rotation.y = 30
 			console.log(materials[0].transparent)
-
 			skyBox.geometry.scale( 1, 1, -1 );
 			for ( let i = 0; i < 6; i ++ ) {
-
 				new TWEEN.Tween(materials[i]).to( { opacity: 1 }, 500 ).start();
 				runTween()
-
-
 			}
+
 			setTimeout(function(){
 				for ( let i = 0; i < 6; i ++ ) {
-
 					materials[i].transparent = false
-
-
 				}
-
 			}, 1000);
 
 			skydome.scene.add( skyBox );
 		}
 
-
 		function runTween() {
-
 			requestAnimationFrame(runTween)
-
 			TWEEN.update()
 			// [...]
 		}
+
 		function DisableEverything(){
 			clickableVideo = false
 			video.pause();
@@ -620,8 +544,6 @@ function clickTrigger(){
 			let ArrowArray = [MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay]
 			let ArrowScene = [MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene]
 			for (var i = 0; i < ArrowArray.length; i++) {
-
 				ArrowScene[i].remove(ArrowArray[i]);
-
 			}
 		}
