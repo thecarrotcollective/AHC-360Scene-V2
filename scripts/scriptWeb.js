@@ -3,11 +3,11 @@ import {OrbitControls} from './Orbit.js';
 
 
 // TODO - check if some of these can be lists / arrays + use as state machine?
-let camera, controls,videoMat,ProductIcon1,ProductIconScene1;
-let renderer,video,skydome,BottleRoomVideoPlayScene
+let camera, controls,videoMat,ProductIcon1,ProductIcon2,ProductIcon3,ProductIconScene1,ProductIconScene2,ProductIconScene3;
+let renderer,video,skydome,BottleRoomVideoPlayScene,SelfiePlane,SelfiePlaneScene,video2;
 let videoMeshBottleScene,vector,selfieScene,VideoRoomScene, BottleRoomScene, videoRoomArrow, BottleRoomArrow,MainRoomScene,MainRoomArrow,PoolRoomArrow,PoolRoomScene,CoachRoomScene,CoachRoomArrow;
-let scene,text,cubeColor,materials,skyBox,opacityValue,transparentBool,ProductRoomScene,ProductRoomArrow;
-let textScene,RoomVideoPlay,RoomVideoPlayScene,filterScene,clickableVideoMesh,SceneObjectVideo1,videoPlane,runVideo,selfieRoomArrow;
+let scene,materials,skyBox,opacityValue,transparentBool,ProductRoomScene,ProductRoomArrow;
+let RoomVideoPlay,RoomVideoPlayScene,filterScene,SceneObjectVideo1,videoPlane,runVideo,selfieRoomArrow;
 let arrowUrl ="UIAssets/arrow_white.png";
 let ProductIconUrl ="UIAssets/plus.png";
 let alphaMask,videoMatBottleScene,videoDivBottleScene,alphaMaskBottleScene,VideoPlayBottleScene;
@@ -32,7 +32,7 @@ startButton.addEventListener( 'click', function () {
     RoomVideoPlay.rotation.set(0,-1.58,-0.01)
     RoomVideoPlay.scale.set(3.1,3,2.1)
 
-
+	video2.play()
     video.play()
 	clickableVideo = false
 	document.getElementById('overlay').style.display = 'none';
@@ -95,11 +95,18 @@ function init() {
 	BottleRoomScene = new THREE.Scene()
 	SceneObjectVideo1 = new THREE.Scene()
 	RoomVideoPlayScene = new THREE.Scene();
-	textScene = new THREE.Scene();
+
 	filterScene = new THREE.Scene();
 	BottleRoomVideoPlayScene = new THREE.Scene();
 	ProductIconScene1 = new THREE.Scene();
+	ProductIconScene2 = new THREE.Scene();
+	ProductIconScene3 = new THREE.Scene();
+	SelfiePlaneScene =  new THREE.Scene();
+	scene.add(SelfiePlaneScene)
+
 	scene.add(ProductIconScene1)
+	scene.add(ProductIconScene2)
+	scene.add(ProductIconScene3)
 	scene.add(MainRoomScene)
 	scene.add(CoachRoomScene)
 	scene.add(VideoRoomScene)
@@ -107,7 +114,7 @@ function init() {
 	scene.add(selfieScene)
 	scene.add(PoolRoomScene)
 	scene.add(RoomVideoPlayScene)
-	scene.add(textScene)
+
 	scene.add(ProductRoomScene)
 	scene.add(filterScene)
 	scene.add(SceneObjectVideo1)
@@ -185,8 +192,12 @@ function init() {
 	var ProductMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: true,opacity:1,side: THREE.DoubleSide} );
 
 	ProductIcon1 = new THREE.Mesh( ProductMesh, ProductMat );
+	ProductIcon2 = new THREE.Mesh( ProductMesh, ProductMat );
+	ProductIcon3 = new THREE.Mesh( ProductMesh, ProductMat );
 	// ProductIcon1.rotation.set(0,0,90)
-
+	const selfiMesh = new THREE.PlaneGeometry( 1, 1 );
+	const selfiMat = new THREE.MeshBasicMaterial( {color: 0xffff00, transparent: true,opacity:0.2, side: THREE.DoubleSide} );
+	SelfiePlane = new THREE.Mesh( selfiMesh, selfiMat );
 
 
 	//***********************VIDEO1********************
@@ -195,53 +206,26 @@ function init() {
 	video.src = "video/10_sec_MP4_loop.mp4"; // Set video address
 	video.muted = true;
 	video.loop = true;
-	alphaMask = new THREE.TextureLoader().load( "UIAssets/alphaMasks/scene0AlphaMask.png");
+	video2 = document.createElement('video');
+	video2.src = "video/10_sec_MP4_Alpha.mp4"; // Set video address
+	video2.muted = true;
+	video2.loop = true;
+	alphaMask = new THREE.TextureLoader().load( "video/10_sec_MP4_Alpha.mp4");
+	const videoMask = new THREE.VideoTexture(video2)
 	const videoTexture = new THREE.VideoTexture(video)
 	videoMat = new THREE.MeshBasicMaterial( {map: videoTexture, transparent: true,opacity:0,side: THREE.DoubleSide} );
-	videoMat.alphaMap = alphaMask
+	videoMat.alphaMap = videoMask
 	RoomVideoPlay = new THREE.Mesh( videoPlane, videoMat );
 
     // ***********************VIDEO2********************
 	videoMeshBottleScene = new THREE.PlaneGeometry( 9, 16 );
-	videoDivBottleScene = document.createElement('video');
-	videoDivBottleScene.src = "video/Ahc-Spa- Home-Sensorial-Treatment-Introverts- -Thinke3-1.mp4"; // Set video address
-	videoDivBottleScene.muted = true
-	videoDivBottleScene.loop = true;
-    // alphaMaskBottleScene = new THREE.TextureLoader().load( "UIAssets/alphaMasks/scene0AlphaMask.png");
-    const videoTextureBottleScene = new THREE.VideoTexture(videoDivBottleScene)
-    videoMatBottleScene = new THREE.MeshBasicMaterial( {map: videoTextureBottleScene, transparent: true,opacity:1,side: THREE.DoubleSide} );
+    videoMatBottleScene = new THREE.MeshBasicMaterial( {color: 0xffff00, transparent: true,opacity:0.2,side: THREE.DoubleSide} );
     // videoMatBottleScene.alphaMap = alphaMaskBottleScene
     VideoPlayBottleScene = new THREE.Mesh( videoMeshBottleScene, videoMatBottleScene );
 	VideoPlayBottleScene.scale.copy(navVideoScale)
 
-
-	// RoomVideoPlay.scale.normalize().multiplyScalar(0.1);
-	// RoomVideoPlayScene.add(RoomVideoPlay)
-	const colorMesh = new THREE.PlaneGeometry( 36, 24, 1 );
-
-	const materialColor = new THREE.MeshBasicMaterial( {color: 0x000000,transparent:true, opacity: 0} );
-	cubeColor = new THREE.Mesh( colorMesh, materialColor );
-	cubeColor.position.set(49.9, 1, -10);
-	cubeColor.rotation.set(0,-1.5,0)
-	// filterScene.add( cubeColor );
-	const testTesture = new THREE.TextureLoader().load( "UIAssets/textureTest.jpg" );
-	const clickableVideoGeo = new THREE.BoxGeometry( 3, 2, 2 );
-	const alphAmapTex = new THREE.TextureLoader().load( "UIAssets/mask.jpg" );
-	const clickableVideoMat = new THREE.MeshBasicMaterial( {map:testTesture,transparent:true, opacity: 1} );
-    //, alphaMap:alphAmapTex
-	clickableVideoMesh = new THREE.Mesh( clickableVideoGeo, clickableVideoMat );
-	clickableVideoMesh.position.set(-2, -1.5, -20);
-
-	//***********************TEXT********************
-	const textGeo = new THREE.PlaneGeometry( 36, 36, 36 );
-	const textTexture = new THREE.TextureLoader().load( "UIAssets/startExperience.png" );
-	const textMat = new THREE.MeshBasicMaterial( {map: textTexture, transparent:true, opacity: 0} );
-	text = new THREE.Mesh( textGeo, textMat );
-	text.position.set(49.8, 1, -10);
-	text.rotation.set(0,-1.5,0)
-	textScene.add(text);
 	window.addEventListener( 'resize', onWindowResize );
-	clickTrigger()
+	clickTrigger();
 	renderer.autoclear = false;
 }
 
@@ -322,19 +306,21 @@ function clickTrigger(){
 		var intersectsCoachRoom = raycaster.intersectObjects( CoachRoomScene.children, false );
 		var intersectsProductRoom = raycaster.intersectObjects( ProductRoomScene.children, false );
 		var intersectsRoomVideoPlay = raycaster.intersectObjects( RoomVideoPlayScene.children, false );
-		var intersectsObjectVideo = raycaster.intersectObjects( SceneObjectVideo1.children, false );
 		var intersectsSelfie = raycaster.intersectObjects( selfieScene.children, false );
 		var intersectsVideoRoom = raycaster.intersectObjects( VideoRoomScene.children, false );
 		var intersectsBottleRoom = raycaster.intersectObjects( BottleRoomScene.children, false );
-
-
+		var intersectsProductPlusIcon1 = raycaster.intersectObjects( ProductIconScene1.children, false );
+		var intersectsProductPlusIcon2 = raycaster.intersectObjects( ProductIconScene2.children, false );
+		var intersectsProductPlusIcon3 = raycaster.intersectObjects( ProductIconScene3.children, false );
+		var intersectsMultipleVideo = raycaster.intersectObjects( BottleRoomVideoPlayScene.children, false );
+		var intersectsSelfieClick = raycaster.intersectObjects( SelfiePlaneScene.children, false );
 		//***********************POOL SCENE**************************
 		if ( intersectsPoolRoom.length > 0 ) {
 			console.log("POOOL SCENE - 1")
 			setTimeout(function(){
 				DisableEverything()
-                const alphaMaskPool = new THREE.TextureLoader().load( "UIAssets/alphaMasks/poolSceneAlpha.png" );
-                videoMat.alphaMap = alphaMaskPool
+                // const alphaMaskPool = new THREE.TextureLoader().load( "UIAssets/alphaMasks/poolSceneAlpha.png" );
+                // videoMat.alphaMap = alphaMaskPool
 				MainRoomScene.add(MainRoomArrow);
 				selfieScene.add(selfieRoomArrow);
 				RoomVideoPlayScene.add(RoomVideoPlay);
@@ -347,12 +333,13 @@ function clickTrigger(){
 				RoomVideoPlay.rotation.set(0,4.7,0)
 				RoomVideoPlay.scale.set(7.2,6.9,1)
 				video.play()
+				video2.play()
 				runVideo =true
 
 				clickableVideo = true
 			}, 500);
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT06.png")
+				envLoad("scenes/4kEXTROVERT09.png")
 
 			
 
@@ -367,10 +354,15 @@ function clickTrigger(){
 			console.log("SELFIE SCENE - 1")
 			setTimeout(function(){
 				DisableEverything()
-                const alphaMaskSelfie = new THREE.TextureLoader().load( "UIAssets/alphaMasks/SelfieSceneAlphaMask.png" );
-                videoMat.alphaMap = alphaMaskSelfie;
+                // const alphaMaskSelfie = new THREE.TextureLoader().load( "UIAssets/alphaMasks/SelfieSceneAlphaMask.png" );
+                // videoMat.alphaMap = alphaMaskSelfie;
 				MainRoomScene.add(MainRoomArrow)
 				PoolRoomScene.add(PoolRoomArrow);
+				SelfiePlaneScene.add(SelfiePlane)
+				SelfiePlane.position.set(-1,0,1)
+				SelfiePlane.rotation.set(0,-1,0)
+				SelfiePlane.scale.set(2,1.5,1)
+
 				MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-180)) , arrowHeight, -arrowDist * Math.cos(toRadians(-180)));
 				PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(60)) , arrowHeight, -arrowDist * Math.cos(toRadians(60)));
 				PoolRoomArrow.scale.copy(navArrowScale)
@@ -382,7 +374,7 @@ function clickTrigger(){
 				RoomVideoPlay.rotation.set(0,4.7,0)
 				RoomVideoPlay.scale.set(4.3,4.1,1)
                 video.play();
-				
+				video2.play();
 			}, 500);
 
 			setTimeout(function(){
@@ -402,13 +394,13 @@ function clickTrigger(){
 			setTimeout(function(){
 				ProductRoomScene.add(ProductRoomArrow);
 				MainRoomScene.add(MainRoomArrow);
-				BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-				videoDivBottleScene.play();
-				
-				VideoPlayBottleScene.position.set(-342,25,-450);
+				// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 			
-				VideoPlayBottleScene.rotation.set(0,4.7,0)
-				VideoPlayBottleScene.scale.set(7.2,7.5,1)
+				
+				// VideoPlayBottleScene.position.set(-342,25,-450);
+			
+				// VideoPlayBottleScene.rotation.set(0,4.7,0)
+				// VideoPlayBottleScene.scale.set(7.2,7.5,1)
 				// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 				MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-45)) , arrowHeight, -arrowDist * Math.cos(toRadians(-45)));
 				ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(-15)) , arrowHeight, -arrowDist * Math.cos(toRadians(-15)));
@@ -437,13 +429,12 @@ function clickTrigger(){
 				BottleRoomScene.add(BottleRoomArrow)
 				CoachRoomScene.add(CoachRoomArrow)
 				MainRoomScene.add(MainRoomArrow);
-				BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-				videoDivBottleScene.play();
-				
-				VideoPlayBottleScene.position.set(-245,20,-450);
-			
-				VideoPlayBottleScene.rotation.set(0,4.7,0)
-				VideoPlayBottleScene.scale.set(9,10,1)
+
+				// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+				// VideoPlayBottleScene.position.set(-245,20,-450);
+				// VideoPlayBottleScene.rotation.set(0,4.7,0)
+				// VideoPlayBottleScene.scale.set(9,10,1)
+
 				videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(-20)));
 				BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(30)));
 				CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(100)) , arrowHeight, -arrowDist * Math.cos(toRadians(100)));
@@ -477,11 +468,17 @@ function clickTrigger(){
 				ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.5* Math.cos(toRadians(180)));
 				ProductRoomArrow.scale.copy(navArrowScale)
 
-				
-				
 				BottleRoomScene.add(BottleRoomArrow)
 				BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(60)) , arrowHeight, -arrowDist * Math.cos(toRadians(60)));
 				BottleRoomArrow.scale.copy(navArrowScale)
+
+				BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+			
+				VideoPlayBottleScene.position.set(-20,-1.5,-18);
+			
+				VideoPlayBottleScene.rotation.set(0,1.6,0)
+				VideoPlayBottleScene.scale.set(0.95,0.95,1)
+
 			}, 300);
 
 			setTimeout(function(){
@@ -502,9 +499,21 @@ function clickTrigger(){
 				ProductRoomArrow.scale.copy(navArrowScale)
 		
 				ProductIconScene1.add(ProductIcon1)
-				ProductIcon1.position.set(-3,0,-2)
-				ProductIcon1.rotation.set(0,2,0)
+				ProductIcon1.position.set(-3.8,-0.6,-2)
+				ProductIcon1.scale.set(0.4,0.4,0.4)
+				ProductIcon1.rotation.set(0,-5,0)
 
+				ProductIconScene2.add(ProductIcon2)
+				ProductIcon2.position.set(-2.8,-0.4,-2)
+				ProductIcon2.scale.set(0.3,0.3,0.3)
+				ProductIcon2.rotation.set(0,-5,0)
+
+				ProductIconScene3.add(ProductIcon3)
+				ProductIcon3.position.set(-1.7,-0.4,-2)
+				ProductIcon3.scale.set(0.28,0.28,0.28)
+				ProductIcon3.rotation.set(0,-6,0)
+
+			
 				VideoRoomScene.add(videoRoomArrow)
 				videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-100)) , arrowHeight, -arrowDist * Math.cos(toRadians(-100)));
 				videoRoomArrow.scale.copy(navArrowScale)
@@ -530,8 +539,8 @@ function clickTrigger(){
 			setTimeout(function(){
 			DisableEverything()
 
-	      	const alphaMaskMainRoom = new THREE.TextureLoader().load( "UIAssets/alphaMasks/scene1AlphaMask.png" );
-	      	videoMat.alphaMap = alphaMaskMainRoom
+	      	// const alphaMaskMainRoom = new THREE.TextureLoader().load( "UIAssets/alphaMasks/scene1AlphaMask.png" );
+	      	// videoMat.alphaMap = alphaMaskMainRoom
 			CoachRoomScene.add(CoachRoomArrow)
 			PoolRoomScene.add(PoolRoomArrow);
 			RoomVideoPlayScene.add(RoomVideoPlay);
@@ -544,6 +553,7 @@ function clickTrigger(){
 			PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist * Math.cos(toRadians(-20)));
 			PoolRoomArrow.scale.copy(navArrowScale)
         	video.play()
+			video2.play()
 
 				runVideo =true
 			
@@ -559,23 +569,28 @@ function clickTrigger(){
 
 		
 		}
-
-		if(intersectsObjectVideo.length > 0  && clickableVideo == true) {
+		if(intersectsMultipleVideo.length > 0 ) {
+			alert("Video Clicked");
+		}
+		if(intersectsProductPlusIcon1.length > 0 ) {
 			console.log("video clicked")
-			setTimeout(function(){
-				console.log("working")
-
-				// document.getElementById('video2').style.display = 'block';
-				// document.getElementById('video_id').style.display = 'block';
-				// var player = videojs('#video2');
-				// var video = document.getElementById('video2');
-				// video.requestFullscreen();
-				// player.play();
-			}, 1200);
-			window.open('https://www.thecarrotcollective.com/')
-			// clickableVideoMesh.userData = { URL: "http://stackoverflow.com"};
-			// window.open(intersectsObjectVideo[0].clickableVideoMesh.userData.URL);
-			// document.getElementById('blackScreen').style.display = 'block';
+		
+			window.open('https://us.ahcbeauty.com/')
+		}
+		if(intersectsProductPlusIcon2.length> 0) {
+			console.log("video clicked")
+		
+			window.open('https://us.ahcbeauty.com/')
+		}
+		if(intersectsProductPlusIcon3.length> 0 ) {
+			console.log("video clicked")
+		
+			window.open('https://us.ahcbeauty.com/')
+		}
+		if(intersectsSelfieClick.length > 0) {
+			alert("Selfie Clicked")
+		
+		
 		}
 
 		//***********************PLAY VIDEO ON PRODUCT SCENE**************************
@@ -643,8 +658,8 @@ function DisableEverything(){
 	clickableVideo = false
 	video.pause();
 
-	let ArrowArray = [MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1]
-	let ArrowScene = [MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1]
+	let ArrowArray = [MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane]
+	let ArrowScene = [MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene]
 	for (var i = 0; i < ArrowArray.length; i++) {
 		ArrowScene[i].remove(ArrowArray[i]);
 	}
