@@ -1,6 +1,8 @@
 import * as THREE from './three.module.js';
 import {OrbitControls} from './Orbit.js';
 
+
+// TODO - check if some of these can be lists / arrays + use as state machine?
 let camera, controls,videoMat;
 let renderer,video,skydome,BottleRoomVideoPlayScene;
 let poolSceneVideo,vector,selfieScene,VideoRoomScene, BottleRoomScene, videoRoomArrow, BottleRoomArrow,MainRoomScene,MainRoomArrow,PoolRoomArrow,PoolRoomScene,CoachRoomScene,CoachRoomArrow;
@@ -10,6 +12,9 @@ let arrowUrl ="UIAssets/arrow_white.png";
 let alphaMask,videoMatBottleScene,videoBottleScene,alphaMaskBottleScene,VideoPlayBottleScene;
 const mouse = new THREE.Vector2();
 var clickableVideo;
+
+var arrowDist = 25
+var arrowHeight = -12
 
 /* The below code triggers the experience. We will likely remove / refactor it later */
 const startButton = document.getElementById( 'start-btn' );
@@ -56,7 +61,12 @@ textureLoader.load( "scenes/4kEXTROVERT01.png", function ( image ) {
     console.log( myTexture.image )
 } );
 
-const navArrowScale = new THREE.Vector3(2,2,2)
+const navArrowScale = new THREE.Vector3(4,2,4)
+
+function toRadians(degrees) {
+  var pi = Math.PI;
+  return degrees * (pi/180);
+}
 
 function init() {
 
@@ -69,8 +79,6 @@ function init() {
 	renderer.autoclear = false
 
 	/* Custom variables */
-
-
 
 	scene = new THREE.Scene();
 	CoachRoomScene = new THREE.Scene()
@@ -137,7 +145,9 @@ function init() {
 	PoolRoomArrow.scale.copy(navArrowScale)
 
 	MainRoomArrow = new THREE.Sprite( arrowMat );
-	MainRoomArrow.position.set(0,-12,-22);
+	// MainRoomArrow.position.set(0,-12,-22);
+	MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist * Math.cos(toRadians(-20)));
+
 	MainRoomArrow.scale.copy(navArrowScale)
 
 	// var spriteTexture4 = new THREE.TextureLoader().load(arrowUrl );
@@ -170,11 +180,11 @@ function init() {
 	video.src = "video/Ahc-Spa- Home-Sensorial-Treatment-Introverts- -Thinke3-1.mp4"; // Set video address
 	video.muted = true;
 	video.loop = true;
-    alphaMask = new THREE.TextureLoader().load( "UIAssets/alphaMasks/scene0AlphaMask.png");
-    const videoTexture = new THREE.VideoTexture(video)
-    videoMat = new THREE.MeshBasicMaterial( {map: videoTexture, transparent: true,opacity:1,side: THREE.DoubleSide} );
-    videoMat.alphaMap = alphaMask
-    RoomVideoPlay = new THREE.Mesh( videoPlane, videoMat );
+  alphaMask = new THREE.TextureLoader().load( "UIAssets/alphaMasks/scene0AlphaMask.png");
+  const videoTexture = new THREE.VideoTexture(video)
+  videoMat = new THREE.MeshBasicMaterial( {map: videoTexture, transparent: true,opacity:1,side: THREE.DoubleSide} );
+  videoMat.alphaMap = alphaMask
+  RoomVideoPlay = new THREE.Mesh( videoPlane, videoMat );
 
     //***********************VIDEO2********************
 	// videoMatBottleScene = new THREE.PlaneGeometry( 9, 16 );
@@ -188,7 +198,7 @@ function init() {
     // videoMatBottleScene.alphaMap = alphaMaskBottleScene
     // VideoPlayBottleScene = new THREE.Mesh( videoMatBottleScene, videoMatBottleScene );
 
- 
+
 
 	// RoomVideoPlay.scale.normalize().multiplyScalar(0.1);
 	// RoomVideoPlayScene.add(RoomVideoPlay)
@@ -203,7 +213,7 @@ function init() {
 	const clickableVideoGeo = new THREE.BoxGeometry( 3, 2, 2 );
 	const alphAmapTex = new THREE.TextureLoader().load( "UIAssets/mask.jpg" );
 	const clickableVideoMat = new THREE.MeshBasicMaterial( {map:testTesture,transparent:true, opacity: 1} );
-    //, alphaMap:alphAmapTex 
+    //, alphaMap:alphAmapTex
 	clickableVideoMesh = new THREE.Mesh( clickableVideoGeo, clickableVideoMat );
 	clickableVideoMesh.position.set(-2, -1.5, -20);
 
@@ -357,7 +367,7 @@ function clickTrigger(){
 				PoolRoomArrow.position.set(-5,-4,10);
 				PoolRoomArrow.scale.copy(navArrowScale)
 
-                
+
 				RoomVideoPlayScene.add(RoomVideoPlay);
 				RoomVideoPlay.position.set(200,-21,2)
 				RoomVideoPlay.rotation.set(0,4.7,0)
@@ -396,8 +406,9 @@ function clickTrigger(){
 				// skyBox.rotation.y =0
 			}, 200);
 
+			// @ hakan - remove all resets
 			setTimeout(function(){
-				controls.reset();
+				// controls.reset();
 			}, 250);
 
 			DisableEverything()
@@ -492,20 +503,20 @@ function clickTrigger(){
 			console.log("MAIN SCENE - 1")
 			setTimeout(function(){
 
-                const alphaMaskMainRoom = new THREE.TextureLoader().load( "UIAssets/alphaMasks/scene1AlphaMask.png" );
-                videoMat.alphaMap = alphaMaskMainRoom
+	      const alphaMaskMainRoom = new THREE.TextureLoader().load( "UIAssets/alphaMasks/scene1AlphaMask.png" );
+	      videoMat.alphaMap = alphaMaskMainRoom
 				CoachRoomScene.add(CoachRoomArrow)
 				PoolRoomScene.add(PoolRoomArrow);
 				RoomVideoPlayScene.add(RoomVideoPlay);
-                RoomVideoPlay.position.set(88,-8.2,-120)
-                RoomVideoPlay.rotation.set(0,-1.5,-0.01)
-                RoomVideoPlay.scale.set(2.3,2.4,2.1)
+        RoomVideoPlay.position.set(88,-8.2,-120)
+        RoomVideoPlay.rotation.set(0,-1.5,-0.01)
+        RoomVideoPlay.scale.set(2.3,2.4,2.1)
 				// RoomVideoPlay.rotation.set(0,90,0)
-				CoachRoomArrow.position.set(-18,-8,25);
+				CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(90)) , arrowHeight, -arrowDist * Math.cos(toRadians(90)));
 				CoachRoomArrow.scale.copy(navArrowScale)
-				PoolRoomArrow.position.set(9,-4,4);
+				PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist * Math.cos(toRadians(-20)));
 				PoolRoomArrow.scale.copy(navArrowScale)
-                video.play()
+        video.play()
 
 				runVideo =true
 				poolSceneVideo =false
