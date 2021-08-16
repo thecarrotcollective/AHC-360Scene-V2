@@ -68,11 +68,11 @@ function init() {
 	scene.add(filterScene)
 	scene.add(SceneObjectVideo1)
 
-	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 );
+	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 3000 );
 
 	skydome = {
 		scene: new THREE.Scene(),
-		camera : new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 ),
+		camera : new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 3000 ),
 	};
 	camera.rotation.z = 0
 	skydome.camera.position.z =0.01;
@@ -84,7 +84,7 @@ function init() {
 	// controls.enablePan = false;
 	// controls.enableDamping = true;
 	controls.rotateSpeed = - 0.25;
-	// controls.update();
+	controls.update();
 	//***********************CUBE MAP********************
 	envLoad("scenes/4kEXTROVERT00.png")
 
