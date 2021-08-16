@@ -273,6 +273,11 @@ body {
 }
 } 
 
+#ahc-logo {
+  width:40%;
+  margin-bottom: 5%;
+}
+
 .bn3637 {
   filter: drop-shadow(1px 2px 4px #58585838);
   display: inline-flex;
@@ -296,7 +301,7 @@ body {
 
   background-color: rgba(255, 255, 255, 0);
 
-  color: rgb(255, 255, 255);
+  color: rgb(0,0,0);
   transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
 }
   
