@@ -1,31 +1,29 @@
-import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/build/three.module.js';
-import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './three.module.js';
+import {OrbitControls} from './Orbit.js';
 
 
-			let camera, controls;
-			let renderer,video,skydome;
-            let poolSceneVideo,vector,selfieScene,VideoRoomScene, BottleRoomScene,videoRoomArrow,BottleRoomArrow,MainRoomScene,MainRoomArrow,PoolRoomArrow,PoolRoomScene,CoachRoomScene,CoachRoomArrow;
-			let scene,text,cubeColor,materials,skyBox,opacityValue,transparentBool,ProductRoomScene,ProductRoomArrow;
-            let textScene,RoomVideoPlay,RoomVideoPlayScene,filterScene,clickableVideoMesh,SceneObjectVideo1,videoPlane,runVideo,selfieRoomArrow;
-            let arrowUrl ="UIAssets/arrow_white.png";
-            const mouse = new THREE.Vector2();
-            const startButton = document.getElementById( 'start-btn' );
-            startButton.addEventListener( 'click', function () {
-                init();
-                animate();
-                renderer.autoclear = false;
-                runVideo = false;
-                // scene.add(videoScene)
-                // clickableVideo = false
-            document.getElementById('overlay').style.display = 'none';
-            setTimeout(function(){
-                    MainRoomScene.add(MainRoomArrow);
-                    clickableVideo = true
-
-            }, 1000);
-
-            } );
-            var clickableVideo = false
+let camera, controls;
+let renderer,video,skydome;
+let poolSceneVideo,vector,selfieScene,VideoRoomScene, BottleRoomScene,videoRoomArrow,BottleRoomArrow,MainRoomScene,MainRoomArrow,PoolRoomArrow,PoolRoomScene,CoachRoomScene,CoachRoomArrow;
+let scene,text,cubeColor,materials,skyBox,opacityValue,transparentBool,ProductRoomScene,ProductRoomArrow;
+let textScene,RoomVideoPlay,RoomVideoPlayScene,filterScene,clickableVideoMesh,SceneObjectVideo1,videoPlane,runVideo,selfieRoomArrow;
+let arrowUrl ="UIAssets/arrow_white.png";
+const mouse = new THREE.Vector2();
+const startButton = document.getElementById( 'start-btn' );
+startButton.addEventListener( 'click', function () {
+  init();
+  animate();
+  renderer.autoclear = false;
+  runVideo = false;
+  // scene.add(videoScene)
+  // clickableVideo = false
+	document.getElementById('overlay').style.display = 'none';
+	setTimeout(function(){
+	  MainRoomScene.add(MainRoomArrow);
+	  clickableVideo = true
+	}, 1000);
+} );
+var clickableVideo = false
 
 			function init() {
 
