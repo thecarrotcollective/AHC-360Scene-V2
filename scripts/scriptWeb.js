@@ -3,12 +3,13 @@ import {OrbitControls} from './Orbit.js';
 
 
 // TODO - check if some of these can be lists / arrays + use as state machine?
-let camera, controls,videoMat;
+let camera, controls,videoMat,ProductIcon1,ProductIconScene1;
 let renderer,video,skydome,BottleRoomVideoPlayScene
 let videoMeshBottleScene,vector,selfieScene,VideoRoomScene, BottleRoomScene, videoRoomArrow, BottleRoomArrow,MainRoomScene,MainRoomArrow,PoolRoomArrow,PoolRoomScene,CoachRoomScene,CoachRoomArrow;
 let scene,text,cubeColor,materials,skyBox,opacityValue,transparentBool,ProductRoomScene,ProductRoomArrow;
 let textScene,RoomVideoPlay,RoomVideoPlayScene,filterScene,clickableVideoMesh,SceneObjectVideo1,videoPlane,runVideo,selfieRoomArrow;
 let arrowUrl ="UIAssets/arrow_white.png";
+let ProductIconUrl ="UIAssets/plus.png";
 let alphaMask,videoMatBottleScene,videoDivBottleScene,alphaMaskBottleScene,VideoPlayBottleScene;
 const mouse = new THREE.Vector2();
 var clickableVideo;
@@ -25,7 +26,6 @@ startButton.addEventListener( 'click', function () {
 
 	renderer.autoclear = false;
 	TweenForVideos(videoMat)
-
 
     RoomVideoPlayScene.add(RoomVideoPlay);
 	RoomVideoPlay.position.set(101.4,-11.5,-180)
@@ -65,7 +65,9 @@ startButton.addEventListener( 'click', function () {
 // } );
 
 const navArrowScale = new THREE.Vector3(4,2,4)
+
 const navVideoScale = new THREE.Vector3(9,16,1)
+ 
 function toRadians(degrees) {
   var pi = Math.PI;
   return degrees * (pi/180);
@@ -96,7 +98,8 @@ function init() {
 	textScene = new THREE.Scene();
 	filterScene = new THREE.Scene();
 	BottleRoomVideoPlayScene = new THREE.Scene();
-
+	ProductIconScene1 = new THREE.Scene();
+	scene.add(ProductIconScene1)
 	scene.add(MainRoomScene)
 	scene.add(CoachRoomScene)
 	scene.add(VideoRoomScene)
@@ -128,7 +131,7 @@ function init() {
 	controls.rotateSpeed = - 0.25;
 	controls.update();
 	//***********************CUBE MAP********************
-	envLoad("scenes/4kEXTROVERT00.png")
+	envLoad("scenes/4kEXTROVERT000.png")
 
 	//***********************LIGHT********************
 	const color = 0xFFFFFF;
@@ -176,6 +179,13 @@ function init() {
 	// var spriteMat7 = new THREE.SpriteMaterial( { map: spriteTexture7,rotation: -0.1 } );
 	BottleRoomArrow = new THREE.Sprite( arrowMat );
 	BottleRoomArrow.scale.copy(navArrowScale)
+
+	const ProductMesh = new THREE.PlaneGeometry( 1, 1, 1 );
+	var ProductTexture = new THREE.TextureLoader().load( ProductIconUrl );
+	var ProductMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: true,opacity:1,side: THREE.DoubleSide} );
+
+	ProductIcon1 = new THREE.Mesh( ProductMesh, ProductMat );
+	// ProductIcon1.rotation.set(0,0,90)
 
 
 
@@ -342,7 +352,7 @@ function clickTrigger(){
 				clickableVideo = true
 			}, 500);
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT06.png")
+				envLoad("scenes/4kEXTROVERT006.png")
 
 			
 
@@ -376,7 +386,7 @@ function clickTrigger(){
 			}, 500);
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT07.png")
+				envLoad("scenes/4kEXTROVERT007.png")
 			
 			}, 200);
 
@@ -407,7 +417,7 @@ function clickTrigger(){
 			}, 300);
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT02.png")
+				envLoad("scenes/4kEXTROVERT002.png")
 		
 				// skyBox.rotation.y =0
 			}, 200);
@@ -447,7 +457,7 @@ function clickTrigger(){
 			}, 300);
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT03.png")
+				envLoad("scenes/4kEXTROVERT003.png")
 				// skyBox.rotation.y =0
 			}, 200);
 
@@ -475,7 +485,7 @@ function clickTrigger(){
 			}, 300);
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT04.png")
+				envLoad("scenes/4kEXTROVERT004.png")
 			}, 200);
 
 
@@ -490,8 +500,11 @@ function clickTrigger(){
 				ProductRoomScene.add(ProductRoomArrow)
 				ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(210)) , arrowHeight, -arrowDist *0.9* Math.cos(toRadians(210)));
 				ProductRoomArrow.scale.copy(navArrowScale)
+		
+				ProductIconScene1.add(ProductIcon1)
+				ProductIcon1.position.set(-3,0,-2)
+				ProductIcon1.rotation.set(0,2,0)
 
-				
 				VideoRoomScene.add(videoRoomArrow)
 				videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-100)) , arrowHeight, -arrowDist * Math.cos(toRadians(-100)));
 				videoRoomArrow.scale.copy(navArrowScale)
@@ -499,7 +512,7 @@ function clickTrigger(){
 			}, 300);
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT05.png")
+				envLoad("scenes/4kEXTROVERT005.png")
 				// skyBox.rotation.y =0
 			}, 200);
 
@@ -538,7 +551,7 @@ function clickTrigger(){
 			}, 500);
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT01.png")
+				envLoad("scenes/4kEXTROVERT001.png")
 			
 				// skyBox.rotation.y = -1.7
 			}, 200);
@@ -630,8 +643,8 @@ function DisableEverything(){
 	clickableVideo = false
 	video.pause();
 
-	let ArrowArray = [MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene]
-	let ArrowScene = [MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene]
+	let ArrowArray = [MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1]
+	let ArrowScene = [MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1]
 	for (var i = 0; i < ArrowArray.length; i++) {
 		ArrowScene[i].remove(ArrowArray[i]);
 	}
