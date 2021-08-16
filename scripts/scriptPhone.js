@@ -171,6 +171,14 @@ function init() {
 	window.addEventListener( 'resize', onWindowResize );
 	clickTrigger()
 	renderer.autoclear = false;
+
+
+	//*********************** HOVER TEXT********************
+	const hoverTextGeo = new THREE.PlaneGeometry( 1, 1, 1 );
+	const hoverTextTexture = new THREE.TextureLoader().load( "images/text.png" );
+	const hoverTextMat = new THREE.MeshBasicMaterial( {map: hoverTextTexture,transparent:true, opacity: 1} );
+	const hoverText = new THREE.Mesh( hoverTextGeo, hoverTextMat );
+	scene.add(hoverText);
 }
 
 function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
@@ -246,6 +254,21 @@ function animate() {
 	renderer.autoClear = false;
 
 	renderer.render(scene, camera );
+
+	// Hover Text
+	var vector = camera.position.clone();
+	var testBool = false
+
+	if (vector.x > 0.0005 && vector.x <0.013 && testBool == false){
+		new TWEEN.Tween( text.material ).to( { opacity: 1 }, 1000 ).start();
+		runTween()
+		console.log("tween started")
+		testBool = true;
+	} if(vector.x >0.013 || vector.x <0){
+		new TWEEN.Tween( text.material ).to( { opacity: 0 }, 500 ).start();
+		testBool = false;
+	}
+
 	runTween()
 }
 
