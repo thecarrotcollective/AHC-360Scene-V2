@@ -224,6 +224,18 @@ function init() {
     VideoPlayBottleScene = new THREE.Mesh( videoMeshBottleScene, videoMatBottleScene );
 	VideoPlayBottleScene.scale.copy(navVideoScale)
 
+
+	// const hoverTextGeo = new THREE.PlaneGeometry( 1, 1, 1 );
+	// const hoverTextTexture = new THREE.TextureLoader().load( "images/text.png" );
+	// const hoverTextMat = new THREE.MeshBasicMaterial( {map: hoverTextTexture,transparent:true, opacity: 1} );
+	// const hoverText = new THREE.Mesh( hoverTextGeo, hoverTextMat );
+	//
+	// const selfieTextGeo = new THREE.PlaneGeometry( 1, 1, 1 );
+	// const selfieTextTexture = new THREE.TextureLoader().load( "images/text.png" );
+	// const selfieTextMat = new THREE.MeshBasicMaterial( {map: selfieTextTexture,transparent:true, opacity: 1} );
+	// const selfieText = new THREE.Mesh( selfieTextGeo, selfieTextMat );
+
+
 	window.addEventListener( 'resize', onWindowResize );
 	clickTrigger();
 	renderer.autoclear = false;
@@ -372,33 +384,6 @@ function clickTrigger(){
 			// hoverText.scale.set(20,20,6)
 			// scene.add(hoverText);
 
-
-			// dynamic text on canvas, not appearing
-			// let txt = [];
-			// txt.push( "Try our Sensorial Treatment." ) ;
-			// txt.push( "Find your inner strength." ) ;
-			// const canvas = document.createElement( "canvas" );
-			// console.log("create text canvas")
-			// canvas.width = 1024;
-			// canvas.height = 1024;
-			//
-			// const ctx = canvas.getContext( "2d" );
-			// ctx.font = "32pt LucidaSansUnicode";
-			// ctx.fillStyle = "#FFFFFF";
-			// ctx.textAlign = "left";
-			// ctx.textBaseline = "top";
-			// for ( let i = 0; i < txt.length; i ++ ) {
-			// 	ctx.fillText( txt[ i ], 0, 48 * i );
-			// }
-			// const tex = new THREE.Texture( canvas );
-			// tex.needsUpdate = true;
-			// const spriteMat = new THREE.SpriteMaterial( { map: tex ,rotation:0,transparent: true,opacity:1 } );
-			// const spriteText = new THREE.Sprite( spriteMat );
-			// spriteText.position.set(10, -25, 5)
-			// // spriteText.rotation.set(0,-1.5,-0.01)
-			//
-			// scene.add( spriteText);
-			// // animate()
 	
 			TweenForVideos(videoMat)
 
@@ -446,10 +431,14 @@ function clickTrigger(){
 			// SELFIE SCENE - HOVER TEXT
 			// console.log("campos X= " +  camera.position.x + "Y= " + camera.position.y)
 
-			selfieText.position.set(90, 0, 65)
-			selfieText.rotation.set(0,-1.5,-0.01)
-			selfieText.scale.set(20,20,6)
-			scene.add(selfieText);
+			document.getElementById('selfie-text').style.display = 'block';
+
+			// selfieText.position.set(90, 0, 65)
+			// selfieText.rotation.set(0,-1.5,-0.01)
+			// selfieText.scale.set(20,20,6)
+			// scene.add(selfieText);
+
+
 
 		}
 		//***********************COACH SCENE********************Arrow******
