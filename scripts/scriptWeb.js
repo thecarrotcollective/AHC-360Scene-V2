@@ -395,10 +395,10 @@ function clickTrigger(){
 				BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 				videoDivBottleScene.play();
 				
-				VideoPlayBottleScene.position.set(-340,25,-450);
+				VideoPlayBottleScene.position.set(-342,25,-450);
 			
 				VideoPlayBottleScene.rotation.set(0,4.7,0)
-				VideoPlayBottleScene.scale.set(3,3.5,1)
+				VideoPlayBottleScene.scale.set(7.2,7.5,1)
 				// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 				MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-45)) , arrowHeight, -arrowDist * Math.cos(toRadians(-45)));
 				ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(-15)) , arrowHeight, -arrowDist * Math.cos(toRadians(-15)));
@@ -427,7 +427,13 @@ function clickTrigger(){
 				BottleRoomScene.add(BottleRoomArrow)
 				CoachRoomScene.add(CoachRoomArrow)
 				MainRoomScene.add(MainRoomArrow);
-
+				BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+				videoDivBottleScene.play();
+				
+				VideoPlayBottleScene.position.set(-245,20,-450);
+			
+				VideoPlayBottleScene.rotation.set(0,4.7,0)
+				VideoPlayBottleScene.scale.set(9,10,1)
 				videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(-20)));
 				BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(30)));
 				CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(100)) , arrowHeight, -arrowDist * Math.cos(toRadians(100)));
