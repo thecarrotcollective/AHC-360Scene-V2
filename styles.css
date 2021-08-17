@@ -1,14 +1,14 @@
 @font-face {
   font-family: "Pangram-Regular";
-  src:url("fonts/Pangram-Regular.otf") format("opentype");  
+  src:url("fonts/Pangram-Regular.otf") format("opentype");
 }
 @font-face {
   font-family: "Pangram-Light";
-  src:url("fonts/Pangram-Light.otf") format("opentype");  
+  src:url("fonts/Pangram-Light.otf") format("opentype");
 }
 @font-face {
   font-family: "Pangram-ExtraBold";
-  src:url("fonts/Pangram-ExtraBold.otf") format("opentype");  
+  src:url("fonts/Pangram-ExtraBold.otf") format("opentype");
 }
 
 body {
@@ -19,10 +19,10 @@ body {
   /* width: 100%;
   height: 100%; */
   display: block;
-  
+
 }
 
-/* 
+/*
 #c {
   width: 100%;
   height: 100%;
@@ -55,7 +55,7 @@ body {
 
 #blackScreen {
 	position: absolute;
-	
+
 	z-index: 0;
 	top: 0;
 	left: 0;
@@ -87,7 +87,7 @@ body {
 } */
 #overlay {
 	position: absolute;
-	
+
 	z-index: 2;
 	top: 0;
 	left: 0;
@@ -125,7 +125,7 @@ body {
     0% {
       opacity: 0;
     }
-  
+
     100% {
       opacity: 1;
     }
@@ -134,7 +134,7 @@ body {
     0% {
       opacity: 0;
     }
-  
+
     100% {
       opacity: 1;
     }
@@ -143,7 +143,7 @@ body {
     0% {
       opacity: 0.8;
     }
-  
+
     100% {
       opacity: 0;
     }
@@ -153,7 +153,7 @@ body {
       transform: scale(0.5);
       position: absolute;
       display: none;
-  
+
       top: 0;
       left: 0;
 
@@ -161,8 +161,8 @@ body {
       align-items: center;
       justify-content: center;
       flex-direction: column;
-     
-     
+
+
   }
   #closeButton{
     height: 100px;
@@ -174,14 +174,14 @@ body {
     margin-left: 73%;
     border-radius: 50%;
     border: none;
-    /* 
+    /*
     align-items: center;
     justify-content: center;
     flex-direction: colum
     n; */
   }
 
-     
+
 @media only screen and (max-width: 599px) {
   #video_id{
     position: absolute;
@@ -190,7 +190,7 @@ body {
       background-color: rgba(102, 95, 95, 0.3);
       display: none;
       text-align: center;
-    
+
   }
   #video2{
     transform: scale(0.8);
@@ -205,8 +205,8 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-   
-   
+
+
 }
   #closeButton{
     height: 50px;
@@ -215,18 +215,18 @@ body {
     display:block;
     position: absolute;
     top: 27.5%;
- 
+
     margin-left: 82%;
     border-radius: 50%;
     border: none;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-  
+
   }
   #overlay {
     position: absolute;
-    
+
     z-index: 2;
     top: 0;
     left: 0;
@@ -243,7 +243,7 @@ body {
 
   }
   .bn3637 {
-   
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -260,18 +260,18 @@ body {
     border-radius: 3rem;
     height: 30px;
 }
-  
+
 .bn37 {
     border-color: transparent;
     background-color: rgb(255, 255, 255);
     color: rgb(255, 255, 255);
     transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
 }
-    
+
 .bn37:hover {
     transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
 }
-} 
+}
 
 #ahc-logo {
   width:40%;
@@ -292,7 +292,7 @@ body {
   text-decoration: none;
   color: rgb(255, 0, 0);
   backface-visibility: hidden;
-  border: 0.5rem solid rgb(255, 255, 255) ;
+  border: 0.3rem solid rgb(0,0,0) ;
   border-radius: 300rem;
   height: 30px;
 }
@@ -302,11 +302,13 @@ body {
   background-color: rgba(255, 255, 255, 0);
 
   color: rgb(0,0,0);
-  transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
+  /* transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95); */
+  transition: padding 0.2s;
 }
-  
+
 .bn37:hover {
-  transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
+  padding: 4rem 6rem;
+  /* transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important; */
 }
 
 #hover-container {
