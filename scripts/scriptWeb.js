@@ -5,19 +5,18 @@ import {OrbitControls} from './Orbit.js';
 // TODO - check if some of these can be lists / arrays + use as state machine?
 let camera, controls,videoMat,ProductIcon1,ProductIcon2,ProductIcon3,ProductIconScene1,ProductIconScene2,ProductIconScene3;
 let renderer,video,skydome,BottleRoomVideoPlayScene,SelfiePlane,SelfiePlaneScene,video2;
-let videoMeshBottleScene,vector,selfieScene,VideoRoomScene, BottleRoomScene, videoRoomArrow, BottleRoomArrow,MainRoomScene,MainRoomArrow,PoolRoomArrow,PoolRoomScene,CoachRoomScene,CoachRoomArrow;
-let scene,materials,skyBox,opacityValue,transparentBool,ProductRoomScene,ProductRoomArrow;
-let RoomVideoPlay,RoomVideoPlayScene,filterScene,SceneObjectVideo1,videoPlane,runVideo,selfieRoomArrow;
-let arrowUrl ="UIAssets/arrow_white.png";
-let ProductIconUrl ="UIAssets/plus.png";
-let alphaMask,videoMatBottleScene,videoDivBottleScene,alphaMaskBottleScene,VideoPlayBottleScene;
-const mouse = new THREE.Vector2();
-var clickableVideo;
+let videoMeshBottleScene,selfieScene,VideoRoomScene, BottleRoomScene, videoRoomArrow, BottleRoomArrow,MainRoomScene,MainRoomArrow,PoolRoomArrow,PoolRoomScene,CoachRoomScene,CoachRoomArrow;
+let scene,materials,skyBox,ProductRoomScene,ProductRoomArrow;
+let RoomVideoPlay,RoomVideoPlayScene,filterScene,SceneObjectVideo1,videoPlane,selfieRoomArrow;
 
+let videoMatBottleScene,VideoPlayBottleScene,firtVideoChecker,secondVideoChecker;
+const mouse = new THREE.Vector2();
+var clickableVideo,manager,videoManager;
+var loaderCheck = false;
 var arrowDist = 25
 var arrowHeight = -12
-var videoDist = 10
-var videoHeight = 1
+let arrowUrl ="UIAssets/arrow_white.png";
+let ProductIconUrl ="UIAssets/plus.png";
 
 var currState = -1 // use this for statemachine
 
@@ -31,6 +30,7 @@ var PRODUCTS = 5
 var BEAUTY = 6
 var PRODENTRANCE = 7
 
+
 /* The below code triggers the experience. We will likely remove / refactor it later */
 const startButton = document.getElementById( 'start-btn' );
 startButton.addEventListener( 'click', function () {
@@ -38,15 +38,14 @@ startButton.addEventListener( 'click', function () {
 	animate();
 
 	renderer.autoclear = false;
-	TweenForVideos(videoMat)
+	TweenFadeInForVideos(videoMat)
 
     RoomVideoPlayScene.add(RoomVideoPlay);
 	RoomVideoPlay.position.set(101.4,-11.5,-180)
     RoomVideoPlay.rotation.set(0,-1.58,-0.01)
     RoomVideoPlay.scale.set(3.1,3,2.1)
 
-	video2.play()
-    video.play()
+	checkTheVideoLoad()
 	clickableVideo = false
 	document.getElementById('overlay').style.display = 'none';
 	setTimeout(function(){
@@ -55,27 +54,6 @@ startButton.addEventListener( 'click', function () {
 	}, 1000);
 } );
 
-
-// var textureManager = new THREE.LoadingManager();
-// textureManager.onProgress = function ( item, loaded, total ) {
-//     // this gets called after any item has been loaded
-// };
-
-// textureManager.onLoad = function () {
-//     // all textures are loaded
-//     // ...
-//     console.log("loaded" )
-// };
-
-// var textureLoader = new THREE.ImageLoader( textureManager );
-// var myTextureArray = [];
-// var myTexture = new THREE.Texture();
-// myTextureArray.push( myTexture );
-
-// textureLoader.load( "scenes/4kEXTROVERT01.png", function ( image ) {
-//     myTexture.image = image;
-//     console.log( myTexture.image )
-// } );
 
 const navArrowScale = new THREE.Vector3(4,2,4)
 
@@ -150,6 +128,205 @@ function init() {
 	controls.enableDamping = true;
 	controls.rotateSpeed = - 0.25;
 	controls.update();
+
+
+	
+
+	manager = new THREE.LoadingManager();
+	manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
+
+	console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+	
+	};
+
+	manager.onLoad = function ( ) {
+
+		console.log( 'Loading complete!');
+		if(currState === POOL){
+			console.log("pool scene runned")
+			document.getElementById('pool-text').style.display = 'block';
+	
+			// const alphaMaskPool = new THREE.TextureLoader().load( "UIAssets/alphaMasks/poolSceneAlpha.png" );
+			// videoMat.alphaMap = alphaMaskPool
+			MainRoomScene.add(MainRoomArrow);
+			selfieScene.add(selfieRoomArrow);
+			RoomVideoPlayScene.add(RoomVideoPlay);
+			MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-150)) , arrowHeight, -arrowDist * Math.cos(toRadians(-150)));
+			selfieRoomArrow.position.set(arrowDist * Math.sin(toRadians(-95)) , arrowHeight, -arrowDist * Math.cos(toRadians(-95)));
+			MainRoomArrow.scale.copy(navArrowScale)
+			selfieRoomArrow.scale.copy(navArrowScale)
+
+			RoomVideoPlay.position.set(100,-20.5,65)
+			RoomVideoPlay.rotation.set(0,4.7,0)
+			RoomVideoPlay.scale.set(7.2,6.9,1)
+			TweenFadeInForVideos(videoMat)
+			video.play()
+			video2.play()
+	
+
+			clickableVideo = true
+		}
+
+		if(currState === SELFIE){
+			console.log("selfie scene runned")
+			document.getElementById('selfie-text').style.display = 'block';
+			MainRoomScene.add(MainRoomArrow)
+			PoolRoomScene.add(PoolRoomArrow);
+			SelfiePlaneScene.add(SelfiePlane)
+			SelfiePlane.position.set(-1,0,1)
+			SelfiePlane.rotation.set(0,-1,0)
+			SelfiePlane.scale.set(2,1.5,1)
+
+			MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-180)) , arrowHeight, -arrowDist * Math.cos(toRadians(-180)));
+			PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(60)) , arrowHeight, -arrowDist * Math.cos(toRadians(60)));
+			PoolRoomArrow.scale.copy(navArrowScale)
+			MainRoomArrow.scale.copy(navArrowScale)
+
+			RoomVideoPlayScene.add(RoomVideoPlay);
+			RoomVideoPlay.position.set(200,-21,2)
+			RoomVideoPlay.rotation.set(0,4.7,0)
+			RoomVideoPlay.scale.set(4.3,4.1,1)
+			video.play()
+			video2.play()
+			TweenFadeInForVideos(videoMat)
+		}
+		if(currState === COUCH){
+			console.log("couch scene runned")
+			ProductRoomScene.add(ProductRoomArrow);
+			MainRoomScene.add(MainRoomArrow);
+			// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+
+
+			// VideoPlayBottleScene.position.set(-342,25,-450);
+
+			// VideoPlayBottleScene.rotation.set(0,4.7,0)
+			// VideoPlayBottleScene.scale.set(7.2,7.5,1)
+			// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+			MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-45)) , arrowHeight, -arrowDist * Math.cos(toRadians(-45)));
+			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(-15)) , arrowHeight, -arrowDist * Math.cos(toRadians(-15)));
+			MainRoomArrow.scale.copy(navArrowScale)
+			ProductRoomArrow.scale.copy(navArrowScale)
+		}
+		if(currState === PRODENTRANCE){
+			console.log("product scene runned")
+			VideoRoomScene.add(videoRoomArrow)
+			BottleRoomScene.add(BottleRoomArrow)
+			CoachRoomScene.add(CoachRoomArrow)
+			MainRoomScene.add(MainRoomArrow);
+
+			// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+			// VideoPlayBottleScene.position.set(-245,20,-450);
+			// VideoPlayBottleScene.rotation.set(0,4.7,0)
+			// VideoPlayBottleScene.scale.set(9,10,1)
+
+			videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(-20)));
+			BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(30)));
+			CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(100)) , arrowHeight, -arrowDist * Math.cos(toRadians(100)));
+			MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-90)) , arrowHeight, -arrowDist * Math.cos(toRadians(-90)));
+			CoachRoomArrow.scale.copy(navArrowScale)
+			MainRoomArrow.scale.copy(navArrowScale)
+			videoRoomArrow.scale.copy(navArrowScale)
+			BottleRoomArrow.scale.copy(navArrowScale)
+		
+		}
+		if(currState === BEAUTY){
+			console.log("beauty scene runned")
+			document.getElementById('beauty-text').style.display = 'block';
+
+			ProductRoomScene.add(ProductRoomArrow)
+			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.5* Math.cos(toRadians(180)));
+			ProductRoomArrow.scale.copy(navArrowScale)
+
+			BottleRoomScene.add(BottleRoomArrow)
+			BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(60)) , arrowHeight, -arrowDist * Math.cos(toRadians(60)));
+			BottleRoomArrow.scale.copy(navArrowScale)
+
+			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+
+			VideoPlayBottleScene.position.set(-20,-1.5,-18);
+
+			VideoPlayBottleScene.rotation.set(0,1.6,0)
+			VideoPlayBottleScene.scale.set(0.95,0.95,1)
+		}
+		if(currState === PRODUCTS){
+			console.log("product scene runned")
+			ProductRoomScene.add(ProductRoomArrow)
+			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(210)) , arrowHeight, -arrowDist *0.9* Math.cos(toRadians(210)));
+			ProductRoomArrow.scale.copy(navArrowScale)
+
+			ProductIconScene1.add(ProductIcon1)
+			ProductIcon1.position.set(-3.8,0,-2)
+			ProductIcon1.scale.set(0.4,0.4,0.4)
+			ProductIcon1.rotation.set(0,-5,0)
+
+			ProductIconScene2.add(ProductIcon2)
+			ProductIcon2.position.set(-2.8,0.2,-2)
+			ProductIcon2.scale.set(0.3,0.3,0.3)
+			ProductIcon2.rotation.set(0,-5,0)
+
+			ProductIconScene3.add(ProductIcon3)
+			ProductIcon3.position.set(-1.7,0.2,-2)
+			ProductIcon3.scale.set(0.28,0.28,0.28)
+			ProductIcon3.rotation.set(0,-5,0)
+
+
+			VideoRoomScene.add(videoRoomArrow)
+			videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-100)) , arrowHeight, -arrowDist * Math.cos(toRadians(-100)));
+			videoRoomArrow.scale.copy(navArrowScale)
+			// RoomVideoPlayScene.add(RoomVideoPlay);
+		}
+		if(currState === MAIN){
+				console.log("MAIN scene runned")
+			  CoachRoomScene.add(CoachRoomArrow)
+			  PoolRoomScene.add(PoolRoomArrow);
+			  RoomVideoPlayScene.add(RoomVideoPlay);
+			  RoomVideoPlay.position.set(88,-8.5,-120)
+			  RoomVideoPlay.rotation.set(0,-1.5,-0.01)
+			  RoomVideoPlay.scale.set(2.4,2.5,2.1)
+				  // RoomVideoPlay.rotation.set(0,90,0)
+			  CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(90)) , arrowHeight, -arrowDist * Math.cos(toRadians(90)));
+			  CoachRoomArrow.scale.copy(navArrowScale)
+			  PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist * Math.cos(toRadians(-20)));
+			  PoolRoomArrow.scale.copy(navArrowScale)
+			  video.play()
+			  video2.play()
+			  TweenFadeInForVideos(videoMat)
+  
+
+		}
+	};
+
+	//***********************VIDEO MANAGER********************
+	videoManager = new THREE.LoadingManager();
+	videoManager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+
+	console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+
+	};
+
+	
+	videoManager.onStart = function ( url, itemsLoaded, itemsTotal ) {
+
+	console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+
+	};
+
+	videoManager.onLoad = function ( ) {
+
+		console.log( 'VIDEO Loading complete!');
+
+	};
+
+
+	videoManager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+
+  	console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+
+	};
+
+
+
+
 	//***********************CUBE MAP********************
 	envLoad("scenes/4kEXTROVERT00.png")
 	currState = INTRO
@@ -217,13 +394,17 @@ function init() {
 	videoPlane = new THREE.PlaneGeometry( 16, 9 );
 	video = document.createElement('video');
 	video.src = "video/10_sec_MP4_loop.mp4"; // Set video address
+
 	video.muted = true;
 	video.loop = true;
+
 	video2 = document.createElement('video');
-	video2.src = "video/10_sec_MP4_Alpha.mp4"; // Set video address
+	video2.src = "video/10_sec_MP4_Alpha.mp4"; 
+
 	video2.muted = true;
 	video2.loop = true;
-	alphaMask = new THREE.TextureLoader().load( "video/10_sec_MP4_Alpha.mp4");
+	
+	// alphaMask = new THREE.TextureLoader().load( "video/10_sec_MP4_Alpha.mp4");
 	const videoMask = new THREE.VideoTexture(video2)
 	const videoTexture = new THREE.VideoTexture(video)
 	videoMat = new THREE.MeshBasicMaterial( {map: videoTexture, transparent: true,opacity:0,side: THREE.DoubleSide} );
@@ -259,7 +440,7 @@ function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
 	for ( let i = 0; i < tilesNum; i ++ ) {
 		textures[ i ] = new THREE.Texture();
 	}
-	new THREE.ImageLoader()
+	new THREE.ImageLoader(manager)
 	.load( atlasImgUrl, ( image ) => {
 
 		let canvas, context;
@@ -286,24 +467,11 @@ function onWindowResize() {
 
 function animate() {
 	//***********************TWEEN********************
+	// console.log("1 " + video.currentTime )
+	// console.log("2 " + video2.currentTime )
 	var testBool = false
-	// if (  testBool == false){
-	//     new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
-	//     new TWEEN.Tween( cubeColor.material ).to( { opacity: 0.5 }, 100 ).start();
-	//     testBool = true;
-	// } if( Math.abs(vector.x) > 0.0000010130538922770067 && Math.abs(vector.x) <0.000006352257762340783){
-	//     new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
 
-	//     new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
-	//     testBool = false;
-	//   }
-	//   if(vector.x > 0 && vector.x < 0.000009522163112851169 && (vector.z > -0.00000999932445997495 && vector.z<0) && vector.z<9 && poolSceneVideo == true){
 
-	//       video.play()
-
-	//   }else if ((vector.x > 0.000009522163112851169|| vector.x <   0)  && poolSceneVideo == true){
-	//     video.pause()
-	//   }
 
 	var dirVector = new THREE.Vector3();
 
@@ -387,37 +555,13 @@ function clickTrigger(){
 		var intersectsSelfieClick = raycaster.intersectObjects( SelfiePlaneScene.children, false );
 		//***********************POOL SCENE**************************
 		if ( intersectsPoolRoom.length > 0 ) {
-			console.log("POOOL SCENE - 1")
-			setTimeout(function(){
-				DisableEverything()
-				document.getElementById('pool-text').style.display = 'block';
+				setTimeout(function(){
+					envLoad("scenes/4kEXTROVERT09.png")
+					currState = POOL
+					
+				}, 200)
 
-                // const alphaMaskPool = new THREE.TextureLoader().load( "UIAssets/alphaMasks/poolSceneAlpha.png" );
-                // videoMat.alphaMap = alphaMaskPool
-				MainRoomScene.add(MainRoomArrow);
-				selfieScene.add(selfieRoomArrow);
-				RoomVideoPlayScene.add(RoomVideoPlay);
-				MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-150)) , arrowHeight, -arrowDist * Math.cos(toRadians(-150)));
-				selfieRoomArrow.position.set(arrowDist * Math.sin(toRadians(-95)) , arrowHeight, -arrowDist * Math.cos(toRadians(-95)));
-				MainRoomArrow.scale.copy(navArrowScale)
-				selfieRoomArrow.scale.copy(navArrowScale)
-
-				RoomVideoPlay.position.set(100,-20.5,65)
-				RoomVideoPlay.rotation.set(0,4.7,0)
-				RoomVideoPlay.scale.set(7.2,6.9,1)
-				video.play()
-				video2.play()
-				runVideo =true
-
-				clickableVideo = true
-			}, 500);
-			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT09.png")
-				currState = POOL
-			}, 200);
-
-			clickableVideo = true
-
+			DisableEverything()
 
 			// POOL SCENE - HOVER TEXT
 			// console.log("campos X= " +  camera.position.x + "Y= " + camera.position.y)
@@ -428,46 +572,18 @@ function clickTrigger(){
 			// scene.add(hoverText);
 
 
-			TweenForVideos(videoMat)
-
 		}
 		//***********************SELFIE SCENE**************************
 		if ( intersectsSelfie.length > 0 ) {
-			console.log("SELFIE SCENE - 1")
-			setTimeout(function(){
-				DisableEverything()
-				document.getElementById('selfie-text').style.display = 'block';
-                // const alphaMaskSelfie = new THREE.TextureLoader().load( "UIAssets/alphaMasks/SelfieSceneAlphaMask.png" );
-                // videoMat.alphaMap = alphaMaskSelfie;
-				MainRoomScene.add(MainRoomArrow)
-				PoolRoomScene.add(PoolRoomArrow);
-				SelfiePlaneScene.add(SelfiePlane)
-				SelfiePlane.position.set(-1,0,1)
-				SelfiePlane.rotation.set(0,-1,0)
-				SelfiePlane.scale.set(2,1.5,1)
-
-				MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-180)) , arrowHeight, -arrowDist * Math.cos(toRadians(-180)));
-				PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(60)) , arrowHeight, -arrowDist * Math.cos(toRadians(60)));
-				PoolRoomArrow.scale.copy(navArrowScale)
-				MainRoomArrow.scale.copy(navArrowScale)
-
-				RoomVideoPlayScene.add(RoomVideoPlay);
-				RoomVideoPlay.position.set(200,-21,2)
-				RoomVideoPlay.rotation.set(0,4.7,0)
-				RoomVideoPlay.scale.set(4.3,4.1,1)
-        video.play();
-				video2.play();
-
-			}, 500);
-
+			
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT07.png")
-				currState = SELFIE
+				currState = SELFIE;
 			}, 200);
-
-
-			TweenForVideos(videoMat)
-			clickableVideo = false
+			console.log("SELFIE SCENE - 1")
+			DisableEverything()
+	
+	
 
 			// videoMesh.position.set(135, 15, -15);
 
@@ -486,106 +602,41 @@ function clickTrigger(){
 		//***********************COACH SCENE********************Arrow******
 		if ( intersectsCoachRoom.length > 0 ) {
 			console.log("COACH SCENE - 1")
-			setTimeout(function(){
-				ProductRoomScene.add(ProductRoomArrow);
-				MainRoomScene.add(MainRoomArrow);
-				// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-
-
-				// VideoPlayBottleScene.position.set(-342,25,-450);
-
-				// VideoPlayBottleScene.rotation.set(0,4.7,0)
-				// VideoPlayBottleScene.scale.set(7.2,7.5,1)
-				// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-				MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-45)) , arrowHeight, -arrowDist * Math.cos(toRadians(-45)));
-				ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(-15)) , arrowHeight, -arrowDist * Math.cos(toRadians(-15)));
-				MainRoomArrow.scale.copy(navArrowScale)
-				ProductRoomArrow.scale.copy(navArrowScale)
-			}, 300);
-
+	
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT02.png")
 				currState = COUCH
-				// skyBox.rotation.y =0
 			}, 200);
 
 
 			DisableEverything()
 
-			clickableVideo = false
-			runVideo =false
+		
 		}
 
 		//***********************PRODUCT ROOOM SCENE********************Arrow4******
 		if(intersectsProductRoom.length > 0  ) {
 			console.log("ROOM ENTREANCE SCENE - 1")
-			setTimeout(function(){
-				VideoRoomScene.add(videoRoomArrow)
-				BottleRoomScene.add(BottleRoomArrow)
-				CoachRoomScene.add(CoachRoomArrow)
-				MainRoomScene.add(MainRoomArrow);
-
-				// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-				// VideoPlayBottleScene.position.set(-245,20,-450);
-				// VideoPlayBottleScene.rotation.set(0,4.7,0)
-				// VideoPlayBottleScene.scale.set(9,10,1)
-
-				videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(-20)));
-				BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(30)));
-				CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(100)) , arrowHeight, -arrowDist * Math.cos(toRadians(100)));
-				MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-90)) , arrowHeight, -arrowDist * Math.cos(toRadians(-90)));
-				CoachRoomArrow.scale.copy(navArrowScale)
-				MainRoomArrow.scale.copy(navArrowScale)
-				videoRoomArrow.scale.copy(navArrowScale)
-				BottleRoomArrow.scale.copy(navArrowScale)
-				clickableVideo = false
-				runVideo =false
-			}, 300);
+	
 
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT03.png")
-				// skyBox.rotation.y =0
+	
 				currState = PRODENTRANCE
 			}, 200);
 
-
-
 			DisableEverything()
-			// new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
-
 			clickableVideo = false
 		}
 
 		//***********************Video ROOM SCENE**************************
 		if(intersectsVideoRoom.length > 0  ) {
 			console.log("VIDEO ROOM SCENE - 1")
-			setTimeout(function(){
-
-				document.getElementById('beauty-text').style.display = 'block';
-
-				ProductRoomScene.add(ProductRoomArrow)
-				ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.5* Math.cos(toRadians(180)));
-				ProductRoomArrow.scale.copy(navArrowScale)
-
-				BottleRoomScene.add(BottleRoomArrow)
-				BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(60)) , arrowHeight, -arrowDist * Math.cos(toRadians(60)));
-				BottleRoomArrow.scale.copy(navArrowScale)
-
-				BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-
-				VideoPlayBottleScene.position.set(-20,-1.5,-18);
-
-				VideoPlayBottleScene.rotation.set(0,1.6,0)
-				VideoPlayBottleScene.scale.set(0.95,0.95,1)
-
-			}, 300);
 
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT04.png")
 				currState = BEAUTY
 			}, 200);
-
-
 
 			DisableEverything()
 		}
@@ -593,32 +644,7 @@ function clickTrigger(){
 		//***********************BOTTLE ROOOM SCENE**************************
 		if(intersectsBottleRoom.length > 0  ) {
 			console.log("BOTTLE ROOM SCENE - 1")
-			setTimeout(function(){
-				ProductRoomScene.add(ProductRoomArrow)
-				ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(210)) , arrowHeight, -arrowDist *0.9* Math.cos(toRadians(210)));
-				ProductRoomArrow.scale.copy(navArrowScale)
-
-				ProductIconScene1.add(ProductIcon1)
-				ProductIcon1.position.set(-3.8,0,-2)
-				ProductIcon1.scale.set(0.4,0.4,0.4)
-				ProductIcon1.rotation.set(0,-5,0)
-
-				ProductIconScene2.add(ProductIcon2)
-				ProductIcon2.position.set(-2.8,0.2,-2)
-				ProductIcon2.scale.set(0.3,0.3,0.3)
-				ProductIcon2.rotation.set(0,-5,0)
-
-				ProductIconScene3.add(ProductIcon3)
-				ProductIcon3.position.set(-1.7,0.2,-2)
-				ProductIcon3.scale.set(0.28,0.28,0.28)
-				ProductIcon3.rotation.set(0,-5,0)
-
-
-				VideoRoomScene.add(videoRoomArrow)
-				videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-100)) , arrowHeight, -arrowDist * Math.cos(toRadians(-100)));
-				videoRoomArrow.scale.copy(navArrowScale)
-				// RoomVideoPlayScene.add(RoomVideoPlay);
-			}, 300);
+		
 
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT05.png")
@@ -634,40 +660,18 @@ function clickTrigger(){
 
 
 
-		//***********************BACK TO MAIN SCENE********************Arrow3******
+		//***********************BACK TO MAIN SCENE*************************
 		if(intersectsMainRoom.length > 0  ) {
 			console.log("MAIN SCENE - 1")
-			setTimeout(function(){
-			DisableEverything()
-
-	      	// const alphaMaskMainRoom = new THREE.TextureLoader().load( "UIAssets/alphaMasks/scene1AlphaMask.png" );
-	      	// videoMat.alphaMap = alphaMaskMainRoom
-			CoachRoomScene.add(CoachRoomArrow)
-			PoolRoomScene.add(PoolRoomArrow);
-			RoomVideoPlayScene.add(RoomVideoPlay);
-        	RoomVideoPlay.position.set(88,-8.5,-120)
-        	RoomVideoPlay.rotation.set(0,-1.5,-0.01)
-        	RoomVideoPlay.scale.set(2.4,2.5,2.1)
-				// RoomVideoPlay.rotation.set(0,90,0)
-			CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(90)) , arrowHeight, -arrowDist * Math.cos(toRadians(90)));
-			CoachRoomArrow.scale.copy(navArrowScale)
-			PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist * Math.cos(toRadians(-20)));
-			PoolRoomArrow.scale.copy(navArrowScale)
-        	video.play()
-			video2.play()
-
-				runVideo =true
-
-
-			}, 500);
+		
 
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT01.png")
 				currState = MAIN
 				// skyBox.rotation.y = -1.7
 			}, 200);
-			TweenForVideos(videoMat)
-
+			// TweenForVideos(videoMat)
+			DisableEverything()
 
 		}
 		if(intersectsMultipleVideo.length > 0 ) {
@@ -724,8 +728,8 @@ function clickTrigger(){
 function envLoad(textureUrl){
 	const textures = getTexturesFromAtlasFile( textureUrl, 6 );
 	materials = [];
-	transparentBool = true
-	opacityValue = 0
+	
+
 	for ( let i = 0; i < 6; i ++ ) {
 		materials.push( new THREE.MeshBasicMaterial( { map: textures[ i ] ,opacity: 0, transparent: true, depthWrite:false, depthTest :false} ) );
 	}
@@ -745,6 +749,11 @@ function envLoad(textureUrl){
 			materials[i].transparent = false
 		}
 	}, 1000);
+	// manager.onLoad = function ( ) {
+
+	// 	console.log( 'Loading complete!');
+
+	// };
 
 	skydome.scene.add( skyBox );
 
@@ -756,27 +765,45 @@ function runTween(){
 }
 
 function DisableEverything(){
+	firtVideoChecker = false
+	secondVideoChecker = false
 	clickableVideo = false
 	video.pause();
-
+	video2.pause();
+	loaderCheck = false
+	console.log(loaderCheck)
 	document.getElementById('selfie-text').style.display = 'none';
 	document.getElementById('pool-text').style.display = 'none';
 	document.getElementById('beauty-text').style.display = 'none';
 	let ArrowArray = [MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane]
 	let ArrowScene = [MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene]
-	for (var i = 0; i < ArrowArray.length; i++) {
-		ArrowScene[i].remove(ArrowArray[i]);
-	}
+	
+	setTimeout(function(){
+		for (var i = 0; i < ArrowArray.length; i++) {
+			ArrowScene[i].remove(ArrowArray[i]);
+		}
+	}, 200);
+	TweenFadeOutForVideos(videoMat)
 }
 
-function TweenForVideos(VideoOpacityMat){
+function TweenFadeOutForVideos(VideoOpacityMat){
 
-	setTimeout(function(){
-		new TWEEN.Tween( VideoOpacityMat ).to( { opacity: 0 }, 250 ).start();
-	}, 250);
-	setTimeout(function(){
-		new TWEEN.Tween( VideoOpacityMat ).to( { opacity: 1 }, 500 ).start();
-	}, 500);
+	new TWEEN.Tween( VideoOpacityMat ).to( { opacity: 0 }, 250 ).start();
 
+}
+function TweenFadeInForVideos(VideoOpacityMat){
+
+	new TWEEN.Tween( VideoOpacityMat ).to( { opacity: 1 }, 500 ).start();
+
+}
+function checkTheVideoLoad(){
+
+	video.onloadeddata  = function() {
+		firtVideoChecker = true
+		video.play()
+		video2.play()
+	
+
+	};
 
 }
