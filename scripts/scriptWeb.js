@@ -9,15 +9,15 @@ let videoMeshBottleScene,selfieScene,VideoRoomScene, BottleRoomScene, videoRoomA
 let scene,materials,skyBox,ProductRoomScene,ProductRoomArrow;
 let RoomVideoPlay,RoomVideoPlayScene,filterScene,SceneObjectVideo1,videoPlane,selfieRoomArrow;
 
-let videoMatBottleScene,VideoPlayBottleScene,firtVideoChecker,secondVideoChecker;
+let videoMatBottleScene,VideoPlayBottleScene,firtVideoChecker,secondVideoChecker,selfieSceneClick;
 const mouse = new THREE.Vector2();
-var clickableVideo,manager,videoManager;
+var clickableVideo,manager,videoManager,arrowMat;
 var loaderCheck = false;
 var arrowDist = 25
 var arrowHeight = -12
 let arrowUrl ="UIAssets/arrow_white.png";
 let ProductIconUrl ="UIAssets/plus.png";
-
+var bool = false
 var currState = -1 // use this for statemachine
 
 // Please reorder this to match the assets
@@ -114,6 +114,8 @@ function init() {
 	skydome.camera.position.z =0.01;
 	controls = new OrbitControls( skydome.camera, renderer.domElement );
 
+
+
 	// controls.target.set(0, 0, 0);
 	controls.rotateSpeed = - 0.25;
 	controls.enableZoom = false;
@@ -147,6 +149,7 @@ function init() {
 		
 			MainRoomScene.add(MainRoomArrow);
 			TweenFadeInForVideos(videoMat)
+			TweenFadeInForArrow()
 		
 		
 
@@ -172,7 +175,7 @@ function init() {
 			TweenFadeInForVideos(videoMat)
 			video.play()
 			video2.play()
-	
+			TweenFadeInForArrow()
 
 			clickableVideo = true
 		}
@@ -199,6 +202,8 @@ function init() {
 			video.play()
 			video2.play()
 			TweenFadeInForVideos(videoMat)
+			TweenFadeInForArrow()
+			selfieSceneClick = true
 		}
 		if(currState === COUCH){
 			console.log("couch scene runned")
@@ -216,6 +221,7 @@ function init() {
 			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(-15)) , arrowHeight, -arrowDist * Math.cos(toRadians(-15)));
 			MainRoomArrow.scale.copy(navArrowScale)
 			ProductRoomArrow.scale.copy(navArrowScale)
+			TweenFadeInForArrow()
 		}
 		if(currState === PRODENTRANCE){
 			console.log("product scene runned")
@@ -237,6 +243,7 @@ function init() {
 			MainRoomArrow.scale.copy(navArrowScale)
 			videoRoomArrow.scale.copy(navArrowScale)
 			BottleRoomArrow.scale.copy(navArrowScale)
+			TweenFadeInForArrow()
 		
 		}
 		if(currState === BEAUTY){
@@ -257,6 +264,7 @@ function init() {
 
 			VideoPlayBottleScene.rotation.set(0,1.6,0)
 			VideoPlayBottleScene.scale.set(0.95,0.95,1)
+			TweenFadeInForArrow()
 		}
 		if(currState === PRODUCTS){
 			console.log("product scene runned")
@@ -283,6 +291,7 @@ function init() {
 			VideoRoomScene.add(videoRoomArrow)
 			videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-100)) , arrowHeight, -arrowDist * Math.cos(toRadians(-100)));
 			videoRoomArrow.scale.copy(navArrowScale)
+			TweenFadeInForArrow()
 			// RoomVideoPlayScene.add(RoomVideoPlay);
 		}
 		if(currState === MAIN){
@@ -301,6 +310,7 @@ function init() {
 			  video.play()
 			  video2.play()
 			  TweenFadeInForVideos(videoMat)
+			  TweenFadeInForArrow()
   
 
 		}
@@ -324,7 +334,7 @@ function init() {
 
 	//***********************ARROWS********************
 	var arrowTexture = new THREE.TextureLoader().load( arrowUrl );
-	var arrowMat = new THREE.SpriteMaterial( { map: arrowTexture ,rotation:0,transparent: true,opacity:1} );
+	arrowMat = new THREE.SpriteMaterial( { map: arrowTexture ,rotation:0,transparent: true,opacity:1} );
 	CoachRoomArrow = new THREE.Sprite( arrowMat );
 	// CoachRoomArrow.position.set(-18,-8,25);
 	CoachRoomArrow.scale.copy(navArrowScale)
@@ -450,8 +460,35 @@ function onWindowResize() {
 	camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 }
-
+var endbool;
 function animate() {
+	controls.addEventListener( 'change', function(){
+		endbool =false
+		if(currState == POOL){
+			clickableVideo = false
+		}
+		if(currState == SELFIE){
+			selfieSceneClick = false
+		}
+	});
+	
+	controls.addEventListener( 'end', function(){
+		endbool = true
+		if(currState == POOL){
+			setTimeout(function(){
+				clickableVideo = true
+			}, 500);
+		}
+		if(currState == SELFIE && endbool == true){
+			setTimeout(function(){
+				selfieSceneClick = true
+			}, 500);
+
+	
+		}
+	});
+	console.log(selfieSceneClick)
+
 	//***********************TWEEN********************
 	// console.log("1 " + video.currentTime )
 	// console.log("2 " + video2.currentTime )
@@ -678,7 +715,7 @@ function clickTrigger(){
 
 			window.open('https://us.ahcbeauty.com/')
 		}
-		if(intersectsSelfieClick.length > 0) {
+		if(intersectsSelfieClick.length > 0 && selfieSceneClick == true) {
 			alert("Selfie Clicked")
 
 
@@ -754,6 +791,7 @@ function DisableEverything(){
 	firtVideoChecker = false
 	secondVideoChecker = false
 	clickableVideo = false
+	selfieSceneClick = false
 	video.pause();
 	video2.pause();
 	loaderCheck = false
@@ -772,14 +810,20 @@ function DisableEverything(){
 	TweenFadeOutForVideos(videoMat)
 }
 
-function TweenFadeOutForVideos(VideoOpacityMat){
+function TweenFadeOutForVideos(){
 
-	new TWEEN.Tween( VideoOpacityMat ).to( { opacity: 0 }, 250 ).start();
+	new TWEEN.Tween( videoMat ).to( { opacity: 0 }, 250 ).start();
+	new TWEEN.Tween( arrowMat ).to( { opacity: 0 }, 250 ).start();
 
 }
 function TweenFadeInForVideos(VideoOpacityMat){
 
-	new TWEEN.Tween( VideoOpacityMat ).to( { opacity: 1 }, 500 ).start();
+	new TWEEN.Tween( VideoOpacityMat ).to( { opacity: 1 }, 1000 ).start();
+
+}
+function TweenFadeInForArrow(){
+
+	new TWEEN.Tween( arrowMat ).to( { opacity: 1 }, 1000 ).start();
 
 }
 function checkTheVideoLoad(){
