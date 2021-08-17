@@ -39,8 +39,8 @@ startButton.addEventListener( 'click', function () {
 	currState = INTRO
 	renderer.autoclear = false;
 	// TweenFadeInForVideos(videoMat)
-
 	checkTheVideoLoad()
+
 
 	document.getElementById('overlay').style.display = 'none';
 
@@ -137,8 +137,8 @@ function init() {
 		console.log( 'Loading complete!');
 
 		if(currState === INTRO){
-
-		
+			video.currentTime = 0;
+			video2.currentTime = 0;
 			console.log("intro scene runned")
 			RoomVideoPlayScene.add(RoomVideoPlay);
 			RoomVideoPlay.position.set(101.4,-11.5,-180)
@@ -146,8 +146,9 @@ function init() {
 			RoomVideoPlay.scale.set(3.1,3,2.1)
 		
 			MainRoomScene.add(MainRoomArrow);
-				
 			TweenFadeInForVideos(videoMat)
+		
+		
 
 
 		}
@@ -415,6 +416,7 @@ function init() {
 
 
 	window.addEventListener( 'resize', onWindowResize );
+
 	clickTrigger();
 	renderer.autoclear = false;
 }
@@ -767,7 +769,7 @@ function DisableEverything(){
 			ArrowScene[i].remove(ArrowArray[i]);
 		}
 	}, 200);
-	// TweenFadeOutForVideos(videoMat)
+	TweenFadeOutForVideos(videoMat)
 }
 
 function TweenFadeOutForVideos(VideoOpacityMat){
@@ -783,8 +785,10 @@ function TweenFadeInForVideos(VideoOpacityMat){
 function checkTheVideoLoad(){
 
 	video.onloadeddata  = function() {
-		firtVideoChecker = true
+
 		video.play()
 		video2.play()
 	};
+
+
 }
