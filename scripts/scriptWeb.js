@@ -36,22 +36,14 @@ const startButton = document.getElementById( 'start-btn' );
 startButton.addEventListener( 'click', function () {
 	init();
 	animate();
-
+	currState = INTRO
 	renderer.autoclear = false;
-	TweenFadeInForVideos(videoMat)
-
-    RoomVideoPlayScene.add(RoomVideoPlay);
-	RoomVideoPlay.position.set(101.4,-11.5,-180)
-    RoomVideoPlay.rotation.set(0,-1.58,-0.01)
-    RoomVideoPlay.scale.set(3.1,3,2.1)
+	// TweenFadeInForVideos(videoMat)
 
 	checkTheVideoLoad()
-	clickableVideo = false
+
 	document.getElementById('overlay').style.display = 'none';
-	setTimeout(function(){
-		MainRoomScene.add(MainRoomArrow);
-		// clickableVideo = true
-	}, 1000);
+
 } );
 
 
@@ -89,7 +81,7 @@ function init() {
 
 	filterScene = new THREE.Scene();
 	BottleRoomVideoPlayScene = new THREE.Scene();
-	
+
 	ProductIconScene1 = new THREE.Scene();
 	ProductIconScene2 = new THREE.Scene();
 	ProductIconScene3 = new THREE.Scene();
@@ -143,6 +135,22 @@ function init() {
 	manager.onLoad = function ( ) {
 
 		console.log( 'Loading complete!');
+
+		if(currState === INTRO){
+
+		
+			console.log("intro scene runned")
+			RoomVideoPlayScene.add(RoomVideoPlay);
+			RoomVideoPlay.position.set(101.4,-11.5,-180)
+			RoomVideoPlay.rotation.set(0,-1.58,-0.01)
+			RoomVideoPlay.scale.set(3.1,3,2.1)
+		
+			MainRoomScene.add(MainRoomArrow);
+				
+			TweenFadeInForVideos(videoMat)
+
+
+		}
 		if(currState === POOL){
 			console.log("pool scene runned")
 			document.getElementById('pool-text').style.display = 'block';
@@ -297,40 +305,15 @@ function init() {
 		}
 	};
 
-	//***********************VIDEO MANAGER********************
-	videoManager = new THREE.LoadingManager();
-	videoManager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
-
-	console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
-
-	};
-
-	
-	videoManager.onStart = function ( url, itemsLoaded, itemsTotal ) {
-
-	console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
-
-	};
-
-	videoManager.onLoad = function ( ) {
-
-		console.log( 'VIDEO Loading complete!');
-
-	};
 
 
-	videoManager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
-
-  	console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
-
-	};
 
 
 
 
 	//***********************CUBE MAP********************
 	envLoad("scenes/4kEXTROVERT00.png")
-	currState = INTRO
+
 	//***********************LIGHT********************
 	const color = 0xFFFFFF;
 	const intensity = 1;
@@ -414,7 +397,7 @@ function init() {
 
     // ***********************VIDEO2********************
 	videoMeshBottleScene = new THREE.PlaneGeometry( 9, 16 );
-    videoMatBottleScene = new THREE.MeshBasicMaterial( {color: 0xffff00, transparent: true,opacity:0.2,side: THREE.DoubleSide} );
+    videoMatBottleScene = new THREE.MeshBasicMaterial( {color: 0xffff00, transparent: true,opacity:0,side: THREE.DoubleSide} );
     // videoMatBottleScene.alphaMap = alphaMaskBottleScene
     VideoPlayBottleScene = new THREE.Mesh( videoMeshBottleScene, videoMatBottleScene );
 	VideoPlayBottleScene.scale.copy(navVideoScale)
@@ -784,7 +767,7 @@ function DisableEverything(){
 			ArrowScene[i].remove(ArrowArray[i]);
 		}
 	}, 200);
-	TweenFadeOutForVideos(videoMat)
+	// TweenFadeOutForVideos(videoMat)
 }
 
 function TweenFadeOutForVideos(VideoOpacityMat){
@@ -803,8 +786,5 @@ function checkTheVideoLoad(){
 		firtVideoChecker = true
 		video.play()
 		video2.play()
-	
-
 	};
-
 }
