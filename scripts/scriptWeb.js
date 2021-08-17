@@ -18,6 +18,19 @@ var arrowDist = 25
 var arrowHeight = -12
 var videoDist = 10
 var videoHeight = 1
+
+var currState = -1 // use this for statemachine
+
+// Please reorder this to match the assets
+var INTRO = 0
+var MAIN = 1
+var POOL = 2
+var SELFIE = 3
+var COUCH = 4
+var PRODUCTS = 5
+var BEAUTY = 6
+var PRODENTRANCE = 7
+
 /* The below code triggers the experience. We will likely remove / refactor it later */
 const startButton = document.getElementById( 'start-btn' );
 startButton.addEventListener( 'click', function () {
@@ -67,7 +80,7 @@ startButton.addEventListener( 'click', function () {
 const navArrowScale = new THREE.Vector3(4,2,4)
 
 const navVideoScale = new THREE.Vector3(9,16,1)
- 
+
 function toRadians(degrees) {
   var pi = Math.PI;
   return degrees * (pi/180);
@@ -139,7 +152,7 @@ function init() {
 	controls.update();
 	//***********************CUBE MAP********************
 	envLoad("scenes/4kEXTROVERT00.png")
-
+	currState = INTRO
 	//***********************LIGHT********************
 	const color = 0xFFFFFF;
 	const intensity = 1;
@@ -292,6 +305,36 @@ function animate() {
 	//     video.pause()
 	//   }
 
+	var dirVector = new THREE.Vector3();
+
+	if(currState === SELFIE){
+		camera.getWorldDirection(dirVector)
+		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
+
+		if(dirVector.z > 0.25 && dirVector.z < 0.75 && dirVector.y > -0.3 && dirVector.x < 0 ){ // need to stress test
+			document.getElementById('selfie-text').style.opacity = 1;
+		} else {
+			document.getElementById('selfie-text').style.opacity = 0;
+		}
+	} else if(currState === POOL){
+		camera.getWorldDirection(dirVector)
+		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
+
+		if(dirVector.z > 0.25 && dirVector.z < 0.75 && dirVector.y > -0.3 && dirVector.x > 0.8 ){ // need to stress test
+			document.getElementById('pool-text').style.opacity = 1;
+		} else {
+			document.getElementById('pool-text').style.opacity = 0;
+		}
+	} else if(currState === BEAUTY){
+		camera.getWorldDirection(dirVector)
+		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
+
+		if(dirVector.z > -0.65 && dirVector.z < 0 && dirVector.y > -0.3 && dirVector.x < -0.75 ){ // need to stress test
+			document.getElementById('beauty-text').style.opacity = 1;
+		} else {
+			document.getElementById('beauty-text').style.opacity = 0;
+		}
+	}
 
 	requestAnimationFrame( animate );
 	renderer.autoClear = true;
@@ -318,7 +361,7 @@ function animate() {
 		new TWEEN.Tween( text.material ).to( { opacity: 0 }, 500 ).start();
 		testBool = false;
 	}
-	
+
 	runTween()
 }
 
@@ -347,13 +390,15 @@ function clickTrigger(){
 			console.log("POOOL SCENE - 1")
 			setTimeout(function(){
 				DisableEverything()
+				document.getElementById('pool-text').style.display = 'block';
+
                 // const alphaMaskPool = new THREE.TextureLoader().load( "UIAssets/alphaMasks/poolSceneAlpha.png" );
                 // videoMat.alphaMap = alphaMaskPool
 				MainRoomScene.add(MainRoomArrow);
 				selfieScene.add(selfieRoomArrow);
 				RoomVideoPlayScene.add(RoomVideoPlay);
 				MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-150)) , arrowHeight, -arrowDist * Math.cos(toRadians(-150)));
-				selfieRoomArrow.position.set(arrowDist * Math.sin(toRadians(-60)) , arrowHeight, -arrowDist * Math.cos(toRadians(-60)));
+				selfieRoomArrow.position.set(arrowDist * Math.sin(toRadians(-95)) , arrowHeight, -arrowDist * Math.cos(toRadians(-95)));
 				MainRoomArrow.scale.copy(navArrowScale)
 				selfieRoomArrow.scale.copy(navArrowScale)
 
@@ -368,9 +413,7 @@ function clickTrigger(){
 			}, 500);
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT09.png")
-
-			
-
+				currState = POOL
 			}, 200);
 
 			clickableVideo = true
@@ -384,7 +427,7 @@ function clickTrigger(){
 			// hoverText.scale.set(20,20,6)
 			// scene.add(hoverText);
 
-	
+
 			TweenForVideos(videoMat)
 
 		}
@@ -393,6 +436,7 @@ function clickTrigger(){
 			console.log("SELFIE SCENE - 1")
 			setTimeout(function(){
 				DisableEverything()
+				document.getElementById('selfie-text').style.display = 'block';
                 // const alphaMaskSelfie = new THREE.TextureLoader().load( "UIAssets/alphaMasks/SelfieSceneAlphaMask.png" );
                 // videoMat.alphaMap = alphaMaskSelfie;
 				MainRoomScene.add(MainRoomArrow)
@@ -407,18 +451,18 @@ function clickTrigger(){
 				PoolRoomArrow.scale.copy(navArrowScale)
 				MainRoomArrow.scale.copy(navArrowScale)
 
-
 				RoomVideoPlayScene.add(RoomVideoPlay);
 				RoomVideoPlay.position.set(200,-21,2)
 				RoomVideoPlay.rotation.set(0,4.7,0)
 				RoomVideoPlay.scale.set(4.3,4.1,1)
-                video.play();
+        video.play();
 				video2.play();
+
 			}, 500);
 
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT07.png")
-			
+				currState = SELFIE
 			}, 200);
 
 
@@ -430,8 +474,6 @@ function clickTrigger(){
 
 			// SELFIE SCENE - HOVER TEXT
 			// console.log("campos X= " +  camera.position.x + "Y= " + camera.position.y)
-
-			document.getElementById('selfie-text').style.display = 'block';
 
 			// selfieText.position.set(90, 0, 65)
 			// selfieText.rotation.set(0,-1.5,-0.01)
@@ -448,10 +490,10 @@ function clickTrigger(){
 				ProductRoomScene.add(ProductRoomArrow);
 				MainRoomScene.add(MainRoomArrow);
 				// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-			
-				
+
+
 				// VideoPlayBottleScene.position.set(-342,25,-450);
-			
+
 				// VideoPlayBottleScene.rotation.set(0,4.7,0)
 				// VideoPlayBottleScene.scale.set(7.2,7.5,1)
 				// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
@@ -463,7 +505,7 @@ function clickTrigger(){
 
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT02.png")
-		
+				currState = COUCH
 				// skyBox.rotation.y =0
 			}, 200);
 
@@ -503,6 +545,7 @@ function clickTrigger(){
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT03.png")
 				// skyBox.rotation.y =0
+				currState = PRODENTRANCE
 			}, 200);
 
 
@@ -517,6 +560,9 @@ function clickTrigger(){
 		if(intersectsVideoRoom.length > 0  ) {
 			console.log("VIDEO ROOM SCENE - 1")
 			setTimeout(function(){
+
+				document.getElementById('beauty-text').style.display = 'block';
+
 				ProductRoomScene.add(ProductRoomArrow)
 				ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.5* Math.cos(toRadians(180)));
 				ProductRoomArrow.scale.copy(navArrowScale)
@@ -526,9 +572,9 @@ function clickTrigger(){
 				BottleRoomArrow.scale.copy(navArrowScale)
 
 				BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-			
+
 				VideoPlayBottleScene.position.set(-20,-1.5,-18);
-			
+
 				VideoPlayBottleScene.rotation.set(0,1.6,0)
 				VideoPlayBottleScene.scale.set(0.95,0.95,1)
 
@@ -536,6 +582,7 @@ function clickTrigger(){
 
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT04.png")
+				currState = BEAUTY
 			}, 200);
 
 
@@ -550,23 +597,23 @@ function clickTrigger(){
 				ProductRoomScene.add(ProductRoomArrow)
 				ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(210)) , arrowHeight, -arrowDist *0.9* Math.cos(toRadians(210)));
 				ProductRoomArrow.scale.copy(navArrowScale)
-		
+
 				ProductIconScene1.add(ProductIcon1)
-				ProductIcon1.position.set(-3.8,-0.6,-2)
+				ProductIcon1.position.set(-3.8,0,-2)
 				ProductIcon1.scale.set(0.4,0.4,0.4)
 				ProductIcon1.rotation.set(0,-5,0)
 
 				ProductIconScene2.add(ProductIcon2)
-				ProductIcon2.position.set(-2.8,-0.4,-2)
+				ProductIcon2.position.set(-2.8,0.2,-2)
 				ProductIcon2.scale.set(0.3,0.3,0.3)
 				ProductIcon2.rotation.set(0,-5,0)
 
 				ProductIconScene3.add(ProductIcon3)
-				ProductIcon3.position.set(-1.7,-0.4,-2)
+				ProductIcon3.position.set(-1.7,0.2,-2)
 				ProductIcon3.scale.set(0.28,0.28,0.28)
-				ProductIcon3.rotation.set(0,-6,0)
+				ProductIcon3.rotation.set(0,-5,0)
 
-			
+
 				VideoRoomScene.add(videoRoomArrow)
 				videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-100)) , arrowHeight, -arrowDist * Math.cos(toRadians(-100)));
 				videoRoomArrow.scale.copy(navArrowScale)
@@ -575,6 +622,7 @@ function clickTrigger(){
 
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT05.png")
+				currState = PRODUCTS
 				// skyBox.rotation.y =0
 			}, 200);
 
@@ -583,8 +631,8 @@ function clickTrigger(){
 			DisableEverything()
 		}
 
-		
-	
+
+
 
 		//***********************BACK TO MAIN SCENE********************Arrow3******
 		if(intersectsMainRoom.length > 0  ) {
@@ -609,41 +657,41 @@ function clickTrigger(){
 			video2.play()
 
 				runVideo =true
-			
-		
+
+
 			}, 500);
 
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT01.png")
-			
+				currState = MAIN
 				// skyBox.rotation.y = -1.7
 			}, 200);
 			TweenForVideos(videoMat)
 
-		
+
 		}
 		if(intersectsMultipleVideo.length > 0 ) {
 			alert("Video Clicked");
 		}
 		if(intersectsProductPlusIcon1.length > 0 ) {
 			console.log("video clicked")
-		
+
 			window.open('https://us.ahcbeauty.com/')
 		}
 		if(intersectsProductPlusIcon2.length> 0) {
 			console.log("video clicked")
-		
+
 			window.open('https://us.ahcbeauty.com/')
 		}
 		if(intersectsProductPlusIcon3.length> 0 ) {
 			console.log("video clicked")
-		
+
 			window.open('https://us.ahcbeauty.com/')
 		}
 		if(intersectsSelfieClick.length > 0) {
 			alert("Selfie Clicked")
-		
-		
+
+
 		}
 
 		//***********************PLAY VIDEO ON PRODUCT SCENE**************************
@@ -684,7 +732,7 @@ function envLoad(textureUrl){
 
 	skyBox = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1 ), materials );
 
-	
+
 
 	skyBox.geometry.scale( 1, 1, -1 );
 	for ( let i = 0; i < 6; i ++ ) {
@@ -711,6 +759,9 @@ function DisableEverything(){
 	clickableVideo = false
 	video.pause();
 
+	document.getElementById('selfie-text').style.display = 'none';
+	document.getElementById('pool-text').style.display = 'none';
+	document.getElementById('beauty-text').style.display = 'none';
 	let ArrowArray = [MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane]
 	let ArrowScene = [MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene]
 	for (var i = 0; i < ArrowArray.length; i++) {
