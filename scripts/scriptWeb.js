@@ -474,7 +474,7 @@ function animate() {
 	
 	controls.addEventListener( 'end', function(){
 		endbool = true
-		if(currState == POOL){
+		if(currState == POOL && endbool == true){
 			setTimeout(function(){
 				clickableVideo = true
 			}, 500);
@@ -487,7 +487,7 @@ function animate() {
 	
 		}
 	});
-	console.log(selfieSceneClick)
+
 
 	//***********************TWEEN********************
 	// console.log("1 " + video.currentTime )
