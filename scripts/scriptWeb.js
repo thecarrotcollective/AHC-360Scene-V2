@@ -89,6 +89,7 @@ function init() {
 
 	filterScene = new THREE.Scene();
 	BottleRoomVideoPlayScene = new THREE.Scene();
+	
 	ProductIconScene1 = new THREE.Scene();
 	ProductIconScene2 = new THREE.Scene();
 	ProductIconScene3 = new THREE.Scene();
