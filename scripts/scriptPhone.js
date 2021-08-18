@@ -137,7 +137,7 @@ function init() {
 	//***********************VIDEO********************
 	videoPlane = new THREE.PlaneGeometry( 16, 9 );
 	video = document.createElement('video');
-	video.src = "video/Ahc-Spa- Home-Sensorial-Treatment-Introverts- -Thinke3-1.mp4"; // Set video address
+	video.src = "video/sceneVideo.mp4"; // Set video address
 
 	video.loop = true;
 	const videoTexture = new THREE.VideoTexture(video)

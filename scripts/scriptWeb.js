@@ -527,8 +527,7 @@ function animate() {
 
 
 	//***********************TWEEN********************
-	// console.log("1 " + video.currentTime )
-	// console.log("2 " + video2.currentTime )
+
 	var testBool = false
 
 
