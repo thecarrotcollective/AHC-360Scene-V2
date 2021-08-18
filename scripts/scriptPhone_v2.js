@@ -787,7 +787,7 @@ function clickTrigger(){
 
 		//***********************PLAY VIDEO ON PRODUCT SCENE**************************
 		else if ( intersectsRoomVideoPlay.length > 0 && clickableVideo == true) {
-			// var player = videojs('#video2');
+		
 			
 			setTimeout(function(){
 				document.getElementById('video2').style.display = 'block';
@@ -798,7 +798,6 @@ function clickTrigger(){
 			
 				openFullscreen();
 				video.play();
-				player.play();
 				function openFullscreen() {
 					if (video.requestFullscreen) {
 						video.requestFullscreen();
@@ -818,7 +817,7 @@ function clickTrigger(){
 						player.pause()
 					}
 				})
-			}, 1500)
+			}, 1500);
 
 			document.getElementById('blackScreen').style.display = 'block';
 			// controls.enableRotate = false
