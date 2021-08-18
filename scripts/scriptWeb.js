@@ -143,13 +143,15 @@ function init() {
 		if(currState === INTRO){
 			video.currentTime = 0;
 			video2.currentTime = 0;
+			video3.currentTime = 0;
 			console.log("intro scene runned")
 			RoomVideoPlayScene.add(RoomVideoPlay);
 			RoomVideoPlay.position.set(101.4,-11.5,-180)
 			RoomVideoPlay.rotation.set(0,-1.58,-0.01)
 			RoomVideoPlay.scale.set(3.1,3,2.1)
-			// video.play()
-			// video2.play()
+
+			video.play()
+			video2.play()
 			MainRoomScene.add(MainRoomArrow);
 			TweenFadeInForVideos(videoMat)
 			TweenFadeInForArrow()
@@ -159,6 +161,8 @@ function init() {
 
 		}
 		if(currState === POOL){
+			video.currentTime = 0;
+			video2.currentTime = 0;
 			console.log("pool scene runned")
 			document.getElementById('pool-text').style.display = 'block';
 	
@@ -184,6 +188,8 @@ function init() {
 		}
 
 		if(currState === SELFIE){
+			video.currentTime = 0;
+			video2.currentTime = 0;
 			console.log("selfie scene runned")
 			document.getElementById('selfie-text').style.display = 'block';
 			MainRoomScene.add(MainRoomArrow)
@@ -298,8 +304,8 @@ function init() {
 			// RoomVideoPlayScene.add(RoomVideoPlay);
 		}
 		if(currState === MAIN){
-			// video.currentTime = 0;
-			// video3.currentTime = 0;
+			video.currentTime = 0;
+			video3.currentTime = 0;
 			console.log("MAIN scene runned")
 			  MiddleRoomScene.add(MiddleRoomArrow)
 			  PoolRoomScene.add(PoolRoomArrow);
@@ -314,11 +320,10 @@ function init() {
 			  PoolRoomArrow.scale.copy(navArrowScale)
 			  video.play()
 			  video3.play()
+		
 			  videoMat.alphaMap = videoMask2
 			  TweenFadeInForVideos(videoMat)
 			  TweenFadeInForArrow()
-  
-
 		}
 		else{
 			video.currentTime = 0;
@@ -332,7 +337,7 @@ function init() {
 		  CoachRoomScene.add(CoachRoomArrow)
 		  ProductRoomScene.add(ProductRoomArrow);
 			
-		  CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(90)) , arrowHeight, -arrowDist * Math.cos(toRadians(90)));
+		  CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(110)) , arrowHeight, -arrowDist * Math.cos(toRadians(110)));
 		  CoachRoomArrow.scale.copy(navArrowScale)
 		  ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist * Math.cos(toRadians(30)));
 		  ProductRoomArrow.scale.copy(navArrowScale)
@@ -413,7 +418,7 @@ function init() {
 	ProductIcon3 = new THREE.Mesh( ProductMesh, ProductMat );
 	// ProductIcon1.rotation.set(0,0,90)
 	const selfiMesh = new THREE.PlaneGeometry( 1, 1 );
-	const selfiMat = new THREE.MeshBasicMaterial( {color: 0xffff00, transparent: true,opacity:0.2, side: THREE.DoubleSide} );
+	const selfiMat = new THREE.MeshBasicMaterial( {color: 0xffff00, transparent: true,opacity:0, side: THREE.DoubleSide} );
 	SelfiePlane = new THREE.Mesh( selfiMesh, selfiMat );
 
 
@@ -892,6 +897,7 @@ function checkTheVideoLoad(){
 
 		video.play()
 		video2.play()
+		video3.play()
 		console.log("LOADED")
 
 	};
