@@ -793,19 +793,13 @@ function clickTrigger(){
 				document.getElementById('video_id').style.display = 'block';
 				var player = videojs(document.querySelector('video'), {autoplay: true});
 
-				player.ready(function() {
-				player.src({
-					
-						src: "./video/AHC-SPA-VIDEO.mp4"
-				});
-				});
 		
 				
 				var video = document.getElementById('video2');
 		
 				openFullscreen();
 				
-				player.play()
+				video.play()
 				// video.requestFullscreen();
 		
 				// video.play()
