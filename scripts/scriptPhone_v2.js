@@ -794,6 +794,8 @@ function clickTrigger(){
 				var video = document.getElementById('video2');
 				player.autoplay = true
 				openFullscreen();
+				player.play()
+				video.play()
 				// video.requestFullscreen();
 		
 				// video.play()
@@ -821,7 +823,7 @@ function clickTrigger(){
 					}
 				})
 			}, 1500);
-			player.play()
+
 			document.getElementById('blackScreen').style.display = 'block';
 			// controls.enableRotate = false
 			// clickableVideo = false
