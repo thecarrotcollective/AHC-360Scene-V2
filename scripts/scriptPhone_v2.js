@@ -40,7 +40,7 @@ startButton.addEventListener( 'click', function () {
 	currState = INTRO
 	renderer.autoclear = false;
 	// TweenFadeInForVideos(videoMat)
-	checkTheVideoLoad()
+	// checkTheVideoLoad()
 
 
 	document.getElementById('overlay').style.display = 'none';
@@ -889,15 +889,15 @@ function TweenFadeInForArrow(){
 	new TWEEN.Tween( arrowMat ).to( { opacity: 1 }, 1000 ).start();
 
 }
-function checkTheVideoLoad(){
+// function checkTheVideoLoad(){
 
-	video.onloadeddata  = function() {
+// 	// video.onloadeddata  = function() {
 
-		video.play()
-		video2.play()
-		console.log("LOADED")
+// 	// 	video.play()
+// 	// 	video2.play()
+// 	// 	console.log("LOADED")
 
-	};
+// 	// };
 
 
-}
+// }
