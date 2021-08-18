@@ -3,7 +3,7 @@ import {OrbitControls} from './Orbit.js';
 
 
 // TODO - check if some of these can be lists / arrays + use as state machine?
-let camera, controls,videoMat,ProductIcon1,ProductIcon2,ProductIcon3,ProductIconScene1,ProductIconScene2,ProductIconScene3,video3,videoMask,videoMask2;
+let camera, controls,videoMat,ProductIcon1,ProductIcon2,ProductIcon3,ProductIconScene1,ProductIconScene2,ProductIconScene3,video3,videoMask,videoMask2,videoTexture;
 let renderer,video,skydome,BottleRoomVideoPlayScene,SelfiePlane,SelfiePlaneScene,video2;
 let videoMeshBottleScene,selfieScene,VideoRoomScene, BottleRoomScene, videoRoomArrow, BottleRoomArrow,MainRoomScene,MainRoomArrow,PoolRoomArrow,PoolRoomScene,CoachRoomScene,CoachRoomArrow;
 let scene,materials,skyBox,ProductRoomScene,ProductRoomArrow,MiddleRoomScene,MiddleRoomArrow;
@@ -148,7 +148,8 @@ function init() {
 			RoomVideoPlay.position.set(101.4,-11.5,-180)
 			RoomVideoPlay.rotation.set(0,-1.58,-0.01)
 			RoomVideoPlay.scale.set(3.1,3,2.1)
-		
+			// video.play()
+			// video2.play()
 			MainRoomScene.add(MainRoomArrow);
 			TweenFadeInForVideos(videoMat)
 			TweenFadeInForArrow()
@@ -297,9 +298,9 @@ function init() {
 			// RoomVideoPlayScene.add(RoomVideoPlay);
 		}
 		if(currState === MAIN){
-			video.currentTime = 0;
-			video3.currentTime = 0;
-				console.log("MAIN scene runned")
+			// video.currentTime = 0;
+			// video3.currentTime = 0;
+			console.log("MAIN scene runned")
 			  MiddleRoomScene.add(MiddleRoomArrow)
 			  PoolRoomScene.add(PoolRoomArrow);
 			  RoomVideoPlayScene.add(RoomVideoPlay);
@@ -318,7 +319,8 @@ function init() {
 			  TweenFadeInForArrow()
   
 
-		}else{
+		}
+		else{
 			video.currentTime = 0;
 			video2.currentTime = 0;
 			videoMat.alphaMap = videoMask
@@ -350,7 +352,7 @@ function init() {
 
 
 	//***********************CUBE MAP********************
-	envLoad("scenes/4kEXTROVERT00.png")
+	envLoad("scenes/4kEXTROVERT00_v2.jpg")
 
 	//***********************LIGHT********************
 	const color = 0xFFFFFF;
@@ -438,9 +440,10 @@ function init() {
 	// alphaMask = new THREE.TextureLoader().load( "video/10_sec_MP4_Alpha.mp4");
 	videoMask = new THREE.VideoTexture(video2)
 	videoMask2 = new THREE.VideoTexture(video3)
-	const videoTexture = new THREE.VideoTexture(video)
+	videoTexture = new THREE.VideoTexture(video)
 	videoMat = new THREE.MeshBasicMaterial( {map: videoTexture, transparent: true,opacity:0,side: THREE.DoubleSide} );
 	videoMat.alphaMap = videoMask
+	
 	RoomVideoPlay = new THREE.Mesh( videoPlane, videoMat );
 
     // ***********************VIDEO2********************
@@ -499,6 +502,9 @@ function onWindowResize() {
 }
 var endbool;
 function animate() {
+
+	// console.log("video" + video.currentTime)
+	// console.log("video2" + video2.currentTime)
 	controls.addEventListener( 'change', function(){
 		endbool =false
 		if(currState == POOL){
@@ -617,7 +623,7 @@ function clickTrigger(){
 		//***********************POOL SCENE**************************
 		if ( intersectsPoolRoom.length > 0 ) {
 				setTimeout(function(){
-					envLoad("scenes/4kEXTROVERT09.png")
+					envLoad("scenes/4kEXTROVERT09_v2.jpg")
 					currState = POOL
 					
 				}, 200)
@@ -638,7 +644,7 @@ function clickTrigger(){
 		if ( intersectsSelfie.length > 0 ) {
 			
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT07.png")
+				envLoad("scenes/4kEXTROVERT07_v2.jpg")
 				currState = SELFIE;
 			}, 200);
 			console.log("SELFIE SCENE - 1")
@@ -664,7 +670,7 @@ function clickTrigger(){
 		if ( intersectsMiddleRoom.length > 0 ) {
 			
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT010.png")
+				envLoad("scenes/4kEXTROVERT010_v2.jpg")
 				currState = MIDDLE;
 			}, 200);
 			console.log("MIDDLE SCENE - 1")
@@ -678,7 +684,7 @@ function clickTrigger(){
 			console.log("COACH SCENE - 1")
 	
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT02.png")
+				envLoad("scenes/4kEXTROVERT02_v2.jpg")
 				currState = COUCH
 			}, 200);
 
@@ -694,7 +700,7 @@ function clickTrigger(){
 	
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT03.png")
+				envLoad("scenes/4kEXTROVERT03_v2.jpg")
 	
 				currState = PRODENTRANCE
 			}, 200);
@@ -708,7 +714,7 @@ function clickTrigger(){
 			console.log("VIDEO ROOM SCENE - 1")
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT04.png")
+				envLoad("scenes/4kEXTROVERT04_v2.jpg")
 				currState = BEAUTY
 			}, 200);
 
@@ -721,7 +727,7 @@ function clickTrigger(){
 		
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT05.png")
+				envLoad("scenes/4kEXTROVERT05_v2.jpg")
 				currState = PRODUCTS
 				// skyBox.rotation.y =0
 			}, 200);
@@ -740,7 +746,7 @@ function clickTrigger(){
 		
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT01.png")
+				envLoad("scenes/4kEXTROVERT01_v2.jpg")
 				currState = MAIN
 				// skyBox.rotation.y = -1.7
 			}, 200);
@@ -857,6 +863,7 @@ function DisableEverything(){
 	setTimeout(function(){
 		for (var i = 0; i < ArrowArray.length; i++) {
 			ArrowScene[i].remove(ArrowArray[i]);
+	
 		}
 	}, 200);
 	TweenFadeOutForVideos(videoMat)
@@ -873,6 +880,7 @@ function TweenFadeInForVideos(VideoOpacityMat){
 	new TWEEN.Tween( VideoOpacityMat ).to( { opacity: 1 }, 1000 ).start();
 
 }
+
 function TweenFadeInForArrow(){
 
 	new TWEEN.Tween( arrowMat ).to( { opacity: 1 }, 1000 ).start();
@@ -884,6 +892,7 @@ function checkTheVideoLoad(){
 
 		video.play()
 		video2.play()
+		console.log("LOADED")
 
 	};
 
