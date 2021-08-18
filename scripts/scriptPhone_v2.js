@@ -794,7 +794,7 @@ function clickTrigger(){
 				document.getElementById('video_id').style.display = 'block';
 				var player = videojs('#video2');
 				var video = document.getElementById('video2');
-				// video.requestFullscreen();
+				video.requestFullscreen();
 			
 				openFullscreen();
 				video.play();
