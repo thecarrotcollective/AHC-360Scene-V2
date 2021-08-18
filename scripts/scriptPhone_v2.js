@@ -787,21 +787,25 @@ function clickTrigger(){
 
 		//***********************PLAY VIDEO ON PRODUCT SCENE**************************
 		else if ( intersectsRoomVideoPlay.length > 0 && clickableVideo == true) {
-			var player = videojs('#video2');
-			videojs('video2', {}, function() {
-					this.addClass('vjs-has-started');
-				  });
+			
 			setTimeout(function(){
 				document.getElementById('video2').style.display = 'block';
 				document.getElementById('video_id').style.display = 'block';
-				
+				var player = videojs(document.querySelector('video'), {autoplay: true});
+
+				player.ready(function() {
+				player.src({
+					
+						src: "./video/AHC-SPA-VIDEO.mp4"
+				});
+				});
 		
 				
 				var video = document.getElementById('video2');
 		
 				openFullscreen();
-				player.autoplay = true
-				// player.play()
+				
+				player.play()
 				// video.requestFullscreen();
 		
 				// video.play()
@@ -823,8 +827,8 @@ function clickTrigger(){
 						document.getElementById('video2').style.display = 'none';
 						document.getElementById('blackScreen').style.display = 'none';
 						document.getElementById('video_id').style.display = 'none';
-						// player.pause()
-						player.autoplay = false
+						player.pause()
+						
 					}
 				})
 			}, 1500);
