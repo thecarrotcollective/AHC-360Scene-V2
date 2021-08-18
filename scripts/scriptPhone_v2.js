@@ -139,7 +139,9 @@ function init() {
 	manager.onLoad = function ( ) {
 
 		console.log( 'Loading complete!');
-
+		setTimeout(function(){
+		
+	
 		if(currState === INTRO){
 			video.currentTime = 0;
 			video2.currentTime = 0;
@@ -342,7 +344,7 @@ function init() {
 		  PoolRoomArrow.scale.copy(navArrowScale)
 		 
 		  TweenFadeInForArrow()
-	}
+	}	}, 300);
 	};
 
 
@@ -868,7 +870,7 @@ function DisableEverything(){
 	setTimeout(function(){
 		for (var i = 0; i < ArrowArray.length; i++) {
 			ArrowScene[i].remove(ArrowArray[i]);
-	
+			console.log("DISABLE THINGS RUNNED")
 		}
 	}, 200);
 	TweenFadeOutForVideos(videoMat)
