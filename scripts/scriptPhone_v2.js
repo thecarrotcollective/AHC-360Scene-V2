@@ -795,9 +795,8 @@ function clickTrigger(){
 				var player = videojs('#video2');
 				var video = document.getElementById('video2');
 				video.requestFullscreen();
-			
+				player.play();
 				openFullscreen();
-				video.play();
 				function openFullscreen() {
 					if (video.requestFullscreen) {
 						video.requestFullscreen();
@@ -810,11 +809,7 @@ function clickTrigger(){
 				player.on('fullscreenchange', function () {
 					if (this.isFullscreen()){
 						console.log('fullscreen');
-					}else if (this.webkitRequestFullscreen()){
-						console.log('fullscreen');
-					}else if (this.msRequestFullscreen()){
-						console.log('fullscreen');
-					}else {
+					} else {
 						document.getElementById('video2').style.display = 'none';
 						document.getElementById('blackScreen').style.display = 'none';
 						document.getElementById('video_id').style.display = 'none';
