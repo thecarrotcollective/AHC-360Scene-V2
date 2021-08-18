@@ -422,7 +422,7 @@ function init() {
 	video = document.createElement('video');
 	video.src = "video/sceneVideo.mp4"; // Set video address
 	video.setAttribute("id", "videoScene");
-
+	video.playsInline = true;
 	video.muted = true;
 	video.loop = true;
 
@@ -433,13 +433,14 @@ function init() {
 	
 	video2.muted = true;
 	video2.loop = true;
-
+	video2.playsInline = true;
 	video3 = document.createElement('video');
 	video3.src = "video/sceneVideoAlpha3.mp4"; 
 	video3.setAttribute("id", "videoSceneAlpha2");
 	
 	video3.muted = true;
 	video3.loop = true;
+	video3.playsInline = true;
 	
 	// alphaMask = new THREE.TextureLoader().load( "video/10_sec_MP4_Alpha.mp4");
 	videoMask = new THREE.VideoTexture(video2)
