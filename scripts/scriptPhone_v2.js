@@ -141,23 +141,25 @@ function init() {
 		console.log( 'Loading complete!');
 
 		if(currState === INTRO){
-			video.currentTime = 0;
-			video2.currentTime = 0;
-			video3.currentTime = 0;
+		
 			console.log("intro scene runned")
 			RoomVideoPlayScene.add(RoomVideoPlay);
 			RoomVideoPlay.position.set(101.4,-11.5,-180)
 			RoomVideoPlay.rotation.set(0,-1.58,-0.01)
 			RoomVideoPlay.scale.set(3.1,3,2.1)
-			video.play()
-			video2.play()
+			video.onloadeddata  = function() {
+				video.currentTime = 0;
+				video2.currentTime = 0;
+				video3.currentTime = 0;
+				video.play()
+				video2.play()
+				console.log("LOADED")
+		
+			};
+		
 			MainRoomScene.add(MainRoomArrow);
 			TweenFadeInForVideos(videoMat)
 			TweenFadeInForArrow()
-		
-		
-
-
 		}
 		if(currState === POOL){
 			video.currentTime = 0;
@@ -891,13 +893,6 @@ function TweenFadeInForArrow(){
 }
 // function checkTheVideoLoad(){
 
-// 	// video.onloadeddata  = function() {
-
-// 	// 	video.play()
-// 	// 	video2.play()
-// 	// 	console.log("LOADED")
-
-// 	// };
 
 
 // }
