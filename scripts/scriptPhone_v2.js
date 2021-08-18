@@ -143,13 +143,14 @@ function init() {
 		if(currState === INTRO){
 			video.currentTime = 0;
 			video2.currentTime = 0;
+			video3.currentTime = 0;
 			console.log("intro scene runned")
 			RoomVideoPlayScene.add(RoomVideoPlay);
 			RoomVideoPlay.position.set(101.4,-11.5,-180)
 			RoomVideoPlay.rotation.set(0,-1.58,-0.01)
 			RoomVideoPlay.scale.set(3.1,3,2.1)
-			// video.play()
-			// video2.play()
+			video.play()
+			video2.play()
 			MainRoomScene.add(MainRoomArrow);
 			TweenFadeInForVideos(videoMat)
 			TweenFadeInForArrow()
@@ -159,6 +160,8 @@ function init() {
 
 		}
 		if(currState === POOL){
+			video.currentTime = 0;
+			video2.currentTime = 0;
 			console.log("pool scene runned")
 			document.getElementById('pool-text').style.display = 'block';
 	
@@ -184,6 +187,8 @@ function init() {
 		}
 
 		if(currState === SELFIE){
+			video.currentTime = 0;
+			video2.currentTime = 0;
 			console.log("selfie scene runned")
 			document.getElementById('selfie-text').style.display = 'block';
 			MainRoomScene.add(MainRoomArrow)
@@ -298,9 +303,8 @@ function init() {
 			// RoomVideoPlayScene.add(RoomVideoPlay);
 		}
 		if(currState === MAIN){
-			// video.currentTime = 0;
-			// video3.currentTime = 0;
-			clickableVideo =false;
+			video.currentTime = 0;
+			video3.currentTime = 0;
 			console.log("MAIN scene runned")
 			  MiddleRoomScene.add(MiddleRoomArrow)
 			  PoolRoomScene.add(PoolRoomArrow);
@@ -315,15 +319,13 @@ function init() {
 			  PoolRoomArrow.scale.copy(navArrowScale)
 			  video.play()
 			  video3.play()
+		
 			  videoMat.alphaMap = videoMask2
 			  TweenFadeInForVideos(videoMat)
 			  TweenFadeInForArrow()
-  
-
 		}
 		else{
-			video.currentTime = 0;
-			video2.currentTime = 0;
+			
 			videoMat.alphaMap = videoMask
 		}
 		if(currState === MIDDLE){
