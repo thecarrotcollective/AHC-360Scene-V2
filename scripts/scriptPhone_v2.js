@@ -787,19 +787,20 @@ function clickTrigger(){
 
 		//***********************PLAY VIDEO ON PRODUCT SCENE**************************
 		else if ( intersectsRoomVideoPlay.length > 0 && clickableVideo == true) {
-			
+			// var player = videojs('#video2');
+			player.play()
 			setTimeout(function(){
 				document.getElementById('video2').style.display = 'block';
 				document.getElementById('video_id').style.display = 'block';
-				var player = videojs('#video2');
+			
 		
 				var video = document.getElementById('video2');
+				var player = videojs(document.querySelector('video'), {autoplay: true});
+							
 				
-			
+				// video.play()
+				player.play()
 				openFullscreen();
-				video.play()
-				
-
 				function openFullscreen() {
 					
 					if (video.requestFullscreen) {
