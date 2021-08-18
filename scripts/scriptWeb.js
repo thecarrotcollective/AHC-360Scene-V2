@@ -3,10 +3,10 @@ import {OrbitControls} from './Orbit.js';
 
 
 // TODO - check if some of these can be lists / arrays + use as state machine?
-let camera, controls,videoMat,ProductIcon1,ProductIcon2,ProductIcon3,ProductIconScene1,ProductIconScene2,ProductIconScene3;
+let camera, controls,videoMat,ProductIcon1,ProductIcon2,ProductIcon3,ProductIconScene1,ProductIconScene2,ProductIconScene3,video3,videoMask,videoMask2;
 let renderer,video,skydome,BottleRoomVideoPlayScene,SelfiePlane,SelfiePlaneScene,video2;
 let videoMeshBottleScene,selfieScene,VideoRoomScene, BottleRoomScene, videoRoomArrow, BottleRoomArrow,MainRoomScene,MainRoomArrow,PoolRoomArrow,PoolRoomScene,CoachRoomScene,CoachRoomArrow;
-let scene,materials,skyBox,ProductRoomScene,ProductRoomArrow;
+let scene,materials,skyBox,ProductRoomScene,ProductRoomArrow,MiddleRoomScene,MiddleRoomArrow;
 let RoomVideoPlay,RoomVideoPlayScene,filterScene,SceneObjectVideo1,videoPlane,selfieRoomArrow;
 
 let videoMatBottleScene,VideoPlayBottleScene,firtVideoChecker,secondVideoChecker,selfieSceneClick;
@@ -29,6 +29,7 @@ var COUCH = 4
 var PRODUCTS = 5
 var BEAUTY = 6
 var PRODENTRANCE = 7
+var MIDDLE = 8
 
 
 /* The below code triggers the experience. We will likely remove / refactor it later */
@@ -86,8 +87,9 @@ function init() {
 	ProductIconScene2 = new THREE.Scene();
 	ProductIconScene3 = new THREE.Scene();
 	SelfiePlaneScene =  new THREE.Scene();
+	MiddleRoomScene =  new THREE.Scene();
 	scene.add(SelfiePlaneScene)
-
+	scene.add(MiddleRoomScene)
 	scene.add(ProductIconScene1)
 	scene.add(ProductIconScene2)
 	scene.add(ProductIconScene3)
@@ -208,7 +210,7 @@ function init() {
 		if(currState === COUCH){
 			console.log("couch scene runned")
 			ProductRoomScene.add(ProductRoomArrow);
-			MainRoomScene.add(MainRoomArrow);
+			MiddleRoomScene.add(MiddleRoomArrow);
 			// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 
 
@@ -217,9 +219,9 @@ function init() {
 			// VideoPlayBottleScene.rotation.set(0,4.7,0)
 			// VideoPlayBottleScene.scale.set(7.2,7.5,1)
 			// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-			MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-45)) , arrowHeight, -arrowDist * Math.cos(toRadians(-45)));
+			MiddleRoomArrow.position.set(arrowDist * Math.sin(toRadians(-45)) , arrowHeight, -arrowDist * Math.cos(toRadians(-45)));
 			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(-15)) , arrowHeight, -arrowDist * Math.cos(toRadians(-15)));
-			MainRoomArrow.scale.copy(navArrowScale)
+			MiddleRoomArrow.scale.copy(navArrowScale)
 			ProductRoomArrow.scale.copy(navArrowScale)
 			TweenFadeInForArrow()
 		}
@@ -228,7 +230,7 @@ function init() {
 			VideoRoomScene.add(videoRoomArrow)
 			BottleRoomScene.add(BottleRoomArrow)
 			CoachRoomScene.add(CoachRoomArrow)
-			MainRoomScene.add(MainRoomArrow);
+			MiddleRoomScene.add(MiddleRoomArrow);
 
 			// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 			// VideoPlayBottleScene.position.set(-245,20,-450);
@@ -238,9 +240,9 @@ function init() {
 			videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(-20)));
 			BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(30)));
 			CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(100)) , arrowHeight, -arrowDist * Math.cos(toRadians(100)));
-			MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-90)) , arrowHeight, -arrowDist * Math.cos(toRadians(-90)));
+			MiddleRoomArrow.position.set(arrowDist * Math.sin(toRadians(-90)) , arrowHeight, -arrowDist * Math.cos(toRadians(-90)));
 			CoachRoomArrow.scale.copy(navArrowScale)
-			MainRoomArrow.scale.copy(navArrowScale)
+			MiddleRoomArrow.scale.copy(navArrowScale)
 			videoRoomArrow.scale.copy(navArrowScale)
 			BottleRoomArrow.scale.copy(navArrowScale)
 			TweenFadeInForArrow()
@@ -295,25 +297,50 @@ function init() {
 			// RoomVideoPlayScene.add(RoomVideoPlay);
 		}
 		if(currState === MAIN){
+			video.currentTime = 0;
+			video3.currentTime = 0;
 				console.log("MAIN scene runned")
-			  CoachRoomScene.add(CoachRoomArrow)
+			  MiddleRoomScene.add(MiddleRoomArrow)
 			  PoolRoomScene.add(PoolRoomArrow);
 			  RoomVideoPlayScene.add(RoomVideoPlay);
 			  RoomVideoPlay.position.set(88,-8.5,-120)
 			  RoomVideoPlay.rotation.set(0,-1.5,-0.01)
 			  RoomVideoPlay.scale.set(2.4,2.5,2.1)
 				  // RoomVideoPlay.rotation.set(0,90,0)
-			  CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(90)) , arrowHeight, -arrowDist * Math.cos(toRadians(90)));
-			  CoachRoomArrow.scale.copy(navArrowScale)
+			  MiddleRoomArrow.position.set(arrowDist * Math.sin(toRadians(90)) , arrowHeight, -arrowDist * Math.cos(toRadians(90)));
+			  MiddleRoomArrow.scale.copy(navArrowScale)
 			  PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist * Math.cos(toRadians(-20)));
 			  PoolRoomArrow.scale.copy(navArrowScale)
 			  video.play()
-			  video2.play()
+			  video3.play()
+			  videoMat.alphaMap = videoMask2
 			  TweenFadeInForVideos(videoMat)
 			  TweenFadeInForArrow()
   
 
+		}else{
+			video.currentTime = 0;
+			video2.currentTime = 0;
+			videoMat.alphaMap = videoMask
 		}
+		if(currState === MIDDLE){
+			console.log("middle scene runned")
+		  MainRoomScene.add(MainRoomArrow)
+		  PoolRoomScene.add(PoolRoomArrow);
+		  CoachRoomScene.add(CoachRoomArrow)
+		  ProductRoomScene.add(ProductRoomArrow);
+			
+		  CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(90)) , arrowHeight, -arrowDist * Math.cos(toRadians(90)));
+		  CoachRoomArrow.scale.copy(navArrowScale)
+		  ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist * Math.cos(toRadians(30)));
+		  ProductRoomArrow.scale.copy(navArrowScale)
+		  MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-75)) , arrowHeight, -arrowDist * Math.cos(toRadians(-75)));
+		  MainRoomArrow.scale.copy(navArrowScale)
+		  PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(-25)) , arrowHeight, -arrowDist * Math.cos(toRadians(-25)));
+		  PoolRoomArrow.scale.copy(navArrowScale)
+		 
+		  TweenFadeInForArrow()
+	}
 	};
 
 
@@ -372,6 +399,9 @@ function init() {
 	BottleRoomArrow = new THREE.Sprite( arrowMat );
 	BottleRoomArrow.scale.copy(navArrowScale)
 
+	MiddleRoomArrow = new THREE.Sprite( arrowMat );
+	MiddleRoomArrow.scale.copy(navArrowScale)
+
 	const ProductMesh = new THREE.PlaneGeometry( 1, 1, 1 );
 	var ProductTexture = new THREE.TextureLoader().load( ProductIconUrl );
 	var ProductMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: true,opacity:1,side: THREE.DoubleSide} );
@@ -388,19 +418,26 @@ function init() {
 	//***********************VIDEO1********************
 	videoPlane = new THREE.PlaneGeometry( 16, 9 );
 	video = document.createElement('video');
-	video.src = "video/10_sec_MP4_loop.mp4"; // Set video address
+	video.src = "video/sceneVideo.mp4"; // Set video address
 
 	video.muted = true;
 	video.loop = true;
 
 	video2 = document.createElement('video');
-	video2.src = "video/10_sec_MP4_Alpha.mp4"; 
-
+	video2.src = "video/sceneVideoAlpha.mp4"; 
+	
 	video2.muted = true;
 	video2.loop = true;
+
+	video3 = document.createElement('video');
+	video3.src = "video/sceneVideoAlpha3.mp4"; 
+	
+	video3.muted = true;
+	video3.loop = true;
 	
 	// alphaMask = new THREE.TextureLoader().load( "video/10_sec_MP4_Alpha.mp4");
-	const videoMask = new THREE.VideoTexture(video2)
+	videoMask = new THREE.VideoTexture(video2)
+	videoMask2 = new THREE.VideoTexture(video3)
 	const videoTexture = new THREE.VideoTexture(video)
 	videoMat = new THREE.MeshBasicMaterial( {map: videoTexture, transparent: true,opacity:0,side: THREE.DoubleSide} );
 	videoMat.alphaMap = videoMask
@@ -576,6 +613,8 @@ function clickTrigger(){
 		var intersectsProductPlusIcon3 = raycaster.intersectObjects( ProductIconScene3.children, false );
 		var intersectsMultipleVideo = raycaster.intersectObjects( BottleRoomVideoPlayScene.children, false );
 		var intersectsSelfieClick = raycaster.intersectObjects( SelfiePlaneScene.children, false );
+
+		var intersectsMiddleRoom = raycaster.intersectObjects( MiddleRoomScene.children, false );
 		//***********************POOL SCENE**************************
 		if ( intersectsPoolRoom.length > 0 ) {
 				setTimeout(function(){
@@ -622,7 +661,20 @@ function clickTrigger(){
 
 
 		}
-		//***********************COACH SCENE********************Arrow******
+		//***********************MIDDLE SCENE**************************
+		if ( intersectsMiddleRoom.length > 0 ) {
+			
+			setTimeout(function(){
+				envLoad("scenes/4kEXTROVERT010.png")
+				currState = MIDDLE;
+			}, 200);
+			console.log("MIDDLE SCENE - 1")
+			DisableEverything()
+	
+
+
+		}
+		//***********************COACH SCENE**************************
 		if ( intersectsCoachRoom.length > 0 ) {
 			console.log("COACH SCENE - 1")
 	
@@ -794,13 +846,14 @@ function DisableEverything(){
 	selfieSceneClick = false
 	video.pause();
 	video2.pause();
+	video3.pause();
 	loaderCheck = false
 	console.log(loaderCheck)
 	document.getElementById('selfie-text').style.display = 'none';
 	document.getElementById('pool-text').style.display = 'none';
 	document.getElementById('beauty-text').style.display = 'none';
-	let ArrowArray = [MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane]
-	let ArrowScene = [MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene]
+	let ArrowArray = [MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
+	let ArrowScene = [MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
 	
 	setTimeout(function(){
 		for (var i = 0; i < ArrowArray.length; i++) {
@@ -832,6 +885,7 @@ function checkTheVideoLoad(){
 
 		video.play()
 		video2.play()
+
 	};
 
 
