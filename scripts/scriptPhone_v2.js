@@ -790,7 +790,11 @@ function clickTrigger(){
 			setTimeout(function(){
 				document.getElementById('video2').style.display = 'block';
 				document.getElementById('video_id').style.display = 'block';
+				
 				var player = videojs('#video2');
+				videojs('video2', {}, function() {
+					this.addClass('vjs-has-started');
+				  });
 				var video = document.getElementById('video2');
 				player.autoplay = true
 				openFullscreen();
