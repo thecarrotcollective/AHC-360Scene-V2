@@ -798,7 +798,7 @@ function clickTrigger(){
 				video.play()
 				openFullscreen();
 				function openFullscreen() {
-					videoIOS.autoplay = true
+					
 					if (video.requestFullscreen) {
 						video.requestFullscreen();
 					} else if (video.webkitRequestFullscreen) { /* Safari */
