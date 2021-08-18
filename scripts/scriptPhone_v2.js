@@ -794,6 +794,16 @@ function clickTrigger(){
 				var video = document.getElementById('video2');
 				video.requestFullscreen();
 				player.play();
+				openFullscreen();
+				function openFullscreen() {
+					if (video.requestFullscreen) {
+						video.requestFullscreen();
+					} else if (video.webkitRequestFullscreen) { /* Safari */
+						video.webkitRequestFullscreen();
+					} else if (video.msRequestFullscreen) { /* IE11 */
+						video.msRequestFullscreen();
+					}
+				  }
 				player.on('fullscreenchange', function () {
 					if (this.isFullscreen()){
 						console.log('fullscreen');
