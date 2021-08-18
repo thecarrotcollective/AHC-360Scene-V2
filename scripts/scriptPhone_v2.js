@@ -426,18 +426,22 @@ function init() {
 	videoPlane = new THREE.PlaneGeometry( 16, 9 );
 	video = document.createElement('video');
 	video.src = "video/sceneVideo.mp4"; // Set video address
+	video.setAttribute("id", "videoScene");
 	enableInlineVideo(video);
 	video.muted = true;
 	video.loop = true;
 
 	video2 = document.createElement('video');
 	video2.src = "video/sceneVideoAlpha.mp4"; 
+	video2.setAttribute("id", "videoSceneAlpha1");
+
 	enableInlineVideo(video2);
 	video2.muted = true;
 	video2.loop = true;
 
 	video3 = document.createElement('video');
 	video3.src = "video/sceneVideoAlpha3.mp4"; 
+	video3.setAttribute("id", "videoSceneAlpha2");
 	enableInlineVideo(video3);
 	video3.muted = true;
 	video3.loop = true;
