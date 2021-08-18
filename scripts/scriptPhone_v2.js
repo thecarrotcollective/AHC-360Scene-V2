@@ -141,22 +141,15 @@ function init() {
 		console.log( 'Loading complete!');
 
 		if(currState === INTRO){
-		
+			video.currentTime = 0;
+			video2.currentTime = 0;
+			video3.currentTime = 0;
 			console.log("intro scene runned")
 			RoomVideoPlayScene.add(RoomVideoPlay);
 			RoomVideoPlay.position.set(101.4,-11.5,-180)
 			RoomVideoPlay.rotation.set(0,-1.58,-0.01)
 			RoomVideoPlay.scale.set(3.1,3,2.1)
-			video.onloadeddata  = function() {
-				video.currentTime = 0;
-				video2.currentTime = 0;
-				video3.currentTime = 0;
-				video.play()
-				video2.play()
-				console.log("LOADED")
-		
-			};
-		
+	
 			MainRoomScene.add(MainRoomArrow);
 			TweenFadeInForVideos(videoMat)
 			TweenFadeInForArrow()
@@ -418,7 +411,7 @@ function init() {
 	ProductIcon3 = new THREE.Mesh( ProductMesh, ProductMat );
 	// ProductIcon1.rotation.set(0,0,90)
 	const selfiMesh = new THREE.PlaneGeometry( 1, 1 );
-	const selfiMat = new THREE.MeshBasicMaterial( {color: 0xffff00, transparent: true,opacity:0.2, side: THREE.DoubleSide} );
+	const selfiMat = new THREE.MeshBasicMaterial( {color: 0xffff00, transparent: true,opacity:0, side: THREE.DoubleSide} );
 	SelfiePlane = new THREE.Mesh( selfiMesh, selfiMat );
 
 
@@ -427,7 +420,7 @@ function init() {
 	video = document.createElement('video');
 	video.src = "video/sceneVideo.mp4"; // Set video address
 	video.setAttribute("id", "videoScene");
-	enableInlineVideo(video);
+
 	video.muted = true;
 	video.loop = true;
 
@@ -435,14 +428,14 @@ function init() {
 	video2.src = "video/sceneVideoAlpha.mp4"; 
 	video2.setAttribute("id", "videoSceneAlpha1");
 
-	enableInlineVideo(video2);
+	
 	video2.muted = true;
 	video2.loop = true;
 
 	video3 = document.createElement('video');
 	video3.src = "video/sceneVideoAlpha3.mp4"; 
 	video3.setAttribute("id", "videoSceneAlpha2");
-	enableInlineVideo(video3);
+	
 	video3.muted = true;
 	video3.loop = true;
 	
@@ -895,8 +888,15 @@ function TweenFadeInForArrow(){
 	new TWEEN.Tween( arrowMat ).to( { opacity: 1 }, 1000 ).start();
 
 }
-// function checkTheVideoLoad(){
+function checkTheVideoLoad(){
+
+	video.onloadeddata  = function() {
+				
+		video.play()
+		video2.play()
+		console.log("LOADED")
+
+	};
 
 
-
-// }
+}
