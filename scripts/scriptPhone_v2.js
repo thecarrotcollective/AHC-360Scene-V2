@@ -810,7 +810,11 @@ function clickTrigger(){
 				player.on('fullscreenchange', function () {
 					if (this.isFullscreen()){
 						console.log('fullscreen');
-					} else {
+					}else if (this.webkitRequestFullscreen()){
+						console.log('fullscreen');
+					}else if (this.msRequestFullscreen()){
+						console.log('fullscreen');
+					}else {
 						document.getElementById('video2').style.display = 'none';
 						document.getElementById('blackScreen').style.display = 'none';
 						document.getElementById('video_id').style.display = 'none';
