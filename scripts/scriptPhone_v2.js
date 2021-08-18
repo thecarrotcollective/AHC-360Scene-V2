@@ -300,6 +300,7 @@ function init() {
 		if(currState === MAIN){
 			// video.currentTime = 0;
 			// video3.currentTime = 0;
+			clickableVideo =false;
 			console.log("MAIN scene runned")
 			  MiddleRoomScene.add(MiddleRoomArrow)
 			  PoolRoomScene.add(PoolRoomArrow);
