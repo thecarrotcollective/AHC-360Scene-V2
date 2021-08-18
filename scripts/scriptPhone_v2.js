@@ -793,10 +793,8 @@ function clickTrigger(){
 				var player = videojs('#video2');
 				var video = document.getElementById('video2');
 				player.autoplay = true
-			
-				player.play()
-				video.play()
 				openFullscreen();
+				player.play()
 				// video.requestFullscreen();
 		
 				// video.play()
@@ -819,7 +817,6 @@ function clickTrigger(){
 						document.getElementById('blackScreen').style.display = 'none';
 						document.getElementById('video_id').style.display = 'none';
 						player.pause()
-						player.autoplay = false
 
 					}
 				})
