@@ -795,7 +795,7 @@ function clickTrigger(){
 				// video.requestFullscreen();
 			
 				openFullscreen();
-				player.play();
+				video.play();
 				function openFullscreen() {
 					if (video.requestFullscreen) {
 						video.requestFullscreen();
