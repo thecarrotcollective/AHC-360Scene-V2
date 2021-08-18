@@ -796,7 +796,6 @@ function clickTrigger(){
 				// video.requestFullscreen();
 			
 				openFullscreen();
-				
 				function openFullscreen() {
 					videoIOS.play();
 					if (videoIOS.requestFullscreen) {
@@ -815,7 +814,7 @@ function clickTrigger(){
 						document.getElementById('blackScreen').style.display = 'none';
 						document.getElementById('video_id').style.display = 'none';
 						player.pause()
-						
+
 					}
 				})
 			}, 1500);
@@ -920,4 +919,3 @@ function checkTheVideoLoad(){
 
 
 }
-
