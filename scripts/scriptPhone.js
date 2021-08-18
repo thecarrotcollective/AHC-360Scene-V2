@@ -2,7 +2,7 @@ import * as THREE from './three.module.js';
 
 // import {OrbitControls} from './Orbit.js';
 // import { DeviceOrientationControls } from './DeviceOrientation.js';
-import { DeviceOrientationControls } from './DeviceOrientationWithOrbit.js';
+import { DeviceOrientationControls } from './DeviceOrientation.js';
 
 let camera, controls;
 let renderer,video,skydome;
@@ -42,7 +42,7 @@ function init() {
 
 	/* Custom variables */
 
-	
+
 
 	scene = new THREE.Scene();
 	CoachRoomScene = new THREE.Scene()
@@ -76,7 +76,8 @@ function init() {
 	};
 	camera.rotation.z = 0
 	skydome.camera.position.z =0.01;
-	controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
+	// controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
+	controls = new DeviceOrientationControls( skydome.camera);
 
 	// controls.target.set(0, 0, 0);
 	// controls.rotateSpeed = - 0.25;
