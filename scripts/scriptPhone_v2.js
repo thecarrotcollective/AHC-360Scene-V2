@@ -787,13 +787,29 @@ function clickTrigger(){
 
 		//***********************PLAY VIDEO ON PRODUCT SCENE**************************
 		else if ( intersectsRoomVideoPlay.length > 0 && clickableVideo == true) {
+			
 			setTimeout(function(){
 				document.getElementById('video2').style.display = 'block';
 				document.getElementById('video_id').style.display = 'block';
 				var player = videojs('#video2');
+		
 				var video = document.getElementById('video2');
-				video.requestFullscreen();
-				player.play();
+				
+			
+				openFullscreen();
+				video.play()
+				
+
+				function openFullscreen() {
+					
+					if (video.requestFullscreen) {
+						video.requestFullscreen();
+					} else if (video.webkitRequestFullscreen) { /* Safari */
+						video.webkitRequestFullscreen();
+					} else if (video.msRequestFullscreen) { /* IE11 */
+						video.msRequestFullscreen();
+					}
+				  }
 				player.on('fullscreenchange', function () {
 					if (this.isFullscreen()){
 						console.log('fullscreen');
@@ -802,9 +818,12 @@ function clickTrigger(){
 						document.getElementById('blackScreen').style.display = 'none';
 						document.getElementById('video_id').style.display = 'none';
 						player.pause()
+					
+
 					}
 				})
 			}, 1500);
+
 			document.getElementById('blackScreen').style.display = 'block';
 			// controls.enableRotate = false
 			// clickableVideo = false
@@ -906,4 +925,3 @@ function checkTheVideoLoad(){
 
 
 }
-
