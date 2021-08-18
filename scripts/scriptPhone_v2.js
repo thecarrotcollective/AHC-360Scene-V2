@@ -792,17 +792,19 @@ function clickTrigger(){
 				document.getElementById('video_id').style.display = 'block';
 				var player = videojs('#video2');
 				var video = document.getElementById('video2');
+				var videoIOS = document.getElementById('videoIos');
 				// video.requestFullscreen();
 			
 				openFullscreen();
-				video.play();
+				
 				function openFullscreen() {
-					if (video.requestFullscreen) {
-						video.requestFullscreen();
-					} else if (video.webkitRequestFullscreen) { /* Safari */
-						video.webkitRequestFullscreen();
-					} else if (video.msRequestFullscreen) { /* IE11 */
-						video.msRequestFullscreen();
+					videoIOS.play();
+					if (videoIOS.requestFullscreen) {
+						videoIOS.requestFullscreen();
+					} else if (videoIOS.webkitRequestFullscreen) { /* Safari */
+						videoIOS.webkitRequestFullscreen();
+					} else if (videoIOS.msRequestFullscreen) { /* IE11 */
+						videoIOS.msRequestFullscreen();
 					}
 				  }
 				player.on('fullscreenchange', function () {
@@ -813,6 +815,7 @@ function clickTrigger(){
 						document.getElementById('blackScreen').style.display = 'none';
 						document.getElementById('video_id').style.display = 'none';
 						player.pause()
+						
 					}
 				})
 			}, 1500);
