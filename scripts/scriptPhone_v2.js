@@ -420,27 +420,27 @@ function init() {
 	//***********************VIDEO1********************
 	videoPlane = new THREE.PlaneGeometry( 16, 9 );
 	video = document.createElement('video');
-	video.src = "video/sceneVideo.mp4"; // Set video address
+	video.src = "video/test-video.mp4"; // Set video address
 	video.setAttribute("id", "videoScene");
-	video.playsInline = false;
+	video.playsInline = true;
 	video.muted = true;
 	video.loop = true;
 
 	video2 = document.createElement('video');
-	video2.src = "video/sceneVideoAlpha.mp4"; 
+	video2.src = "video/test-video.mp4"; 
 	video2.setAttribute("id", "videoSceneAlpha1");
 
 	
 	video2.muted = true;
 	video2.loop = true;
-	video2.playsInline = false;
+	video2.playsInline = true;
 	video3 = document.createElement('video');
-	video3.src = "video/sceneVideoAlpha3.mp4"; 
+	video3.src = "video/test-video.mp4"; 
 	video3.setAttribute("id", "videoSceneAlpha2");
 	
 	video3.muted = true;
 	video3.loop = true;
-	video3.playsInline = false;
+	video3.playsInline = true;
 	
 	// alphaMask = new THREE.TextureLoader().load( "video/10_sec_MP4_Alpha.mp4");
 	videoMask = new THREE.VideoTexture(video2)
