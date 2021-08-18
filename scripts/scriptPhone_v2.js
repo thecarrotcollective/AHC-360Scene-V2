@@ -508,31 +508,31 @@ function animate() {
 
 	// console.log("video" + video.currentTime)
 	// console.log("video2" + video2.currentTime)
-	controls.addEventListener( 'change', function(){
-		endbool =false
-		if(currState == POOL){
-			clickableVideo = false
-		}
-		if(currState == SELFIE){
-			selfieSceneClick = false
-		}
-	});
+	// controls.addEventListener( 'change', function(){
+	// 	endbool =false
+	// 	if(currState == POOL){
+	// 		clickableVideo = false
+	// 	}
+	// 	if(currState == SELFIE){
+	// 		selfieSceneClick = false
+	// 	}
+	// });
 	
-	controls.addEventListener( 'end', function(){
-		endbool = true
-		if(currState == POOL && endbool == true){
-			setTimeout(function(){
-				clickableVideo = true
-			}, 500);
-		}
-		if(currState == SELFIE && endbool == true){
-			setTimeout(function(){
-				selfieSceneClick = true
-			}, 500);
+	// controls.addEventListener( 'end', function(){
+	// 	endbool = true
+	// 	if(currState == POOL && endbool == true){
+	// 		setTimeout(function(){
+	// 			clickableVideo = true
+	// 		}, 500);
+	// 	}
+	// 	if(currState == SELFIE && endbool == true){
+	// 		setTimeout(function(){
+	// 			selfieSceneClick = true
+	// 		}, 500);
 
 	
-		}
-	});
+	// 	}
+	// });
 
 
 	//***********************TWEEN********************
