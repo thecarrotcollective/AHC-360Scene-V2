@@ -794,11 +794,11 @@ function clickTrigger(){
 				var player = videojs('#video2');
 		
 				var video = document.getElementById('video2');
-				player.autoplay = true
+				
 			
-				player.play()
-				video.play()
 				openFullscreen();
+				video.play()
+				
 
 				function openFullscreen() {
 					
