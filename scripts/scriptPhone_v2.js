@@ -792,18 +792,19 @@ function clickTrigger(){
 				document.getElementById('video_id').style.display = 'block';
 				var player = videojs('#video2');
 				var video = document.getElementById('video2');
-				var videoIOS = document.getElementById('videoIos');
+		
 				// video.requestFullscreen();
-			
+				player.play()
+				video.play()
 				openFullscreen();
 				function openFullscreen() {
 					videoIOS.autoplay = true
-					if (videoIOS.requestFullscreen) {
-						videoIOS.requestFullscreen();
-					} else if (videoIOS.webkitRequestFullscreen) { /* Safari */
-						videoIOS.webkitRequestFullscreen();
-					} else if (videoIOS.msRequestFullscreen) { /* IE11 */
-						videoIOS.msRequestFullscreen();
+					if (video.requestFullscreen) {
+						video.requestFullscreen();
+					} else if (video.webkitRequestFullscreen) { /* Safari */
+						video.webkitRequestFullscreen();
+					} else if (video.msRequestFullscreen) { /* IE11 */
+						video.msRequestFullscreen();
 					}
 				  }
 				player.on('fullscreenchange', function () {
