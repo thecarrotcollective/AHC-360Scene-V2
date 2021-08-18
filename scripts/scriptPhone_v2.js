@@ -795,7 +795,7 @@ function clickTrigger(){
 				player.autoplay = true
 				openFullscreen();
 				// video.requestFullscreen();
-				player.play()
+		
 				// video.play()
 				
 				function openFullscreen() {
@@ -821,6 +821,7 @@ function clickTrigger(){
 					}
 				})
 			}, 1500);
+			player.play()
 			document.getElementById('blackScreen').style.display = 'block';
 			// controls.enableRotate = false
 			// clickableVideo = false
