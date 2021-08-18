@@ -40,7 +40,7 @@ startButton.addEventListener( 'click', function () {
 	currState = INTRO
 	renderer.autoclear = false;
 	// TweenFadeInForVideos(videoMat)
-	// checkTheVideoLoad()
+	checkTheVideoLoad()
 
 
 	document.getElementById('overlay').style.display = 'none';
@@ -149,7 +149,8 @@ function init() {
 			RoomVideoPlay.position.set(101.4,-11.5,-180)
 			RoomVideoPlay.rotation.set(0,-1.58,-0.01)
 			RoomVideoPlay.scale.set(3.1,3,2.1)
-	
+			video.play()
+			video2.play()
 			MainRoomScene.add(MainRoomArrow);
 			TweenFadeInForVideos(videoMat)
 			TweenFadeInForArrow()
@@ -320,7 +321,8 @@ function init() {
 			  TweenFadeInForArrow()
 		}
 		else{
-			
+			video.currentTime = 0;
+			video2.currentTime = 0;
 			videoMat.alphaMap = videoMask
 		}
 		if(currState === MIDDLE){
@@ -891,12 +893,14 @@ function TweenFadeInForArrow(){
 function checkTheVideoLoad(){
 
 	video.onloadeddata  = function() {
-				
+
 		video.play()
 		video2.play()
+		video3.play()
 		console.log("LOADED")
 
 	};
 
 
 }
+
