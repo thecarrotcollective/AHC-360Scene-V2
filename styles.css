@@ -41,7 +41,7 @@ video{
   z-index: 51;
 }
 .video-js{
-  background-color: none !important;
+  background-color: rgba(0,0,0,0) !important;
 }
 
 #beauty-treatment-overlay {
