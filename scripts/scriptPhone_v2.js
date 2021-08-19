@@ -616,10 +616,17 @@ function animate() {
 	}
 
 	runTween()
+	console.log("v1");
+
 }
 
 function clickTrigger(){
 	const raycaster = new THREE.Raycaster();
+	console.log("clickTrigger is run");
+
+	document.addEventListener("touchend", event=>{
+		console.log("touch event registered");
+	})
 	document.addEventListener("click", event => {
 		console.log('clicked');
 		mouse.x = event.clientX / window.innerWidth * 2 - 1;
