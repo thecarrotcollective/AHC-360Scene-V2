@@ -1,5 +1,5 @@
 import * as THREE from './three.module.js';
-import { DeviceOrientationControls } from './DeviceOrientation.js';
+import { DeviceOrientationControls } from './DeviceOrientationWithOrbit.js';
 
 
 // TODO - check if some of these can be lists / arrays + use as state machine?
@@ -117,7 +117,8 @@ function init() {
 	};
 	camera.rotation.z = 0
 	skydome.camera.position.z =0.01;
-	controls = new DeviceOrientationControls( skydome.camera );
+	// controls = new DeviceOrientationControls( skydome.camera );
+	controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
 
 
 
@@ -620,6 +621,7 @@ function animate() {
 function clickTrigger(){
 	const raycaster = new THREE.Raycaster();
 	document.addEventListener("click", event => {
+		console.log('clicked');
 		mouse.x = event.clientX / window.innerWidth * 2 - 1;
 		mouse.y = -(event.clientY / window.innerHeight) * 2 +1 ;
 		raycaster.setFromCamera( mouse, camera );
