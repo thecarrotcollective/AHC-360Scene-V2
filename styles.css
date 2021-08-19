@@ -323,12 +323,50 @@ body {
   top: 0px;
   z-index: -1; */
 }
+
+.CTA-btn {
+  display:none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  margin: 0 auto;
+  position: absolute;
+  color:  #000000;
+  /* display:block; */
+
+  opacity: 0;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%);
+
+  padding: 1rem 2rem;
+  font-family: "Pangram-Regular";
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1em;
+
+  text-decoration: none;
+  backface-visibility: hidden;
+  border: 0.3rem solid transparent;
+  border-radius: 3rem;
+  /*height: 30px;*/
+  border-color: transparent;
+  transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
+
+  transition: opacity 0.5s;
+}
+
 .hover-text {
   font-family: "Pangram-Regular";
   font-size: 1.5em;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+
 
   position: absolute;
-  top: 75%;
+  top: 15%;
   left: 25%;
   width: 50%;
   text-align: center;

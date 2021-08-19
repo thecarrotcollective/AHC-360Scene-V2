@@ -167,6 +167,7 @@ function init() {
 			video2.currentTime = 0;
 			console.log("pool scene runned")
 			document.getElementById('pool-text').style.display = 'block';
+			document.getElementById('pool-btn').style.display = 'block';
 
 			// const alphaMaskPool = new THREE.TextureLoader().load( "UIAssets/alphaMasks/poolSceneAlpha.png" );
 			// videoMat.alphaMap = alphaMaskPool
@@ -194,6 +195,7 @@ function init() {
 			video2.currentTime = 0;
 			console.log("selfie scene runned")
 			document.getElementById('selfie-text').style.display = 'block';
+			document.getElementById('selfie-btn').style.display = 'block';
 			MainRoomScene.add(MainRoomArrow)
 			PoolRoomScene.add(PoolRoomArrow);
 			SelfiePlaneScene.add(SelfiePlane)
@@ -260,6 +262,7 @@ function init() {
 		if(currState === BEAUTY){
 			console.log("beauty scene runned")
 			document.getElementById('beauty-text').style.display = 'block';
+			document.getElementById('beauty-btn').style.display = 'block';
 
 			ProductRoomScene.add(ProductRoomArrow)
 			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.5* Math.cos(toRadians(180)));
@@ -553,8 +556,11 @@ function animate() {
 
 		if(dirVector.z > 0.25 && dirVector.z < 0.75 && dirVector.y > -0.3 && dirVector.x < 0 ){ // need to stress test
 			document.getElementById('selfie-text').style.opacity = 1;
+			document.getElementById('selfie-btn').style.opacity = 1;
 		} else {
 			document.getElementById('selfie-text').style.opacity = 0;
+			document.getElementById('selfie-btn').style.opacity = 0;
+
 		}
 	} else if(currState === POOL){
 		camera.getWorldDirection(dirVector)
@@ -562,8 +568,10 @@ function animate() {
 
 		if(dirVector.z > 0.25 && dirVector.z < 0.75 && dirVector.y > -0.3 && dirVector.x > 0.8 ){ // need to stress test
 			document.getElementById('pool-text').style.opacity = 1;
+			document.getElementById('pool-btn').style.opacity = 1;
 		} else {
 			document.getElementById('pool-text').style.opacity = 0;
+			document.getElementById('pool-btn').style.opacity = 0;
 		}
 	} else if(currState === BEAUTY){
 		camera.getWorldDirection(dirVector)
@@ -571,8 +579,10 @@ function animate() {
 
 		if(dirVector.z > -0.65 && dirVector.z < 0 && dirVector.y > -0.3 && dirVector.x < -0.75 ){ // need to stress test
 			document.getElementById('beauty-text').style.opacity = 1;
+			document.getElementById('beauty-btn').style.opacity = 1;
 		} else {
 			document.getElementById('beauty-text').style.opacity = 0;
+			document.getElementById('beauty-btn').style.opacity = 0;
 		}
 	}
 
@@ -862,8 +872,11 @@ function DisableEverything(){
 	loaderCheck = false
 	console.log(loaderCheck)
 	document.getElementById('selfie-text').style.display = 'none';
+	document.getElementById('selfie-btn').style.display = 'none';
 	document.getElementById('pool-text').style.display = 'none';
+	document.getElementById('pool-btn').style.display = 'none';
 	document.getElementById('beauty-text').style.display = 'none';
+	document.getElementById('beauty-btn').style.display = 'none';
 	let ArrowArray = [MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
 	let ArrowScene = [MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
 
@@ -925,4 +938,3 @@ function copyLink() {
 			alert(`Copy failed! ${error}`)
 		})
 }
-
