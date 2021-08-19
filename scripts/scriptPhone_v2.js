@@ -130,21 +130,21 @@ function init() {
 	// controls.update();
 
 
-	
+
 
 	manager = new THREE.LoadingManager();
 	manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
 
 	console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
-	
+
 	};
 
 	manager.onLoad = function ( ) {
 
 		console.log( 'Loading complete!');
 		setTimeout(function(){
-		
-	
+
+
 		if(currState === INTRO){
 			video.currentTime = 0;
 			video2.currentTime = 0;
@@ -165,7 +165,8 @@ function init() {
 			video2.currentTime = 0;
 			console.log("pool scene runned")
 			document.getElementById('pool-text').style.display = 'block';
-	
+			document.getElementById('pool-btn').style.display = 'block';
+
 			// const alphaMaskPool = new THREE.TextureLoader().load( "UIAssets/alphaMasks/poolSceneAlpha.png" );
 			// videoMat.alphaMap = alphaMaskPool
 			MainRoomScene.add(MainRoomArrow);
@@ -192,6 +193,7 @@ function init() {
 			video2.currentTime = 0;
 			console.log("selfie scene runned")
 			document.getElementById('selfie-text').style.display = 'block';
+			document.getElementById('selfie-btn').style.display = 'block';
 			MainRoomScene.add(MainRoomArrow)
 			PoolRoomScene.add(PoolRoomArrow);
 			SelfiePlaneScene.add(SelfiePlane)
@@ -253,11 +255,12 @@ function init() {
 			videoRoomArrow.scale.copy(navArrowScale)
 			BottleRoomArrow.scale.copy(navArrowScale)
 			TweenFadeInForArrow()
-		
+
 		}
 		if(currState === BEAUTY){
 			console.log("beauty scene runned")
 			document.getElementById('beauty-text').style.display = 'block';
+			document.getElementById('beauty-btn').style.display = 'block';
 
 			ProductRoomScene.add(ProductRoomArrow)
 			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.5* Math.cos(toRadians(180)));
@@ -320,7 +323,7 @@ function init() {
 			  PoolRoomArrow.scale.copy(navArrowScale)
 			  video.play()
 			  video3.play()
-		
+
 			  videoMat.alphaMap = videoMask2
 			  TweenFadeInForVideos(videoMat)
 			  TweenFadeInForArrow()
@@ -336,7 +339,7 @@ function init() {
 		  PoolRoomScene.add(PoolRoomArrow);
 		  CoachRoomScene.add(CoachRoomArrow)
 		  ProductRoomScene.add(ProductRoomArrow);
-			
+
 		  CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(90)) , arrowHeight, -arrowDist * Math.cos(toRadians(90)));
 		  CoachRoomArrow.scale.copy(navArrowScale)
 		  ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist * Math.cos(toRadians(30)));
@@ -345,7 +348,7 @@ function init() {
 		  MainRoomArrow.scale.copy(navArrowScale)
 		  PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(-25)) , arrowHeight, -arrowDist * Math.cos(toRadians(-25)));
 		  PoolRoomArrow.scale.copy(navArrowScale)
-		 
+
 		  TweenFadeInForArrow()
 	}	}, 300);
 	};
@@ -432,28 +435,28 @@ function init() {
 	video.loop = true;
 
 	video2 = document.createElement('video');
-	video2.src = "video/sceneVideoAlpha.mp4"; 
+	video2.src = "video/sceneVideoAlpha.mp4";
 	video2.setAttribute("id", "videoSceneAlpha1");
 
-	
+
 	video2.muted = true;
 	video2.loop = true;
 	video2.playsInline = true;
 	video3 = document.createElement('video');
-	video3.src = "video/sceneVideoAlpha3.mp4"; 
+	video3.src = "video/sceneVideoAlpha3.mp4";
 	video3.setAttribute("id", "videoSceneAlpha2");
-	
+
 	video3.muted = true;
 	video3.loop = true;
 	video3.playsInline = true;
-	
+
 	// alphaMask = new THREE.TextureLoader().load( "video/10_sec_MP4_Alpha.mp4");
 	videoMask = new THREE.VideoTexture(video2)
 	videoMask2 = new THREE.VideoTexture(video3)
 	videoTexture = new THREE.VideoTexture(video)
 	videoMat = new THREE.MeshBasicMaterial( {map: videoTexture, transparent: true,opacity:0,side: THREE.DoubleSide} );
 	videoMat.alphaMap = videoMask
-	
+
 	RoomVideoPlay = new THREE.Mesh( videoPlane, videoMat );
 
     // ***********************VIDEO2********************
@@ -524,7 +527,7 @@ function animate() {
 	// 		selfieSceneClick = false
 	// 	}
 	// });
-	
+
 	// controls.addEventListener( 'end', function(){
 	// 	endbool = true
 	// 	if(currState == POOL && endbool == true){
@@ -537,7 +540,7 @@ function animate() {
 	// 			selfieSceneClick = true
 	// 		}, 500);
 
-	
+
 	// 	}
 	// });
 
@@ -556,8 +559,10 @@ function animate() {
 
 		if(dirVector.z > 0.25 && dirVector.z < 0.75 && dirVector.y > -0.3 && dirVector.x < 0 ){ // need to stress test
 			document.getElementById('selfie-text').style.opacity = 1;
+			document.getElementById('selfie-btn').style.opacity = 1;
 		} else {
 			document.getElementById('selfie-text').style.opacity = 0;
+			document.getElementById('selfie-btn').style.opacity = 1;
 		}
 	} else if(currState === POOL){
 		camera.getWorldDirection(dirVector)
@@ -565,8 +570,10 @@ function animate() {
 
 		if(dirVector.z > 0.25 && dirVector.z < 0.75 && dirVector.y > -0.3 && dirVector.x > 0.8 ){ // need to stress test
 			document.getElementById('pool-text').style.opacity = 1;
+			document.getElementById('pool-btn').style.opacity = 1;
 		} else {
 			document.getElementById('pool-text').style.opacity = 0;
+			document.getElementById('pool-btn').style.opacity = 0;
 		}
 	} else if(currState === BEAUTY){
 		camera.getWorldDirection(dirVector)
@@ -574,8 +581,10 @@ function animate() {
 
 		if(dirVector.z > -0.65 && dirVector.z < 0 && dirVector.y > -0.3 && dirVector.x < -0.75 ){ // need to stress test
 			document.getElementById('beauty-text').style.opacity = 1;
+			document.getElementById('beauty-btn').style.opacity = 1;
 		} else {
 			document.getElementById('beauty-text').style.opacity = 0;
+			document.getElementById('beauty-btn').style.opacity = 1;
 		}
 	}
 
@@ -635,7 +644,7 @@ function clickTrigger(){
 				setTimeout(function(){
 					envLoad("scenes/4kEXTROVERT09_v2.jpg")
 					currState = POOL
-					
+
 				}, 200)
 
 			DisableEverything()
@@ -652,15 +661,15 @@ function clickTrigger(){
 		}
 		//***********************SELFIE SCENE**************************
 		if ( intersectsSelfie.length > 0 ) {
-			
+
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT07_v2.jpg")
 				currState = SELFIE;
 			}, 200);
 			console.log("SELFIE SCENE - 1")
 			DisableEverything()
-	
-	
+
+
 
 			// videoMesh.position.set(135, 15, -15);
 
@@ -678,21 +687,21 @@ function clickTrigger(){
 		}
 		//***********************MIDDLE SCENE**************************
 		if ( intersectsMiddleRoom.length > 0 ) {
-			
+
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT010_v2.jpg")
 				currState = MIDDLE;
 			}, 200);
 			console.log("MIDDLE SCENE - 1")
 			DisableEverything()
-	
+
 
 
 		}
 		//***********************COACH SCENE**************************
 		if ( intersectsCoachRoom.length > 0 ) {
 			console.log("COACH SCENE - 1")
-	
+
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT02_v2.jpg")
 				currState = COUCH
@@ -701,17 +710,17 @@ function clickTrigger(){
 
 			DisableEverything()
 
-		
+
 		}
 
 		//***********************PRODUCT ROOOM SCENE********************Arrow4******
 		if(intersectsProductRoom.length > 0  ) {
 			console.log("ROOM ENTREANCE SCENE - 1")
-	
+
 
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT03_v2.jpg")
-	
+
 				currState = PRODENTRANCE
 			}, 200);
 
@@ -734,7 +743,7 @@ function clickTrigger(){
 		//***********************BOTTLE ROOOM SCENE**************************
 		if(intersectsBottleRoom.length > 0  ) {
 			console.log("BOTTLE ROOM SCENE - 1")
-		
+
 
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT05_v2.jpg")
@@ -753,7 +762,7 @@ function clickTrigger(){
 		//***********************BACK TO MAIN SCENE*************************
 		if(intersectsMainRoom.length > 0  ) {
 			console.log("MAIN SCENE - 1")
-		
+
 
 			setTimeout(function(){
 				envLoad("scenes/4kEXTROVERT01_v2.jpg")
@@ -790,8 +799,8 @@ function clickTrigger(){
 
 		//***********************PLAY VIDEO ON PRODUCT SCENE**************************
 		else if ( intersectsRoomVideoPlay.length > 0 && clickableVideo == true) {
-		
-			
+
+
 			setTimeout(function(){
 				document.getElementById('video2').style.display = 'block';
 				document.getElementById('video_id').style.display = 'block';
@@ -831,7 +840,7 @@ function clickTrigger(){
 function envLoad(textureUrl){
 	const textures = getTexturesFromAtlasFile( textureUrl, 6 );
 	materials = [];
-	
+
 
 	for ( let i = 0; i < 6; i ++ ) {
 		materials.push( new THREE.MeshBasicMaterial( { map: textures[ i ] ,opacity: 0, transparent: true, depthWrite:false, depthTest :false} ) );
@@ -880,9 +889,12 @@ function DisableEverything(){
 	document.getElementById('selfie-text').style.display = 'none';
 	document.getElementById('pool-text').style.display = 'none';
 	document.getElementById('beauty-text').style.display = 'none';
+	document.getElementById('selfie-btn').style.display = 'none';
+	document.getElementById('pool-btn').style.display = 'none';
+	document.getElementById('beauty-btn').style.display = 'none';
 	let ArrowArray = [MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
 	let ArrowScene = [MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
-	
+
 	setTimeout(function(){
 		for (var i = 0; i < ArrowArray.length; i++) {
 			ArrowScene[i].remove(ArrowArray[i]);
