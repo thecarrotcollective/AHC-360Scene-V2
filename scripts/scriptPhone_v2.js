@@ -47,6 +47,9 @@ startButton.addEventListener( 'click', function () {
 
 } );
 
+const shareLinkBtn = document.getElementById('share-btn');
+shareLinkBtn.addEventListener('click', copyLink)
+
 
 const navArrowScale = new THREE.Vector3(4,2,4)
 
@@ -918,4 +921,26 @@ function checkTheVideoLoad(){
 	};
 
 
+}
+
+
+function copyLink() {
+	const linkToCopy = "https://linktoexperience";
+
+	navigator.clipboard.writeText(linkToCopy)
+		.then(() => {
+			// alert(`Copied!`)
+			shareLinkBtn.innerText = 'LINK COPIED'
+			// shareLinkBtn.style.color = 'white'
+			// shareLinkBtn.style.backgroundColor = 'black'
+			setTimeout(() => {
+				shareLinkBtn.innerText = 'Share Experience With a Friend'
+				// shareLinkBtn.style.color = 'black'
+				// shareLinkBtn.style.backgroundColor = 'white'
+			}, 2000)
+
+		})
+		.catch((error) => {
+			alert(`Copy failed! ${error}`)
+		})
 }
