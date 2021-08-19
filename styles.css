@@ -69,18 +69,22 @@ video{
 }
 
 #back-btn{
-  padding-top: 2em;
+  /* padding-top: 2em; */
 
-    /* transform: rotate(-90deg); */
+  transform: rotate(90deg);
 }
 
 #back-btn-img{
   /* margin: auto; */
-  height: 20%;
+  /* height: 20%;
   padding-top: 15%;
-  top:15%;
+  top:15%; */
+  height: 20%;
+  /* padding-top: 15%;
+  top:15%; */
 
   transform: rotate(-90deg);
+  /* transform: rotate(-90deg); */
 }
 .beauty-thumbnails{
   width: 100%;
@@ -289,15 +293,19 @@ video{
 
 
 @media only screen and (max-width: 599px) {
+  canvas{
+    z-index: -1;
+  }
   #beauty-treatment-overlay {
-    z-index: 0;
+   
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+
     display: none;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     max-width: 900px;
     font-family: "Pangram-ExtraBold" !important;
@@ -305,7 +313,7 @@ video{
 
     position: absolute;
     margin: auto;
-    margin-top: 12.5%;
+    /* margin-top: 20%; */
     /* top:10%;
     left: 0; */
     /* background: green; */
@@ -314,6 +322,22 @@ video{
     opacity: 0;
     animation: opacityAnim2 1.5s ease-in-out forwards;
     /* display: none; */
+  }
+  #back-btn{
+    /* padding-top: 2em; */
+    display: flex;
+    align-items: center;
+    margin-top: -20%;
+    transform: rotate(90deg);
+  }
+  
+  #back-btn-img{
+    /* margin: auto; */
+    height: 20%;
+    /* padding-top: 15%;
+    top:15%; */
+  
+    transform: rotate(-90deg);
   }
   #video_id{
     position: absolute;
@@ -515,10 +539,11 @@ video{
 
 }
 
-#ui-container{
+/* #ui-container{
   /*width: 100%;*/
-  /*text-align: center;*/
-}
+  /*text-align: center;
+}*/
+ 
 
 #share-btn {
   align-items: center;
