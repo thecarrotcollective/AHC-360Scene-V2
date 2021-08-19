@@ -31,7 +31,6 @@
            head.appendChild(script);
         }
 
-
     </script>
   </head>
   <body>
@@ -68,7 +67,7 @@
       </div>
 
       <div id="ui-container">
-        <button id="share-btn">Share Experience With a Friend</button>
+        <button id="share-btn">Share With a Friend</button>
       </div>
 
     <div id="hover-container">
@@ -127,6 +126,23 @@
             console.log('desktop loaded');
         }
     });
+
+    document.getElementById('selfie-btn').addEventListener("click", openSelfie);
+    document.getElementById('pool-btn').addEventListener("click", openTherapy);
+    document.getElementById('beauty-btn').addEventListener("click", openBeauty);
+
+    function openSelfie(){
+      window.open('https://us.ahcbeauty.com/')
+    }
+
+    function openTherapy(){
+      window.open('https://us.ahcbeauty.com/')
+    }
+
+    function openBeauty(){
+      window.open('https://us.ahcbeauty.com/')
+    }
+
     </script>
   </body>
 
