@@ -46,10 +46,10 @@
 
         <div id="beauty-treatment-overlay">
           <div id="beauty-title">CHOOSE YOUR <br> AHC K-BEAUTY TREATMENT</div>
-          <div class="beauty-options" id="beauty-vid-1"></div>
-          <div class="beauty-options" id="beauty-vid-2"></div>
-          <div class="beauty-options" id="beauty-vid-3"></div>
-          <div id = "back-btn"></div>
+          <div class="beauty-options" id="beauty-vid-1"><img class="beauty-thumbnails" src="images/treatment1.jpg"></div>
+          <div class="beauty-options" id="beauty-vid-2"><img class="beauty-thumbnails" src="images/treatment2.jpg"></div>
+          <div class="beauty-options" id="beauty-vid-3"><img class="beauty-thumbnails" src="images/treatment3.jpg"></div>
+          <div id = "back-btn"><img id="back-btn-img" src="UIAssets/arrow_white.png"></div>
         </div>
         <img id="close-btn" src="UIAssets/close.png">
         <div id="video_id">
@@ -64,6 +64,36 @@
         >
         <source src="video/AHC-SPA-VIDEO.mp4" type="video/mp4" />
             <!-- <source type="video/mp4" /> -->
+          </video>
+          <video
+          id="vid-1"
+          preload="none"
+          class="video-js"
+          width="auto"
+          height="auto"
+          aspectRatio= '9:16'
+          data-setup='{"fluid": true}'>
+            <source src="video/beauty1.mp4" type="video/mp4">
+          </video>
+          <video
+          id="vid-2"
+          preload="none"
+          class="video-js"
+          width="auto"
+          height="auto"
+          aspectRatio= '9:16'
+          data-setup='{"fluid": true}'>
+            <source src="video/beauty2.mp4" type="video/mp4">
+          </video>
+          <video
+          id="vid-3"
+          preload="none"
+          class="video-js"
+          width="auto"
+          height="auto"
+          aspectRatio= '9:16'
+          data-setup='{"fluid": true}'>
+            <source src="video/beauty3.mp4" type="video/mp4">
           </video>
         </div>
         <!-- <div id="video-close-overlay"></div> -->
@@ -163,10 +193,104 @@
         closeVideo();
       })
     }
+    document.getElementById('back-btn').addEventListener("click", closeBeauty);
 
+    document.getElementById('beauty-vid-1').addEventListener("click", playVideo1);
+    document.getElementById('beauty-vid-2').addEventListener("click", playVideo2);
+    document.getElementById('beauty-vid-3').addEventListener("click", playVideo3);
+
+    function playVideo1(){
+      document.getElementById('beauty-treatment-overlay').style.display = "none"
+
+      document.getElementById('vid-1').style.display = 'block';
+      document.getElementById('video_id').style.display = 'block';
+      document.getElementById('blackScreen').style.display = 'block';
+      document.getElementById('close-btn').style.display = 'block';
+      var player = videojs('#vid-1');
+      player.src('video/beauty1.mp4')
+      var video = document.getElementById('vid-1');
+      // video.requestFullscreen();
+      player.play();
+      document.getElementById('vid-1').addEventListener("click", closeVideo);
+      document.getElementById('close-btn').addEventListener("click", closeVideo);
+
+      player.on('fullscreenchange', function () {
+        if (this.isFullscreen()){
+          console.log('fullscreen');
+        } else {
+          closeVideo();
+        }
+      })
+      player.on('tap', function () {
+        closeVideo();
+      })
+    }
+
+    function playVideo2(){
+      document.getElementById('beauty-treatment-overlay').style.display = "none"
+
+      document.getElementById('vid-2').style.display = 'block';
+      document.getElementById('video_id').style.display = 'block';
+      document.getElementById('blackScreen').style.display = 'block';
+      document.getElementById('close-btn').style.display = 'block';
+      var player = videojs('#vid-2');
+      player.src('video/beauty2.mp4')
+      var video = document.getElementById('vid-2');
+      // video.requestFullscreen();
+      player.play();
+      document.getElementById('vid-2').addEventListener("click", closeVideo);
+      document.getElementById('close-btn').addEventListener("click", closeVideo);
+
+      player.on('fullscreenchange', function () {
+        if (this.isFullscreen()){
+          console.log('fullscreen');
+        } else {
+          closeVideo();
+        }
+      })
+      player.on('tap', function () {
+        closeVideo();
+      })
+    }
+
+        function playVideo3(){
+          document.getElementById('beauty-treatment-overlay').style.display = "none"
+
+          document.getElementById('vid-3').style.display = 'block';
+          document.getElementById('video_id').style.display = 'block';
+          document.getElementById('blackScreen').style.display = 'block';
+          document.getElementById('close-btn').style.display = 'block';
+          var player = videojs('#vid-3');
+          player.src('video/beauty3.mp4')
+          var video = document.getElementById('vid-3');
+          // video.requestFullscreen();
+          player.play();
+          document.getElementById('vid-3').addEventListener("click", closeVideo);
+          document.getElementById('close-btn').addEventListener("click", closeVideo);
+
+          player.on('fullscreenchange', function () {
+            if (this.isFullscreen()){
+              console.log('fullscreen');
+            } else {
+              closeVideo();
+            }
+          })
+          player.on('tap', function () {
+            closeVideo();
+          })
+        }
 
     function openBeauty(){
-      window.open('https://us.ahcbeauty.com/')
+      // window.open('https://us.ahcbeauty.com/')
+      document.getElementById('beauty-treatment-overlay').style.display = "flex"
+      document.getElementById('blackScreen').style.display = 'block';
+      document.getElementById('blackScreen').style.zIndex = '10';
+    }
+
+    function closeBeauty(){
+      document.getElementById('beauty-treatment-overlay').style.display = "none"
+      document.getElementById('blackScreen').style.display = 'none';
+      document.getElementById('blackScreen').style.zIndex = '0';
     }
 
 
@@ -175,12 +299,18 @@
       document.getElementById('video2').removeEventListener("click", closeVideo);
       // document.getElementById('video-close-overlay').style.display = 'none';
       document.getElementById('video2').style.display = 'none';
+      document.getElementById('vid-1').style.display = 'none';
+      document.getElementById('vid-2').style.display = 'none';
+      document.getElementById('vid-3').style.display = 'none';
       document.getElementById('blackScreen').style.display = 'none';
       document.getElementById('video_id').style.display = 'none';
       document.getElementById('close-btn').style.display = 'none';
 
       // player
       videojs('#video2').reset()
+      videojs('#vid-1').reset()
+      videojs('#vid-2').reset()
+      videojs('#vid-3').reset()
     }
 
     </script>
