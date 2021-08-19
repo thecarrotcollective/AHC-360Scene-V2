@@ -43,6 +43,7 @@
       <div id="blackScreen"></div>
 
       <div id="container">
+        <img id="close-btn" src="UIAssets/close.png">
         <div id="video_id">
           <video
           id="video2"
@@ -134,12 +135,14 @@
       document.getElementById('video2').style.display = 'block';
       document.getElementById('video_id').style.display = 'block';
 			document.getElementById('blackScreen').style.display = 'block';
+      document.getElementById('close-btn').style.display = 'block';
       var player = videojs('#video2');
       player.src('video/AHC-SPA-VIDEO.mp4')
       var video = document.getElementById('video2');
       // video.requestFullscreen();
       player.play();
       document.getElementById('video2').addEventListener("click", closeVideo);
+      document.getElementById('close-btn').addEventListener("click", closeVideo);
 
       player.on('fullscreenchange', function () {
         if (this.isFullscreen()){
@@ -148,7 +151,6 @@
           closeVideo();
         }
       })
-
       player.on('tap', function () {
         closeVideo();
       })
@@ -167,6 +169,8 @@
       document.getElementById('video2').style.display = 'none';
       document.getElementById('blackScreen').style.display = 'none';
       document.getElementById('video_id').style.display = 'none';
+      document.getElementById('close-btn').style.display = 'none';
+
       // player
       videojs('#video2').reset()
     }
