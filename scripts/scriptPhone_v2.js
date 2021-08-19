@@ -627,10 +627,11 @@ function clickTrigger(){
 		console.log("touch event registered");
 	// })
 	// document.addEventListener("click", event => {
-		console.log('clicked');
+		console.log('clicked v3');
 		mouse.x = event.touches[0].pageX / window.innerWidth * 2 - 1;
 		mouse.y = -(event.touches[0].pageY / window.innerHeight) * 2 +1 ;
 		raycaster.setFromCamera( mouse, camera );
+		console.log(mouse)
 
 		var intersectsPoolRoom = raycaster.intersectObjects( PoolRoomScene.children, false );
 		var intersectsMainRoom = raycaster.intersectObjects( MainRoomScene.children, false );

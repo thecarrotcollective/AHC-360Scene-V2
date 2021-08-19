@@ -197,7 +197,6 @@ var DeviceOrientationControls = function ( object, domElement ) {
 	}
 
 	function handleTouchMoveRotate( event ) {
-		console.log(event);
 		diffX = lastX - event.touches[ 0 ].pageX
 		console.log(diffX);
 		var deltaAmt = (2 * Math.PI * diffX) / (scope.domElement.clientHeight)
