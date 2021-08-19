@@ -47,7 +47,6 @@
           <video
           id="video2"
           class="video-js"
-          controls
           preload="auto"
           width="auto"
           height="auto"
@@ -57,6 +56,8 @@
             <!-- <source src="video/AHC-SPA-VIDEO.mp4" type="video/mp4" /> -->
              </video>
         </div>
+        <!-- <div id="video-close-overlay"></div> -->
+
       </div>
 
       <div id="ui-container">
@@ -136,12 +137,18 @@
       var video = document.getElementById('video2');
       // video.requestFullscreen();
       player.play();
+      document.getElementById('video2').addEventListener("click", closeVideo);
+
       player.on('fullscreenchange', function () {
         if (this.isFullscreen()){
           console.log('fullscreen');
         } else {
           closeVideo();
         }
+      })
+
+      player.on('tap', function () {
+        closeVideo();
       })
     }
 
@@ -150,9 +157,11 @@
       window.open('https://us.ahcbeauty.com/')
     }
 
-    document.getElementById('video2').addEventListener("click", closeVideo);
 
     function closeVideo(){
+      console.log('close video');
+      document.getElementById('video2').removeEventListener("click", closeVideo);
+      // document.getElementById('video-close-overlay').style.display = 'none';
       document.getElementById('video2').style.display = 'none';
       document.getElementById('blackScreen').style.display = 'none';
       document.getElementById('video_id').style.display = 'none';
