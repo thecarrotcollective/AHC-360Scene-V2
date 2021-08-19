@@ -790,7 +790,7 @@ function clickTrigger(){
 			window.open('https://us.ahcbeauty.com/')
 		}
 		if(intersectsSelfieClick.length > 0 && selfieSceneClick == true) {
-			alert("Selfie Clicked")
+			// alert("Selfie Clicked")
 		}
 
 		//***********************PLAY VIDEO ON PRODUCT SCENE**************************

@@ -781,9 +781,9 @@ function clickTrigger(){
 			DisableEverything()
 
 		}
-		if(intersectsMultipleVideo.length > 0 ) {
-			alert("Video Clicked");
-		}
+		// if(intersectsMultipleVideo.length > 0 ) {
+		// 	alert("Video Clicked");
+		// }
 		if(intersectsProductPlusIcon1.length > 0 ) {
 			console.log("video clicked")
 
@@ -800,9 +800,7 @@ function clickTrigger(){
 			window.open('https://us.ahcbeauty.com/')
 		}
 		if(intersectsSelfieClick.length > 0 && selfieSceneClick == true) {
-			alert("Selfie Clicked")
-
-
+			// alert("Selfie Clicked")
 		}
 
 		//***********************PLAY VIDEO ON PRODUCT SCENE**************************
