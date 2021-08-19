@@ -79,7 +79,7 @@ video{
   /* height: 20%;
   padding-top: 15%;
   top:15%; */
-  height: 20%;
+  /* height: 20%; */
   /* padding-top: 15%;
   top:15%; */
 
@@ -380,15 +380,17 @@ video{
   
   #back-btn{
     /* padding-top: 2em; */
+    height: 100%;
+    margin-top: -15%;
     display: flex;
     align-items: center;
-    margin-top: -20%;
-    transform: rotate(90deg);
+    /* margin-top: -20%; */
+    transform: rotate(90deg)scale(0.2);
   }
   
   #back-btn-img{
     /* margin: auto; */
-    height: 20%;
+    /* height: 20%; */
     /* padding-top: 15%;
     top:15%; */
   
