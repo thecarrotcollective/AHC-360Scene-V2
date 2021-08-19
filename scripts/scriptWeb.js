@@ -919,22 +919,36 @@ function checkTheVideoLoad(){
 }
 
 function copyLink() {
-	const linkToCopy = "https://linktoexperience";
+	const linkToCopy = "https://us.ahcbeauty.com/";
 
-	navigator.clipboard.writeText(linkToCopy)
-		.then(() => {
-			// alert(`Copied!`)
+	if (navigator.share) {
+		navigator.share({
+			title: 'AHC You Spa',
+			url: linkToCopy
+		}).then(() => {
 			shareLinkBtn.innerText = 'LINK COPIED'
-			// shareLinkBtn.style.color = 'white'
-			// shareLinkBtn.style.backgroundColor = 'black'
 			setTimeout(() => {
 				shareLinkBtn.innerText = 'Share Experience With a Friend'
-				// shareLinkBtn.style.color = 'black'
-				// shareLinkBtn.style.backgroundColor = 'white'
 			}, 2000)
-
 		})
-		.catch((error) => {
-			alert(`Copy failed! ${error}`)
-		})
+			.catch(console.error);
+	} else {
+		// TODO Add fallback to copy Link
+		// navigator.clipboard.writeText(linkToCopy)
+		// 	.then(() => {
+		// 		// alert(`Copied!`)
+		// 		shareLinkBtn.innerText = 'LINK COPIED'
+		// 		// shareLinkBtn.style.color = 'white'
+		// 		// shareLinkBtn.style.backgroundColor = 'black'
+		// 		setTimeout(() => {
+		// 			shareLinkBtn.innerText = 'Share Experience With a Friend'
+		// 			// shareLinkBtn.style.color = 'black'
+		// 			// shareLinkBtn.style.backgroundColor = 'white'
+		// 		}, 2000)
+		//
+		// 	})
+		// 	.catch((error) => {
+		// 		alert(`Copy failed! ${error}`)
+		// 	})
+	}
 }
