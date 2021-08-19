@@ -120,9 +120,9 @@ function init() {
 	camera.rotation.z = 0
 	skydome.camera.position.z =0.01;
 	// controls = new DeviceOrientationControls( skydome.camera );
-	controls = new OrbitControls( skydome.camera, renderer.domElement );
+	// controls = new OrbitControls( skydome.camera, renderer.domElement );
 
-	// controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
+	controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
 
 
 
@@ -788,21 +788,31 @@ function clickTrigger(){
 		// if(intersectsMultipleVideo.length > 0 ) {
 		// 	alert("Video Clicked");
 		// }
+		var productbool;
 		if(intersectsProductPlusIcon1.length > 0 ) {
-			console.log("video clicked")
+			productbool = true
+            console.log("video clicked")
+            document.getElementById('product1').style.display = 'block';
+			document.getElementById('productButton-1').style.display = 'block';
+	
+            //window.open('https://us.ahcbeauty.com/')
+        }
+        if(intersectsProductPlusIcon2.length> 0) {
+			productbool = true
+            console.log("video clicked")
+            document.getElementById('product2').style.display = 'block';
+			document.getElementById('productButton-2').style.display = 'block';
+            //window.open('https://us.ahcbeauty.com/')
+        }
+        if(intersectsProductPlusIcon3.length> 0 ) {
+			productbool = true
+            console.log("video clicked")
+            document.getElementById('product3').style.display = 'block';
+			document.getElementById('productButton-3').style.display = 'block';
 
-			window.open('https://us.ahcbeauty.com/')
-		}
-		if(intersectsProductPlusIcon2.length> 0) {
-			console.log("video clicked")
 
-			window.open('https://us.ahcbeauty.com/')
-		}
-		if(intersectsProductPlusIcon3.length> 0 ) {
-			console.log("video clicked")
-
-			window.open('https://us.ahcbeauty.com/')
-		}
+            //window.open('https://us.ahcbeauty.com/')
+        }
 		if(intersectsSelfieClick.length > 0 && selfieSceneClick == true) {
 			// alert("Selfie Clicked")
 		}

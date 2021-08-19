@@ -103,18 +103,18 @@
 
      
         <div class="product" style="display: none;" id="product1">
-          <img id="productImage"src="./images/UI_Accept_Prompt.png" alt="Snow">
-          <button class="CTA-btn">Button</button>
+          <img id="productImage"src="./UIAssets/product3.png" alt="Snow">
+          <button id="productButton-1" class="btn" >SHOP NOW</button>
         </div>
     
         <div class="product" style="display: none;" id="product2">
-          <img src="./images/UI_Accept_Prompt.png" alt="Snow">
-          <button class="CTA-btn">Button</button>
+          <img src="./UIAssets/product2.png" alt="Snow">
+          <button id="productButton-2" class="btn">SHOP NOW</button>
         </div>
     
         <div  class="product" style="display: none;" id="product3">
-          <img src="./images/UI_Accept_Prompt.png" alt="Snow">
-          <button class="CTA-btn">Button</button>
+          <img src="./UIAssets/product1.png" alt="Snow">
+          <button id="productButton-3"  class="btn">SHOP NOW</button>
         </div>
   
 
@@ -302,6 +302,29 @@
       document.getElementById('beauty-treatment-overlay').style.display = "flex"
       document.getElementById('blackScreen').style.display = 'block';
       document.getElementById('blackScreen').style.zIndex = '10';
+    }
+
+    document.getElementById('productButton-1').addEventListener("click", productLink1);
+    document.getElementById('productButton-2').addEventListener("click", productLink2);
+    document.getElementById('productButton-3').addEventListener("click", productLink3);
+
+    function productLink1(){
+      window.open('https://us.ahcbeauty.com/products/aqualuronic-emulsion')
+      
+      document.getElementById('product1').style.display = 'none';
+     
+    }
+    function productLink2(){
+      window.open('https://us.ahcbeauty.com/products/aqualuronic-toner')
+      
+      document.getElementById('product2').style.display = 'none';
+     
+    }
+    function productLink3(){
+      window.open('https://us.ahcbeauty.com/products/aqualuronic-cleanser')
+      
+      document.getElementById('product3').style.display = 'none';
+     
     }
 
     function closeBeauty(){

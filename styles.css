@@ -147,11 +147,13 @@ video{
   /* align-items: center; */
  
 }
-/* .product .btn {
+
+.product .btn {
+  display: block;
   position: absolute;
-  top: 50%;
+  top: 85%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%)scale(3);
   -ms-transform: translate(-50%, -50%);
   background-color: #555;
   color: white;
@@ -161,7 +163,10 @@ video{
   cursor: pointer;
   border-radius: 5px;
   text-align: center;
-} */
+  font-weight: 700;
+  /* border: 0.3rem solid transparent; */
+  border-radius: 6rem;
+}
 /* #test{
   position: absolute;
 	transform: scale(0.5);

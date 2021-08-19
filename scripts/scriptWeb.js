@@ -10,7 +10,7 @@ let RoomVideoPlay,RoomVideoPlayScene,filterScene,SceneObjectVideo1,videoPlane,se
 
 let videoMatBottleScene,VideoPlayBottleScene,firtVideoChecker,secondVideoChecker,selfieSceneClick;
 const mouse = new THREE.Vector2();
-var clickableVideo,manager,videoManager,arrowMat;
+var clickableVideo,manager,videoManager,arrowMat,productbool;
 var loaderCheck = false;
 var arrowDist = 25
 var arrowHeight = -12
@@ -147,13 +147,14 @@ function init() {
 			video2.currentTime = 0;
 			video3.currentTime = 0;
 			console.log("intro scene runned")
+			video.play()
+			video2.play()
 			RoomVideoPlayScene.add(RoomVideoPlay);
 			RoomVideoPlay.position.set(101.4,-11.5,-180)
 			RoomVideoPlay.rotation.set(0,-1.58,-0.01)
 			RoomVideoPlay.scale.set(3.1,3,2.1)
 
-			video.play()
-			video2.play()
+
 			MainRoomScene.add(MainRoomArrow);
 			TweenFadeInForVideos(videoMat)
 			TweenFadeInForArrow()
@@ -516,6 +517,8 @@ function animate() {
 	// console.log("video" + video.currentTime)
 	// console.log("video2" + video2.currentTime)
 	controls.addEventListener( 'change', function(){
+	
+	
 		endbool =false
 		if(currState == POOL){
 			clickableVideo = false
@@ -524,6 +527,15 @@ function animate() {
 			selfieSceneClick = false
 		}
 	});
+	controls.addEventListener( 'start', function(){
+		if(productbool == true){
+
+			document.getElementById('product1').style.display = 'none';
+			document.getElementById('product2').style.display = 'none';
+			document.getElementById('product3').style.display = 'none';
+	
+		}
+	})
 
 	controls.addEventListener( 'end', function(){
 		endbool = true
@@ -775,20 +787,29 @@ function clickTrigger(){
 		// 	alert("Video Clicked");
 		// }
 		if(intersectsProductPlusIcon1.length > 0 ) {
-			console.log("video clicked")
+			productbool = true
+            console.log("video clicked")
+            document.getElementById('product1').style.display = 'block';
+			document.getElementById('productButton-1').style.display = 'block';
+	
+            //window.open('https://us.ahcbeauty.com/')
+        }
+        if(intersectsProductPlusIcon2.length> 0) {
+			productbool = true
+            console.log("video clicked")
+            document.getElementById('product2').style.display = 'block';
+			document.getElementById('productButton-2').style.display = 'block';
+            //window.open('https://us.ahcbeauty.com/')
+        }
+        if(intersectsProductPlusIcon3.length> 0 ) {
+			productbool = true
+            console.log("video clicked")
+            document.getElementById('product3').style.display = 'block';
+			document.getElementById('productButton-3').style.display = 'block';
 
-			window.open('https://us.ahcbeauty.com/')
-		}
-		if(intersectsProductPlusIcon2.length> 0) {
-			console.log("video clicked")
 
-			window.open('https://us.ahcbeauty.com/')
-		}
-		if(intersectsProductPlusIcon3.length> 0 ) {
-			console.log("video clicked")
-
-			window.open('https://us.ahcbeauty.com/')
-		}
+            //window.open('https://us.ahcbeauty.com/')
+        }
 		if(intersectsSelfieClick.length > 0 && selfieSceneClick == true) {
 			// alert("Selfie Clicked")
 		}
@@ -910,7 +931,9 @@ function checkTheVideoLoad(){
 
 		video.play()
 		video2.play()
-		video3.play()
+		video.currentTime = 0;
+		video2.currentTime = 0;
+		// video3.play()
 		console.log("LOADED")
 
 	};
