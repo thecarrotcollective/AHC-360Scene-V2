@@ -622,12 +622,11 @@ function animate() {
 function clickTrigger(){
 	const raycaster = new THREE.Raycaster();
 	console.log("clickTrigger is run");
-
-	document.addEventListener("touchend", event => {
+	renderer.domElement.addEventListener("touchend", event => {
 		console.log("touch event registered");
 	// })
 	// document.addEventListener("click", event => {
-		console.log('clicked v3');
+		console.log(event);
 		mouse.x = event.touches[0].pageX / window.innerWidth * 2 - 1;
 		mouse.y = -(event.touches[0].pageY / window.innerHeight) * 2 +1 ;
 		raycaster.setFromCamera( mouse, camera );
