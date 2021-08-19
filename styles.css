@@ -357,6 +357,7 @@ body {
   margin: 0 auto;
   position: absolute;
   color:  #000000;
+  background-color: transparent;
   display:block;
 
   top: 80%;

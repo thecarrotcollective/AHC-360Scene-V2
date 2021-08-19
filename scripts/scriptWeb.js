@@ -912,12 +912,12 @@ function copyLink() {
 		.then(() => {
 			// alert(`Copied!`)
 			shareLinkBtn.innerText = 'LINK COPIED'
-			shareLinkBtn.style.color = 'white'
-			shareLinkBtn.style.backgroundColor = 'black'
+			// shareLinkBtn.style.color = 'white'
+			// shareLinkBtn.style.backgroundColor = 'black'
 			setTimeout(() => {
 				shareLinkBtn.innerText = 'Share Experience With a Friend'
-				shareLinkBtn.style.color = 'black'
-				shareLinkBtn.style.backgroundColor = 'white'
+				// shareLinkBtn.style.color = 'black'
+				// shareLinkBtn.style.backgroundColor = 'white'
 			}, 2000)
 
 		})
