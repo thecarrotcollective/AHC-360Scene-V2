@@ -43,26 +43,19 @@
       <div id="blackScreen"></div>
 
       <div id="container">
-
-
-        <div id="video_id" style="display: none;">
-
-
+        <div id="video_id">
           <video
           id="video2"
-          class="video-js vjs-theme-city vjs-big-play-centered"
+          class="video-js"
           controls
           preload="auto"
           width="auto"
           height="auto"
-
           aspectRatio= '9:16'
           data-setup='{"fluid": true}'
         >
             <source src="video/AHC-SPA-VIDEO.mp4" type="video/mp4" />
              </video>
-
-
         </div>
       </div>
 
@@ -136,11 +129,33 @@
     }
 
     function openTherapy(){
-      window.open('https://us.ahcbeauty.com/')
+      document.getElementById('video2').style.display = 'block';
+      document.getElementById('video_id').style.display = 'block';
+      var player = videojs('#video2');
+      var video = document.getElementById('video2');
+      // video.requestFullscreen();
+      player.play();
+      player.on('fullscreenchange', function () {
+        if (this.isFullscreen()){
+          console.log('fullscreen');
+        } else {
+          closeVideo();
+        }
+      })
     }
+
 
     function openBeauty(){
       window.open('https://us.ahcbeauty.com/')
+    }
+
+    document.getElementById('video2').addEventListener("click", closeVideo);
+
+    function closeVideo(){
+      document.getElementById('video2').style.display = 'none';
+      document.getElementById('blackScreen').style.display = 'none';
+      document.getElementById('video_id').style.display = 'none';
+      player.pause()
     }
 
     </script>

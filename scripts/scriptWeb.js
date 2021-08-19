@@ -795,25 +795,25 @@ function clickTrigger(){
 
 		//***********************PLAY VIDEO ON PRODUCT SCENE**************************
 		else if ( intersectsRoomVideoPlay.length > 0 && clickableVideo == true) {
-			setTimeout(function(){
-				document.getElementById('video2').style.display = 'block';
-				document.getElementById('video_id').style.display = 'block';
-				var player = videojs('#video2');
-				var video = document.getElementById('video2');
-				video.requestFullscreen();
-				player.play();
-				player.on('fullscreenchange', function () {
-					if (this.isFullscreen()){
-						console.log('fullscreen');
-					} else {
-						document.getElementById('video2').style.display = 'none';
-						document.getElementById('blackScreen').style.display = 'none';
-						document.getElementById('video_id').style.display = 'none';
-						player.pause()
-					}
-				})
-			}, 1500);
-			document.getElementById('blackScreen').style.display = 'block';
+			// setTimeout(function(){
+			// 	document.getElementById('video2').style.display = 'block';
+			// 	document.getElementById('video_id').style.display = 'block';
+			// 	var player = videojs('#video2');
+			// 	var video = document.getElementById('video2');
+			// 	// video.requestFullscreen();
+			// 	player.play();
+			// 	player.on('fullscreenchange', function () {
+			// 		if (this.isFullscreen()){
+			// 			console.log('fullscreen');
+			// 		} else {
+			// 			document.getElementById('video2').style.display = 'none';
+			// 			document.getElementById('blackScreen').style.display = 'none';
+			// 			document.getElementById('video_id').style.display = 'none';
+			// 			player.pause()
+			// 		}
+			// 	})
+			// }, 1500);
+			// document.getElementById('blackScreen').style.display = 'block';
 			// controls.enableRotate = false
 			// clickableVideo = false
 		}
