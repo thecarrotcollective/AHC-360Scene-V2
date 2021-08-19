@@ -482,6 +482,7 @@ function init() {
 	window.addEventListener( 'resize', onWindowResize );
 
 	clickTrigger();
+	console.log("v2");
 	renderer.autoclear = false;
 }
 
@@ -616,8 +617,6 @@ function animate() {
 	}
 
 	runTween()
-	console.log("v1");
-
 }
 
 function clickTrigger(){
@@ -626,8 +625,8 @@ function clickTrigger(){
 
 	document.addEventListener("touchend", event=>{
 		console.log("touch event registered");
-	})
-	document.addEventListener("click", event => {
+	// })
+	// document.addEventListener("click", event => {
 		console.log('clicked');
 		mouse.x = event.clientX / window.innerWidth * 2 - 1;
 		mouse.y = -(event.clientY / window.innerHeight) * 2 +1 ;
