@@ -40,6 +40,9 @@ video{
 .vid-3{
   z-index: 51;
 }
+.video-js{
+  background-color: none !important;
+}
 
 #beauty-treatment-overlay {
   display: none;
