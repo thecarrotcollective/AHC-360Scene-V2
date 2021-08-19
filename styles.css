@@ -168,6 +168,54 @@ video{
   opacity: 0;
   animation: opacityAnim2 1.5s ease-in-out forwards;
 }
+.product {
+  position: absolute;
+
+
+  transform: translate(-50%, -50%)scale(0.35);
+	/* width: 100%;
+	height: 100%; */
+  top: 50%;
+  left: 50%;
+  /* transform: translate(-50%, -50%); */
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	/* background: rgb(0, 0, 0); */
+  opacity: 0;
+  animation: opacityAnim2 1.5s ease-in-out forwards;
+}
+ 
+.product img { 
+  
+  /* display: block; */
+  /* margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto; */
+
+  /* text-align: center; */
+  
+  /* height: auto;  */
+  z-index: 30;
+  /* align-items: center; */
+ 
+}
+/* .product .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+} */
 /* #test{
   position: absolute;
 	transform: scale(0.5);
@@ -323,6 +371,13 @@ video{
     animation: opacityAnim2 1.5s ease-in-out forwards;
     /* display: none; */
   }
+  #beauty-title{
+    color: white;
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 2em;
+  }
+  
   #back-btn{
     /* padding-top: 2em; */
     display: flex;
