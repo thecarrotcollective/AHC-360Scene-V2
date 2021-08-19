@@ -1,6 +1,8 @@
 import * as THREE from './three.module.js';
 import { DeviceOrientationControls } from './DeviceOrientationWithOrbit.js';
 
+//DELETE AFTER CSS FIX
+import {OrbitControls} from './Orbit.js';
 
 // TODO - check if some of these can be lists / arrays + use as state machine?
 let camera, controls,videoMat,ProductIcon1,ProductIcon2,ProductIcon3,ProductIconScene1,ProductIconScene2,ProductIconScene3,video3,videoMask,videoMask2,videoTexture;
@@ -118,6 +120,8 @@ function init() {
 	camera.rotation.z = 0
 	skydome.camera.position.z =0.01;
 	// controls = new DeviceOrientationControls( skydome.camera );
+	// controls = new OrbitControls( skydome.camera, renderer.domElement );
+
 	controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
 
 
