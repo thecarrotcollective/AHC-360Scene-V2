@@ -622,7 +622,7 @@ function animate() {
 function clickTrigger(){
 	const raycaster = new THREE.Raycaster();
 	console.log("clickTrigger is run");
-	renderer.domElement.addEventListener("touchend", event => {
+	renderer.domElement.addEventListener("touchstart", event => {
 		console.log("touch event registered");
 	// })
 	// document.addEventListener("click", event => {
