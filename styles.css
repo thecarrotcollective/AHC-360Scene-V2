@@ -24,12 +24,19 @@ video{
   transform: translateY(-50%); */
 }
 
+.beauty-options{
+  width:100%;
+  height: 25%;
+}
+
 #beauty-treatment-overlay {
   width:100%;
-  height: 100%;
+  height: 90%;
   position: absolute;
-  top:0;
+  top:10%;
   left: 0;
+  background: green;
+  z-index: 50;
   display: none;
 }
 

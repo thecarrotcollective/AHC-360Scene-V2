@@ -623,13 +623,13 @@ function clickTrigger(){
 	const raycaster = new THREE.Raycaster();
 	console.log("clickTrigger is run");
 
-	document.addEventListener("touchend", event=>{
+	document.addEventListener("touchend", event => {
 		console.log("touch event registered");
 	// })
 	// document.addEventListener("click", event => {
 		console.log('clicked');
-		mouse.x = event.clientX / window.innerWidth * 2 - 1;
-		mouse.y = -(event.clientY / window.innerHeight) * 2 +1 ;
+		mouse.x = event.touches[0].pageX / window.innerWidth * 2 - 1;
+		mouse.y = -(event.touches[0].pageY / window.innerHeight) * 2 +1 ;
 		raycaster.setFromCamera( mouse, camera );
 
 		var intersectsPoolRoom = raycaster.intersectObjects( PoolRoomScene.children, false );
