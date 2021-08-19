@@ -54,7 +54,7 @@
           aspectRatio= '9:16'
           data-setup='{"fluid": true}'
         >
-            <source src="video/AHC-SPA-VIDEO.mp4" type="video/mp4" />
+            <!-- <source src="video/AHC-SPA-VIDEO.mp4" type="video/mp4" /> -->
              </video>
         </div>
       </div>
@@ -132,6 +132,7 @@
       document.getElementById('video2').style.display = 'block';
       document.getElementById('video_id').style.display = 'block';
       var player = videojs('#video2');
+      player.src('video/AHC-SPA-VIDEO.mp4')
       var video = document.getElementById('video2');
       // video.requestFullscreen();
       player.play();
@@ -155,7 +156,8 @@
       document.getElementById('video2').style.display = 'none';
       document.getElementById('blackScreen').style.display = 'none';
       document.getElementById('video_id').style.display = 'none';
-      player.pause()
+      // player
+      videojs('#video2').reset()
     }
 
     </script>
