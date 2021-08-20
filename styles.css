@@ -302,7 +302,14 @@ video{
       margin-bottom: 2em; */
     } 
     #close-product{
-      /* display: none; */
+      display: none;
+      
+    }
+    #close-product2{
+      display: none;
+    }
+    #close-product3{
+      display: none;
     }
     #beauty-treatment-overlay {
       display: none;
