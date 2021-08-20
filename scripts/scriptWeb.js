@@ -9,6 +9,8 @@ let scene,materials,skyBox,ProductRoomScene,ProductRoomArrow,MiddleRoomScene,Mid
 let RoomVideoPlay,RoomVideoPlayScene,filterScene,SceneObjectVideo1,videoPlane,selfieRoomArrow;
 let orbVideoPlane, orbVideo, orbVideoMask,orbVideoTex, orbVideoMaskTex, orbVideoMat, orbVideoMesh;
 let videoMatBottleScene,VideoPlayBottleScene,firtVideoChecker,secondVideoChecker,selfieSceneClick;
+let bilboardVideo, bilboardVideoTex;
+
 const mouse = new THREE.Vector2();
 var clickableVideo,manager,videoManager,arrowMat,productbool;
 var loaderCheck = false;
@@ -221,35 +223,39 @@ function init() {
 			selfieSceneClick = true
 		}
 		if(currState === COUCH){
+			bilboardVideo.currentTime = 0;
 			console.log("couch scene runned")
 			ProductRoomScene.add(ProductRoomArrow);
 			MiddleRoomScene.add(MiddleRoomArrow);
-			// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+			
 
-
-			// VideoPlayBottleScene.position.set(-342,25,-450);
-
-			// VideoPlayBottleScene.rotation.set(0,4.7,0)
-			// VideoPlayBottleScene.scale.set(7.2,7.5,1)
-			// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+			VideoPlayBottleScene.position.set(-342,25,-450);
+	
+			VideoPlayBottleScene.rotation.set(0,4.7,0)
+			VideoPlayBottleScene.scale.set(7.2,7.5,1)
+			bilboardVideo.play();
+			
 			MiddleRoomArrow.position.set(arrowDist * Math.sin(toRadians(-45)) , arrowHeight, -arrowDist * Math.cos(toRadians(-45)));
 			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(-15)) , arrowHeight, -arrowDist * Math.cos(toRadians(-15)));
 			MiddleRoomArrow.scale.copy(navArrowScale)
 			ProductRoomArrow.scale.copy(navArrowScale)
 			TweenFadeInForArrow()
+			TweenFadeInForBilboardVideos()
 		}
 		if(currState === PRODENTRANCE){
+			bilboardVideo.currentTime = 0;
 			console.log("product scene runned")
 			VideoRoomScene.add(videoRoomArrow)
 			BottleRoomScene.add(BottleRoomArrow)
 			CoachRoomScene.add(CoachRoomArrow)
 			MiddleRoomScene.add(MiddleRoomArrow);
 
-			// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-			// VideoPlayBottleScene.position.set(-245,20,-450);
-			// VideoPlayBottleScene.rotation.set(0,4.7,0)
-			// VideoPlayBottleScene.scale.set(9,10,1)
-
+			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+			VideoPlayBottleScene.position.set(-245,16,-450);
+			VideoPlayBottleScene.rotation.set(0,4.7,0)
+			VideoPlayBottleScene.scale.set(9,9.5,1)
+			bilboardVideo.play();
 			videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(-20)));
 			BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(30)));
 			CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(100)) , arrowHeight, -arrowDist * Math.cos(toRadians(100)));
@@ -259,9 +265,11 @@ function init() {
 			videoRoomArrow.scale.copy(navArrowScale)
 			BottleRoomArrow.scale.copy(navArrowScale)
 			TweenFadeInForArrow()
+			TweenFadeInForBilboardVideos()
 
 		}
 		if(currState === BEAUTY){
+			bilboardVideo.currentTime = 0;
 			console.log("beauty scene runned")
 			document.getElementById('beauty-text').style.display = 'block';
 			document.getElementById('beauty-btn').style.display = 'block';
@@ -273,20 +281,29 @@ function init() {
 			BottleRoomScene.add(BottleRoomArrow)
 			BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(60)) , arrowHeight, -arrowDist * Math.cos(toRadians(60)));
 			BottleRoomArrow.scale.copy(navArrowScale)
-
+			bilboardVideo.play()
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 
-			VideoPlayBottleScene.position.set(-20,-1.5,-18);
+			VideoPlayBottleScene.position.set(-20,-1.6,-18);
 
 			VideoPlayBottleScene.rotation.set(0,1.6,0)
-			VideoPlayBottleScene.scale.set(0.95,0.95,1)
+			VideoPlayBottleScene.scale.set(0.87,0.875,1)
 			TweenFadeInForArrow()
+			TweenFadeInForBilboardVideos()
 		}
 		if(currState === PRODUCTS){
 			console.log("product scene runned")
 			ProductRoomScene.add(ProductRoomArrow)
 			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(210)) , arrowHeight, -arrowDist *0.9* Math.cos(toRadians(210)));
 			ProductRoomArrow.scale.copy(navArrowScale)
+
+			bilboardVideo.play()
+			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+
+			VideoPlayBottleScene.position.set(-50,-0.95,-11.5);
+
+			VideoPlayBottleScene.rotation.set(0,1.6,0)
+			VideoPlayBottleScene.scale.set(	1.14,1.19,1)
 
 			ProductIconScene1.add(ProductIcon1)
 			ProductIcon1.position.set(-3.8,0,-2)
@@ -308,6 +325,7 @@ function init() {
 			videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-100)) , arrowHeight, -arrowDist * Math.cos(toRadians(-100)));
 			videoRoomArrow.scale.copy(navArrowScale)
 			TweenFadeInForArrow()
+			TweenFadeInForBilboardVideos()
 			// RoomVideoPlayScene.add(RoomVideoPlay);
 		}
 		if(currState === MAIN){
@@ -335,6 +353,7 @@ function init() {
 				orbVideo.play()
 				orbVideoMask.play()
 			  videoMat.alphaMap = videoMask2
+			 
 			  TweenFadeInForVideos(videoMat)
 			  TweenFadeInForArrow()
 		}
@@ -480,10 +499,21 @@ function init() {
 
     // ***********************VIDEO2********************
 	videoMeshBottleScene = new THREE.PlaneGeometry( 9, 16 );
-    videoMatBottleScene = new THREE.MeshBasicMaterial( {color: 0xffff00, transparent: true,opacity:0,side: THREE.DoubleSide} );
+	bilboardVideo  = document.createElement('video');
+	bilboardVideo.src = "video/VID-20210820-WA0000.mp4"; // Set video address
+
+	bilboardVideo.muted = true;
+	bilboardVideo.loop = true;
+	bilboardVideoTex = new THREE.VideoTexture(bilboardVideo)
+	
+	
+    videoMatBottleScene = new THREE.MeshBasicMaterial( {map: bilboardVideoTex,opacity:0,side: THREE.DoubleSide} );
     // videoMatBottleScene.alphaMap = alphaMaskBottleScene
     VideoPlayBottleScene = new THREE.Mesh( videoMeshBottleScene, videoMatBottleScene );
-	VideoPlayBottleScene.scale.copy(navVideoScale)
+	// VideoPlayBottleScene.position.set(0,0,-10)
+	// BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+	// bilboardVideo.play()
+	// VideoPlayBottleScene.scale.copy(navVideoScale)
 
 
 	// const hoverTextGeo = new THREE.PlaneGeometry( 1, 1, 1 );
@@ -910,6 +940,7 @@ function DisableEverything(){
 	video2.pause();
 	video3.pause();
 	orbVideo.pause();
+	bilboardVideo.pause();
 	orbVideoMask.pause()
 	loaderCheck = false
 	console.log(loaderCheck)
@@ -928,18 +959,23 @@ function DisableEverything(){
 
 		}
 	}, 200);
-	TweenFadeOutForVideos(videoMat)
+	TweenFadeOutForVideos()
 }
 
 function TweenFadeOutForVideos(){
 
 	new TWEEN.Tween( videoMat ).to( { opacity: 0 }, 250 ).start();
 	new TWEEN.Tween( arrowMat ).to( { opacity: 0 }, 250 ).start();
-
+	new TWEEN.Tween( videoMatBottleScene ).to( { opacity: 0 }, 250 ).start();
 }
 function TweenFadeInForVideos(VideoOpacityMat){
 
 	new TWEEN.Tween( VideoOpacityMat ).to( { opacity: 1 }, 1000 ).start();
+
+}
+function TweenFadeInForBilboardVideos(){
+
+	new TWEEN.Tween( videoMatBottleScene ).to( { opacity: 1 }, 1000 ).start();
 
 }
 
