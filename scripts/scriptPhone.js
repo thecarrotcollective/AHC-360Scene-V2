@@ -440,12 +440,15 @@ function init() {
 		orbVideoPlane = new THREE.PlaneGeometry( 9, 9 );
 		orbVideo = document.createElement('video');
 		orbVideo.src = "video/ORBREVEALBASE.mp4";
+		orbVideo.playsInline = true;
 		orbVideo.muted = true;
 		orbVideo.loop = true;
 	
 		orbVideoMask = document.createElement('video');
 		orbVideoMask.src = "video/ORBREVEALALPHA.mp4";
 		orbVideoMask.muted = true;
+		orbVideoMask.playsInline = true;
+
 		orbVideoMask.loop = true
 		orbVideoTex =  new THREE.VideoTexture(orbVideo)
 		orbVideoMaskTex = new THREE.VideoTexture(orbVideoMask)
@@ -844,36 +847,36 @@ function clickTrigger(){
 		else if ( intersectsRoomVideoPlay.length > 0 && clickableVideo == true) {
 
 
-			setTimeout(function(){
-				document.getElementById('video2').style.display = 'block';
-				document.getElementById('video_id').style.display = 'block';
-				var player = videojs('#video2');
-				var video = document.getElementById('video2');
-				video.requestFullscreen();
-				player.play();
-				openFullscreen();
-				function openFullscreen() {
-					if (video.requestFullscreen) {
-						video.requestFullscreen();
-					} else if (video.webkitRequestFullscreen) { /* Safari */
-						video.webkitRequestFullscreen();
-					} else if (video.msRequestFullscreen) { /* IE11 */
-						video.msRequestFullscreen();
-					}
-				  }
-				player.on('fullscreenchange', function () {
-					if (this.isFullscreen()){
-						console.log('fullscreen');
-					} else {
-						document.getElementById('video2').style.display = 'none';
-						document.getElementById('blackScreen').style.display = 'none';
-						document.getElementById('video_id').style.display = 'none';
-						player.pause()
-					}
-				})
-			}, 1500);
+			// setTimeout(function(){
+			// 	document.getElementById('video2').style.display = 'block';
+			// 	document.getElementById('video_id').style.display = 'block';
+			// 	var player = videojs('#video2');
+			// 	var video = document.getElementById('video2');
+			// 	video.requestFullscreen();
+			// 	player.play();
+			// 	openFullscreen();
+			// 	function openFullscreen() {
+			// 		if (video.requestFullscreen) {
+			// 			video.requestFullscreen();
+			// 		} else if (video.webkitRequestFullscreen) { /* Safari */
+			// 			video.webkitRequestFullscreen();
+			// 		} else if (video.msRequestFullscreen) { /* IE11 */
+			// 			video.msRequestFullscreen();
+			// 		}
+			// 	  }
+			// 	player.on('fullscreenchange', function () {
+			// 		if (this.isFullscreen()){
+			// 			console.log('fullscreen');
+			// 		} else {
+			// 			document.getElementById('video2').style.display = 'none';
+			// 			document.getElementById('blackScreen').style.display = 'none';
+			// 			document.getElementById('video_id').style.display = 'none';
+			// 			player.pause()
+			// 		}
+			// 	})
+			// }, 1500);
 
-			document.getElementById('blackScreen').style.display = 'block';
+			// document.getElementById('blackScreen').style.display = 'block';
 			// controls.enableRotate = false
 			// clickableVideo = false
 		}
@@ -927,6 +930,8 @@ function DisableEverything(){
 	video.pause();
 	video2.pause();
 	video3.pause();
+	orbVideo.pause();
+	orbVideoMask.pause();
 	loaderCheck = false
 	console.log(loaderCheck)
 	document.getElementById('selfie-text').style.display = 'none';
