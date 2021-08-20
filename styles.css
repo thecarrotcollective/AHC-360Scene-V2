@@ -301,6 +301,9 @@ video{
       /* margin-top: 0%;
       margin-bottom: 2em; */
     } 
+    #close-product{
+      /* display: none; */
+    }
     #beauty-treatment-overlay {
       display: none;
       position: absolute;
@@ -507,6 +510,27 @@ video{
 
   .bn37:hover {
       transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
+  }
+  #close-product{
+    position: absolute;
+    left: 78%;
+    top: -25%;
+    z-index: 55;
+    transform: scale(0.5);
+  }
+  #close-product2{
+    position: absolute;
+    left: 78%;
+    top: -25%;
+    z-index: 55;
+    transform: scale(0.5);
+  }
+  #close-product3{
+    position: absolute;
+    left: 78%;
+    top: -25%;
+    z-index: 55;
+    transform: scale(0.5);
   }
 }
 

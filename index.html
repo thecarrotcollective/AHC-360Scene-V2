@@ -101,19 +101,24 @@
 
       </div>
 
-     
+      
         <div class="product" style="display: none;" id="product1">
           <img id="productImage"src="./UIAssets/product3.png" alt="Snow">
+          <img id="close-product" src="UIAssets/close.png">
           <button id="productButton-1" class="btn" >SHOP NOW</button>
         </div>
     
         <div class="product" style="display: none;" id="product2">
+          <img id="close-product2" src="UIAssets/close.png">
           <img src="./UIAssets/product2.png" alt="Snow">
+          
           <button id="productButton-2" class="btn">SHOP NOW</button>
         </div>
     
         <div  class="product" style="display: none;" id="product3">
+          <img id="close-product3" src="UIAssets/close.png">
           <img src="./UIAssets/product1.png" alt="Snow">
+         
           <button id="productButton-3"  class="btn">SHOP NOW</button>
         </div>
   
@@ -156,7 +161,7 @@
     enquire.register("screen and (max-width: 599px)", {
         match : function() {
             // Load a mobile JS file
-            loadJS('scripts/scriptPhone_v2.js');
+            loadJS('scripts/scriptPhone.js');
             console.log('phone loaded');
         }
     });
@@ -165,7 +170,7 @@
     enquire.register("screen and (min-width: 600px) and (max-width: 899px)", {
         match : function() {
             // Load a tablet JS file
-            loadJS('scripts/scriptPhone_v2.js');
+            loadJS('scripts/scriptPhone.js');
             console.log('tablet loaded');
         }
     });
@@ -307,7 +312,9 @@
     document.getElementById('productButton-1').addEventListener("click", productLink1);
     document.getElementById('productButton-2').addEventListener("click", productLink2);
     document.getElementById('productButton-3').addEventListener("click", productLink3);
-
+    document.getElementById('close-product').addEventListener("click", closeProductPreview);
+    document.getElementById('close-product2').addEventListener("click", closeProductPreview);
+    document.getElementById('close-product3').addEventListener("click", closeProductPreview);
     function productLink1(){
       window.open('https://us.ahcbeauty.com/products/aqualuronic-emulsion')
       
@@ -325,6 +332,12 @@
       
       document.getElementById('product3').style.display = 'none';
      
+    }
+    function closeProductPreview(){
+      console.log("clicked")
+      document.getElementById('product1').style.display = 'none';
+      document.getElementById('product2').style.display = 'none';
+      document.getElementById('product3').style.display = 'none';
     }
 
     function closeBeauty(){
