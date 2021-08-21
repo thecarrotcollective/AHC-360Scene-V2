@@ -956,11 +956,13 @@ img.bg {
 
     position: relative;
     margin-left: 65%;
+    z-index: 100;
   }
   #btnCSS2{
     /* left: 85%; */
     position: relative;
     margin-left: 65%;
+    z-index: 100;
   }
   .bn3638 {
       
