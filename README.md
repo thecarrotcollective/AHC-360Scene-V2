@@ -1,2 +1,2 @@
-# AHC-360Scenes
-https://hakanqreal.github.io/AHC-360Scene-V2/
+# AHC-QUIZ
+https://hakanqreal.github.io/AHC-QUIZ/
