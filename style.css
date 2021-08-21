@@ -157,7 +157,7 @@
   /* left: 85%; */
   position: relative;
   margin-left: 85%;
-  margin-top: -5%;
+      margin-top: -5%;
   z-index: 100;
 }
 .bn3638 {
@@ -823,7 +823,7 @@ img.bg {
         -ms-flex-align: stretch;
             align-items: stretch;
     /* margin-top: -5%; */
-    height: calc(var(--vh, 1vh) * 98.3);
+    height: calc(var(--vh, 1vh) * 90);
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
