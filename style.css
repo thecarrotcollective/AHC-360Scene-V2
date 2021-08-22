@@ -862,6 +862,12 @@ img.bg {
     margin-bottom: 0.625rem;
     flex-direction: column; 
     align-items: center;
+    opacity: 0;
+    animation-delay: 1.5s;
+    -webkit-animation: pulse 1s ease-in-out forwards;
+    -moz-animation:  pulse 1s ease-in-out forwards;
+    -o-animation:  pulse 1s ease-in-out forwards;
+    animation: pulse 1s ease-in-out forwards; 
   }
   .contentIntro {
     display: flex;
@@ -875,7 +881,12 @@ img.bg {
     /* margin: auto; */
     /* padding-top: 10px; */
     flex-direction: column;
-  
+    opacity: 0;
+    animation-delay: 1.5s;
+    -webkit-animation: pulse 1s ease-in-out forwards;
+    -moz-animation:  pulse 1s ease-in-out forwards;
+    -o-animation:  pulse 1s ease-in-out forwards;
+    animation: pulse 1s ease-in-out forwards;
     /* padding-top: 10px; */
    
    }
@@ -924,7 +935,7 @@ img.bg {
    }
    #myVideo {
     position: fixed;
-    right: 0;
+    right: -100%;
     bottom: 0;
     min-width: 100%; 
     min-height: 100%;
@@ -933,6 +944,7 @@ img.bg {
   
   #myVideo2 {
     position: fixed;
+    right: -76%;
     right: 0;
     bottom: 0;
     min-width: 100%; 
@@ -1560,7 +1572,7 @@ img.bg {
     font-family: "Pangram-Regular";
     letter-spacing: 5px;
     font-weight: 700;
-    font-size: 50px;
+    font-size: 40px;
     text-align: center;
     text-decoration: none;
     /* color: #fff; */
