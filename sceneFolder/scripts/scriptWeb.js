@@ -348,12 +348,15 @@ function init() {
 			  MiddleRoomArrow.scale.copy(navArrowScale)
 			  PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist * Math.cos(toRadians(-20)));
 			  PoolRoomArrow.scale.copy(navArrowScale)
+			  setTimeout(function(){
+				orbVideoMask.play()
+				orbVideo.play()
+			}, 1000);
 			  video.play()
 			  video3.play()
-				orbVideo.play()
-				orbVideoMask.play()
+			
 			  videoMat.alphaMap = videoMask2
-			 
+
 			  TweenFadeInForVideos(videoMat)
 			  TweenFadeInForArrow()
 		}
@@ -997,6 +1000,26 @@ function checkTheVideoLoad(){
 
 	};
 }
+// function checkRobTheVideoLoad(){
+// 	var orbvideoBool1 = false;
+// 	var orbvideoBool2 = false;
+// 	orbVideo.onloadeddata  = function() {
+
+// 		orbvideoBool1 = true
+// 		console.log("orbVideo")
+
+// 	};
+// 	orbVideoMask.onloadeddata  = function() {
+
+// 		orbvideoBool2 = true
+// 		console.log("orbMaskVideo")
+
+// 	};
+// 	if(orbvideoBool1 == true && orbvideoBool2 == true){
+// 		orbVideo.play()
+// 		orbVideoMask.play()
+// 	}
+// }
 
 function copyLink() {
 	const linkToCopy = "https://us.ahcbeauty.com/";

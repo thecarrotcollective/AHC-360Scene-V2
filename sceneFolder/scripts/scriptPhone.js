@@ -348,8 +348,10 @@ function init() {
 			  PoolRoomArrow.scale.copy(navArrowScale)
 			  video.play()
 			  video3.play()
-			  orbVideo.play()
-			  orbVideoMask.play()
+			  setTimeout(function(){
+				orbVideoMask.play()
+				orbVideo.play()
+			}, 1000);
 			  videoMat.alphaMap = videoMask2
 			  TweenFadeInForVideos(videoMat)
 			  TweenFadeInForArrow()
