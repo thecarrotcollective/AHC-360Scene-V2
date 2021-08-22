@@ -935,7 +935,7 @@ img.bg {
    }
    #myVideo {
     position: fixed;
-    right: -100%;
+    right: -120%;
     bottom: 0;
     min-width: 100%; 
     min-height: 100%;
@@ -944,7 +944,7 @@ img.bg {
   
   #myVideo2 {
     position: fixed;
-    right: -76%;
+    right: -100%;
     right: 0;
     bottom: 0;
     min-width: 100%; 
@@ -996,13 +996,13 @@ img.bg {
     /* left: 85%; */
 
     position: relative;
-    margin-left: 50%;
+    margin-left: 65%;
     z-index: 100;
   }
   #btnCSS2{
     /* left: 85%; */
     position: relative;
-    margin-left: 65%;
+    margin-left: 50%;
     z-index: 100;
   }
   .bn3638 {
@@ -1577,7 +1577,7 @@ img.bg {
     font-family: "Pangram-Bold";
     letter-spacing: 2.5px;
     font-weight: 700;
-    font-size: 30px;
+    font-size: 40px;
     text-align: center;
     text-decoration: none;
     /* color: #fff; */
