@@ -352,7 +352,7 @@ function init() {
 			  setTimeout(function(){
 				orbVideo.currentTime = 0;
 				orbVideoMask.currentTime = 0;
-			}, 1500);
+			}, 2000);
 			  videoMat.alphaMap = videoMask2
 			  TweenFadeInForVideos(videoMat)
 			  TweenFadeInForArrow()
