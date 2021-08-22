@@ -957,6 +957,11 @@ img.bg {
     top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
+   opacity: 0;
+   -webkit-animation: pulse 1s ease-in-out forwards;
+   -moz-animation:  pulse 1s ease-in-out forwards;
+   -o-animation:  pulse 1s ease-in-out forwards;
+   animation: pulse 1s ease-in-out forwards;
     /* top: 50%; */
     /* max-width: 400px; */
     
@@ -991,7 +996,7 @@ img.bg {
     /* left: 85%; */
 
     position: relative;
-    margin-left: 65%;
+    margin-left: 50%;
     z-index: 100;
   }
   #btnCSS2{
@@ -1569,10 +1574,10 @@ img.bg {
     justify-content: center;
   
     padding: 2rem 2rem;
-    font-family: "Pangram-Regular";
-    letter-spacing: 5px;
+    font-family: "Pangram-Bold";
+    letter-spacing: 2.5px;
     font-weight: 700;
-    font-size: 40px;
+    font-size: 30px;
     text-align: center;
     text-decoration: none;
     /* color: #fff; */
