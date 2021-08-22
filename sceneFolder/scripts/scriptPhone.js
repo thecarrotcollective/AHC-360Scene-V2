@@ -329,8 +329,7 @@ function init() {
 		if(currState === MAIN){
 			video.currentTime = 0;
 			video3.currentTime = 0;
-			orbVideo.currentTime = 0;
-			orbVideoMask.currentTime = 0;
+
 			console.log("MAIN scene runned")
 			OrbVideoScene.add(orbVideoMesh)
 			  MiddleRoomScene.add(MiddleRoomArrow)
@@ -348,10 +347,12 @@ function init() {
 			  PoolRoomArrow.scale.copy(navArrowScale)
 			  video.play()
 			  video3.play()
+			  orbVideoMask.play()
+			  orbVideo.play()
 			  setTimeout(function(){
-				orbVideoMask.play()
-				orbVideo.play()
-			}, 1000);
+				orbVideo.currentTime = 0;
+				orbVideoMask.currentTime = 0;
+			}, 1500);
 			  videoMat.alphaMap = videoMask2
 			  TweenFadeInForVideos(videoMat)
 			  TweenFadeInForArrow()

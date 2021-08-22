@@ -348,10 +348,12 @@ function init() {
 			  MiddleRoomArrow.scale.copy(navArrowScale)
 			  PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist * Math.cos(toRadians(-20)));
 			  PoolRoomArrow.scale.copy(navArrowScale)
+			  orbVideoMask.play()
+			  orbVideo.play()
 			  setTimeout(function(){
-				orbVideoMask.play()
-				orbVideo.play()
-			}, 1000);
+				orbVideo.currentTime = 0;
+				orbVideoMask.currentTime = 0;
+			}, 1500);
 			  video.play()
 			  video3.play()
 			
