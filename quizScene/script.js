@@ -11,7 +11,7 @@ var images = {
     "color2"   : "quizScene/images/color2.jpg",
     "color3"   : "quizScene/images/color3.jpg",
     "color4"   : "quizScene/images/color4.jpg"
-    
+
     }
 var myimages=new Array()
 function preloadimages(){
@@ -20,7 +20,7 @@ function preloadimages(){
     myimages[i].src=preloadimages.arguments[i]
   }
   console.log("loaded")
-} 
+}
 preloadimages("quizScene/images/baby.jpg",
 "quizScene/images/light.jpg",
 "quizScene/images/city.jpg",
@@ -33,7 +33,7 @@ preloadimages("quizScene/images/baby.jpg",
 "quizScene/images/color2.jpg",
 "quizScene/images/color3.jpg",
 "quizScene/images/color4.jpg");
-    
+
 
 var option1Counter = 0
 var option2Counter = 0
@@ -45,7 +45,7 @@ startButton.addEventListener('click', startGame);
 
 
 function startGame() {
-  
+
   document.getElementById('fist-page').style.display = 'none';
   document.getElementById('quiz_id').style.display = 'block';
   document.getElementById('process_id').style.display = 'block';
@@ -81,13 +81,13 @@ function populate() {
     var element = document.getElementById("choice" + i);
     element.innerHTML = images[choices[i]]? '<img id="choiceImage"src="'+images[choices[i]]+'"/>':choices[i];
     guess("btn" + i, choices[i]);
-   
+
   }
-    
+
   showProgress();
   }
 };
-    
+
 function guess(id, guess) {
   var button = document.getElementById(id);
   button.onclick = function() {
@@ -117,7 +117,7 @@ function showProgress() {
     process_html3 += "<label for='i1' class='dots' style='background-color: rgb(0, 0, 0);' id='dot3'></label>"
     element_process.innerHTML = process_html3;
   }
- 
+
 };
 var personiltyType;
 function showScores() {
@@ -153,7 +153,7 @@ function showScores() {
     imageurl ="quizScene/images/arch5.png";
     spaText="FEELER!";
     infoText="FEELERS ARE LIKELY <br> ARTISTIC AND CONSIDERATE!"
-  
+
   }
   console.log("last option = " + finalOption)
   document.getElementById('fist-page').style.display = 'grid';
@@ -162,7 +162,7 @@ function showScores() {
   document.getElementById('process_id').style.display = 'none';
 
 
-  var personiltyTypeHtml = "<h2 id='question' >"+personiltyType+"</h2>"; 
+  var personiltyTypeHtml = "<h2 id='question' >"+personiltyType+"</h2>";
   var  gameOverHTML = '';
   document.getElementById("middleText").style.top = "45%";
   gameOverHTML += "<h1 id='score'> Option: " + optionChoice + "</h1>";
@@ -171,12 +171,12 @@ function showScores() {
   element.innerHTML = spaText;
   var element2 = document.getElementById("question")
   element2.innerHTML = personiltyTypeHtml;
-  
- 
+
+
   var buttonText =" <button id='start-btn' class='bn3639 bn39' style='background-color:"+ buttonColor + ";' >TAKE ME TO MY SPA</button>";
-  var element3 = document.getElementById("controls_id") 
+  var element3 = document.getElementById("controls_id")
   element3.innerHTML = buttonText;
-  
+
   var resultImg = "<img src="+ imageurl +" width='512' height='512'>";
   var element4 = document.getElementById("archid");
   element4.innerHTML = resultImg;
@@ -190,13 +190,13 @@ function showScores() {
 });
 
 };
-    
+
 var questions = [
-  new Question("CHOOSE AN IMAGE THAT <br> REPRESENT YOU MORE", ["baby", "light", "city", "moon"], "baby"),
+  new Question("CHOOSE AN IMAGE THAT <br> REPRESENTS YOU MORE", ["baby", "light", "city", "moon"], "baby"),
   new Question("CHOOSE AN IMAGE THAT <br> MAKES YOU FEEL MORE RELAXED", ["sea", "plant", "shell", "mozai"], "sea"),
   new Question("CHOOSE A COLOR THAT  <br> YOU LIKE THE MOST", ["color1", "color2", "color3",  "color4"], "color1")
 ];
-    
+
 function Question(text, choices, answer) {
 
   this.text = text;
@@ -248,34 +248,28 @@ Question.prototype.isCorrectAnswer = function(choice) {
   return this.answer === choice;
 
 }
-    
-    
+
+
 function Quiz(questions) {
   this.score = 0;
   this.questions = questions;
   this.questionIndex = 0;
 }
-    
+
 Quiz.prototype.getQuestionIndex = function() {
   return this.questions[this.questionIndex];
 }
-    
+
 Quiz.prototype.guess = function(answer) {
   if (this.getQuestionIndex().isCorrectAnswer(answer)) {
     this.score++;
   }
   this.questionIndex++;
 }
-    
+
 Quiz.prototype.isEnded = function() {
   return this.questionIndex === this.questions.length;
 }
-    
+
 
 var quiz = new Quiz(questions);
-
-
-
-
-    
-
