@@ -5,6 +5,13 @@ var canvasWidth = window.innerWidth;
 if (window.innerWidth > window.innerHeight) {
     canvasWidth = Math.floor(window.innerHeight*0.66);
 }
+const fullscreenOverlay = document.getElementById('canvas-fullscreen')
+const closeBtn = document.getElementById('close-button')
+const downloadBtn = document.getElementById('download-button')
+const shareBtn = document.getElementById('share-button')
+
+var readyForSelfie = false;
+console.log("selfie not ready");
 
 var deepAR = DeepAR({
     canvasWidth: canvasWidth,
@@ -23,6 +30,13 @@ var deepAR = DeepAR({
         deepAR.switchEffect(0, 'slot', './effects/background_segmentation4', function() {
             // effect loaded
             console.log("effect loaded")
+            takePicBtn.style.opacity = 1;
+            fullscreenOverlay.style.opacity = 0;
+            readyForSelfie = true;
+            console.log("selfie  ready");
+
+            // fullscreenOverlay.style.display = 'none';
+
         });
     }
 });
@@ -54,102 +68,46 @@ deepAR.onFaceVisibilityChanged = function(visible) {
 deepAR.onVideoStarted = function() {
     var loaderWrapper = document.getElementById('loader-wrapper');
     loaderWrapper.style.display = 'none';
+    takePicBtn.style.opacity = 1;
 };
 
+var screenshot;
 
 deepAR.onScreenshotTaken = function(photo) {
     // Pause camera video
-    deepAR.pause();
-
+    // fullscreenOverlay.style.display = 'block';
     // console.log(img);
-    shareCanvas(photo);
+    if(readyForSelfie){
+
+      takePicBtn.style.display = 'none';
+      takePicBtn.style.opacity = 0;
+      fullscreenOverlay.style.opacity = 0.8;
+      deepAR.pause();
+      screenshot = photo;
+      shareCanvas(photo);
+      readyForSelfie = false;
+      console.log("selfie not ready");
+    }
 
     // if share is cancelled, resume video
-    deepAR.resume();
+    //deepAR.resume();
 };
 
 async function shareCanvas(image) {
+  setTimeout(function(){
+
+    fullscreenOverlay.style.opacity = 0;
+    closeBtn.style.opacity = 1;
+    downloadBtn.style.opacity = 1;
+    shareBtn.style.opacity = 1;
+    // fullscreenOverlay.style.display = 'none';
+  }, 200);
+
     // let canvasElement = document.getElementById('deepar-canvas');
-    // const dataUrl = canvasElement.toDataURL();
-    const dataUrl = image;
-    const blob = await (await fetch(dataUrl)).blob();
-    const filesArray = [
-        new File(
-            [blob],
-            'share.png',
-            {
-                type: blob.type,
-                lastModified: new Date().getTime()
-            }
-        )
-    ];
-    const shareData = {
-        files: filesArray,
-    };
-    console.log(shareData);
-    console.log("shareData = " + shareData);
-    // console.log(typeof(shareData));
-
-    // navigator.share(shareData).then(r =>  console.log('share image'));
-
-    if (navigator.canShare && navigator.canShare({ files: filesArray })) {
-        // Supported Browsers - Share image with UX share dialog
-        navigator.share({
-            files: filesArray,
-            title: 'Pictures',
-            text: 'Our Pictures.',
-        })
-            .then(() => console.log('Share was successful.'))
-            .catch((error) => console.log('Sharing failed', error));
-
-    } else {
-        // Fallback - Save image, prompt user to share
-        console.log(`Your system doesn't support sharing files.`);
-    }
 
 }
 
 deepAR.downloadFaceTrackingModel('lib/models-68-extreme.bin');
-
-function startExternalVideo() {
-
-    // create video element
-    var video = document.createElement('video');
-    video.muted = true;
-    video.loop = true;
-    video.controls = true;
-    video.setAttribute('playsinline', 'playsinline');
-    video.style.width = '100%';
-    video.style.height = '100%';
-
-    // put it somewhere in the DOM
-    var videoContainer = document.createElement('div');
-    videoContainer.appendChild(video);
-    videoContainer.style.width = '1px';
-    videoContainer.style.height = '1px';
-    videoContainer.style.position = 'absolute';
-    videoContainer.style.top = '0px';
-    videoContainer.style.left = '0px';
-    videoContainer.style['z-index'] = '-1';
-    document.body.appendChild(videoContainer);
-
-    navigator.mediaDevices.getUserMedia({video: true}).then(function(stream) {
-        try {
-            video.srcObject = stream;
-        } catch (error) {
-            video.src = URL.createObjectURL(stream);
-        }
-
-        setTimeout(function() {
-            video.play();
-        }, 50);
-    }).catch(function(error) {
-
-    });
-
-    // tell the DeepAR SDK about our new video element
-    deepAR.setVideoElement(video, true);
-}
 
 
 $(document).ready(function() {
@@ -173,11 +131,12 @@ $(document).ready(function() {
 
 });
 
-const shareButton = document.getElementById('share-button')
-shareButton.addEventListener("click", async () => {
+const takePicBtn = document.getElementById('takepic-button')
+takePicBtn.addEventListener("click", async () => {
     try {
         // await navigator.share({ title: "Example Page", url: "" });
         // console.log("Data was shared successfully");
+        console.log("taken a screenshot")
         deepAR.takeScreenshot();
 
     } catch (err) {
@@ -186,6 +145,100 @@ shareButton.addEventListener("click", async () => {
     }
 });
 
+closeBtn.addEventListener("click", async () => {
+
+  closeBtn.style.opacity = 0;
+  downloadBtn.style.opacity = 0;
+  shareBtn.style.opacity = 0;
+  // closeBtn.style.display = 'none';
+  // downloadBtn.style.display = 'none';
+  // shareBtn.style.display = 'none';
+
+  setTimeout(function(){
+    takePicBtn.style.display = 'block';
+    takePicBtn.style.opacity = 1;
+    readyForSelfie = true
+    console.log("selfie ready");
+    deepAR.resume();
+    // fullscreenOverlay.style.display = 'none';
+  }, 200);
+  console.log("closed");
+});
+
+downloadBtn.addEventListener("click", async () => {
+  download(screenshot, 'AHC Selfie with Krystal Jung.png');
+});
+shareBtn.addEventListener("click", async () => {
+  share(screenshot);
+});
+
+
+/* Canvas Donwload */
+function download(canvas, filename) {
+  /// create an "off-screen" anchor tag
+  var lnk = document.createElement('a'), e;
+
+  /// the key here is to set the download attribute of the a tag
+  lnk.download = filename;
+
+  /// convert canvas content to data-uri for link. When download
+  /// attribute is set the content pointed to by link will be
+  /// pushed as "download" in HTML5 capable browsers
+  // lnk.href = canvas.toDataURL("image/png;base64");
+  lnk.href = canvas;
+
+  /// create a "fake" click-event to trigger the download
+  if (document.createEvent) {
+    e = document.createEvent("MouseEvents");
+    e.initMouseEvent("click", true, true, window,
+                     0, 0, 0, 0, 0, false, false, false,
+                     false, 0, null);
+
+    lnk.dispatchEvent(e);
+  } else if (lnk.fireEvent) {
+    lnk.fireEvent("onclick");
+  }
+}
+
+async function share(image){
+  const dataUrl = image;
+  const blob = await (await fetch(dataUrl)).blob();
+  const filesArray = [
+      new File(
+          [blob],
+          'AHCSelfie.png',
+          {
+              type: blob.type,
+              lastModified: new Date().getTime()
+          }
+      )
+  ];
+  const shareData = {
+      files: filesArray,
+  };
+  console.log(shareData);
+  console.log("shareData = " + shareData);
+  // console.log(typeof(shareData));
+
+  // navigator.share(shareData).then(r =>  console.log('share image'));
+
+  if (navigator.canShare && navigator.canShare({ files: filesArray })) {
+      // Supported Browsers - Share image with UX share dialog
+      navigator.share({
+          files: filesArray,
+          title: 'AHC',
+          text: 'Selfie with Krystal Jung.',
+      })
+          .then(() => console.log('Share was successful.'))
+          .catch((error) => console.log('Sharing failed', error));
+
+  } else {
+      // Fallback - Save image, prompt user to share
+      console.log(`Your system doesn't support sharing files.`);
+      alert("Your device does not allow sharing of files from the web browser. Please download the image instead.");
+  }
+
+}
 
 // Share Link UI
 // shareButton.addEventListener("click", async () => {
