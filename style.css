@@ -1546,7 +1546,7 @@ img.bg {
     margin-bottom: 0.625rem;
     align-items: center;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
    }
    .footer .process{
      /* padding-bottom: 500px; */
