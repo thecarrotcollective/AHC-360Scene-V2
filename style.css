@@ -1661,6 +1661,7 @@ img.bg {
   }
 
   .footer {
+
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1668,15 +1669,15 @@ img.bg {
     margin-top: 0.625rem;
     margin-bottom: 0.625rem;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+       -ms-flex-align: center;
+         align-items: center;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
-            flex-direction: column;
+          flex-direction: column;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+         -ms-flex-pack: center;
+            justify-content: flex-start;
 }
    
    .footer .process{
