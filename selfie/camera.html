@@ -11,11 +11,23 @@
   <body>
     <canvas class="deepar" id="deepar-canvas" oncontextmenu="event.preventDefault()"></canvas>
     <div id="loader-wrapper">
-      <span class="loader"></span></span>
+      <span class="loader"></span>
     </div>
-    <button id="share-button" class="selfie-button">
+    <button id="close-button" class="doublespace selfie-button">
+      <img class="icon" src="imgs/close_icon.png">
+    </button>
+    <button id="download-button" class="doublespace selfie-button">
+      <img class="icon" src="imgs/capture_icon.png">
+    </button>
+    <button id="share-button" class="singlespace selfie-button">
+      <img class="icon" src="imgs/share_icon.png">
+    </button>
+
+    <button id="takepic-button" class="selfie-button">
       Take A Selfie
     </button>
+    <div id="canvas-fullscreen"></div>
+
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
