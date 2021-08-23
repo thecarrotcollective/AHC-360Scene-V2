@@ -101,27 +101,27 @@
 
       </div>
 
-      
+
         <div class="product" style="display: none;" id="product1">
           <img id="productImage"src="./UIAssets/product3.png" alt="Snow">
           <img id="close-product" src="UIAssets/close.png">
           <button id="productButton-1" class="btn" >SHOP NOW</button>
         </div>
-    
+
         <div class="product" style="display: none;" id="product2">
           <img id="close-product2" src="UIAssets/close.png">
           <img src="./UIAssets/product2.png" alt="Snow">
-          
+
           <button id="productButton-2" class="btn">SHOP NOW</button>
         </div>
-    
+
         <div  class="product" style="display: none;" id="product3">
           <img id="close-product3" src="UIAssets/close.png">
           <img src="./UIAssets/product1.png" alt="Snow">
-         
+
           <button id="productButton-3"  class="btn">SHOP NOW</button>
         </div>
-  
+
 
 
       <div id="ui-container">
@@ -190,7 +190,7 @@
     document.getElementById('beauty-btn').addEventListener("click", openBeauty);
 
     function openSelfie(){
-      window.open('https://us.ahcbeauty.com/')
+      window.open('../selfie/index.html')
     }
 
     function openTherapy(){
@@ -317,21 +317,21 @@
     document.getElementById('close-product3').addEventListener("click", closeProductPreview);
     function productLink1(){
       window.open('https://us.ahcbeauty.com/products/aqualuronic-emulsion')
-      
+
       document.getElementById('product1').style.display = 'none';
-     
+
     }
     function productLink2(){
       window.open('https://us.ahcbeauty.com/products/aqualuronic-toner')
-      
+
       document.getElementById('product2').style.display = 'none';
-     
+
     }
     function productLink3(){
       window.open('https://us.ahcbeauty.com/products/aqualuronic-cleanser')
-      
+
       document.getElementById('product3').style.display = 'none';
-     
+
     }
     function closeProductPreview(){
       console.log("clicked")
