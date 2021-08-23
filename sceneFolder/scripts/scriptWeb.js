@@ -243,7 +243,7 @@ function init() {
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 			VideoPlayBottleScene.position.set(-342,25,-450);
 	
-			VideoPlayBottleScene.rotation.set(0,4.7,0)
+			VideoPlayBottleScene.rotation.set(0,1.5,0)
 			VideoPlayBottleScene.scale.set(7.2,7.5,1)
 			bilboardVideo.play();
 			
@@ -264,7 +264,7 @@ function init() {
 
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 			VideoPlayBottleScene.position.set(-240,16,-450);
-			VideoPlayBottleScene.rotation.set(0,4.65,0)
+			VideoPlayBottleScene.rotation.set(0,1.5,0)
 			VideoPlayBottleScene.scale.set(9.2,9.6,1)
 			bilboardVideo.play();
 			videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(-20)));
