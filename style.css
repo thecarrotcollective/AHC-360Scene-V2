@@ -58,8 +58,9 @@
 
   .mainIntroPage{
     background-color: rgb(254, 245, 240);
-      background: url('quizScene/images/photo_2021-08-20\ 19.45.03.jpeg') no-repeat;
-      background-size:  100% 100%;
+    background: url('quizScene/images/open-bg.jpg') no-repeat;
+    background-position: center; /* Center the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
     /* padding-top: 10%; */
     /* height: calc(var(--vh, 1vh) * 90); */
 
@@ -907,8 +908,9 @@ img.bg {
 
   .mainIntroPage{
     background-color: rgb(254, 245, 240);
-      background: url('quizScene/images/photo_2021-08-20\ 19.45.03.jpeg') no-repeat;
-      background-size:  400% 100%;
+    background: url('quizScene/images/open-bg.jpg') no-repeat;
+    background-position: center; /* Center the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
     /* padding-top: 10%; */
     /* height: calc(var(--vh, 1vh) * 90); */
   }

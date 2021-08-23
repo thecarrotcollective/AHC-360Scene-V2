@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Picture Quiz</title>
+    <title>AHC Spa at Home</title>
      <link rel="stylesheet" href="style.css" as="style" >
     <link rel="preload" href="quizScene/script.js" as="script">
     <link rel="preload" href="style.css" as="style">
@@ -109,6 +109,7 @@
     document.getElementById('start-btnIntro').addEventListener('click', function(e) {
         document.getElementById('myVideo').style.display="block";
         document.getElementById('start-btnIntro').style.display="none";
+        document.getElementById('tandc').style.display="none";
         document.getElementById('ahc-logo-beautyIntro2').style.display="none";
         document.getElementById('skipLink').style.display="block";
         firstVideo.play();
