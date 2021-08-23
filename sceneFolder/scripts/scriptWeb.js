@@ -183,6 +183,7 @@ function init() {
 			console.log("pool scene runned")
 			document.getElementById('pool-text').style.display = 'block';
 			document.getElementById('pool-btn').style.display = 'block';
+			document.getElementById('pool-btn').style.pointerEvents = "auto";
 
 			// const alphaMaskPool = new THREE.TextureLoader().load( "UIAssets/alphaMasks/poolSceneAlpha.png" );
 			// videoMat.alphaMap = alphaMaskPool
@@ -211,6 +212,7 @@ function init() {
 			console.log("selfie scene runned")
 			document.getElementById('selfie-text').style.display = 'block';
 			document.getElementById('selfie-btn').style.display = 'block';
+			document.getElementById('selfie-btn').style.pointerEvents = "auto";
 			PoolEntranceScene.add(PoolEntranceArrow)
 			PoolRoomScene.add(PoolRoomArrow);
 			SelfiePlaneScene.add(SelfiePlane)
@@ -238,15 +240,20 @@ function init() {
 			console.log("couch scene runned")
 			ProductRoomScene.add(ProductRoomArrow);
 			MiddleRoomScene.add(MiddleRoomArrow);
-			
+
 
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 			VideoPlayBottleScene.position.set(-342,25,-450);
+<<<<<<< HEAD
 	
 			VideoPlayBottleScene.rotation.set(0,1.5,0)
+=======
+
+			VideoPlayBottleScene.rotation.set(0,4.7,0)
+>>>>>>> 26a8e41cd575c680963703bf976ae8dec81539f1
 			VideoPlayBottleScene.scale.set(7.2,7.5,1)
 			bilboardVideo.play();
-			
+
 			MiddleRoomArrow.position.set(arrowDist * Math.sin(toRadians(-45)) , arrowHeight, -arrowDist * Math.cos(toRadians(-45)));
 			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(-15)) , arrowHeight, -arrowDist * Math.cos(toRadians(-15)));
 			MiddleRoomArrow.scale.copy(navArrowScale)
@@ -284,7 +291,7 @@ function init() {
 			console.log("beauty scene runned")
 			document.getElementById('beauty-text').style.display = 'block';
 			document.getElementById('beauty-btn').style.display = 'block';
-
+			document.getElementById('beauty-btn').style.pointerEvents = "auto";
 			ProductRoomScene.add(ProductRoomArrow)
 			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.5* Math.cos(toRadians(180)));
 			ProductRoomArrow.scale.copy(navArrowScale)
@@ -362,7 +369,7 @@ function init() {
 			ProductIcon1.position.set(0,-0.25,-1)
 			ProductIcon1.scale.set(0.1,0.1,0.1)
 			ProductIcon1.rotation.set(0,0,0)
-			
+
 			ProductIconScene2.add(ProductIcon2)
 			ProductIcon2.position.set(-0.3,-0.28,-1)
 			ProductIcon2.scale.set(0.085,0.085,0.085)
@@ -384,7 +391,7 @@ function init() {
 			PoolRoomScene.add(PoolRoomArrow)
 			MainRoomScene.add(MainRoomArrow)
 			RoomVideoPlayScene.add(RoomVideoPlay);
-			
+
 			MiddleRoomScene.add(MiddleRoomArrow)
 			selfieRoomArrow.scale.copy(navArrowScale)
 			PoolRoomArrow.scale.copy(navArrowScale)
@@ -395,13 +402,13 @@ function init() {
 			MiddleRoomArrow.position.set(arrowDist * Math.sin(toRadians(135)) , arrowHeight, -arrowDist * Math.cos(toRadians(135)));
 			MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(190)) , arrowHeight, -arrowDist * Math.cos(toRadians(190)));
 
-	
+
 			RoomVideoPlay.position.set(120,-8.5,-100)
 			RoomVideoPlay.rotation.set(0,-1.5,-0.01)
 			RoomVideoPlay.scale.set(3,3,2.1)
 			video.play()
 			video2.play()
-	
+
 			TweenFadeInForArrow()
 			TweenFadeInForVideos(videoMat)
 		}
@@ -431,10 +438,10 @@ function init() {
 			  PoolEntranceArrow.scale.copy(navArrowScale)
 			//   orbVideoMask.play()
 			//   orbVideo.play()
-	
+
 			  video.play()
 			  video3.play()
-			
+
 			  videoMat.alphaMap = videoMask2
 
 			  TweenFadeInForVideos(videoMat)
@@ -603,8 +610,8 @@ function init() {
 	bilboardVideo.muted = true;
 	bilboardVideo.loop = true;
 	bilboardVideoTex = new THREE.VideoTexture(bilboardVideo)
-	
-	
+
+
     videoMatBottleScene = new THREE.MeshBasicMaterial( {map: bilboardVideoTex,opacity:0,side: THREE.DoubleSide} );
     // videoMatBottleScene.alphaMap = alphaMaskBottleScene
     VideoPlayBottleScene = new THREE.Mesh( videoMeshBottleScene, videoMatBottleScene );
@@ -668,8 +675,8 @@ function animate() {
 	// console.log("video" + video.currentTime)
 	// console.log("video2" + video2.currentTime)
 	controls.addEventListener( 'change', function(){
-	
-	
+
+
 		endbool =false
 		if(currState == POOL){
 			clickableVideo = false
@@ -684,7 +691,7 @@ function animate() {
 			document.getElementById('product1').style.display = 'none';
 			document.getElementById('product2').style.display = 'none';
 			document.getElementById('product3').style.display = 'none';
-	
+
 		}
 	})
 
@@ -720,10 +727,11 @@ function animate() {
 		if(dirVector.z > 0.25 && dirVector.z < 0.75 && dirVector.y > -0.3 && dirVector.x < 0 ){ // need to stress test
 			document.getElementById('selfie-text').style.opacity = 1;
 			document.getElementById('selfie-btn').style.opacity = 1;
+			document.getElementById('selfie-btn').style.pointerEvents = "auto";
 		} else {
 			document.getElementById('selfie-text').style.opacity = 0;
 			document.getElementById('selfie-btn').style.opacity = 0;
-
+			document.getElementById('selfie-btn').style.pointerEvents = "none";
 		}
 	}
 	 else if(currState === POOL){
@@ -733,9 +741,11 @@ function animate() {
 		if(dirVector.z > 0.25 && dirVector.z < 0.75 && dirVector.y > -0.3 && dirVector.x > 0.8 ){ // need to stress test
 			document.getElementById('pool-text').style.opacity = 1;
 			document.getElementById('pool-btn').style.opacity = 1;
+			document.getElementById('pool-btn').style.pointerEvents = "auto";
 		} else {
 			document.getElementById('pool-text').style.opacity = 0;
 			document.getElementById('pool-btn').style.opacity = 0;
+			document.getElementById('pool-btn').style.pointerEvents = "none";
 		}
 	} else if(currState === BEAUTY){
 		camera.getWorldDirection(dirVector)
@@ -744,13 +754,15 @@ function animate() {
 		if(dirVector.z > -0.65 && dirVector.z < 0 && dirVector.y > -0.3 && dirVector.x < -0.75 ){ // need to stress test
 			document.getElementById('beauty-text').style.opacity = 1;
 			document.getElementById('beauty-btn').style.opacity = 1;
+			document.getElementById('beauty-btn').style.pointerEvents = "auto";
 		} else {
 			document.getElementById('beauty-text').style.opacity = 0;
 			document.getElementById('beauty-btn').style.opacity = 0;
+			document.getElementById('beauty-btn').style.pointerEvents = "none";
 		}
 	}else if(currState === MAIN){
 		camera.getWorldDirection(dirVector)
-	
+
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
 
 		if(dirVector.z > -0.8 && dirVector.z < 0.8 && dirVector.y > -0.3 && dirVector.x < 0 ){ // need to stress test
@@ -760,7 +772,7 @@ function animate() {
 				orbVideoPlayed = true
 			}
 			// orbVideo.addEventListener("ended",function(){
-				
+
 			// },false);
 			// }
 
@@ -770,7 +782,7 @@ function animate() {
 
 		}
 	}
-		
+
 
 
 	requestAnimationFrame( animate );
@@ -993,7 +1005,7 @@ function clickTrigger(){
             console.log("video clicked")
             document.getElementById('product1').style.display = 'block';
 			document.getElementById('productButton-1').style.display = 'block';
-	
+
             //window.open('https://us.ahcbeauty.com/')
         }
         if(intersectsProductPlusIcon2.length> 0) {
@@ -1102,6 +1114,9 @@ function DisableEverything(){
 	document.getElementById('pool-btn').style.display = 'none';
 	document.getElementById('beauty-text').style.display = 'none';
 	document.getElementById('beauty-btn').style.display = 'none';
+	document.getElementById('beauty-btn').style.pointerEvents = 'none';
+	document.getElementById('pool-btn').style.pointerEvents = 'none';
+	document.getElementById('selfie-btn').style.pointerEvents = 'none';
 	let ArrowArray = [orbProduct,ProcuctBaseArrow,PoolEntranceArrow,orbVideoMesh,MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
 	let ArrowScene = [orbProductScene,ProcuctBaseScene,PoolEntranceScene,OrbVideoScene,MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
 
