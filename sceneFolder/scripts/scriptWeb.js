@@ -249,7 +249,7 @@ function init() {
 			VideoPlayBottleScene.rotation.set(0,1.5,0)
 =======
 
-			VideoPlayBottleScene.rotation.set(0,4.7,0)
+	
 >>>>>>> 26a8e41cd575c680963703bf976ae8dec81539f1
 			VideoPlayBottleScene.scale.set(7.2,7.5,1)
 			bilboardVideo.play();
