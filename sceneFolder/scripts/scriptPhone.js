@@ -12,7 +12,9 @@ let scene,materials,skyBox,ProductRoomScene,ProductRoomArrow,MiddleRoomScene,Mid
 let RoomVideoPlay,RoomVideoPlayScene,filterScene,SceneObjectVideo1,videoPlane,selfieRoomArrow;
 let OrbVideoScene,orbVideoPlane, orbVideo, orbVideoMask,orbVideoTex, orbVideoMaskTex, orbVideoMat, orbVideoMesh;
 let videoMatBottleScene,VideoPlayBottleScene,firtVideoChecker,secondVideoChecker,selfieSceneClick;
-let bilboardVideo, bilboardVideoTex;
+
+let bilboardVideo, bilboardVideoTex,orbProductPlane, orbProductTex,orbProductAlpha,orbProductMat,orbProduct;
+let PoolEntranceArrow, ProcuctBaseArrow ,PoolEntranceScene, ProcuctBaseScene
 const mouse = new THREE.Vector2();
 var clickableVideo,manager,videoManager,arrowMat;
 var loaderCheck = false;
@@ -33,6 +35,8 @@ var PRODUCTS = 5
 var BEAUTY = 6
 var PRODENTRANCE = 7
 var MIDDLE = 8
+var POOLENTRACE =9
+var PRODUCTBASE = 10
 
 
 /* The below code triggers the experience. We will likely remove / refactor it later */
@@ -94,6 +98,11 @@ function init() {
 	ProductIconScene3 = new THREE.Scene();
 	SelfiePlaneScene =  new THREE.Scene();
 	MiddleRoomScene =  new THREE.Scene();
+	PoolEntranceScene =  new THREE.Scene();
+	ProcuctBaseScene =  new THREE.Scene();
+
+	scene.add(PoolEntranceScene)
+	scene.add(ProcuctBaseScene)
 	scene.add(OrbVideoScene)
 	scene.add(SelfiePlaneScene)
 	scene.add(MiddleRoomScene)
@@ -149,24 +158,31 @@ function init() {
 	manager.onLoad = function ( ) {
 
 		console.log( 'Loading complete!');
-		setTimeout(function(){
-
+		
 
 		if(currState === INTRO){
 			video.currentTime = 0;
 			video2.currentTime = 0;
 			video3.currentTime = 0;
-		
 			console.log("intro scene runned")
+			video.play()
+			video2.play()
 			RoomVideoPlayScene.add(RoomVideoPlay);
 			RoomVideoPlay.position.set(101.4,-11.5,-180)
 			RoomVideoPlay.rotation.set(0,-1.58,-0.01)
 			RoomVideoPlay.scale.set(3.1,3,2.1)
-			video.play()
-			video2.play()
+
+
 			MainRoomScene.add(MainRoomArrow);
+			MiddleRoomScene.add(MiddleRoomArrow)
+			MiddleRoomArrow.position.set(arrowDist * Math.sin(toRadians(60)) , arrowHeight, -arrowDist * Math.cos(toRadians(60)));
+			MiddleRoomArrow.scale.copy(navArrowScale)
 			TweenFadeInForVideos(videoMat)
 			TweenFadeInForArrow()
+
+
+
+
 		}
 		if(currState === POOL){
 			video.currentTime = 0;
@@ -177,12 +193,12 @@ function init() {
 
 			// const alphaMaskPool = new THREE.TextureLoader().load( "UIAssets/alphaMasks/poolSceneAlpha.png" );
 			// videoMat.alphaMap = alphaMaskPool
-			MainRoomScene.add(MainRoomArrow);
+			PoolEntranceScene.add(PoolEntranceArrow);
 			selfieScene.add(selfieRoomArrow);
 			RoomVideoPlayScene.add(RoomVideoPlay);
-			MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-150)) , arrowHeight, -arrowDist * Math.cos(toRadians(-150)));
-			selfieRoomArrow.position.set(arrowDist * Math.sin(toRadians(-95)) , arrowHeight, -arrowDist * Math.cos(toRadians(-95)));
-			MainRoomArrow.scale.copy(navArrowScale)
+			PoolEntranceArrow.position.set(arrowDist * Math.sin(toRadians(-150)) , arrowHeight, -arrowDist * Math.cos(toRadians(-150)));
+			selfieRoomArrow.position.set(arrowDist * Math.sin(toRadians(-85)) , arrowHeight, -arrowDist * Math.cos(toRadians(-85)));
+			PoolEntranceArrow.scale.copy(navArrowScale)
 			selfieRoomArrow.scale.copy(navArrowScale)
 
 			RoomVideoPlay.position.set(100,-20.5,65)
@@ -202,17 +218,17 @@ function init() {
 			console.log("selfie scene runned")
 			document.getElementById('selfie-text').style.display = 'block';
 			document.getElementById('selfie-btn').style.display = 'block';
-			MainRoomScene.add(MainRoomArrow)
+			PoolEntranceScene.add(PoolEntranceArrow)
 			PoolRoomScene.add(PoolRoomArrow);
 			SelfiePlaneScene.add(SelfiePlane)
 			SelfiePlane.position.set(-1,0,1)
 			SelfiePlane.rotation.set(0,-1,0)
 			SelfiePlane.scale.set(2,1.5,1)
 
-			MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-180)) , arrowHeight, -arrowDist * Math.cos(toRadians(-180)));
+			PoolEntranceArrow.position.set(arrowDist * Math.sin(toRadians(-180)) , arrowHeight, -arrowDist * Math.cos(toRadians(-180)));
 			PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(60)) , arrowHeight, -arrowDist * Math.cos(toRadians(60)));
 			PoolRoomArrow.scale.copy(navArrowScale)
-			MainRoomArrow.scale.copy(navArrowScale)
+			PoolEntranceArrow.scale.copy(navArrowScale)
 
 			RoomVideoPlayScene.add(RoomVideoPlay);
 			RoomVideoPlay.position.set(200,-21,2)
@@ -229,12 +245,15 @@ function init() {
 			console.log("couch scene runned")
 			ProductRoomScene.add(ProductRoomArrow);
 			MiddleRoomScene.add(MiddleRoomArrow);
+			
+
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 			VideoPlayBottleScene.position.set(-342,25,-450);
 	
 			VideoPlayBottleScene.rotation.set(0,4.7,0)
 			VideoPlayBottleScene.scale.set(7.2,7.5,1)
 			bilboardVideo.play();
+			
 			MiddleRoomArrow.position.set(arrowDist * Math.sin(toRadians(-45)) , arrowHeight, -arrowDist * Math.cos(toRadians(-45)));
 			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(-15)) , arrowHeight, -arrowDist * Math.cos(toRadians(-15)));
 			MiddleRoomArrow.scale.copy(navArrowScale)
@@ -251,11 +270,10 @@ function init() {
 			MiddleRoomScene.add(MiddleRoomArrow);
 
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-			VideoPlayBottleScene.position.set(-245,16,-450);
-			VideoPlayBottleScene.rotation.set(0,4.7,0)
-			VideoPlayBottleScene.scale.set(9,9.5,1)
+			VideoPlayBottleScene.position.set(-240,16,-450);
+			VideoPlayBottleScene.rotation.set(0,4.65,0)
+			VideoPlayBottleScene.scale.set(9.2,9.6,1)
 			bilboardVideo.play();
-			TweenFadeInForBilboardVideos()
 			videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(-20)));
 			BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(30)));
 			CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(100)) , arrowHeight, -arrowDist * Math.cos(toRadians(100)));
@@ -265,6 +283,7 @@ function init() {
 			videoRoomArrow.scale.copy(navArrowScale)
 			BottleRoomArrow.scale.copy(navArrowScale)
 			TweenFadeInForArrow()
+			TweenFadeInForBilboardVideos()
 
 		}
 		if(currState === BEAUTY){
@@ -277,26 +296,33 @@ function init() {
 			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.5* Math.cos(toRadians(180)));
 			ProductRoomArrow.scale.copy(navArrowScale)
 
-			BottleRoomScene.add(BottleRoomArrow)
-			BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(60)) , arrowHeight, -arrowDist * Math.cos(toRadians(60)));
-			BottleRoomArrow.scale.copy(navArrowScale)
+			ProcuctBaseScene.add(ProcuctBaseArrow)
+			ProcuctBaseArrow.position.set(arrowDist * Math.sin(toRadians(60)) , arrowHeight, -arrowDist * Math.cos(toRadians(60)));
+			ProcuctBaseArrow.scale.copy(navArrowScale)
 			bilboardVideo.play()
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 
-			VideoPlayBottleScene.position.set(-20,-1.6,-18);
+			VideoPlayBottleScene.position.set(-22,-1.8,-20);
 
-			VideoPlayBottleScene.rotation.set(0,1.6,0)
-			VideoPlayBottleScene.scale.set(0.87,0.875,1)
+			VideoPlayBottleScene.rotation.set(0.01,1.4,0)
+			VideoPlayBottleScene.scale.set(0.85,1,1)
 			TweenFadeInForArrow()
 			TweenFadeInForBilboardVideos()
 		}
-		
 		if(currState === PRODUCTS){
 			bilboardVideo.currentTime = 0;
 			console.log("product scene runned")
 			ProductRoomScene.add(ProductRoomArrow)
 			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(210)) , arrowHeight, -arrowDist *0.9* Math.cos(toRadians(210)));
 			ProductRoomArrow.scale.copy(navArrowScale)
+
+			bilboardVideo.play()
+			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+
+			VideoPlayBottleScene.position.set(-50,-0.85,-11.5);
+
+			VideoPlayBottleScene.rotation.set(0,1.5,0)
+			VideoPlayBottleScene.scale.set(	1.14,1.19,1)
 
 			ProductIconScene1.add(ProductIcon1)
 			ProductIcon1.position.set(-3.8,0,-2)
@@ -313,28 +339,93 @@ function init() {
 			ProductIcon3.scale.set(0.28,0.28,0.28)
 			ProductIcon3.rotation.set(0,-5,0)
 
-			bilboardVideo.play()
-			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-			VideoPlayBottleScene.position.set(-50,-0.95,-11.5);
-			VideoPlayBottleScene.rotation.set(0,1.6,0)
-			VideoPlayBottleScene.scale.set(	1.14,1.19,1)
 
-			VideoRoomScene.add(videoRoomArrow)
-			videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-100)) , arrowHeight, -arrowDist * Math.cos(toRadians(-100)));
-			videoRoomArrow.scale.copy(navArrowScale)
+			ProcuctBaseScene.add(ProcuctBaseArrow)
+			ProcuctBaseArrow.position.set(arrowDist * Math.sin(toRadians(-100)) , arrowHeight, -arrowDist * Math.cos(toRadians(-100)));
+			ProcuctBaseArrow.scale.copy(navArrowScale)
 			TweenFadeInForArrow()
 			TweenFadeInForBilboardVideos()
 			// RoomVideoPlayScene.add(RoomVideoPlay);
 		}
-		if(currState === MAIN){
+		if(currState === PRODUCTBASE){
+			bilboardVideo.currentTime = 0;
+			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+
+			VideoPlayBottleScene.position.set(-50,-5.8,-23.8);
+
+			VideoPlayBottleScene.rotation.set(0,1.5,0)
+			VideoPlayBottleScene.scale.set(1.6,1.7,1)
+			bilboardVideo.play()
+			VideoRoomScene.add(videoRoomArrow)
+			BottleRoomScene.add(BottleRoomArrow)
+			BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist*0.5 * Math.cos(toRadians(30)));
+			videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-30)) , arrowHeight, -arrowDist *0.5* Math.cos(toRadians(-30)));
+			BottleRoomArrow.scale.copy(navArrowScale)
+			videoRoomArrow.scale.copy(navArrowScale)
+			ProductRoomScene.add(ProductRoomArrow)
+			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.5* Math.cos(toRadians(180)));
+			ProductRoomArrow.scale.copy(navArrowScale)
+			ProductIconScene1.add(ProductIcon1)
+			ProductIcon1.position.set(0,-0.25,-1)
+			ProductIcon1.scale.set(0.1,0.1,0.1)
+			ProductIcon1.rotation.set(0,0,0)
+			
+			ProductIconScene2.add(ProductIcon2)
+			ProductIcon2.position.set(-0.3,-0.28,-1)
+			ProductIcon2.scale.set(0.085,0.085,0.085)
+			ProductIcon2.rotation.set(0,0,0)
+
+			ProductIconScene3.add(ProductIcon3)
+			ProductIcon3.position.set(0.225,-0.28,-1)
+			ProductIcon3.scale.set(0.09,0.09,0.09)
+			ProductIcon3.rotation.set(0,0,0)
+			TweenFadeInForArrow()
+			TweenFadeInForBilboardVideos()
+		}
+		if(currState === POOLENTRACE){
 			video.currentTime = 0;
 			video3.currentTime = 0;
 
+
+			selfieScene.add(selfieRoomArrow)
+			PoolRoomScene.add(PoolRoomArrow)
+			MainRoomScene.add(MainRoomArrow)
+			RoomVideoPlayScene.add(RoomVideoPlay);
+			
+			MiddleRoomScene.add(MiddleRoomArrow)
+			selfieRoomArrow.scale.copy(navArrowScale)
+			PoolRoomArrow.scale.copy(navArrowScale)
+			MainRoomArrow.scale.copy(navArrowScale)
+			MiddleRoomArrow.scale.copy(navArrowScale)
+			selfieRoomArrow.position.set(arrowDist * Math.sin(toRadians(-75)) , arrowHeight, -arrowDist * Math.cos(toRadians(-75)));
+			PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(10)) , arrowHeight, -arrowDist * Math.cos(toRadians(10)));
+			MiddleRoomArrow.position.set(arrowDist * Math.sin(toRadians(135)) , arrowHeight, -arrowDist * Math.cos(toRadians(135)));
+			MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(190)) , arrowHeight, -arrowDist * Math.cos(toRadians(190)));
+
+	
+			RoomVideoPlay.position.set(120,-8.5,-100)
+			RoomVideoPlay.rotation.set(0,-1.5,-0.01)
+			RoomVideoPlay.scale.set(3,3,2.1)
+			video.play()
+			video2.play()
+	
+			TweenFadeInForArrow()
+			TweenFadeInForVideos(videoMat)
+		}
+		if(currState === MAIN){
+			video.currentTime = 0;
+			video3.currentTime = 0;
+			orbVideo.currentTime = 0;
+			orbVideoMask.currentTime = 0;
 			console.log("MAIN scene runned")
-			OrbVideoScene.add(orbVideoMesh)
+				OrbVideoScene.add(orbVideoMesh)
+				OrbVideoScene.add(orbProduct)
 			  MiddleRoomScene.add(MiddleRoomArrow)
-			  PoolRoomScene.add(PoolRoomArrow);
+			  PoolEntranceScene.add(PoolEntranceArrow);
 			  RoomVideoPlayScene.add(RoomVideoPlay);
+			  orbProduct.position.set(-8.1,1.75,1.01)
+			  orbProduct.rotation.set(0,2,0)
+
 			  orbVideoMesh.position.set(-8,1.75,1.01)
 			  orbVideoMesh.rotation.set(0,2,0)
 			  RoomVideoPlay.position.set(88,-8.5,-120)
@@ -343,17 +434,14 @@ function init() {
 				  // RoomVideoPlay.rotation.set(0,90,0)
 			  MiddleRoomArrow.position.set(arrowDist * Math.sin(toRadians(90)) , arrowHeight, -arrowDist * Math.cos(toRadians(90)));
 			  MiddleRoomArrow.scale.copy(navArrowScale)
-			  PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist * Math.cos(toRadians(-20)));
-			  PoolRoomArrow.scale.copy(navArrowScale)
+			  PoolEntranceArrow.position.set(arrowDist * Math.sin(toRadians(0)) , arrowHeight, -arrowDist * Math.cos(toRadians(0)));
+			  PoolEntranceArrow.scale.copy(navArrowScale)
+			 
 			  video.play()
 			  video3.play()
-			  orbVideoMask.play()
-			  orbVideo.play()
-			  setTimeout(function(){
-				orbVideo.currentTime = 0;
-				orbVideoMask.currentTime = 0;
-			}, 2000);
+			
 			  videoMat.alphaMap = videoMask2
+
 			  TweenFadeInForVideos(videoMat)
 			  TweenFadeInForArrow()
 		}
@@ -365,7 +453,7 @@ function init() {
 		if(currState === MIDDLE){
 			console.log("middle scene runned")
 		  MainRoomScene.add(MainRoomArrow)
-		  PoolRoomScene.add(PoolRoomArrow);
+		  PoolEntranceScene.add(PoolEntranceArrow);
 		  CoachRoomScene.add(CoachRoomArrow)
 		  ProductRoomScene.add(ProductRoomArrow);
 
@@ -375,11 +463,11 @@ function init() {
 		  ProductRoomArrow.scale.copy(navArrowScale)
 		  MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-75)) , arrowHeight, -arrowDist * Math.cos(toRadians(-75)));
 		  MainRoomArrow.scale.copy(navArrowScale)
-		  PoolRoomArrow.position.set(arrowDist * Math.sin(toRadians(-25)) , arrowHeight, -arrowDist * Math.cos(toRadians(-25)));
-		  PoolRoomArrow.scale.copy(navArrowScale)
+		  PoolEntranceArrow.position.set(arrowDist * Math.sin(toRadians(-25)) , arrowHeight, -arrowDist * Math.cos(toRadians(-25)));
+		  PoolEntranceArrow.scale.copy(navArrowScale)
 
 		  TweenFadeInForArrow()
-	}	}, 300);
+	}
 	};
 
 
@@ -441,6 +529,12 @@ function init() {
 	MiddleRoomArrow = new THREE.Sprite( arrowMat );
 	MiddleRoomArrow.scale.copy(navArrowScale)
 
+	PoolEntranceArrow = new THREE.Sprite( arrowMat );
+	PoolEntranceArrow.scale.copy(navArrowScale)
+
+	ProcuctBaseArrow = new THREE.Sprite( arrowMat );
+	ProcuctBaseArrow.scale.copy(navArrowScale)
+
 	const ProductMesh = new THREE.PlaneGeometry( 1, 1, 1 );
 	var ProductTexture = new THREE.TextureLoader().load( ProductIconUrl );
 	var ProductMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: true,opacity:1,side: THREE.DoubleSide} );
@@ -453,20 +547,27 @@ function init() {
 	const selfiMat = new THREE.MeshBasicMaterial( {color: 0xffff00, transparent: true,opacity:0, side: THREE.DoubleSide} );
 	SelfiePlane = new THREE.Mesh( selfiMesh, selfiMat );
 
+	orbProductPlane = new THREE.PlaneGeometry( 3, 3 );
+	orbProductTex =new THREE.TextureLoader().load("images/AHC.HEROPRODUCT.BASE.jpg");
+	orbProductAlpha =new THREE.TextureLoader().load("images/AHC.HEROPRODUCT.ALPHA.jpg");
+	
+	orbProductMat = new THREE.MeshBasicMaterial( {map:orbProductTex ,alphaMap:orbProductAlpha, transparent: true,opacity:1,side: THREE.DoubleSide});
+	orbProduct = new THREE.Mesh( orbProductPlane, orbProductMat );
+
 		//***********************ORB VIDEO********************
 		orbVideoPlane = new THREE.PlaneGeometry( 9, 9 );
 		orbVideo = document.createElement('video');
 		orbVideo.src = "video/ORBREVEALBASE.mp4";
 		orbVideo.playsInline = true;
 		orbVideo.muted = true;
-		orbVideo.loop = true;
+		orbVideo.loop = false;
 	
 		orbVideoMask = document.createElement('video');
 		orbVideoMask.src = "video/ORBREVEALALPHA.mp4";
 		orbVideoMask.muted = true;
 		orbVideoMask.playsInline = true;
 
-		orbVideoMask.loop = true
+		orbVideoMask.loop = false
 		orbVideoTex =  new THREE.VideoTexture(orbVideo)
 		orbVideoMaskTex = new THREE.VideoTexture(orbVideoMask)
 		orbVideoMat = new THREE.MeshBasicMaterial( {map: orbVideoTex, transparent: true,opacity:1,side: THREE.DoubleSide} );
@@ -642,6 +743,19 @@ function animate() {
 			document.getElementById('beauty-text').style.opacity = 0;
 			document.getElementById('beauty-btn').style.opacity = 1;
 		}
+	}else if(currState === MAIN){
+		camera.getWorldDirection(dirVector)
+		var orbVideoPlayed = false
+		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
+
+		if(dirVector.z > -0.8 && dirVector.z < 0.8 && dirVector.y > -0.3 && dirVector.x < 0 ){ // need to stress test
+			orbVideoMask.play()
+			orbVideo.play()
+		} else {
+			orbVideoMask.pause()
+			orbVideo.pause()
+
+		}
 	}
 
 	requestAnimationFrame( animate );
@@ -699,7 +813,8 @@ function clickTrigger(){
 		var intersectsProductPlusIcon3 = raycaster.intersectObjects( ProductIconScene3.children, false );
 		var intersectsMultipleVideo = raycaster.intersectObjects( BottleRoomVideoPlayScene.children, false );
 		var intersectsSelfieClick = raycaster.intersectObjects( SelfiePlaneScene.children, false );
-
+		var intersectsPoolEntrance = raycaster.intersectObjects( PoolEntranceScene.children, false );
+		var intersectsProductBase = raycaster.intersectObjects( ProcuctBaseScene.children, false );
 		var intersectsMiddleRoom = raycaster.intersectObjects( MiddleRoomScene.children, false );
 		//***********************POOL SCENE**************************
 		if ( intersectsPoolRoom.length > 0 ) {
@@ -743,6 +858,32 @@ function clickTrigger(){
 			// selfieText.rotation.set(0,-1.5,-0.01)
 			// selfieText.scale.set(20,20,6)
 			// scene.add(selfieText);
+
+
+
+		}
+		//***********************POOL ENTRANCE SCENE**************************
+		if ( intersectsPoolEntrance.length > 0 ) {
+
+			setTimeout(function(){
+				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_002.jpg")
+				currState = POOLENTRACE;
+			}, 200);
+			console.log("POOL ENTRANCE SCENE - 1")
+			DisableEverything()
+
+
+
+		}
+		//***********************PRODUCT BASE SCENE**************************
+		if ( intersectsProductBase.length > 0 ) {
+
+			setTimeout(function(){
+				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_008.jpg")
+				currState = PRODUCTBASE;
+			}, 200);
+			console.log("PRODUCT BASE SCENE")
+			DisableEverything()
 
 
 
@@ -965,8 +1106,8 @@ function DisableEverything(){
 	document.getElementById('selfie-btn').style.display = 'none';
 	document.getElementById('pool-btn').style.display = 'none';
 	document.getElementById('beauty-btn').style.display = 'none';
-	let ArrowArray = [orbVideoMesh,MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
-	let ArrowScene = [OrbVideoScene,MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
+	let ArrowArray = [orbProduct,ProcuctBaseArrow,PoolEntranceArrow,orbVideoMesh,MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
+	let ArrowScene = [OrbVideoScene,ProcuctBaseScene,PoolEntranceScene,OrbVideoScene,MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
 
 	setTimeout(function(){
 		for (var i = 0; i < ArrowArray.length; i++) {
