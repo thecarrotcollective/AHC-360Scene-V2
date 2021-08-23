@@ -671,6 +671,7 @@ function onWindowResize() {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 }
 var endbool;
+var orbVideoPlayed = false
 function animate() {
 
 	// console.log("video" + video.currentTime)
@@ -745,15 +746,23 @@ function animate() {
 		}
 	}else if(currState === MAIN){
 		camera.getWorldDirection(dirVector)
-		var orbVideoPlayed = false
+	
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
 
 		if(dirVector.z > -0.8 && dirVector.z < 0.8 && dirVector.y > -0.3 && dirVector.x < 0 ){ // need to stress test
-			orbVideoMask.play()
-			orbVideo.play()
+			if(orbVideoPlayed == false){
+				orbVideo.play();
+				orbVideoMask.play()
+				orbVideoPlayed = true
+			}
+			// orbVideo.addEventListener("ended",function(){
+				
+			// },false);
+			// }
+
 		} else {
-			orbVideoMask.pause()
-			orbVideo.pause()
+			// orbVideo.pause();
+			// 	orbVideoMask.pause()
 
 		}
 	}
@@ -1099,6 +1108,7 @@ function DisableEverything(){
 	orbVideoMask.pause();
 	bilboardVideo.pause();
 	loaderCheck = false
+	orbVideoPlayed = false
 	console.log(loaderCheck)
 	document.getElementById('selfie-text').style.display = 'none';
 	document.getElementById('pool-text').style.display = 'none';

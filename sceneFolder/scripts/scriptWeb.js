@@ -662,7 +662,7 @@ function onWindowResize() {
 }
 var endbool;
 
-
+var orbVideoPlayed = false
 function animate() {
 
 	// console.log("video" + video.currentTime)
@@ -712,7 +712,7 @@ function animate() {
 
 
 	var dirVector = new THREE.Vector3();
-	var orbVideoPlayed = false
+
 	if(currState === SELFIE){
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
@@ -765,8 +765,8 @@ function animate() {
 			// }
 
 		} else {
-			orbVideo.pause();
-				orbVideoMask.pause()
+			// orbVideo.pause();
+			// 	orbVideoMask.pause()
 
 		}
 	}
@@ -1094,6 +1094,7 @@ function DisableEverything(){
 	bilboardVideo.pause();
 	orbVideoMask.pause()
 	loaderCheck = false
+	orbVideoPlayed = false
 	console.log(loaderCheck)
 	document.getElementById('selfie-text').style.display = 'none';
 	document.getElementById('selfie-btn').style.display = 'none';
