@@ -1,0 +1,128 @@
+canvas.deepar {
+    border: 0px none;
+    background-color: black;
+    display: block;
+    margin: auto;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #fff4ee;
+}
+
+
+#loader-wrapper {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    text-align: center;
+}
+
+.loader {
+
+    display: inline-block;
+    position: relative;
+    top: 42%;
+    z-index: 1000;
+
+    width: 90px;
+    height: 90px;
+    margin: auto;
+    background-color: #00f;
+
+    border-radius: 100%;
+    -webkit-animation: sk-scaleout 1.5s infinite ease-in-out;
+    animation: sk-scaleout 1.5s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-scaleout {
+    0% { -webkit-transform: scale(0) }
+    100% {
+        -webkit-transform: scale(1.0);
+        opacity: 0;
+    }
+}
+
+@keyframes sk-scaleout {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    } 100% {
+          -webkit-transform: scale(1.0);
+          transform: scale(1.0);
+          opacity: 0;
+      }
+}
+
+.effect-carousel {
+    position: fixed !important;
+    width: 100%;
+    height: 130px;
+    bottom: 0px;
+    z-index: 999999;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.thumb {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    opacity: 0.8;
+    transition: all 300ms ease;
+    height: 100px;
+}
+
+.slick-center .thumb {
+    -moz-transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    -o-transform: scale(1.3);
+    -webkit-transform: scale(1.3);
+    color: #e67e22;
+    opacity: 1;
+    transform: scale(1.3);
+}
+.slick-slide {
+    width: 130px;
+}
+
+.selfie-button {
+    width: 10em;
+    height: 3em;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    -ms-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    font-size: larger;
+
+    display:inline-block;
+    padding:0.3em 1.2em;
+    margin:0 0.1em 0.1em 0;
+    border:0.16em solid rgba(255,255,255,0);
+    border-radius:2em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family: system-ui;
+    font-weight:300;
+    text-transform: uppercase;
+    color:#000000;
+    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+    text-align:center;
+    transition: all 0.2s;
+}
+.button4:hover{
+    border-color: rgba(255,255,255,1);
+}
+@media all and (max-width:30em){
+    .button4{
+        display:block;
+        margin:0.2em auto;
+        }
+}

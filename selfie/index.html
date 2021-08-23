@@ -2,149 +2,43 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Picture Quiz</title> 
-     <link rel="stylesheet" href="style.css" as="style" >
-    <link rel="preload" href="quizScene/script.js" as="script">
-    <link rel="preload" href="style.css" as="style">
+    <title>Selfie with Krystal</title>
+     <link rel="stylesheet" href="../style.css" as="style" > <!-- references the parent css for consistency-->
+    <!-- <link rel="preload" href="quizScene/script.js" as="script"> -->
+    <!-- <link rel="preload" href="../style.css" as="style"> -->
 </head>
-<body >
+<body class="selfiePage">
     <div id="IntroDiv">
         <div class="pageIntro">
-            <video playsInline muted loop id="myVideo">
-                <source src="quizScene/images/beauty3.mp4" type="video/mp4">
-                
-              </video>
-        
-              <video playsInline muted loop id="myVideo2">
-                <source src="quizScene/images/Spa_video_Export_3kbps.mp4" type="video/mp4">
-                
-              </video>  
-        
-             <div class="headerIntro", id="header_idIntro">
-                <div id = "ahc-logo-beautyIntro"><img id="ahc-logo-beauty-imgIntro" src="quizScene/images/AHCLOGO_white.png"></div>
-        
-             </div>
-             <div class="contentIntro">
-                <div id = "ahc-logo-beautyIntro2"><img id="ahc-logo-beauty-imgIntro" src="quizScene/images/AHCLOGO_white.png"></div>
-        
-                <div class="controlsIntro">
-                    <button id="start-btnIntro" class="bn3637 bn37" >START YOUR JOURNEY!</button>
-                </div>
-                
-             </div>
-             <div class="footerIntro">
-                <div id="btnCSS">
-                    <button class="bn3638 bn38" id="skipLink" style="display: none;">SKIP</button>
-                    <button class="bn3638 bn38" id="skipLink2" style="display: none;">SKIP</button>
-                </div>
-                
-            </div>
-        
-            <div class="productIntro" style="display: none;" id="productIntro1">
-                <img id="productIntroImage" src="quizScene/images/productAHC.png" alt="Snow">
-                
-                <button id="productIntroButton-1" class="btn" >ACCEPT</button>
+          <div class="header", id="header_id">
+              <div id = "ahc-logo-beauty"><img id="ahc-logo-beauty-img" src="../quizScene/images/AHCLOGO.png"></div>
+              <h2 id='question' class="question">TAKE A SELFIE WITH KOREAN SUPERSTAR KRYSTAL JUNG!</h2>
+          </div>
+             <!-- <div class="headerIntro", id="header_idIntro">
+                <div id = "ahc-logo-beautyIntro"><img id="ahc-logo-beauty-imgIntro" src="../quizScene/images/AHCLOGO.png"></div>
+             </div> -->
+           <div class="contentIntro">
+              <!-- <div id = "ahc-logo-beautyIntro2"><img id="ahc-logo-beauty-imgIntro" src="../quizScene/images/AHCLOGO_white.png"></div> -->
+              <div class="controlsIntro">
+                  <button id="start-btnIntro" class="blackClr bn3637 bn37" >TAKE A SELFIE</button>
+              </div>
            </div>
-        
-           
+           <div class="productIntro" style="display: none;" id="productIntro1">
+               <img id="productIntroImage" src="../quizScene/images/camera-perm.png" alt="Camera Permissions">
+               <button id="productIntroButton-1" class="btn" >ACCEPT</button>
+          </div>
         </div>
     </div>
-    
-    <div id="quizDiv">
-        <div class="pageQuiz">
-            <div class="header", id="header_id">
-                <div id = "ahc-logo-beauty"><img id="ahc-logo-beauty-img" src="quizScene/images/AHCLOGO.png"></div>
-                <h2 id='question' class="question">PERSONALITY TESTS ARE AN ESSENTIAL<br>TRAIT OF KOREAN CULTURE</h2>
-    
-            </div>
-            <div class="content">
-                <div class="firstScene", id="fist-page">
-                    <div class="middleText" id="middleText">
-                        <h1 id="personality"></h1>
-                    </div>
-                    <div class="middleText2" id="middleText2">
-                        <h1 id="personality2">PERSONALITY<br>TEST</h1>
-                    </div>
-                    <div class="infoText">
-                        <h2 id="infoText"></h2>
-                    </div>
-                    <div class="controls", id="controls_id">
-                        <button id="start-btn" class="bn3639 bn39" >START EXPERIENCE!</button>
-                    </div>
-                    
-                    <div class ="arch", id="archid">
-                        <img class="image" src="quizScene/images/arch1.png" alt="" >
-                    </div>  
-                </div>
-                <div class="quiz" id="quiz_id">
-                
-                    <div id="buttons_id" class="buttons">
-                        <button id="btn0" class="btn0_class"><span id="choice0" ></span></button>
-                        <button id="btn1" class="btn1_class"><span id="choice1"></span></button>
-                        <button id="btn2" class="btn2_class"><span id="choice2"></span></button>
-                        <button id="btn3" class="btn3_class"><span id="choice3"></span></button>
-                    </div>
-                </div>
-            
-            </div>
-            
-            <div class="footer">
-                <div id="btnCSS2"><button class="bn3636 bn36" id="skipLinkScene">SKIP</button></div>
-                
-                <div class="process", id="process_id">
-                    <label for="i1" class="dots" id="dot1"></label>
-                    <label for="i2" class="dots" id="dot2"></label>
-                    <label for="i3" class="dots" id="dot3"></label>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+    <script>
+      document.getElementById('start-btnIntro').addEventListener('click', function(e) {
+        document.getElementById('productIntro1').style.display = 'block';
+        document.getElementById('start-btnIntro').style.display = 'none';
+        document.getElementById('question').style.display = 'none';
+      });
+      document.getElementById('productIntroButton-1').addEventListener('click', function(e) {
+        window.location.href="../selfie/camera.html";
+      });
 
-<script src="quizScene/script.js"></script>
-<script>
-    var firstVideo = document.getElementById('myVideo');
-    var secondVideo = document.getElementById('myVideo2');
-    document.getElementById('start-btnIntro').addEventListener('click', function(e) {
-        document.getElementById('myVideo').style.display="block";
-        document.getElementById('start-btnIntro').style.display="none";
-        document.getElementById('ahc-logo-beautyIntro2').style.display="none";
-        document.getElementById('skipLink').style.display="block";
-        firstVideo.play();
-        // document.body.style.background ="rgbe(254, 245, 240,0)";
-        });
-
-    document.getElementById('skipLink').addEventListener('click', function(e) {
-        document.getElementById('skipLink').style.display="none";
-        document.getElementById('myVideo').style.display="none";
-        // document.body.style.background ="rgbe(254, 245, 240,1)";
-        document.getElementById('productIntro1').style.display="block";
-        firstVideo.pause();
-
-    });
-
-    document.getElementById('productIntroButton-1').addEventListener('click', function(e) {
-        document.getElementById('myVideo2').style.display="block";
-        document.getElementById('productIntro1').style.display="none";
-        document.getElementById('skipLink2').style.display="block";
-        secondVideo.play()
-        // document.body.style.background ="rgbe(254, 245, 240,0)";
-    });
-
-    document.getElementById('skipLink2').addEventListener('click', function(e) {
-        document.body.style.backgroundImage = "url(quizScene/images/colorPalette.jpg)";
-        document.body.style.backgroundRepeat = "no-repeat";   
-        document.getElementById('quizDiv').style.display="block";
-        document.getElementById('IntroDiv').style.display="none";
-        secondVideo.pause()
-      
-         
-});
-    document.getElementById('skipLinkScene').addEventListener('click', function(e) {
-        window.location.href="sceneFolder/index.html";
-        // document.body.style.background ="rgbe(254, 245, 240,0)";
-    });
-
-</script>
+    </script>
 </body>
 </html>
