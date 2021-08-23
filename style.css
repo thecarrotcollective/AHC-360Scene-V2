@@ -1354,7 +1354,7 @@ img.bg {
       opacity: 0;
     }
     100% {
-      opacity: 100;
+      opacity: 1;
 
     }
   }
@@ -1363,7 +1363,7 @@ img.bg {
       opacity: 0;
     }
     100% {
-      opacity: 100;
+      opacity: 1;
 
     }
   }
@@ -1372,7 +1372,7 @@ img.bg {
       opacity: 0;
     }
     100% {
-      opacity: 100;
+      opacity: 1;
 
     }
   }
@@ -1381,7 +1381,7 @@ img.bg {
       opacity: 0;
     }
     100% {
-      opacity: 100;
+      opacity: 1;
 
     }
   }
@@ -1547,7 +1547,7 @@ img.bg {
     flex-direction: column;
     justify-content: center;
 }
-   }
+   
    .footer .process{
      /* padding-bottom: 500px; */
      display: none;
