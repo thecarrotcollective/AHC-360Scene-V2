@@ -49,7 +49,7 @@ function startGame() {
   document.getElementById('fist-page').style.display = 'none';
   document.getElementById('quiz_id').style.display = 'block';
   document.getElementById('process_id').style.display = 'block';
-  document.getElementById('btnCSS2').style.display = 'none';
+  // document.getElementById('btnCSS2').style.display = 'none';
 
   document.body.style.background ="rgb(254, 245, 240)";
   populate();
@@ -119,7 +119,7 @@ function showProgress() {
   }
  
 };
-    
+var personiltyType;
 function showScores() {
   var buttonColor;
   var imageurl;
@@ -130,26 +130,26 @@ function showScores() {
   var optionChoice;
   if(option1Counter ==finalOption){
     optionChoice = 1
-
+    personiltyType = "IT SEEMS LIKE YOU ARE AN"
     imageurl ="quizScene/images/arch2.png";
     spaText="EXTROVERT!";
     infoText="EXTROVERTS ARE LIKELY <br> OUTGOING AND ACTIVE!"
   }else if(option2Counter ==finalOption){
     optionChoice = 2
- 
+    personiltyType = "IT SEEMS LIKE YOU ARE AN"
     imageurl ="quizScene/images/arch4.png";
     spaText="INTROVERT!";
     infoText="INTROVERTS ARE LIKELY <br> CALM AND RELIABLE!"
   }
   else if(option3Counter ==finalOption){
     optionChoice = 3
-
+    personiltyType = "IT SEEMS LIKE YOU ARE A"
     imageurl ="quizScene/images/arch3.png";
     spaText="THINKER!";
     infoText="THINKER ARE LIKELY <br> TO CREATE GREAT IDEAS!"
   }else if(option4Counter ==finalOption){
     optionChoice = 4
-
+    personiltyType = "IT SEEMS LIKE YOU ARE A"
     imageurl ="quizScene/images/arch5.png";
     spaText="FEELER!";
     infoText="FEELERS ARE LIKELY <br> ARTISTIC AND CONSIDERATE!"
@@ -160,13 +160,13 @@ function showScores() {
   document.getElementById('quiz_id').style.display = 'none';
   document.getElementById('middleText2').style.display = 'none';
   document.getElementById('process_id').style.display = 'none';
-  var personiltyType = "IT SEEMS LIKE YOU ARE AN"
 
-  var personiltyTypeHtml = "<h2 id='question' style='font-size:35px' >"+personiltyType+"</h2>"; 
+
+  var personiltyTypeHtml = "<h2 id='question' style='font-size:25px' >"+personiltyType+"</h2>"; 
   var  gameOverHTML = '';
   document.getElementById("middleText").style.top = "45%";
   gameOverHTML += "<h1 id='score'> Option: " + optionChoice + "</h1>";
-  var spaText = "<h1 style='font-family:Pangram-Bold; font-size:110px'; top: 45%;>"+spaText+"</h1>";
+  var spaText = "<h1 style='font-family:Pangram-Bold; font-size:70px'; top: 45%;>"+spaText+"</h1>";
   var element = document.getElementById("personality");
   element.innerHTML = spaText;
   var element2 = document.getElementById("question")
@@ -177,7 +177,7 @@ function showScores() {
   var element3 = document.getElementById("controls_id") 
   element3.innerHTML = buttonText;
   
-  var resultImg = "<img src="+ imageurl +" width='600' height='800'>";
+  var resultImg = "<img src="+ imageurl +" width='512' height='512'>";
   var element4 = document.getElementById("archid");
   element4.innerHTML = resultImg;
   var infoTextHtml = "<h2 id='infoText'>"+ infoText+"</h2>";

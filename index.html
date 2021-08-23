@@ -10,13 +10,13 @@
 <body class="mainIntroPage">
     <div id="IntroDiv">
         <div class="pageIntro">
-            <video playsInline muted loop id="myVideo">
-                <source src="quizScene/images/beauty3.mp4" type="video/mp4">
+            <video playsInline muted  id="myVideo">
+                <source src="quizScene/images/firstIntro.mp4" type="video/mp4">
 
               </video>
 
-              <video playsInline muted loop id="myVideo2">
-                <source src="quizScene/images/Spa_video_Export_3kbps.mp4" type="video/mp4">
+              <video playsInline muted  id="myVideo2">
+                <source src="quizScene/images/Spa_GreenScreen_v12_sound.mp4" type="video/mp4">
 
               </video>
 
@@ -106,6 +106,22 @@
 <script>
     var firstVideo = document.getElementById('myVideo');
     var secondVideo = document.getElementById('myVideo2');
+    document.getElementById('myVideo').addEventListener("ended",function(){
+        document.getElementById('skipLink').style.display="none";
+        document.getElementById('myVideo').style.display="none";
+        // document.body.style.background ="rgbe(254, 245, 240,1)";
+        document.getElementById('productIntro1').style.display="block";
+        firstVideo.pause();
+    },false);
+
+    document.getElementById('myVideo2').addEventListener("ended",function(){
+        document.body.style.backgroundImage = "url(quizScene/images/colorPalette.jpg)";
+        document.body.style.backgroundRepeat = "no-repeat";
+        document.getElementById('quizDiv').style.display="block";
+        document.getElementById('IntroDiv').style.display="none";
+        secondVideo.pause();
+    },false);
+
     document.getElementById('start-btnIntro').addEventListener('click', function(e) {
         document.getElementById('myVideo').style.display="block";
         document.getElementById('start-btnIntro').style.display="none";
