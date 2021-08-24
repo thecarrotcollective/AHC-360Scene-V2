@@ -640,6 +640,7 @@
 }
 
 #choiceImage{
+  max-width: 500px;
   height: 100%;
 }
 .content .quiz .buttons .btn0_class{
@@ -1456,13 +1457,13 @@ img.bg {
     height: 80%;
 }
 
-  
+
 
   .content .firstScene .arch img{
 
     z-index: 2;
     position: absolute;
-    
+
     width: 80%;
     height: 50%;
     -webkit-animation:  pulse 2s 1 forwards;
@@ -1679,7 +1680,7 @@ img.bg {
          -ms-flex-pack: center;
             justify-content: flex-start;
 }
-   
+
    .footer .process{
      /* padding-bottom: 500px; */
      display: none;
