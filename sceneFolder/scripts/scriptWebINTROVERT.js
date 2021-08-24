@@ -468,7 +468,7 @@ function init() {
 
 
 	//***********************CUBE MAP********************
-	envLoad("scenes/INTROVERt/INTRO_CUBEMAP_000.jpg")
+	envLoad("scenes/INTROVERT/INTRO_CUBEMAP_000.jpg")
 
 	//***********************LIGHT********************
 	const color = 0xFFFFFF;
