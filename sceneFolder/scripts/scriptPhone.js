@@ -62,6 +62,24 @@ function toRadians(degrees) {
   return degrees * (pi/180);
 }
 
+
+document.getElementById('container').addEventListener('click', loadSounds)
+
+function loadSounds(){
+	audioLoader = new THREE.AudioLoader();
+	flashSound = new THREE.Audio(listener);
+	audioLoader.load('sounds/sfx/flash.mp3', function( buffer ) {
+		flashSound.setBuffer( buffer );
+		flashSound.setLoop( false );
+		flashSound.setVolume( 0.5 );
+		// flashSound.play();
+	});
+	document.getElementById('container').removeEventListener('click', loadSounds)
+}
+
+var flashSound, listener, audioLoader;
+var flashHasPlayed = false;
+
 function init() {
 
 	const container = document.getElementById( 'container' );
@@ -141,6 +159,9 @@ function init() {
 	// controls.update();
 
 
+
+	listener = new THREE.AudioListener();
+	camera.add(listener)
 
 
 	manager = new THREE.LoadingManager();
@@ -712,11 +733,19 @@ function animate() {
 			document.getElementById('selfie-text').style.opacity = 1;
 			document.getElementById('selfie-btn').style.opacity = 1;
 			document.getElementById('selfie-btn').style.pointerEvents = "auto";
-
+			document.getElementById('whiteScreen').style.display = 'block';
+			if(!flashHasPlayed){
+				flashSound.play();
+				flashHasPlayed = true;
+			}
 		} else {
+			flashHasPlayed = false;
+
 			document.getElementById('selfie-text').style.opacity = 0;
 			document.getElementById('selfie-btn').style.opacity = 0;
 			document.getElementById('selfie-btn').style.pointerEvents = "none";
+			document.getElementById('whiteScreen').style.display = 'none';
+
 		}
 	} else if(currState === POOL){
 		camera.getWorldDirection(dirVector)

@@ -21,6 +21,7 @@ let ProductIconUrl ="UIAssets/plus.png";
 var bool = false
 var currState = -1 // use this for statemachine
 
+
 // Please reorder this to match the assets
 var INTRO = 0
 var MAIN = 1
@@ -59,6 +60,25 @@ function toRadians(degrees) {
   var pi = Math.PI;
   return degrees * (pi/180);
 }
+
+
+document.getElementById('container').addEventListener('click', loadSounds)
+
+function loadSounds(){
+	audioLoader = new THREE.AudioLoader();
+	flashSound = new THREE.Audio(listener);
+	audioLoader.load('sounds/sfx/flash.mp3', function( buffer ) {
+		flashSound.setBuffer( buffer );
+		flashSound.setLoop( false );
+		flashSound.setVolume( 0.5 );
+		// flashSound.play();
+	});
+	document.getElementById('container').removeEventListener('click', loadSounds)
+
+}
+
+
+
 
 function init() {
 
@@ -126,8 +146,6 @@ function init() {
 	skydome.camera.position.z =0.01;
 	controls = new OrbitControls( skydome.camera, renderer.domElement );
 
-
-
 	// controls.target.set(0, 0, 0);
 	controls.rotateSpeed = - 0.25;
 	controls.enableZoom = false;
@@ -137,6 +155,8 @@ function init() {
 	controls.update();
 
 
+	listener = new THREE.AudioListener();
+	camera.add(listener)
 
 
 	manager = new THREE.LoadingManager();
@@ -210,6 +230,7 @@ function init() {
 			document.getElementById('selfie-text').style.display = 'block';
 			document.getElementById('selfie-btn').style.display = 'block';
 			document.getElementById('selfie-btn').style.pointerEvents = "auto";
+
 			PoolEntranceScene.add(PoolEntranceArrow)
 			PoolRoomScene.add(PoolRoomArrow);
 			SelfiePlaneScene.add(SelfiePlane)
@@ -660,6 +681,10 @@ function onWindowResize() {
 	camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 }
+
+// document.getElementById( 'canvas' ).
+
+
 var endbool;
 
 var orbVideoPlayed = false
@@ -721,10 +746,20 @@ function animate() {
 			document.getElementById('selfie-text').style.opacity = 1;
 			document.getElementById('selfie-btn').style.opacity = 1;
 			document.getElementById('selfie-btn').style.pointerEvents = "auto";
+			document.getElementById('whiteScreen').style.display = 'block';
+			if(!flashHasPlayed){
+				flashSound.play();
+				flashHasPlayed = true;
+			}
+
 		} else {
+			flashHasPlayed = false;
+
 			document.getElementById('selfie-text').style.opacity = 0;
 			document.getElementById('selfie-btn').style.opacity = 0;
 			document.getElementById('selfie-btn').style.pointerEvents = "none";
+			document.getElementById('whiteScreen').style.display = 'none';
+
 		}
 	}
 	 else if(currState === POOL){
@@ -1104,6 +1139,8 @@ function DisableEverything(){
 	document.getElementById('selfie-text').style.display = 'none';
 	document.getElementById('selfie-btn').style.display = 'none';
 	document.getElementById('pool-text').style.display = 'none';
+	document.getElementById('whiteScreen').style.display = 'none';
+
 	document.getElementById('pool-btn').style.display = 'none';
 	document.getElementById('beauty-text').style.display = 'none';
 	document.getElementById('beauty-btn').style.display = 'none';
