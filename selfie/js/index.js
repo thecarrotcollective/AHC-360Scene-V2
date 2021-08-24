@@ -10,9 +10,9 @@ const closeBtn = document.getElementById('close-button')
 const downloadBtn = document.getElementById('download-button')
 const shareBtn = document.getElementById('share-button')
 
-var cameraFlashSound = new Audio();
-cameraFlashSound.src = '../../sceneFolder/sounds/sfx/flash.mp3';
-document.body.appendChild(cameraFlashSound);
+var cameraFlashSound = document.getElementById('camera-flash')
+// cameraFlashSound.src = '../../sceneFolder/sounds/sfx/flash.mp3';
+// document.body.appendChild(cameraFlashSound);
 
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const context = new AudioContext();
