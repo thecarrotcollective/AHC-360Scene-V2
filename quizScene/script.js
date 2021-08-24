@@ -213,7 +213,7 @@ function showScores() {
 };
 
 var questions = [
-  new Question("CHOOSE AN IMAGE THAT <br> REPRESENTS YOU MORE", ["baby", "light", "city", "moon"], "baby"),
+  new Question("CHOOSE AN IMAGE THAT <br> REPRESENTS YOU BEST", ["baby", "light", "city", "moon"], "baby"),
   new Question("CHOOSE AN IMAGE THAT <br> MAKES YOU FEEL MORE RELAXED", ["sea", "plant", "shell", "mozai"], "sea"),
   new Question("CHOOSE A COLOR THAT  <br> YOU LIKE THE MOST", ["color1", "color2", "color3",  "color4"], "color1")
 ];
