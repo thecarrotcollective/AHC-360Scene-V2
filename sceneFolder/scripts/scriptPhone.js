@@ -39,9 +39,7 @@ var POOLENTRACE =9
 var PRODUCTBASE = 10
 
 
-/* The below code triggers the experience. We will likely remove / refactor it later */
-const startButton = document.getElementById( 'start-btn' );
-startButton.addEventListener( 'click', function () {
+window.addEventListener('load', (event) => {
 	init();
 	animate();
 	currState = INTRO
@@ -49,10 +47,7 @@ startButton.addEventListener( 'click', function () {
 	// TweenFadeInForVideos(videoMat)
 	checkTheVideoLoad()
 
-
-	document.getElementById('overlay').style.display = 'none';
-
-} );
+  });
 
 const shareLinkBtn = document.getElementById('share-btn');
 shareLinkBtn.addEventListener('click', copyLink)
@@ -481,7 +476,7 @@ function init() {
 
 
 	//***********************CUBE MAP********************
-	envLoad("scenes/4kEXTROVERT00_v2.jpg")
+	envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_000.jpg")
 
 	//***********************LIGHT********************
 	const color = 0xFFFFFF;
@@ -841,7 +836,7 @@ function clickTrigger(){
 		//***********************POOL SCENE**************************
 		if ( intersectsPoolRoom.length > 0 ) {
 				setTimeout(function(){
-					envLoad("scenes/4kEXTROVERT09_v2.jpg")
+					envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_009.jpg")
 					currState = POOL
 
 				}, 200)
@@ -862,7 +857,7 @@ function clickTrigger(){
 		if ( intersectsSelfie.length > 0 ) {
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT07_v2.jpg")
+				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_010.jpg")
 				currState = SELFIE;
 			}, 200);
 			console.log("SELFIE SCENE - 1")
@@ -914,7 +909,7 @@ function clickTrigger(){
 		if ( intersectsMiddleRoom.length > 0 ) {
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT010_v2.jpg")
+				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_003.jpg")
 				currState = MIDDLE;
 			}, 200);
 			console.log("MIDDLE SCENE - 1")
@@ -928,7 +923,7 @@ function clickTrigger(){
 			console.log("COACH SCENE - 1")
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT02_v2.jpg")
+				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_004.jpg")
 				currState = COUCH
 			}, 200);
 
@@ -944,7 +939,7 @@ function clickTrigger(){
 
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT03_v2.jpg")
+				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_005.jpg")
 
 				currState = PRODENTRANCE
 			}, 200);
@@ -958,7 +953,7 @@ function clickTrigger(){
 			console.log("VIDEO ROOM SCENE - 1")
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT04_v2.jpg")
+				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_006.jpg")
 				currState = BEAUTY
 			}, 200);
 
@@ -971,7 +966,7 @@ function clickTrigger(){
 
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT05_v2.jpg")
+				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_007.jpg")
 				currState = PRODUCTS
 				// skyBox.rotation.y =0
 			}, 200);
@@ -990,7 +985,7 @@ function clickTrigger(){
 
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT01_v2.jpg")
+				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_001.jpg")
 				currState = MAIN
 				// skyBox.rotation.y = -1.7
 			}, 200);

@@ -1,3 +1,10 @@
+var currState = -1
+
+var EXTROVERT = 0
+var INTROVERT = 1
+var FEELER = 2
+var THINKER = 3
+
 var images = {
     "baby"  : "quizScene/images/1-dog.jpg",
     "light" : "quizScene/images/1-mountain.jpg",
@@ -133,12 +140,14 @@ function showScores() {
     personiltyType = "IT SEEMS LIKE YOU ARE AN"
     imageurl ="quizScene/images/arch2.png";
     spaText="EXTROVERT!";
+    currState = EXTROVERT
     infoText="EXTROVERTS ARE LIKELY <br> OUTGOING AND ACTIVE!"
   }else if(option2Counter ==finalOption){
     optionChoice = 2
     personiltyType = "IT SEEMS LIKE YOU ARE AN"
     imageurl ="quizScene/images/arch4.png";
     spaText="INTROVERT!";
+    currState = INTROVERT
     infoText="INTROVERTS ARE LIKELY <br> CALM AND RELIABLE!"
   }
   else if(option3Counter ==finalOption){
@@ -146,12 +155,14 @@ function showScores() {
     personiltyType = "IT SEEMS LIKE YOU ARE A"
     imageurl ="quizScene/images/arch3.png";
     spaText="THINKER!";
+    currState = THINKER
     infoText="THINKER ARE LIKELY <br> TO CREATE GREAT IDEAS!"
   }else if(option4Counter ==finalOption){
     optionChoice = 4
     personiltyType = "IT SEEMS LIKE YOU ARE A"
     imageurl ="quizScene/images/arch5.png";
     spaText="FEELER!";
+    currState = FEELER
     infoText="FEELERS ARE LIKELY <br> ARTISTIC AND CONSIDERATE!"
 
   }
@@ -185,7 +196,17 @@ function showScores() {
   element5.innerHTML = infoTextHtml;
 
   document.getElementById('start-btn').addEventListener('click', function(e) {
-    window.location.href="sceneFolder/index.html";
+    if(currState === EXTROVERT){
+      window.location.href="sceneFolder/indexEXTROVERT.html";
+    } else if(currState === INTROVERT){
+      window.location.href="sceneFolder/indexINTROVERT.html";
+    }else if(currState === FEELER){
+      window.location.href="sceneFolder/indexFEELER.html";
+    }else if(currState === THINKER){
+      window.location.href="sceneFolder/indexTHINKER.html";
+    }
+   
+   
     // document.body.style.background ="rgbe(254, 245, 240,0)";
 });
 
@@ -216,10 +237,10 @@ Question.prototype.isCorrectAnswer = function(choice) {
     option1Counter +=2
     console.log(option1Counter)
   }else if(choice == "light"){
-    option2Counter +=4
+    option2Counter +=2
   }
   else if(choice == "city"){
-    option3Counter +=3
+    option3Counter +=2
   }else if(choice == "moon"){
     option4Counter +=2
   }
@@ -232,16 +253,16 @@ Question.prototype.isCorrectAnswer = function(choice) {
   else if(choice == "shell"){
     option3Counter +=2
   }else if(choice == "mozai"){
-    option4Counter +=1
+    option4Counter +=3
   }
   if(choice === "color1"){
     option1Counter +=2
     console.log(option1Counter)
   }else if(choice == "color2"){
-    option2Counter +=1
+    option2Counter +=3
   }
   else if(choice == "color3"){
-    option3Counter +=5
+    option3Counter +=3
   }else if(choice == "color4"){
     option4Counter +=4
   }

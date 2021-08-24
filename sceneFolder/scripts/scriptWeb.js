@@ -34,10 +34,7 @@ var MIDDLE = 8
 var POOLENTRACE =9
 var PRODUCTBASE = 10
 
-
-/* The below code triggers the experience. We will likely remove / refactor it later */
-const startButton = document.getElementById( 'start-btn' );
-startButton.addEventListener( 'click', function () {
+window.addEventListener('load', (event) => {
 	init();
 	animate();
 	currState = INTRO
@@ -45,10 +42,10 @@ startButton.addEventListener( 'click', function () {
 	// TweenFadeInForVideos(videoMat)
 	checkTheVideoLoad()
 
+  });
 
-	document.getElementById('overlay').style.display = 'none';
+/* The below code triggers the experience. We will likely remove / refactor it later */
 
-} );
 
 const shareLinkBtn = document.getElementById('share-btn');
 shareLinkBtn.addEventListener('click', copyLink)
