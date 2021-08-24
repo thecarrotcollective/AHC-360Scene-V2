@@ -1457,14 +1457,12 @@ img.bg {
     height: 80%;
 }
 
-
-
   .content .firstScene .arch img{
 
     z-index: 2;
     position: absolute;
 
-    width: 80%;
+    /* width: 80%; */
     height: 50%;
     -webkit-animation:  pulse 2s 1 forwards;
     animation: pulse 2s 1 forwards ;
