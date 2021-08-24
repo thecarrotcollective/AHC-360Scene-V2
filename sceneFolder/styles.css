@@ -437,8 +437,8 @@ video{
     align-items: center;
     justify-content: center;
     text-align: center;
-
-    margin: 0 auto;
+    line-height: 2em;
+    margin: 0 2em;
     position: absolute;
     color:  #000000;
     /* display:block; */
@@ -446,8 +446,8 @@ video{
     background-color: #f4e7d4;
     opacity: 0;
     top: 70%;
-    left: 50%;
-    transform: translate(-50%);
+    /* left: 50%;
+    transform: translate(-50%); */
 
     padding: 1rem 2rem;
     font-family: "Pangram-Regular";
