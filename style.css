@@ -955,7 +955,7 @@ img.bg {
 }
 
 /* **************************PHONE********************************* */
-@media(max-width: 1000px){
+@media(max-width: 999px){
 
     .privacy{
       background-color: #fff4ee;
