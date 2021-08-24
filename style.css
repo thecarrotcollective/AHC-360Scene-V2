@@ -989,7 +989,7 @@ img.bg {
 
   .mainIntroPage{
     background-color: rgb(254, 245, 240);
-    background: url('quizScene/images/open-bg.jpg') no-repeat;
+    background: url('quizScene/images/OPENNING.jpg') no-repeat;
     background-position: center; /* Center the image */
     background-size: cover; /* Resize the background image to cover the entire container */
     /* padding-top: 10%; */
