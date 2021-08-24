@@ -52,9 +52,10 @@
   }
 
   #tandc{
-    font-family: "Pangram-Light";
+    font-family: "Pangram-Regular";
     color: white;
-    padding: 1em;
+    text-shadow: 0px 0px 5px rgb(0 0 0 / 30%);
+    padding: 1.5em;
   }
 
   .links{
@@ -266,7 +267,7 @@
   font-family: "Pangram-Regular";
   letter-spacing: 5px;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 1.2em;
   text-align: center;
   text-decoration: none;
   color: #fff;
@@ -460,13 +461,13 @@
   width: 100%;
   position: absolute;
   font-family: "Pangram-Bold";
-  letter-spacing: 18px;
+  letter-spacing: 5px;
   /* font-size: 0px; */
   color: #000;
   text-align: center;
   z-index: 1;
   /* padding-left: 10px; */
-  font-size: 28px;
+  font-size: 2.4em;
   opacity: 0;
   /* padding-bottom: 100px; */
   -webkit-animation: pulse 2s ease-in-out forwards;
@@ -642,6 +643,7 @@
 #choiceImage{
   max-width: 500px;
   height: 100%;
+  object-fit: cover;
 }
 .content .quiz .buttons .btn0_class{
   animation: myframe 2.5s ease-in-out 0s;
@@ -808,7 +810,7 @@
     font-family: "Pangram-Regular";
     letter-spacing: 5px;
     font-weight: 700;
-    font-size: 30px;
+    font-size: 1.2em;
     text-align: center;
     text-decoration: none;
     /* color: #fff; */
@@ -860,7 +862,7 @@
   font-family: "Pangram-Regular";
   letter-spacing: 5px;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 1.2em;
   text-align: center;
   text-decoration: none;
   /* color: #fff; */
@@ -935,6 +937,7 @@ img.bg {
       -webkit-transition: scale(0.8);
       -o-transition: scale(0.8);
       transition: scale(0.8);
+      margin-top: 5em;
   }
 
   .bn39 {
@@ -977,9 +980,10 @@ img.bg {
     }
 
   #tandc{
-    font-family: "Pangram-Light";
+    font-family: "Pangram-Regular";
     color: white;
-    padding: 1em;
+    text-shadow: 0px 0px 5px rgb(0 0 0 / 30%);
+    padding: 1.5em;
   }
 
   .links{
@@ -1223,7 +1227,7 @@ img.bg {
     font-family: "Pangram-Regular";
     letter-spacing: 5px;
     font-weight: 700;
-    font-size: 30px;
+    font-size: 1.2em;
     text-align: center;
     text-decoration: none;
     color: #fff;
@@ -1324,9 +1328,11 @@ img.bg {
       position: absolute;
       padding-bottom: 150px ;
   }
+
+
   .header .question {
     font-family: "Pangram-Regular";
-    font-size: 30px;
+    font-size: 1.5em;
     position: absolute;
     text-align: center;
     color: #000000;
@@ -1403,13 +1409,13 @@ img.bg {
     width: 100%;
     position: absolute;
     font-family: "Pangram-Regular";
-    letter-spacing: 18px;
+    letter-spacing: 5px;
     /* font-size: 0px; */
     color: #000;
     text-align: center;
     z-index: 1;
     /* padding-left: 10px; */
-    font-size: 50px;
+    font-size: 2em;
     opacity: 0;
     /* padding-bottom: 100px; */
     -webkit-animation: pulse 2s ease-in-out forwards;
@@ -1739,7 +1745,7 @@ img.bg {
       font-family: "Pangram-Regular";
       letter-spacing: 5px;
       font-weight: 700;
-      font-size: 30px;
+      font-size: 1.2em;
       text-align: center;
       text-decoration: none;
       color: #fff;
@@ -1790,7 +1796,7 @@ img.bg {
       font-family: "Pangram-Regular";
       letter-spacing: 5px;
       font-weight: 700;
-      font-size: 30px;
+      font-size: 1.2em;
 
       text-align: center;
       text-decoration: none;
@@ -1844,7 +1850,7 @@ padding: 2rem 7rem;
 font-family: "Pangram-Regular";
 letter-spacing: 5px;
 font-weight: 700;
-font-size: 30px;
+font-size: 1.2em;
 text-align: center;
 text-decoration: none;
 color: #fff;

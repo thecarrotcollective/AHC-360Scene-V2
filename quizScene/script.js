@@ -188,7 +188,7 @@ function showScores() {
   var element3 = document.getElementById("controls_id")
   element3.innerHTML = buttonText;
 
-  var resultImg = "<img src="+ imageurl +" width='512' height='512'>";
+  var resultImg = "<img src="+ imageurl +" height='512'>";
   var element4 = document.getElementById("archid");
   element4.innerHTML = resultImg;
   var infoTextHtml = "<h2 id='infoText'>"+ infoText+"</h2>";
@@ -205,8 +205,8 @@ function showScores() {
     }else if(currState === THINKER){
       window.location.href="sceneFolder/indexTHINKER.html";
     }
-   
-   
+
+
     // document.body.style.background ="rgbe(254, 245, 240,0)";
 });
 
