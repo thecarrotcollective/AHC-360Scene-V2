@@ -154,7 +154,6 @@ function init() {
 
 		console.log( 'Loading complete!');
 
-
 		if(currState === INTRO){
 			video.currentTime = 0;
 			video2.currentTime = 0;
@@ -167,17 +166,12 @@ function init() {
 			RoomVideoPlay.rotation.set(0,-1.58,-0.01)
 			RoomVideoPlay.scale.set(3.1,3,2.1)
 
-
 			MainRoomScene.add(MainRoomArrow);
 			MiddleRoomScene.add(MiddleRoomArrow)
 			MiddleRoomArrow.position.set(arrowDist * Math.sin(toRadians(60)) , arrowHeight, -arrowDist * Math.cos(toRadians(60)));
 			MiddleRoomArrow.scale.copy(navArrowScale)
 			TweenFadeInForVideos(videoMat)
 			TweenFadeInForArrow()
-
-
-
-
 		}
 		if(currState === POOL){
 			video.currentTime = 0;

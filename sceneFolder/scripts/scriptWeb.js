@@ -242,7 +242,7 @@ function init() {
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 			VideoPlayBottleScene.position.set(-342,25,-450);
 
-	
+
 			VideoPlayBottleScene.rotation.set(0,1.5,0)
 			VideoPlayBottleScene.scale.set(7.2,7.5,1)
 			bilboardVideo.play();

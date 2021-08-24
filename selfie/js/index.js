@@ -10,6 +10,18 @@ const closeBtn = document.getElementById('close-button')
 const downloadBtn = document.getElementById('download-button')
 const shareBtn = document.getElementById('share-button')
 
+var cameraFlashSound = new Audio();
+cameraFlashSound.src = '../../sceneFolder/sounds/sfx/flash.mp3';
+document.body.appendChild(cameraFlashSound);
+
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const context = new AudioContext();
+var analyser = context.createAnalyser();
+
+var source = context.createMediaElementSource(cameraFlashSound);
+source.connect(analyser);
+analyser.connect(context.destination);
+
 var readyForSelfie = false;
 console.log("selfie not ready");
 
@@ -79,6 +91,7 @@ deepAR.onScreenshotTaken = function(photo) {
     // console.log(img);
     if(readyForSelfie){
 
+      cameraFlashSound.play()
       takePicBtn.style.display = 'none';
       takePicBtn.style.opacity = 0;
       fullscreenOverlay.style.opacity = 0.8;
