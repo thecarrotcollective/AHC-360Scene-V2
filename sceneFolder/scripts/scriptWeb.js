@@ -1,6 +1,18 @@
 import * as THREE from './three.module.js';
 import {OrbitControls} from './Orbit.js';
 
+
+var sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_000.jpg"
+var sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_001.jpg"
+var sceneUrl2 ="scenes/EXTROVERT/EXTRO_CUBEMAP_002.jpg"
+var sceneUrl3 ="scenes/EXTROVERT/EXTRO_CUBEMAP_003.jpg"
+var sceneUrl4 ="scenes/EXTROVERT/EXTRO_CUBEMAP_004.jpg"
+var sceneUrl5 ="scenes/EXTROVERT/EXTRO_CUBEMAP_005.jpg"
+var sceneUrl6 ="scenes/EXTROVERT/EXTRO_CUBEMAP_006.jpg"
+var sceneUrl7 ="scenes/EXTROVERT/EXTRO_CUBEMAP_007.jpg"
+var sceneUrl8 ="scenes/EXTROVERT/EXTRO_CUBEMAP_008.jpg"
+var sceneUrl9 ="scenes/EXTROVERT/EXTRO_CUBEMAP_009.jpg"
+var sceneUrl10 ="scenes/EXTROVERT/EXTRO_CUBEMAP_010.jpg"
 // TODO - check if some of these can be lists / arrays + use as state machine?
 let camera, controls,videoMat,ProductIcon1,ProductIcon2,ProductIcon3,ProductIconScene1,ProductIconScene2,ProductIconScene3,video3,videoMask,videoMask2,videoTexture;
 let renderer,video,skydome,BottleRoomVideoPlayScene,SelfiePlane,SelfiePlaneScene,video2,OrbVideoScene;
@@ -495,7 +507,7 @@ function init() {
 
 
 	//***********************CUBE MAP********************
-	envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_000.jpg")
+	envLoad(sceneUrl0)
 
 	//***********************LIGHT********************
 	const color = 0xFFFFFF;
@@ -870,7 +882,7 @@ function clickTrigger(){
 		//***********************POOL SCENE**************************
 		if ( intersectsPoolRoom.length > 0 ) {
 				setTimeout(function(){
-					envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_009.jpg")
+					envLoad(sceneUrl9)
 					currState = POOL
 
 				}, 200)
@@ -891,7 +903,7 @@ function clickTrigger(){
 		if ( intersectsSelfie.length > 0 ) {
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_010.jpg")
+				envLoad(sceneUrl10)
 				currState = SELFIE;
 			}, 200);
 			console.log("SELFIE SCENE - 1")
@@ -917,7 +929,7 @@ function clickTrigger(){
 		if ( intersectsPoolEntrance.length > 0 ) {
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_002.jpg")
+				envLoad(sceneUrl2)
 				currState = POOLENTRACE;
 			}, 200);
 			console.log("POOL ENTRANCE SCENE - 1")
@@ -930,7 +942,7 @@ function clickTrigger(){
 		if ( intersectsProductBase.length > 0 ) {
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_008.jpg")
+				envLoad(sceneUrl8)
 				currState = PRODUCTBASE;
 			}, 200);
 			console.log("PRODUCT BASE SCENE")
@@ -943,7 +955,7 @@ function clickTrigger(){
 		if ( intersectsMiddleRoom.length > 0 ) {
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_003.jpg")
+				envLoad(sceneUrl3)
 				currState = MIDDLE;
 			}, 200);
 			console.log("MIDDLE SCENE - 1")
@@ -957,7 +969,7 @@ function clickTrigger(){
 			console.log("COACH SCENE - 1")
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_004.jpg")
+				envLoad(sceneUrl4)
 				currState = COUCH
 			}, 200);
 
@@ -973,7 +985,7 @@ function clickTrigger(){
 
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_005.jpg")
+				envLoad(sceneUrl5)
 
 				currState = PRODENTRANCE
 			}, 200);
@@ -987,7 +999,7 @@ function clickTrigger(){
 			console.log("VIDEO ROOM SCENE - 1")
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_006.jpg")
+				envLoad(sceneUrl6)
 				currState = BEAUTY
 			}, 200);
 
@@ -1000,7 +1012,7 @@ function clickTrigger(){
 
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_007.jpg")
+				envLoad(sceneUrl7)
 				currState = PRODUCTS
 				// skyBox.rotation.y =0
 			}, 200);
@@ -1019,7 +1031,7 @@ function clickTrigger(){
 
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_001.jpg")
+				envLoad(sceneUrl1)
 				currState = MAIN
 				// skyBox.rotation.y = -1.7
 			}, 200);
