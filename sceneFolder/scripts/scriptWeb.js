@@ -21,6 +21,8 @@ let ProductIconUrl ="UIAssets/plus.png";
 var bool = false
 var currState = -1 // use this for statemachine
 
+var flashSound, listener, audioLoader;
+var flashHasPlayed = false;
 
 // Please reorder this to match the assets
 var INTRO = 0
