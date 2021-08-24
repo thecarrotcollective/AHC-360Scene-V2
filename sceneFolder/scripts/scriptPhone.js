@@ -63,7 +63,7 @@ function toRadians(degrees) {
 }
 
 
-document.getElementById('container').addEventListener('click', loadSounds)
+document.getElementById('container').addEventListener('touchend', loadSounds)
 
 function loadSounds(){
 	audioLoader = new THREE.AudioLoader();
@@ -74,7 +74,7 @@ function loadSounds(){
 		flashSound.setVolume( 0.5 );
 		// flashSound.play();
 	});
-	document.getElementById('container').removeEventListener('click', loadSounds)
+	document.getElementById('container').removeEventListener('touchend', loadSounds)
 }
 
 var flashSound, listener, audioLoader;
