@@ -153,9 +153,9 @@ function init() {
 	camera.rotation.z = 0
 	skydome.camera.position.z =0.0000000000001;
 	// controls = new DeviceOrientationControls( skydome.camera );
-	// controls = new OrbitControls( skydome.camera, renderer.domElement );
+	controls = new OrbitControls( skydome.camera, renderer.domElement );
 
-	controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
+	// controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
 
 
 
@@ -634,7 +634,7 @@ function init() {
     // ***********************VIDEO2********************
 	videoMeshBottleScene = new THREE.PlaneGeometry( 9, 16 );
 	bilboardVideo  = document.createElement('video');
-	bilboardVideo.src = "video/VID-20210820-WA0000.mp4"; // Set video address
+	bilboardVideo.src = "video/K-Beauty Treatment Area Krystal Logo-1.mp4"; // Set video address
 	bilboardVideo.playsInline = true;
 	bilboardVideo.muted = true;
 	bilboardVideo.loop = true;
