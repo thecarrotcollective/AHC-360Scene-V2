@@ -151,7 +151,7 @@ function init() {
 		camera : new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 ),
 	};
 	camera.rotation.z = 0
-	skydome.camera.position.z =0.0000000000001;
+	skydome.camera.position.z =0.01;
 	// controls = new DeviceOrientationControls( skydome.camera );
 	// controls = new OrbitControls( skydome.camera, renderer.domElement );
 
