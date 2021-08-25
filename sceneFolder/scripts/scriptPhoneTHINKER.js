@@ -3,7 +3,17 @@ import { DeviceOrientationControls } from './DeviceOrientationWithOrbit.js';
 
 //DELETE AFTER CSS FIX
 import {OrbitControls} from './Orbit.js';
-
+var sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_000.jpg"
+var sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_001.jpg"
+var sceneUrl2 ="scenes/EXTROVERT/EXTRO_CUBEMAP_002.jpg"
+var sceneUrl3 ="scenes/EXTROVERT/EXTRO_CUBEMAP_003.jpg"
+var sceneUrl4 ="scenes/EXTROVERT/EXTRO_CUBEMAP_004.jpg"
+var sceneUrl5 ="scenes/EXTROVERT/EXTRO_CUBEMAP_005.jpg"
+var sceneUrl6 ="scenes/EXTROVERT/EXTRO_CUBEMAP_006.jpg"
+var sceneUrl7 ="scenes/EXTROVERT/EXTRO_CUBEMAP_007.jpg"
+var sceneUrl8 ="scenes/EXTROVERT/EXTRO_CUBEMAP_008.jpg"
+var sceneUrl9 ="scenes/EXTROVERT/EXTRO_CUBEMAP_009.jpg"
+var sceneUrl10 ="scenes/EXTROVERT/EXTRO_CUBEMAP_010.jpg"
 // TODO - check if some of these can be lists / arrays + use as state machine?
 let camera, controls,videoMat,ProductIcon1,ProductIcon2,ProductIcon3,ProductIconScene1,ProductIconScene2,ProductIconScene3,video3,videoMask,videoMask2,videoTexture;
 let renderer,video,skydome,BottleRoomVideoPlayScene,SelfiePlane,SelfiePlaneScene,video2;
@@ -39,7 +49,6 @@ var POOLENTRACE =9
 var PRODUCTBASE = 10
 
 
-/* The below code triggers the experience. We will likely remove / refactor it later */
 window.addEventListener('load', (event) => {
 	init();
 	animate();
@@ -62,6 +71,24 @@ function toRadians(degrees) {
   var pi = Math.PI;
   return degrees * (pi/180);
 }
+
+
+document.getElementById('container').addEventListener('touchend', loadSounds)
+
+function loadSounds(){
+	audioLoader = new THREE.AudioLoader();
+	flashSound = new THREE.Audio(listener);
+	audioLoader.load('sounds/sfx/flash.mp3', function( buffer ) {
+		flashSound.setBuffer( buffer );
+		flashSound.setLoop( false );
+		flashSound.setVolume( 0.5 );
+		// flashSound.play();
+	});
+	document.getElementById('container').removeEventListener('touchend', loadSounds)
+}
+
+var flashSound, listener, audioLoader;
+var flashHasPlayed = false;
 
 function init() {
 
@@ -88,7 +115,6 @@ function init() {
 	OrbVideoScene = new THREE.Scene();
 	filterScene = new THREE.Scene();
 	BottleRoomVideoPlayScene = new THREE.Scene();
-
 	ProductIconScene1 = new THREE.Scene();
 	ProductIconScene2 = new THREE.Scene();
 	ProductIconScene3 = new THREE.Scene();
@@ -143,6 +169,9 @@ function init() {
 
 
 
+	listener = new THREE.AudioListener();
+	camera.add(listener)
+
 
 	manager = new THREE.LoadingManager();
 	manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
@@ -154,7 +183,6 @@ function init() {
 	manager.onLoad = function ( ) {
 
 		console.log( 'Loading complete!');
-
 
 		if(currState === INTRO){
 			video.currentTime = 0;
@@ -168,17 +196,12 @@ function init() {
 			RoomVideoPlay.rotation.set(0,-1.58,-0.01)
 			RoomVideoPlay.scale.set(3.1,3,2.1)
 
-
 			MainRoomScene.add(MainRoomArrow);
 			MiddleRoomScene.add(MiddleRoomArrow)
 			MiddleRoomArrow.position.set(arrowDist * Math.sin(toRadians(60)) , arrowHeight, -arrowDist * Math.cos(toRadians(60)));
 			MiddleRoomArrow.scale.copy(navArrowScale)
 			TweenFadeInForVideos(videoMat)
 			TweenFadeInForArrow()
-
-
-
-
 		}
 		if(currState === POOL){
 			video.currentTime = 0;
@@ -477,7 +500,7 @@ function init() {
 
 
 	//***********************CUBE MAP********************
-	envLoad("scenes/THINKER/THINKER_CUBEMAP_000.jpg")
+	envLoad(sceneUrl0)
 
 	//***********************LIGHT********************
 	const color = 0xFFFFFF;
@@ -719,11 +742,19 @@ function animate() {
 			document.getElementById('selfie-text').style.opacity = 1;
 			document.getElementById('selfie-btn').style.opacity = 1;
 			document.getElementById('selfie-btn').style.pointerEvents = "auto";
-
+			document.getElementById('whiteScreen').style.display = 'block';
+			if(!flashHasPlayed){
+				flashSound.play();
+				flashHasPlayed = true;
+			}
 		} else {
+			flashHasPlayed = false;
+
 			document.getElementById('selfie-text').style.opacity = 0;
 			document.getElementById('selfie-btn').style.opacity = 0;
 			document.getElementById('selfie-btn').style.pointerEvents = "none";
+			document.getElementById('whiteScreen').style.display = 'none';
+
 		}
 	} else if(currState === POOL){
 		camera.getWorldDirection(dirVector)
@@ -837,7 +868,7 @@ function clickTrigger(){
 		//***********************POOL SCENE**************************
 		if ( intersectsPoolRoom.length > 0 ) {
 				setTimeout(function(){
-					envLoad("scenes/4kEXTROVERT09_v2.jpg")
+					envLoad(sceneUrl9)
 					currState = POOL
 
 				}, 200)
@@ -858,7 +889,7 @@ function clickTrigger(){
 		if ( intersectsSelfie.length > 0 ) {
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT07_v2.jpg")
+				envLoad(sceneUrl10)
 				currState = SELFIE;
 			}, 200);
 			console.log("SELFIE SCENE - 1")
@@ -884,7 +915,7 @@ function clickTrigger(){
 		if ( intersectsPoolEntrance.length > 0 ) {
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_002.jpg")
+				envLoad(sceneUrl2)
 				currState = POOLENTRACE;
 			}, 200);
 			console.log("POOL ENTRANCE SCENE - 1")
@@ -897,7 +928,7 @@ function clickTrigger(){
 		if ( intersectsProductBase.length > 0 ) {
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_008.jpg")
+				envLoad(sceneUrl8)
 				currState = PRODUCTBASE;
 			}, 200);
 			console.log("PRODUCT BASE SCENE")
@@ -910,7 +941,7 @@ function clickTrigger(){
 		if ( intersectsMiddleRoom.length > 0 ) {
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT010_v2.jpg")
+				envLoad(sceneUrl3)
 				currState = MIDDLE;
 			}, 200);
 			console.log("MIDDLE SCENE - 1")
@@ -924,7 +955,7 @@ function clickTrigger(){
 			console.log("COACH SCENE - 1")
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT02_v2.jpg")
+				envLoad(sceneUrl4)
 				currState = COUCH
 			}, 200);
 
@@ -940,7 +971,7 @@ function clickTrigger(){
 
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT03_v2.jpg")
+				envLoad(sceneUrl5)
 
 				currState = PRODENTRANCE
 			}, 200);
@@ -954,7 +985,7 @@ function clickTrigger(){
 			console.log("VIDEO ROOM SCENE - 1")
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT04_v2.jpg")
+				envLoad(sceneUrl6)
 				currState = BEAUTY
 			}, 200);
 
@@ -967,7 +998,7 @@ function clickTrigger(){
 
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT05_v2.jpg")
+				envLoad(sceneUrl7)
 				currState = PRODUCTS
 				// skyBox.rotation.y =0
 			}, 200);
@@ -986,7 +1017,7 @@ function clickTrigger(){
 
 
 			setTimeout(function(){
-				envLoad("scenes/4kEXTROVERT01_v2.jpg")
+				envLoad(sceneUrl1)
 				currState = MAIN
 				// skyBox.rotation.y = -1.7
 			}, 200);

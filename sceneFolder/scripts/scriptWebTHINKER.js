@@ -1,6 +1,18 @@
 import * as THREE from './three.module.js';
 import {OrbitControls} from './Orbit.js';
 
+
+var sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_000.jpg"
+var sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_001.jpg"
+var sceneUrl2 ="scenes/EXTROVERT/EXTRO_CUBEMAP_002.jpg"
+var sceneUrl3 ="scenes/EXTROVERT/EXTRO_CUBEMAP_003.jpg"
+var sceneUrl4 ="scenes/EXTROVERT/EXTRO_CUBEMAP_004.jpg"
+var sceneUrl5 ="scenes/EXTROVERT/EXTRO_CUBEMAP_005.jpg"
+var sceneUrl6 ="scenes/EXTROVERT/EXTRO_CUBEMAP_006.jpg"
+var sceneUrl7 ="scenes/EXTROVERT/EXTRO_CUBEMAP_007.jpg"
+var sceneUrl8 ="scenes/EXTROVERT/EXTRO_CUBEMAP_008.jpg"
+var sceneUrl9 ="scenes/EXTROVERT/EXTRO_CUBEMAP_009.jpg"
+var sceneUrl10 ="scenes/EXTROVERT/EXTRO_CUBEMAP_010.jpg"
 // TODO - check if some of these can be lists / arrays + use as state machine?
 let camera, controls,videoMat,ProductIcon1,ProductIcon2,ProductIcon3,ProductIconScene1,ProductIconScene2,ProductIconScene3,video3,videoMask,videoMask2,videoTexture;
 let renderer,video,skydome,BottleRoomVideoPlayScene,SelfiePlane,SelfiePlaneScene,video2,OrbVideoScene;
@@ -21,6 +33,9 @@ let ProductIconUrl ="UIAssets/plus.png";
 var bool = false
 var currState = -1 // use this for statemachine
 
+var flashSound, listener, audioLoader;
+var flashHasPlayed = false;
+
 // Please reorder this to match the assets
 var INTRO = 0
 var MAIN = 1
@@ -34,7 +49,6 @@ var MIDDLE = 8
 var POOLENTRACE =9
 var PRODUCTBASE = 10
 
-
 window.addEventListener('load', (event) => {
 	init();
 	animate();
@@ -44,6 +58,10 @@ window.addEventListener('load', (event) => {
 	checkTheVideoLoad()
 
   });
+
+/* The below code triggers the experience. We will likely remove / refactor it later */
+
+
 const shareLinkBtn = document.getElementById('share-btn');
 shareLinkBtn.addEventListener('click', copyLink)
 
@@ -56,6 +74,25 @@ function toRadians(degrees) {
   var pi = Math.PI;
   return degrees * (pi/180);
 }
+
+
+document.getElementById('container').addEventListener('click', loadSounds)
+
+function loadSounds(){
+	audioLoader = new THREE.AudioLoader();
+	flashSound = new THREE.Audio(listener);
+	audioLoader.load('sounds/sfx/flash.mp3', function( buffer ) {
+		flashSound.setBuffer( buffer );
+		flashSound.setLoop( false );
+		flashSound.setVolume( 0.5 );
+		// flashSound.play();
+	});
+	document.getElementById('container').removeEventListener('click', loadSounds)
+
+}
+
+
+
 
 function init() {
 
@@ -123,8 +160,6 @@ function init() {
 	skydome.camera.position.z =0.01;
 	controls = new OrbitControls( skydome.camera, renderer.domElement );
 
-
-
 	// controls.target.set(0, 0, 0);
 	controls.rotateSpeed = - 0.25;
 	controls.enableZoom = false;
@@ -134,6 +169,8 @@ function init() {
 	controls.update();
 
 
+	listener = new THREE.AudioListener();
+	camera.add(listener)
 
 
 	manager = new THREE.LoadingManager();
@@ -207,6 +244,7 @@ function init() {
 			document.getElementById('selfie-text').style.display = 'block';
 			document.getElementById('selfie-btn').style.display = 'block';
 			document.getElementById('selfie-btn').style.pointerEvents = "auto";
+
 			PoolEntranceScene.add(PoolEntranceArrow)
 			PoolRoomScene.add(PoolRoomArrow);
 			SelfiePlaneScene.add(SelfiePlane)
@@ -239,7 +277,7 @@ function init() {
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 			VideoPlayBottleScene.position.set(-342,25,-450);
 
-	
+
 			VideoPlayBottleScene.rotation.set(0,1.5,0)
 			VideoPlayBottleScene.scale.set(7.2,7.5,1)
 			bilboardVideo.play();
@@ -469,7 +507,7 @@ function init() {
 
 
 	//***********************CUBE MAP********************
-	envLoad("scenes/THINKER/THINKER_CUBEMAP_000.jpg")
+	envLoad(sceneUrl0)
 
 	//***********************LIGHT********************
 	const color = 0xFFFFFF;
@@ -657,6 +695,10 @@ function onWindowResize() {
 	camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 }
+
+// document.getElementById( 'canvas' ).
+
+
 var endbool;
 
 var orbVideoPlayed = false
@@ -718,10 +760,20 @@ function animate() {
 			document.getElementById('selfie-text').style.opacity = 1;
 			document.getElementById('selfie-btn').style.opacity = 1;
 			document.getElementById('selfie-btn').style.pointerEvents = "auto";
+			document.getElementById('whiteScreen').style.display = 'block';
+			if(!flashHasPlayed){
+				flashSound.play();
+				flashHasPlayed = true;
+			}
+
 		} else {
+			flashHasPlayed = false;
+
 			document.getElementById('selfie-text').style.opacity = 0;
 			document.getElementById('selfie-btn').style.opacity = 0;
 			document.getElementById('selfie-btn').style.pointerEvents = "none";
+			document.getElementById('whiteScreen').style.display = 'none';
+
 		}
 	}
 	 else if(currState === POOL){
@@ -830,7 +882,7 @@ function clickTrigger(){
 		//***********************POOL SCENE**************************
 		if ( intersectsPoolRoom.length > 0 ) {
 				setTimeout(function(){
-					envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_009.jpg")
+					envLoad(sceneUrl9)
 					currState = POOL
 
 				}, 200)
@@ -851,7 +903,7 @@ function clickTrigger(){
 		if ( intersectsSelfie.length > 0 ) {
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_010.jpg")
+				envLoad(sceneUrl10)
 				currState = SELFIE;
 			}, 200);
 			console.log("SELFIE SCENE - 1")
@@ -877,7 +929,7 @@ function clickTrigger(){
 		if ( intersectsPoolEntrance.length > 0 ) {
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_002.jpg")
+				envLoad(sceneUrl2)
 				currState = POOLENTRACE;
 			}, 200);
 			console.log("POOL ENTRANCE SCENE - 1")
@@ -890,7 +942,7 @@ function clickTrigger(){
 		if ( intersectsProductBase.length > 0 ) {
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_008.jpg")
+				envLoad(sceneUrl8)
 				currState = PRODUCTBASE;
 			}, 200);
 			console.log("PRODUCT BASE SCENE")
@@ -903,7 +955,7 @@ function clickTrigger(){
 		if ( intersectsMiddleRoom.length > 0 ) {
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_003.jpg")
+				envLoad(sceneUrl3)
 				currState = MIDDLE;
 			}, 200);
 			console.log("MIDDLE SCENE - 1")
@@ -917,7 +969,7 @@ function clickTrigger(){
 			console.log("COACH SCENE - 1")
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_004.jpg")
+				envLoad(sceneUrl4)
 				currState = COUCH
 			}, 200);
 
@@ -933,7 +985,7 @@ function clickTrigger(){
 
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_005.jpg")
+				envLoad(sceneUrl5)
 
 				currState = PRODENTRANCE
 			}, 200);
@@ -947,7 +999,7 @@ function clickTrigger(){
 			console.log("VIDEO ROOM SCENE - 1")
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_006.jpg")
+				envLoad(sceneUrl6)
 				currState = BEAUTY
 			}, 200);
 
@@ -960,7 +1012,7 @@ function clickTrigger(){
 
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_007.jpg")
+				envLoad(sceneUrl7)
 				currState = PRODUCTS
 				// skyBox.rotation.y =0
 			}, 200);
@@ -979,7 +1031,7 @@ function clickTrigger(){
 
 
 			setTimeout(function(){
-				envLoad("scenes/EXTROVERT/EXTRO_CUBEMAP_001.jpg")
+				envLoad(sceneUrl1)
 				currState = MAIN
 				// skyBox.rotation.y = -1.7
 			}, 200);
@@ -1101,6 +1153,8 @@ function DisableEverything(){
 	document.getElementById('selfie-text').style.display = 'none';
 	document.getElementById('selfie-btn').style.display = 'none';
 	document.getElementById('pool-text').style.display = 'none';
+	document.getElementById('whiteScreen').style.display = 'none';
+
 	document.getElementById('pool-btn').style.display = 'none';
 	document.getElementById('beauty-text').style.display = 'none';
 	document.getElementById('beauty-btn').style.display = 'none';

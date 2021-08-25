@@ -151,7 +151,7 @@ function init() {
 		camera : new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 ),
 	};
 	camera.rotation.z = 0
-	skydome.camera.position.z =0.01;
+	skydome.camera.position.z =0.0000000000001;
 	// controls = new DeviceOrientationControls( skydome.camera );
 	// controls = new OrbitControls( skydome.camera, renderer.domElement );
 
@@ -192,7 +192,7 @@ function init() {
 			video.play()
 			video2.play()
 			RoomVideoPlayScene.add(RoomVideoPlay);
-			RoomVideoPlay.position.set(101.4,-11.5,-180)
+			RoomVideoPlay.position.set(101.4,-11.5,-176)
 			RoomVideoPlay.rotation.set(0,-1.58,-0.01)
 			RoomVideoPlay.scale.set(3.1,3,2.1)
 
@@ -221,7 +221,7 @@ function init() {
 			PoolEntranceArrow.scale.copy(navArrowScale)
 			selfieRoomArrow.scale.copy(navArrowScale)
 
-			RoomVideoPlay.position.set(100,-20.5,65)
+			RoomVideoPlay.position.set(100,-20.5,52.5)
 			RoomVideoPlay.rotation.set(0,4.7,0)
 			RoomVideoPlay.scale.set(7.2,6.9,1)
 			TweenFadeInForVideos(videoMat)
@@ -270,7 +270,7 @@ function init() {
 
 
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-			VideoPlayBottleScene.position.set(-342,25,-450);
+			VideoPlayBottleScene.position.set(-342,26,-450);
 
 			VideoPlayBottleScene.rotation.set(0,1.5,0)
 			VideoPlayBottleScene.scale.set(7.2,7.5,1)
@@ -292,9 +292,9 @@ function init() {
 			MiddleRoomScene.add(MiddleRoomArrow);
 
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-			VideoPlayBottleScene.position.set(-240,16,-450);
+			VideoPlayBottleScene.position.set(-20,1.4,-36.5);
 			VideoPlayBottleScene.rotation.set(0,1.5,0)
-			VideoPlayBottleScene.scale.set(9.2,9.6,1)
+			VideoPlayBottleScene.scale.set(0.75,0.81,1)
 			bilboardVideo.play();
 			videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(-20)));
 			BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(30)));
@@ -325,10 +325,10 @@ function init() {
 			bilboardVideo.play()
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 
-			VideoPlayBottleScene.position.set(-22,-1.8,-20);
+			VideoPlayBottleScene.position.set(-22,-1.75,-19.8);
 
 			VideoPlayBottleScene.rotation.set(0.01,1.4,0)
-			VideoPlayBottleScene.scale.set(0.85,1,1)
+			VideoPlayBottleScene.scale.set(0.88,1.03,1)
 			TweenFadeInForArrow()
 			TweenFadeInForBilboardVideos()
 		}
@@ -342,10 +342,10 @@ function init() {
 			bilboardVideo.play()
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 
-			VideoPlayBottleScene.position.set(-50,-0.85,-11.5);
+			VideoPlayBottleScene.position.set(-50,-0.8,-11.1);
 
 			VideoPlayBottleScene.rotation.set(0,1.5,0)
-			VideoPlayBottleScene.scale.set(	1.14,1.19,1)
+			VideoPlayBottleScene.scale.set(	1.14,1.22,1)
 
 			ProductIconScene1.add(ProductIcon1)
 			ProductIcon1.position.set(-3.8,0,-2)
@@ -374,10 +374,10 @@ function init() {
 			bilboardVideo.currentTime = 0;
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 
-			VideoPlayBottleScene.position.set(-50,-5.8,-23.8);
+			VideoPlayBottleScene.position.set(-50,-5.8,-23.2);
 
 			VideoPlayBottleScene.rotation.set(0,1.5,0)
-			VideoPlayBottleScene.scale.set(1.6,1.7,1)
+			VideoPlayBottleScene.scale.set(1.68,1.77,1)
 			bilboardVideo.play()
 			VideoRoomScene.add(videoRoomArrow)
 			BottleRoomScene.add(BottleRoomArrow)
@@ -426,9 +426,9 @@ function init() {
 			MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(190)) , arrowHeight, -arrowDist * Math.cos(toRadians(190)));
 
 
-			RoomVideoPlay.position.set(120,-8.5,-100)
+			RoomVideoPlay.position.set(120,-9,-100)
 			RoomVideoPlay.rotation.set(0,-1.5,-0.01)
-			RoomVideoPlay.scale.set(3,3,2.1)
+			RoomVideoPlay.scale.set(3.6,3.6,2.1)
 			video.play()
 			video2.play()
 
@@ -451,7 +451,7 @@ function init() {
 
 			  orbVideoMesh.position.set(-8,1.75,1.01)
 			  orbVideoMesh.rotation.set(0,2,0)
-			  RoomVideoPlay.position.set(88,-8.5,-120)
+			  RoomVideoPlay.position.set(88,-8.5,-118)
 			  RoomVideoPlay.rotation.set(0,-1.5,-0.01)
 			  RoomVideoPlay.scale.set(2.4,2.5,2.1)
 				  // RoomVideoPlay.rotation.set(0,90,0)
@@ -871,7 +871,7 @@ function clickTrigger(){
 					envLoad(sceneUrl9)
 					currState = POOL
 
-				}, 200)
+				}, 500)
 
 			DisableEverything()
 
@@ -891,7 +891,7 @@ function clickTrigger(){
 			setTimeout(function(){
 				envLoad(sceneUrl10)
 				currState = SELFIE;
-			}, 200);
+			}, 500);
 			console.log("SELFIE SCENE - 1")
 			DisableEverything()
 
@@ -917,7 +917,7 @@ function clickTrigger(){
 			setTimeout(function(){
 				envLoad(sceneUrl2)
 				currState = POOLENTRACE;
-			}, 200);
+			}, 500);
 			console.log("POOL ENTRANCE SCENE - 1")
 			DisableEverything()
 
@@ -930,7 +930,7 @@ function clickTrigger(){
 			setTimeout(function(){
 				envLoad(sceneUrl8)
 				currState = PRODUCTBASE;
-			}, 200);
+			}, 500);
 			console.log("PRODUCT BASE SCENE")
 			DisableEverything()
 
@@ -943,7 +943,7 @@ function clickTrigger(){
 			setTimeout(function(){
 				envLoad(sceneUrl3)
 				currState = MIDDLE;
-			}, 200);
+			}, 500);
 			console.log("MIDDLE SCENE - 1")
 			DisableEverything()
 
@@ -957,7 +957,7 @@ function clickTrigger(){
 			setTimeout(function(){
 				envLoad(sceneUrl4)
 				currState = COUCH
-			}, 200);
+			}, 500);
 
 
 			DisableEverything()
@@ -974,7 +974,7 @@ function clickTrigger(){
 				envLoad(sceneUrl5)
 
 				currState = PRODENTRANCE
-			}, 200);
+			}, 500);
 
 			DisableEverything()
 			clickableVideo = false
@@ -987,7 +987,7 @@ function clickTrigger(){
 			setTimeout(function(){
 				envLoad(sceneUrl6)
 				currState = BEAUTY
-			}, 200);
+			}, 500);
 
 			DisableEverything()
 		}
@@ -1001,7 +1001,7 @@ function clickTrigger(){
 				envLoad(sceneUrl7)
 				currState = PRODUCTS
 				// skyBox.rotation.y =0
-			}, 200);
+			}, 500);
 
 
 
@@ -1020,7 +1020,7 @@ function clickTrigger(){
 				envLoad(sceneUrl1)
 				currState = MAIN
 				// skyBox.rotation.y = -1.7
-			}, 200);
+			}, 500);
 			// TweenForVideos(videoMat)
 			DisableEverything()
 
