@@ -1835,28 +1835,28 @@ img.bg {
 
 
     filter: drop-shadow(2px 4px 8px #58585888);
-display: -webkit-inline-box;
-display: -ms-inline-flexbox;
-display: inline-flex;
--webkit-box-align: center;
--ms-flex-align: center;
-    align-items: center;
--webkit-box-pack: center;
--ms-flex-pack: center;
-    justify-content: center;
-padding: 2rem 7rem;
-/* margin-bottom: 25%; */
-font-family: "Pangram-Regular";
-letter-spacing: 5px;
-font-weight: 700;
-font-size: 1.2em;
-text-align: center;
-text-decoration: none;
-color: #fff;
--webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-border: none;
-border-radius: 3rem;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+        align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    padding: 2rem 7rem;
+    /* margin-bottom: 25%; */
+    font-family: "Pangram-Regular";
+    letter-spacing: 5px;
+    font-weight: 700;
+    font-size: 1.2em;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    border: none;
+    border-radius: 3rem;
 
   }
 
