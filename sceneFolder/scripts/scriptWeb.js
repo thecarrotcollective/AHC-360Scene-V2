@@ -326,7 +326,7 @@ function init() {
 			document.getElementById('beauty-btn').style.display = 'block';
 			document.getElementById('beauty-btn').style.pointerEvents = "auto";
 			ProductRoomScene.add(ProductRoomArrow)
-			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.5* Math.cos(toRadians(180)));
+			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.6* Math.cos(toRadians(180)));
 			ProductRoomArrow.scale.copy(navArrowScale)
 
 			ProcuctBaseScene.add(ProcuctBaseArrow)
@@ -396,7 +396,7 @@ function init() {
 			BottleRoomArrow.scale.copy(navArrowScale)
 			videoRoomArrow.scale.copy(navArrowScale)
 			ProductRoomScene.add(ProductRoomArrow)
-			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.5* Math.cos(toRadians(180)));
+			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.6* Math.cos(toRadians(180)));
 			ProductRoomArrow.scale.copy(navArrowScale)
 			ProductIconScene1.add(ProductIcon1)
 			ProductIcon1.position.set(0,-0.25,-1)
@@ -523,7 +523,7 @@ function init() {
 
 	//***********************ARROWS********************
 	var arrowTexture = new THREE.TextureLoader().load( arrowUrl );
-	arrowMat = new THREE.SpriteMaterial( { map: arrowTexture ,rotation:0,transparent: true,opacity:1} );
+	arrowMat = new THREE.SpriteMaterial( { map: arrowTexture ,color: 0xffffff ,rotation:0,transparent: true,opacity:1} );
 	CoachRoomArrow = new THREE.Sprite( arrowMat );
 	// CoachRoomArrow.position.set(-18,-8,25);
 	CoachRoomArrow.scale.copy(navArrowScale)
