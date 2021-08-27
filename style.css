@@ -1143,7 +1143,7 @@ height: 85%;
 -webkit-box-pack: center;
     -ms-flex-pack: center;
         justify-content: center;
-/* -webkit-animation:  scaleArch 2s 1 forwards; */
+-webkit-animation:  scaleArch 2s 1 forwards;
 animation: scaleArch 2s 1 forwards ;
 }
 @-webkit-keyframes scaleArch {
