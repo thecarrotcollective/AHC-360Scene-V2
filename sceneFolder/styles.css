@@ -742,3 +742,54 @@ video{
   border: 0;
 
 }
+
+#share-container {
+  display:none;
+
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  width: 350px;
+  margin: 0 auto;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%);
+
+  /*color:  #000000;*/
+  background-color: #FFFFFF;
+
+  padding: 2rem;
+  font-family: "Pangram-Regular";
+  /*letter-spacing: 5px;*/
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1em;
+
+  text-decoration: none;
+  backface-visibility: hidden;
+  border: 0.3rem solid transparent;
+  border-radius: 3rem;
+  box-shadow: 5px 10px 18px #888888;
+}
+
+#share-ui {
+  width:75%;
+  margin: 0 auto;
+}
+#phone {
+  width: 100%;
+  height: 2rem;
+  margin-top: 1rem;
+}
+
+#share-submit {
+  margin: 0 auto;
+  background-color: black;
+  color: white;
+  padding:1em;
+  border-radius: 3rem;
+  width: 100%;
+
+}

@@ -63,7 +63,11 @@ window.addEventListener('load', (event) => {
 
 
 const shareLinkBtn = document.getElementById('share-btn');
-shareLinkBtn.addEventListener('click', copyLink)
+shareLinkBtn.addEventListener('click', sharePopup);
+const shareSubmit = document.getElementById('share-submit');
+shareSubmit.addEventListener('click', sendUser)
+// shareSubmit.addEventListener('click', copyLink)
+const shareContainer = document.getElementById('share-container')
 
 
 const navArrowScale = new THREE.Vector3(4,2,4)
@@ -1240,6 +1244,47 @@ function checkTheVideoLoad(){
 // 	}
 // }
 
+var input = document.getElementById('phone');
+input.oninvalid = function(event) {
+	event.target.setCustomValidity('Phone number is 18 digit maximum');
+}
+
+var xmlhttp;
+var post_url = "post_user.php";
+
+$(document).ready(function() {
+	const submit = document.getElementById('share-submit');
+	submit.addEventListener('click', sendUser);
+});
+
+function sendUser() {
+	let phoneNumber = document.getElementById('phone').value;
+	console.log(phoneNumber)
+	if (phoneNumber==null){
+		// console.log("No entry, try again");
+
+	} else {
+		xmlhttp=new XMLHttpRequest();
+		xmlhttp.open("POST", post_url, true);
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+		console.log("sendUser phone = " + phoneNumber);
+		xmlhttp.send("phone="+phoneNumber);
+		xmlhttp.addEventListener("load", transferComplete);
+	}
+}
+
+function transferComplete(evt) {
+	console.log("The transfer is complete.");
+	input.value = "";
+	copyLink();
+}
+
+function sharePopup() {
+	shareContainer.style.display = 'block';
+	console.log('show share-container')
+}
+
 function copyLink() {
 	const linkToCopy = "https://us.ahcbeauty.com/";
 
@@ -1248,29 +1293,26 @@ function copyLink() {
 			title: 'AHC You Spa',
 			url: linkToCopy
 		}).then(() => {
-			shareLinkBtn.innerText = 'LINK COPIED'
+
 			setTimeout(() => {
-				shareLinkBtn.innerText = 'Share Experience With a Friend'
+				shareContainer.style.display = 'none;'
 			}, 2000)
 		})
 			.catch(console.error);
 	} else {
 		// TODO Add fallback to copy Link
-		// navigator.clipboard.writeText(linkToCopy)
-		// 	.then(() => {
-		// 		// alert(`Copied!`)
-		// 		shareLinkBtn.innerText = 'LINK COPIED'
-		// 		// shareLinkBtn.style.color = 'white'
-		// 		// shareLinkBtn.style.backgroundColor = 'black'
-		// 		setTimeout(() => {
-		// 			shareLinkBtn.innerText = 'Share Experience With a Friend'
-		// 			// shareLinkBtn.style.color = 'black'
-		// 			// shareLinkBtn.style.backgroundColor = 'white'
-		// 		}, 2000)
-		//
-		// 	})
-		// 	.catch((error) => {
-		// 		alert(`Copy failed! ${error}`)
-		// 	})
+		navigator.clipboard.writeText(linkToCopy)
+			.then(() => {
+				// alert(`Copied!`)
+				shareSubmit.innerText = 'LINK COPIED'
+				setTimeout(() => {
+					shareSubmit.innerText = 'Share Experience With a Friend'
+					shareContainer.style.display = 'none;'
+				}, 2000)
+
+			})
+			.catch((error) => {
+				alert(`Copy failed! ${error}`)
+			})
 	}
 }
