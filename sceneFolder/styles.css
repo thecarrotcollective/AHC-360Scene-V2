@@ -10,14 +10,22 @@
   font-family: "Pangram-ExtraBold";
   src:url("fonts/Pangram-ExtraBold.otf") format("opentype");
 }
+.mainIntroPage{
 
+
+
+}
 body {
   height: 100%;
   margin: 0 !important;
   padding: 0 !important;
   font-family: "Pangram-Regular";
+  background-color: rgb(254, 245, 240);
+  background: url('UIAssets/OPENNING.jpg') no-repeat;
+  background-position: center; /* Center the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
 
-  /* margin: -0.1; */
+
 }
 
 video{
@@ -44,6 +52,17 @@ video{
 .video-js{
   background-color: rgba(0,0,0,0) !important;
 }
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+
+  }
+}
+
 
 
 
@@ -311,12 +330,36 @@ video{
   }
 
   @media only screen and (min-width: 600px) {
-    #ahc-logo-beauty{
-      /* position:fixed; */
-      /* top:0; */
-      /* transform: scale(0.25); */
-      /* margin-top: 0%;
-      margin-bottom: 2em; */
+   
+    .productIntro {
+      position: absolute;
+        /* width: 50%; */
+        top: 50%;
+       left: 50%;
+      
+      transform: translate(-50%, -50%)scale(1);
+       opacity: 0;
+       -webkit-animation: pulse 1s ease-in-out forwards;
+       animation: pulse 1s ease-in-out forwards;
+    
+    }
+    #start-btn {
+      position: absolute;
+      top: 75%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      background-color: rgb(61, 61, 61);
+      color: white;
+      font-size: 32px;
+      padding: 12px 24px;
+      border: none;
+      cursor: pointer;
+    
+      text-align: center;
+      padding: 1.5rem 7rem;
+      border-radius: 3rem;
     }
 
     .CTA-btn {
@@ -430,6 +473,37 @@ video{
   }
   canvas{
     z-index: -1;
+  }
+  .productIntro {
+    display: flex;
+    position: absolute;
+      /* width: 50%; */
+      top: 50%;
+     left: 50%;
+
+             transform: translate(-50%, -50%)scale(0.5);
+     opacity: 0;
+     -webkit-animation: pulse 1s ease-in-out forwards;
+     animation: pulse 1s ease-in-out forwards;
+  
+  }
+  #start-btn {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: rgb(61, 61, 61);
+    color: white;
+    font-size: 32px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+  
+    text-align: center;
+    padding: 1.5rem 7rem;
+    border-radius: 3rem;
   }
 
   .CTA-btn {
@@ -574,10 +648,10 @@ video{
     flex-direction: column;
     background: rgb(255, 241, 215)
   }
-  #start-btn{
+  /* #start-btn{
     transform: scale(0.5);
 
-  }
+  } */
   .bn3637 {
 
     display: inline-flex;
@@ -706,11 +780,13 @@ video{
   transition: opacity 0.5s;
 
 }
-
+#ui-container{
+  display: none;
+}
 /* #ui-container{
   /*width: 100%;*/
   /*text-align: center;
-}*/
+} */
 
 
 #share-btn {

@@ -49,16 +49,17 @@ var POOLENTRACE =9
 var PRODUCTBASE = 10
 
 
-window.addEventListener('load', (event) => {
+const startButton = document.getElementById( 'start-btn' );
+startButton.addEventListener( 'click', function () {
 	init();
 	animate();
 	currState = INTRO
 	renderer.autoclear = false;
 	// TweenFadeInForVideos(videoMat)
 	checkTheVideoLoad()
-
-  });
-
+	document.getElementById('productIntro1').style.display = 'none'
+	document.getElementById('ui-container').style.display = 'block'
+} );
 const shareLinkBtn = document.getElementById('share-btn');
 shareLinkBtn.addEventListener('click', copyLink)
 

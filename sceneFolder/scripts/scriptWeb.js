@@ -48,16 +48,18 @@ var PRODENTRANCE = 7
 var MIDDLE = 8
 var POOLENTRACE =9
 var PRODUCTBASE = 10
-
-window.addEventListener('load', (event) => {
+const startButton = document.getElementById( 'start-btn' );
+startButton.addEventListener( 'click', function () {
 	init();
 	animate();
 	currState = INTRO
 	renderer.autoclear = false;
 	// TweenFadeInForVideos(videoMat)
 	checkTheVideoLoad()
+	document.getElementById('productIntro1').style.display = 'none'
+	document.getElementById('ui-container').style.display = 'block'
+} );
 
-  });
 
 /* The below code triggers the experience. We will likely remove / refactor it later */
 

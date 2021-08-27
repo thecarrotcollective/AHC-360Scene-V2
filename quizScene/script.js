@@ -47,18 +47,21 @@ var option2Counter = 0
 var option3Counter = 0
 var option4Counter = 0
 
-const startButton = document.getElementById('start-btn');
+const startButton = document.getElementById('start-quiz-btn');
 startButton.addEventListener('click', startGame);
 
 
 function startGame() {
 
-  document.getElementById('fist-page').style.display = 'none';
-  document.getElementById('quiz_id').style.display = 'block';
-  document.getElementById('process_id').style.display = 'block';
+ 
+  document.getElementById('archid').style.display = 'none';
+  document.getElementById('middleText2').style.display = 'none';
+  document.getElementById('controls_id').style.display = 'none';
+  document.getElementById('quiz_id').style.display = 'flex';
+  document.getElementById('process_id').style.display = 'flex';
   // document.getElementById('btnCSS2').style.display = 'none';
 
-  document.body.style.background ="rgb(254, 245, 240)";
+  document.getElementById('IntroDiv').style.background ="rgb(254, 245, 240)";
   populate();
 }
 var buttonID = document.getElementById("buttons_id");
@@ -84,6 +87,7 @@ function populate() {
 
   var choices = quiz.getQuestionIndex().choices;
   shuffle(choices);
+  // animationButton(buttonID,"buttons")
   for (var i = 0; i < choices.length; i++) {
     var element = document.getElementById("choice" + i);
     element.innerHTML = images[choices[i]]? '<img id="choiceImage"src="'+images[choices[i]]+'"/>':choices[i];
@@ -167,17 +171,21 @@ function showScores() {
 
   }
   console.log("last option = " + finalOption)
-  document.getElementById('fist-page').style.display = 'grid';
+  // document.getElementById('fist-page').style.display = 'grid';
+  document.getElementById('archid').style.display = 'flex';
+  document.getElementById('infoText').style.display = 'flex';
+  document.getElementById('middleText').style.display = 'flex';
+  document.getElementById('controls_id').style.display = 'flex';
   document.getElementById('quiz_id').style.display = 'none';
-  document.getElementById('middleText2').style.display = 'none';
+
   document.getElementById('process_id').style.display = 'none';
 
 
   var personiltyTypeHtml = "<h2 id='question' >"+personiltyType+"</h2>";
   var  gameOverHTML = '';
-  document.getElementById("middleText").style.top = "45%";
+  document.getElementById("middleText2").style.top = "45%";
   gameOverHTML += "<h1 id='score'> Option: " + optionChoice + "</h1>";
-  var spaText = "<h1 style='font-family:Pangram-Bold; font-size:70px'; top: 45%;>"+spaText+"</h1>";
+  var spaText = "<h1 >"+spaText+"</h1>";
   var element = document.getElementById("personality");
   element.innerHTML = spaText;
   var element2 = document.getElementById("question")
@@ -188,7 +196,7 @@ function showScores() {
   var element3 = document.getElementById("controls_id")
   element3.innerHTML = buttonText;
 
-  var resultImg = "<img src="+ imageurl +" height='512'>";
+  var resultImg = "<img src="+ imageurl +">";
   var element4 = document.getElementById("archid");
   element4.innerHTML = resultImg;
   var infoTextHtml = "<h2 id='infoText'>"+ infoText+"</h2>";
