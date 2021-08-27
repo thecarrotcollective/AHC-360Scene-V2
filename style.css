@@ -1142,30 +1142,37 @@ transform: scale(1.5);
 animation: scaleArch 2s 1 forwards ; */
 }
 .arch img{
+  animation: scaleArch 2.5s ease-in-out 0s;
+    /* for chrome and safari*/
+  -webkit-animation: scaleArch 2.5s ease-in-out 0s;
+    /*for firefox*/
+  -moz-animation: scaleArch 2.5s ease-in-out 0s;
+    /* for opera*/
+  -o-animation: scaleArch 2.5s ease-in-out 0s;
+  /* -webkit-animation:  scaleArch 3s 1 forwards;
+  animation: scaleArch 3s 1 forwards ; */
+  }
+  @keyframes scaleArch {
+    0% {
+      /* width: 0px; */
+      transform: scale(1.3);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
+  }
+  @-webkit-keyframes scaleArch {
+    from {
+      transform: scale(1.3);
+    }
+  
+    to {
+      transform: scale(1);
+    }
+  }
+ 
 
-  -webkit-animation:  scaleArch 3s 1 forwards;
-  animation: scaleArch 3s 1 forwards ;
-  }
-@-webkit-keyframes scaleArch {
-  0% {
-    -webkit-transform: scale(1.3);
-            transform: scale(1.3);
-  }
-  100% {
-    -webkit-transform: scale(1,1);
-            transform: scale(1,1);
-  }
-}
-@keyframes scaleArch {
-  0% {
-    -webkit-transform: scale(1.3);
-            transform: scale(1.3);
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-}
 .middleText2{
 position: absolute;
 display: none;
