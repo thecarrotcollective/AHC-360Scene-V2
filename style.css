@@ -748,7 +748,7 @@
   width: calc(90vh*9/19.5);
   height: 90vh;
   border-radius: 20px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .safe_area {
