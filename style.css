@@ -724,7 +724,7 @@
   animation-delay: 0.5s;
   animation: pulse 1s ease-in-out forwards;
   height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
   text-align: center;
   margin: none;
   padding: none;
@@ -769,7 +769,7 @@
   display: grid;
   /* box-sizing: border-box;
   overflow: hidden; */
-  grid-auto-rows: 0fr 4fr 1fr;
+  grid-auto-rows: 0fr 3fr 1fr;
 
 }
 
@@ -827,7 +827,7 @@ height: 100%;
 position: absolute;
 flex-wrap: nowrap;
 flex-direction: row;
-align-items: center;
+align-items: flex-start;
 justify-content: center;
 margin-top: 10%;
 
@@ -851,6 +851,12 @@ transition: .4s;
 cursor: pointer;
 padding: 6px;
 }
+#choiceImage{
+  max-width: 1200px;
+  height: 100%;
+  object-fit: cover;
+}
+
 .ahc-logo-Intro{
 display: flex;
 /* position: absolute; */
@@ -948,7 +954,7 @@ letter-spacing: 10px;
   position: absolute;
   z-index: 2;
   width: 100%;
-  height: 100%;
+  height: 62%;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
