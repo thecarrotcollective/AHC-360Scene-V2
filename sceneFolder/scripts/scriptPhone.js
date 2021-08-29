@@ -154,9 +154,9 @@ function init() {
 	camera.rotation.z = 0
 	skydome.camera.position.z =0.0000000000001;
 	// controls = new DeviceOrientationControls( skydome.camera );
-	controls = new OrbitControls( skydome.camera, renderer.domElement );
+	// controls = new OrbitControls( skydome.camera, renderer.domElement );
 
-	// controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
+	controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
 
 
 
