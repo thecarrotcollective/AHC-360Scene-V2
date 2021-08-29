@@ -22,7 +22,7 @@ let scene,materials,skyBox,ProductRoomScene,ProductRoomArrow,MiddleRoomScene,Mid
 let RoomVideoPlay,RoomVideoPlayScene,filterScene,SceneObjectVideo1,videoPlane,selfieRoomArrow;
 let OrbVideoScene,orbVideoPlane, orbVideo, orbVideoMask,orbVideoTex, orbVideoMaskTex, orbVideoMat, orbVideoMesh;
 let videoMatBottleScene,VideoPlayBottleScene,firtVideoChecker,secondVideoChecker,selfieSceneClick;
-
+let orbProductVideo,orbProductVideoMask,orbProductVideoTex,orbProductVideoMaskTex
 let bilboardVideo, bilboardVideoTex,orbProductPlane, orbProductTex,orbProductAlpha,orbProductMat,orbProduct;
 let PoolEntranceArrow, ProcuctBaseArrow ,PoolEntranceScene, ProcuctBaseScene
 const mouse = new THREE.Vector2();
@@ -441,13 +441,15 @@ function init() {
 			video3.currentTime = 0;
 			orbVideo.currentTime = 0;
 			orbVideoMask.currentTime = 0;
+			orbProductVideo.currentTime = 0;
+			orbProductVideoMask.currentTime = 0;
 			console.log("MAIN scene runned")
 				OrbVideoScene.add(orbVideoMesh)
 				OrbVideoScene.add(orbProduct)
 			  MiddleRoomScene.add(MiddleRoomArrow)
 			  PoolEntranceScene.add(PoolEntranceArrow);
 			  RoomVideoPlayScene.add(RoomVideoPlay);
-			  orbProduct.position.set(-8.1,1.75,1.01)
+			  orbProduct.position.set(-8.2,1.75,1.1)
 			  orbProduct.rotation.set(0,2,0)
 
 			  orbVideoMesh.position.set(-8,1.75,1.01)
@@ -463,7 +465,8 @@ function init() {
 
 			  video.play()
 			  video3.play()
-
+			  orbProductVideo.play()
+			  orbProductVideoMask.play()
 			  videoMat.alphaMap = videoMask2
 
 			  TweenFadeInForVideos(videoMat)
@@ -571,23 +574,35 @@ function init() {
 	const selfiMat = new THREE.MeshBasicMaterial( {color: 0xffff00, transparent: true,opacity:0, side: THREE.DoubleSide} );
 	SelfiePlane = new THREE.Mesh( selfiMesh, selfiMat );
 
-	orbProductPlane = new THREE.PlaneGeometry( 3, 3 );
-	orbProductTex =new THREE.TextureLoader().load("images/AHC.HEROPRODUCT.BASE.jpg");
-	orbProductAlpha =new THREE.TextureLoader().load("images/AHC.HEROPRODUCT.ALPHA.jpg");
+	orbProductPlane = new THREE.PlaneGeometry( 4, 4 );
+	orbProductVideo = document.createElement('video');
+	orbProductVideo.src = "video/AHC_Cream.mp4";
+	orbProductVideo.muted = true;
+	orbProductVideo.loop = true;
 
-	orbProductMat = new THREE.MeshBasicMaterial( {map:orbProductTex ,alphaMap:orbProductAlpha, transparent: true,opacity:1,side: THREE.DoubleSide});
+	orbProductVideoMask = document.createElement('video');
+	orbProductVideoMask.src = "video/AHC_Cream_Alpha.mp4";
+	orbProductVideoMask.muted = true;
+	orbProductVideoMask.loop = true
+	orbProductVideoTex =  new THREE.VideoTexture(orbProductVideo)
+	orbProductVideoMaskTex = new THREE.VideoTexture(orbProductVideoMask)
+
+
+	orbProductMat = new THREE.MeshBasicMaterial( {map:orbProductVideoTex , transparent: true,opacity:1,side: THREE.DoubleSide});
+	orbProductMat.alphaMap = orbProductVideoMaskTex
 	orbProduct = new THREE.Mesh( orbProductPlane, orbProductMat );
+	//***********************ORB VIDEO********************
 
 		//***********************ORB VIDEO********************
 		orbVideoPlane = new THREE.PlaneGeometry( 9, 9 );
 		orbVideo = document.createElement('video');
-		orbVideo.src = "video/ORBREVEALBASE.mp4";
+		orbVideo.src = "video/Ahc.Reveal.v5.BASE.mp4";
 		orbVideo.playsInline = true;
 		orbVideo.muted = true;
 		orbVideo.loop = false;
 
 		orbVideoMask = document.createElement('video');
-		orbVideoMask.src = "video/ORBREVEALALPHA.mp4";
+		orbVideoMask.src = "video/Ahc.Reveal.v6.ALPHA.mp4";
 		orbVideoMask.muted = true;
 		orbVideoMask.playsInline = true;
 
@@ -761,7 +776,7 @@ function animate() {
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
 
-		if(dirVector.z > 0.25 && dirVector.z < 0.75 && dirVector.y > -0.3 && dirVector.x > 0.8 ){ // need to stress test
+		if(dirVector.z > -0.4 && dirVector.z < 0.9 && dirVector.y > -0.3 && dirVector.x > 0 && dirVector.x < 1   ){ // need to stress test
 			document.getElementById('pool-text').style.opacity = 1;
 			document.getElementById('pool-btn').style.opacity = 1;
 			document.getElementById('pool-btn').style.pointerEvents = "auto";
@@ -775,7 +790,7 @@ function animate() {
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
 
-		if(dirVector.z > -0.65 && dirVector.z < 0 && dirVector.y > -0.3 && dirVector.x < -0.75 ){ // need to stress test
+		if(dirVector.z > -0.95 && dirVector.z < 0 && dirVector.y > -0.3 && dirVector.x < -0.35 ){ // need to stress test
 			document.getElementById('beauty-text').style.opacity = 1;
 			document.getElementById('beauty-btn').style.opacity = 1;
 			document.getElementById('beauty-btn').style.pointerEvents = "auto";
