@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head>
     <meta charset="UTF-8">
 
     <script>
@@ -36,6 +36,7 @@
          window.document.title = copyJSON.Title[languageID]
 
          document.getElementById('start-btnIntro').innerHTML = copyJSON.StartJourney[languageID]
+         document.documentElement.lang = copyJSON.code[languageID];
       });
 
 

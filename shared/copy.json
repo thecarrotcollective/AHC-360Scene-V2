@@ -4,10 +4,10 @@
     "Korean",
     "Chinese"
   ],
-  "Title": [
-      "AHC Spa at Home",
-      "AHC Spa at Home - Korean",
-      "AHC Spa at Home - Chinese"
+  "code":[
+    "en",
+    "ko",
+    "zh"
   ],
   "StartJourney":[
     "Start Your Journey",
@@ -33,5 +33,105 @@
     "Personality tests are an essential trait of Korean culture",
     "내 성향에 따른 맞춤형 스파를 경험해보세요",
     "性格测试，开启你的专属肌疗SPA之旅"
+  ],
+  "StartExperience":[
+    "Start Experience",
+    "시작하기",
+    "开始"
+  ],
+  "PersonalityTestQ1":[
+    "Choose an image that represents you best",
+    "당신을 이미지로 표현한다면 다음 중 어떤 것이 가장 어울리나요?",
+    "选择最能代表你的图片"
+  ],
+  "PersonalityTestQ2":[
+    "Choose an image that makes you feel more relaxed",
+    "가장 안정감이 느껴지는 이미지는 무엇인가요?",
+    "选择最让你放松的图片"
+  ],
+  "PersonalityTestQ3":[
+    "Choose a color that you like the most",
+    "가장 마음에 드는 색깔은 무엇인가요?",
+    "选择你最喜欢的颜色"
+  ],
+  "Extrovert":[
+    "It seems like you are an Extrovert. Extroverts are often outgoing and active",
+    "\"외향적\"인 성격인 것 같아요 외향적인 사람들은 활발하고 활동적인 편이에요",
+    "外向型。通常表现得开朗且积极主动"
+  ],
+  "Introvert":[
+    "It seems like you are an Introvert. Introverts are often calm and reliable",
+    "\"내향적\"인 성격인 것 같아요 내향적인 사람들은 침착하고 듬직한 편이에요",
+    "内向型。通常表现得冷静且可靠"
+  ],
+  "Feeler":[
+    "It seems like you are a feeler. Feelers are often artistic and considerate",
+    "\"감성적\"인 성격인 것 같아요 감성적인 사람들은 예술적이고 배려심이 많은 편이에요",
+    "感知型。富有艺术感且细心体贴"
+  ],
+  "Thinker":[
+    "It seems like you are a thinker. Thinkers are often to create great ideas",
+    "\"사상가적\"인 성격인 것 같아요 사상가적인 사람들은 좋은 아이디어가 많은 편이에요",
+    "思考型。总是能创造出伟大的想法"
+  ],
+  "GoToSpa":[
+    "Take me to my spa",
+    "나만의 스파 경험하기",
+    "即刻前往AHC肌疗美肤馆"
+  ],
+  "TakeSelfieCTA":[
+    "Take a selfie with our superstar ambassador Krystal Jung!",
+    "AHC의 앰버서더 크리스탈과 셀카를 찍어보세요!",
+    "与韩国巨星Krystal郑秀晶合影吧！"
+  ],
+  "CameraPermission":[
+    "The experience needs access to your camera",
+    "사진 촬영을 위해 카메라 접근 권한이 필요합니다",
+    "体验需要访问您的相机"
+  ],
+  "AccessButton":[
+    "Access",
+    "동의",
+    "访问"
+  ],
+  "SharePopUp":[
+    "Share this experience.Enter your phone number",
+    "친구에게 AHC SPA 공유하기 휴대전화 번호 입력",
+    "Not make sense"
+  ],
+  "ShareButton":[
+    "Share",
+    "공유하기",
+    "分享"
+  ],
+  "SensorialCTAExtrovertFeeler":[
+    "Try AHC color therapy sensorial treatment.",
+    "컬러 테라피로 에너지를 충전해보세요",
+    "尝试AHC色彩肌疗法"
+  ],
+  "SensorialCTAIntrovertThinker":[
+    "Try AHC sensorial brain massage.",
+    "디지털 스파 테라피로 안정을 취해보세요",
+    "尝试AHC脑电波肌疗法"
+  ],
+  "StartTherapyButton":[
+    "Start your therapy",
+    "테라피 시작하기",
+    "分享，邀请朋友们奢享肌疗体验"
+  ],
+  "ShareWithFriend":[
+    "Share with a friend",
+    "친구와 공유하기",
+    "分享"
+  ],
+  "WatchAHCKBeauty":[
+    "Watch AHC’s KOREAN AESTHETIC TUTORIALS here.",
+    "튜토리얼을 통해 K-뷰티 사용법을 확인해보세요!",
+    "观看AHC肌疗美肤私教课"
+  ],
+  "FindOutMore":[
+    "Find out more",
+    "AHC 제품 둘러보기",
+    "探索更多精彩"
   ]
 }
