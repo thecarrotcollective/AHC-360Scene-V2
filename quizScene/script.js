@@ -181,7 +181,7 @@ function showScores() {
   document.getElementById('process_id').style.display = 'none';
 
 
-  var personiltyTypeHtml = "<h3 id='question' style='font-size:20px'>"+personiltyType+"</h3>";
+  var personiltyTypeHtml = "<h3 id='question' >"+personiltyType+"</h3>";
   var  gameOverHTML = '';
   document.getElementById("middleText2").style.top = "45%";
   gameOverHTML += "<h1 id='score'> Option: " + optionChoice + "</h1>";

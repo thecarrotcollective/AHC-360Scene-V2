@@ -811,7 +811,7 @@
        animation: pulse 1s ease-in-out forwards;
     
     }
-    #productIntroButton {
+    #selfie-btn {
       position: absolute;
       top: 75%;
       left: 50%;
@@ -940,7 +940,7 @@
        animation: pulse 1s ease-in-out forwards;
     
     }
-    #start-btn {
+    /* #start-btn {
 
       position: absolute;
       top: 75%;
@@ -958,7 +958,7 @@
       text-align: center;
       padding: 1.5rem 7rem;
       border-radius: 3rem;
-    }
+    } */
   
   
   }
@@ -969,7 +969,7 @@
 
 
 
-
+ 
 
 
 
@@ -1202,7 +1202,7 @@ height: 5%;
    animation: pulse 1s ease-in-out forwards;
 
 }
-#start-btn {
+#selfie-btn {
   position: absolute;
   top: 75%;
   left: 50%;
@@ -1572,7 +1572,7 @@ border: 2px solid transparent;
 border-radius: 5rem;
 }
 .bn39 {
-border-color: rgb(0, 0, 0);;
+border-color: rgb(0, 0, 0);
 background-color: rgba(226, 242, 237, 0);
 /* color: rgb(255, 255, 255); */
 -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
