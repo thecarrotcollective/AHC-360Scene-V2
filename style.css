@@ -1777,7 +1777,7 @@ border-color: rgb(255, 255, 255) !important;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
       justify-content: center;
-  padding: 0rem 5rem;
+  /* padding: 0rem 5rem; */
   /* margin-bottom: 25%; */
   font-family: "Pangram-Regular";
   letter-spacing: 5px;
