@@ -100,6 +100,11 @@
                                 <div class="controlsIntro" id="controlsIntro">
                                     <button id="start-btnIntro" class="startBtn startBtn1 whiteClr" >START YOUR JOURNEY!</button>
                                     <div id="tandc">BY CLICKING "START YOUR JOURNEY!"<br> YOU AGREE TO OUR <a class="links" href="privacy.html">PRIVACY POLICY</a></div>
+                                    <div id="language" class="language">
+                                        <button id="eng" class="language-btn language-btn1">EN</button>
+                                        <button id="kr" class="language-btn language-btn1" style="opacity: 0.5;">KR</button>
+                                        <button id="ch" class="language-btn language-btn1" style="opacity: 0.5;">CH</button>
+                                    </div>
                                 </div>
                                 <div id="skipButton">
                                     <button class="skipBtn skipBtn38" id="skipLink" style="display: none;">SKIP</button>
@@ -118,6 +123,7 @@
 
                                 </div>
                                 <div id="btnCSS2"><button class="bn3636 bn36" id="skipLinkScene">SKIP</button></div>
+            
                             </div>
                         </section>
                     </div>
@@ -139,6 +145,7 @@
     });
         document.getElementById('start-btnIntro').addEventListener('click', function(e) {
         document.getElementById('firstVideo').style.display="block";
+        document.getElementById('language').style.display="none";
         document.getElementById('skipButton').style.display="flex";
         document.getElementById('skipLink').style.display="flex";
         document.getElementById('controlsIntro').style.display = "none";
@@ -171,6 +178,26 @@
         document.getElementById('IntroDiv').style.backgroundRepeat = "no-repeat";
     });
 
+    
+    document.getElementById('eng').addEventListener('click', function(e) {
+        document.getElementById('eng').style.opacity=1
+        document.getElementById('kr').style.opacity= 0.5
+        document.getElementById('ch').style.opacity=0.5
+      
+    });
+    document.getElementById('kr').addEventListener('click', function(e) {
+        document.getElementById('kr').style.opacity= 1
+        document.getElementById('eng').style.opacity= 0.5
+        document.getElementById('ch').style.opacity= 0.5
+
+    });
+    document.getElementById('ch').addEventListener('click', function(e) {
+        
+        document.getElementById('ch').style.opacity=1
+        document.getElementById('eng').style.opacity= 0.5
+        document.getElementById('kr').style.opacity= 0.5
+      
+    });
 
 
 
