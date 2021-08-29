@@ -577,11 +577,13 @@ function init() {
 	orbProductPlane = new THREE.PlaneGeometry( 4, 4 );
 	orbProductVideo = document.createElement('video');
 	orbProductVideo.src = "video/AHC_Cream.mp4";
+	orbProductVideo.playsInline = true;
 	orbProductVideo.muted = true;
 	orbProductVideo.loop = true;
 
 	orbProductVideoMask = document.createElement('video');
 	orbProductVideoMask.src = "video/AHC_Cream_Alpha.mp4";
+	orbProductVideoMask.playsInline = true;
 	orbProductVideoMask.muted = true;
 	orbProductVideoMask.loop = true
 	orbProductVideoTex =  new THREE.VideoTexture(orbProductVideo)
