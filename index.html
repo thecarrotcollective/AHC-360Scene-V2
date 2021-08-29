@@ -2,25 +2,70 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>AHC Spa at Home</title>
+
+    <script>
+
+      function loadJSON(callback) {
+         var xobj = new XMLHttpRequest();
+         xobj.overrideMimeType("application/json");
+         xobj.open('GET', 'shared/copy.json', true); // Replace 'my_data' with the path to your file
+         xobj.onreadystatechange = function () {
+               if (xobj.readyState == 4 && xobj.status == "200") {
+                 // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+                 callback(xobj.responseText);
+               }
+         };
+         xobj.send(null);
+      }
+
+      loadJSON(function(response) {
+       // Parse JSON string into object
+         var copyJSON = JSON.parse(response);
+         // console.log(actual_JSON);
+         var url = window.location.href;
+         var selectedLanguage = url.substr(url.indexOf('#')+1, 2);
+         var languageID = 0;
+         console.log("language is "+selectedLanguage);
+         if(selectedLanguage.localeCompare("cn") === 0){
+           languageID = 2
+         } else if (selectedLanguage.localeCompare("kr") === 0){
+           languageID = 1
+         } else {
+           languageID = 0
+         }
+         window.document.title = copyJSON.Title[languageID]
+
+         document.getElementById('start-btnIntro').innerHTML = copyJSON.StartJourney[languageID]
+      });
+
+
+
+    </script>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+
+    <!-- <title>AHC Spa at Home</title> -->
     <link rel="stylesheet" href="style.css">
     <link rel="preload" href="quizScene/script.js" as="script">
     <!-- <link rel="preload" href="style.css" as="style"> -->
 </head>
 <body class="mainIntroPage">
     <div id="IntroDiv">
-           
+
             <div class="container">
                 <div class="safe_area">
                     <div class="ahc-logo-Intro" id = "ahc-logo-Intro"><img id="ahc-logo-beauty-imgIntro" src="quizScene/images/AHCLOGO_white.png"></div>
                     <div class="quizquestion" id="quesitonDiv">
                         <h2 id='question' class="question">PERSONALITY TESTS ARE AN ESSENTIAL<br>TRAIT OF KOREAN CULTURE.</h2>
                     </div>
-                   
+
                     <div class="grid_container" id="grid_container">
                         <section>
                             <div class="header" id="header">
-                              
+
                             </div>
                         </section>
                         <section>
@@ -48,12 +93,9 @@
                                 </div>
                             </div>
                         </section>
-                
+
                         <section>
                             <div class="footer" id="footer">
-                                
-                           
-
                                 <div class="controlsIntro" id="controlsIntro">
                                     <button id="start-btnIntro" class="startBtn startBtn1 whiteClr" >START YOUR JOURNEY!</button>
                                     <div id="tandc">BY CLICKING "START YOUR JOURNEY!"<br> YOU AGREE TO OUR <a class="links" href="privacy.html">PRIVACY POLICY</a></div>
@@ -72,29 +114,29 @@
                                         <label for="i2" class="dots" id="dot2"></label>
                                         <label for="i3" class="dots" id="dot3"></label>
                                     </div>
-                          
+
                                 </div>
                                 <div id="btnCSS2"><button class="bn3636 bn36" id="skipLinkScene">SKIP</button></div>
                             </div>
                         </section>
                     </div>
-                   
+
                 </div>
             </div>
             <video playsInline muted id="firstVideo">
                 <source src="quizScene/videos/Spa_Zoom_8mbps_31.mp4" type="video/mp4">
             </video>
-      
+
         </div>
 
 
-      
+
 <script src="quizScene/script.js"></script>
 <script>
-       document.getElementById('skipLinkScene').addEventListener('click', function(e) {
+        document.getElementById('skipLinkScene').addEventListener('click', function(e) {
         window.location.href="sceneFolder/indexEXTROVERT.html";
     });
-       document.getElementById('start-btnIntro').addEventListener('click', function(e) {
+        document.getElementById('start-btnIntro').addEventListener('click', function(e) {
         document.getElementById('firstVideo').style.display="block";
         document.getElementById('skipButton').style.display="flex";
         document.getElementById('skipLink').style.display="flex";
@@ -102,10 +144,10 @@
         document.getElementById('firstVideo').play();
        });
 
-       document.getElementById('firstVideo').addEventListener("ended",function(){
+        document.getElementById('firstVideo').addEventListener("ended",function(){
         document.getElementById('skipButton').style.display="none";
         document.getElementById('firstVideo').style.display="none";
-       
+
         document.getElementById('firstVideo').pause();
         document.body.style.backgroundImage = "url(quizScene/images/colorPalette.jpg)";
         document.body.style.backgroundRepeat = "no-repeat";
@@ -114,7 +156,7 @@
     document.getElementById('skipLink').addEventListener('click', function(e) {
         document.getElementById('skipButton').style.display="none";
         document.getElementById('firstVideo').style.display="none";
-      
+
         document.getElementById('skipLink').style.display="none";
         document.getElementById('controls_id').style.display="flex";
         document.getElementById('quesitonDiv').style.display="flex";
@@ -126,7 +168,6 @@
         document.getElementById("ahc-logo-beauty-imgIntro").src="quizScene/images/AHCLOGO.png"
         document.getElementById('IntroDiv').style.backgroundImage = "url(quizScene/images/colorPalette.jpg)";
         document.getElementById('IntroDiv').style.backgroundRepeat = "no-repeat";
-
     });
 
 

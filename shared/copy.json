@@ -1,0 +1,37 @@
+{
+  "langLabel": [
+    "English",
+    "Korean",
+    "Chinese"
+  ],
+  "Title": [
+      "AHC Spa at Home",
+      "AHC Spa at Home - Korean",
+      "AHC Spa at Home - Chinese"
+  ],
+  "StartJourney":[
+    "Start Your Journey",
+    "시작하기",
+    "悦享SPA之旅"
+  ],
+  "Skip":[
+    "Skip",
+    "건너뛰기",
+    "跳过"
+  ],
+  "SensorsPermission":[
+    "This experience needs to access to your device's orientation sensors.",
+    "원활한 서비스 이용을 위해 방향센서 접근 권한을 요청합니다",
+    "体验需要获取您的设备定位"
+  ],
+  "Accept":[
+    "Accept",
+    "동의",
+    "接受"
+  ],
+  "PersonalityTestTitle":[
+    "Personality tests are an essential trait of Korean culture",
+    "내 성향에 따른 맞춤형 스파를 경험해보세요",
+    "性格测试，开启你的专属肌疗SPA之旅"
+  ]
+}
