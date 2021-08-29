@@ -34,7 +34,7 @@
            languageID = 0
          }
          window.document.title = copyJSON.Title[languageID]
-
+  
          document.getElementById('start-btnIntro').innerHTML = copyJSON.StartJourney[languageID]
          document.documentElement.lang = copyJSON.code[languageID];
       });
@@ -153,12 +153,20 @@
        });
 
         document.getElementById('firstVideo').addEventListener("ended",function(){
-        document.getElementById('skipButton').style.display="none";
+            document.getElementById('skipButton').style.display="none";
         document.getElementById('firstVideo').style.display="none";
 
+        document.getElementById('skipLink').style.display="none";
+        document.getElementById('controls_id').style.display="flex";
+        document.getElementById('quesitonDiv').style.display="flex";
+        document.getElementById('archid').style.display="flex";
+        document.getElementById('middleText2').style.display="flex";
+        document.getElementById('btnCSS2').style.display="flex";
+
         document.getElementById('firstVideo').pause();
-        document.body.style.backgroundImage = "url(quizScene/images/colorPalette.jpg)";
-        document.body.style.backgroundRepeat = "no-repeat";
+        document.getElementById("ahc-logo-beauty-imgIntro").src="quizScene/images/AHCLOGO.png"
+        document.getElementById('IntroDiv').style.backgroundImage = "url(quizScene/images/colorPalette.jpg)";
+        document.getElementById('IntroDiv').style.backgroundRepeat = "no-repeat";
     },false);
 
     document.getElementById('skipLink').addEventListener('click', function(e) {

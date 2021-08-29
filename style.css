@@ -737,6 +737,7 @@
       height: 100%;
       width: 98%;
       position: absolute;
+      align-items: flex-end;
       /* margin-left: 68%; */
       z-index: 2;
       opacity: 0;
@@ -760,9 +761,9 @@
       -ms-flex-pack: center;
       justify-content: center;
       padding: 1.2rem 3rem;
-      font-family: "Pangram-Bold";
+      font-family: "Pangram-Regular";
       letter-spacing: 1px;
-      font-weight: 700;
+      /* font-weight: 700; */
       font-size: 2em;
       text-align: center;
       text-decoration: none;
