@@ -75,7 +75,7 @@ let bilboardVideo, bilboardVideoTex,orbProductPlane, orbProductTex,orbProductAlp
 let PoolEntranceArrow, ProcuctBaseArrow ,PoolEntranceScene, ProcuctBaseScene
 let orbProductVideo,orbProductVideoMask,orbProductVideoTex,orbProductVideoMaskTex, orbGlowScene;
 let orbGlowPlane, orbGlowVideo, orbGlowVideoMask,orbGlowVideoTex,orbGlowVideoMaskTex,orbGlowMat,orbGlow
-let orbPlusScene,orbPlus,orbPlusMat
+let orbPlusScene,orbPlus,orbPlusMat,sound
 const mouse = new THREE.Vector2();
 var clickableVideo,manager,videoManager,arrowMat,productbool,orbProductScene;
 var loaderCheck = false;
@@ -122,7 +122,7 @@ function playAudio(audioUrl){
 	// camera.add( listener );
 
 	// create a global audio source
-	const sound = new THREE.Audio( listener );
+	sound = new THREE.Audio( listener );
 
 	// load a sound and set it as the Audio object's buffer
 	const audioLoader = new THREE.AudioLoader();
