@@ -8,7 +8,7 @@ var sceneUrl0,sceneUrl1,sceneUrl2,sceneUrl3,sceneUrl4,sceneUrl5,sceneUrl6,sceneU
 console.log("language is " + selectedLanguage);
 console.log("personality is " + selectedPersonality);
 if(selectedPersonality === 'fe'){
-	playAudio('sounds/sfx/feeler_sound.mp3')
+	playAudio('sounds/sfx/feeler.mp3')
 	sceneUrl0 ="scenes/FEELER/FEELER_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/FEELER/FEELER_CUBEMAP_0001.jpg"
 	sceneUrl2 ="scenes/FEELER/FEELER_CUBEMAP_0002.jpg"
@@ -22,7 +22,7 @@ if(selectedPersonality === 'fe'){
 	sceneUrl10 ="scenes/FEELER/FEELER_CUBEMAP_0010.jpg"
 
 }else if(selectedPersonality === 'in'){
-	playAudio('sounds/sfx/introvert_sound.mp3')
+	playAudio('sounds/sfx/introvert.mp3')
 	sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/THINKER/THINKER_CUBEMAP_0001.jpg"
 	sceneUrl2 ="scenes/THINKER/THINKER_CUBEMAP_0002.jpg"
@@ -36,7 +36,7 @@ if(selectedPersonality === 'fe'){
 	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
 }
 else if(selectedPersonality === 'th'){
-	playAudio('sounds/sfx/thinker_sound.mp3')
+	playAudio('sounds/sfx/thinker.mp3')
 	sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/THINKER/THINKER_CUBEMAP_0001.jpg"
 	sceneUrl2 ="scenes/THINKER/THINKER_CUBEMAP_0002.jpg"
@@ -49,7 +49,7 @@ else if(selectedPersonality === 'th'){
 	sceneUrl9 ="scenes/THINKER/THINKER_CUBEMAP_0009.jpg"
 	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
 }else{
-	playAudio('sounds/sfx/extrovert_sound.mp3')
+	playAudio('sounds/sfx/extrovert.mp3')
 	sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0001.jpg"
 	sceneUrl2 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0002.jpg"
@@ -845,7 +845,7 @@ document.getElementById('beauty-btn').addEventListener("click", function(e){
 	console.log("clicked")
 	hoverButtonChecker = true
 });
-if(currState === POOL || currState === MAIN){
+if( currState === MAIN){
 	document.getElementById('close-btn').addEventListener("click", function(e){
 		hoverButtonChecker = false
 	});
@@ -870,7 +870,12 @@ player.on('ended', function () {
   player3.on('ended', function () {
 	hoverButtonChecker = false
   })
+  var player3 = videojs('#orb-vid');
+  player3.on('ended', function () {
+	hoverButtonChecker = false
+  })
 var orbVideoPlayed = false
+
 function animate() {
 
 
@@ -949,8 +954,11 @@ function animate() {
 	 else if(currState === POOL){
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
-
-		if(hoverButtonChecker === false && dirVector.z > -0.4 && dirVector.z < 0.9 && dirVector.y > -0.3 && dirVector.x > 0 && dirVector.x < 1   ){ // need to stress test
+		document.getElementById('close-btn').addEventListener("click", function(e){
+			hoverButtonChecker = false
+			console.log("worked")
+		});
+		if(hoverButtonChecker == false && dirVector.z > -0.4 && dirVector.z < 0.9 && dirVector.y > -0.3 && dirVector.x > 0 && dirVector.x < 1   ){ // need to stress test
 			document.getElementById('pool-text').style.opacity = 1;
 			document.getElementById('pool-btn').style.opacity = 1;
 			document.getElementById('pool-btn').style.pointerEvents = "auto";
@@ -963,7 +971,7 @@ function animate() {
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
 
-		if(hoverButtonChecker === false && dirVector.z > -0.95 && dirVector.z < 0 && dirVector.y > -0.3 && dirVector.x < -0.35 ){ // need to stress test
+		if(hoverButtonChecker == false && dirVector.z > -0.95 && dirVector.z < 0 && dirVector.y > -0.3 && dirVector.x < -0.35 ){ // need to stress test
 			document.getElementById('beauty-text').style.opacity = 1;
 			document.getElementById('beauty-btn').style.opacity = 1;
 			document.getElementById('beauty-btn').style.pointerEvents = "auto";
@@ -1118,7 +1126,7 @@ function clickTrigger(){
 					document.getElementById("video_id").style.width= "50%"
 					document.getElementById("video_id").style.transform = `translateX(50%) translateY(50%)`;
 			
-					document.getElementById('video2').removeEventListener("click", closeVideo);
+					// document.getElementById('video2').removeEventListener("click", closeVideo);
 					// document.getElementById('video-close-overlay').style.display = 'none';
 		
 					document.getElementById('orb-vid').style.display = 'none';
@@ -1130,6 +1138,7 @@ function clickTrigger(){
 					// player
 			
 					videojs('#orb-vid').reset()
+					videojs('#video2').reset()
 				
 				}
   
