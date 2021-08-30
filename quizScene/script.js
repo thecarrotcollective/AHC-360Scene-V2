@@ -4,10 +4,13 @@ var EXTROVERT = 0
 var INTROVERT = 1
 var FEELER = 2
 var THINKER = 3
+
+var personalityTypes = ["extrovert", "introvert", "feeler", "thinker"]
+
 function loadJSON(callback) {
    var xobj = new XMLHttpRequest();
    xobj.overrideMimeType("application/json");
-   xobj.open('GET', 'shared/copy.json', true); // Replace 'my_data' with the path to your file
+   xobj.open('GET', 'shared/copy.json', true);
    xobj.onreadystatechange = function () {
          if (xobj.readyState == 4 && xobj.status == "200") {
            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
@@ -73,7 +76,6 @@ loadJSON(function(response) {
    } else {
      languageID = 0
    }
-
    setLang(languageID)
 
    document.getElementById('en-btn').addEventListener('click', setEnglish)
@@ -280,21 +282,15 @@ function showScores() {
   element5.innerHTML = infoTextHtml;
 
   document.getElementById('start-btn').addEventListener('click', function(e) {
-    if(currState === EXTROVERT){
-      window.location.href="sceneFolder/indexEXTROVERT.html";
-    } else if(currState === INTROVERT){
-      window.location.href="sceneFolder/indexINTROVERT.html";
-    }else if(currState === FEELER){
-      window.location.href="sceneFolder/indexFEELER.html";
-    }else if(currState === THINKER){
-      window.location.href="sceneFolder/indexTHINKER.html";
-    }
-
-
-    // document.body.style.background ="rgbe(254, 245, 240,0)";
-});
-
+    console.log("navigating to " + copyJSON.code[languageID]+'-'+personalityTypes[currState]);
+    window.location.href="sceneFolder/index.html#"+copyJSON.code[languageID]+'-'+personalityTypes[currState];
+  });
 };
+
+document.getElementById('skipLinkScene').addEventListener('click', function(e) {
+  console.log("navigating to " + copyJSON.code[languageID]+'-'+personalityTypes[2]);
+  window.location.href="sceneFolder/index.html#"+copyJSON.code[languageID]+'-'+personalityTypes[2];
+});
 
 var questions = [
   new Question("CHOOSE AN IMAGE THAT <br> REPRESENTS YOU BEST", ["baby", "light", "city", "moon"], "baby"),

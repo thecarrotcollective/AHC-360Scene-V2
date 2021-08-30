@@ -1,6 +1,13 @@
 import * as THREE from './three.module.js';
 import { DeviceOrientationControls } from './DeviceOrientationWithOrbit.js';
 
+var url = window.location.href;
+var selectedLanguage = url.substr(url.indexOf('#')+1, 2);
+var selectedPersonality = url.substr(url.indexOf('-')+1, 2);
+
+console.log("language is " + selectedLanguage);
+console.log("personality is " + selectedPersonality);
+
 //DELETE AFTER CSS FIX
 import {OrbitControls} from './Orbit.js';
 var sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_000.jpg"

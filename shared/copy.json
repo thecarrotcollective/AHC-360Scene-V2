@@ -20,12 +20,12 @@
     "跳过"
   ],
   "SensorsPermission":[
-    "This experience needs to access to your device's orientation sensors.",
+    "THIS EXPERIENCE NEEDS TO ACCESS TO YOUR DEVICE'S ORIENTATION SENSORS.",
     "원활한 서비스 이용을 위해 방향센서 접근 권한을 요청합니다",
     "体验需要获取您的设备定位"
   ],
   "Accept":[
-    "Accept",
+    "ACCEPT",
     "동의",
     "接受"
   ],
@@ -40,7 +40,7 @@
     "PERSONALITY<br>TEST"
   ],
   "StartExperience":[
-    "Start Experience",
+    "START EXPERIENCE",
     "시작하기",
     "开始"
   ],
@@ -120,62 +120,62 @@
     "总是能创造出伟大的想法"
   ],
   "GoToSpa":[
-    "Take me to my spa",
+    "TAKE ME TO MY SPA",
     "나만의 스파 경험하기",
     "即刻前往AHC肌疗美肤馆"
   ],
   "TakeSelfieCTA":[
-    "Take a selfie with our superstar ambassador Krystal Jung!",
+    "TAKE A SELFIE WITH OUR SUPERSTAR AMBASSADOR KRYSTAL JUNG!",
     "AHC의 앰버서더 크리스탈과 셀카를 찍어보세요!",
     "与韩国巨星Krystal郑秀晶合影吧！"
   ],
   "CameraPermission":[
-    "The experience needs access to your camera",
+    "THE EXPERIENCE NEEDS ACCESS TO YOUR CAMERA",
     "사진 촬영을 위해 카메라 접근 권한이 필요합니다",
     "体验需要访问您的相机"
   ],
   "AccessButton":[
-    "Access",
+    "ACCESS",
     "동의",
     "访问"
   ],
   "SharePopUp":[
-    "Share this experience.Enter your phone number",
+    "SHARE THIS EXPERIENCE. ENTER YOUR PHONE NUMBER",
     "친구에게 AHC SPA 공유하기 휴대전화 번호 입력",
-    "Not make sense"
+    ""
   ],
   "ShareButton":[
-    "Share",
+    "SHARE",
     "공유하기",
     "分享"
   ],
   "SensorialCTAExtrovertFeeler":[
-    "Try AHC color therapy sensorial treatment.",
+    "TRY AHC COLOR THERAPY SENSORIAL TREATMENT.",
     "컬러 테라피로 에너지를 충전해보세요",
     "尝试AHC色彩肌疗法"
   ],
   "SensorialCTAIntrovertThinker":[
-    "Try AHC sensorial brain massage.",
+    "TRY AHC SENSORIAL BRAIN MASSAGE.",
     "디지털 스파 테라피로 안정을 취해보세요",
     "尝试AHC脑电波肌疗法"
   ],
   "StartTherapyButton":[
-    "Start your therapy",
+    "START YOUR THERAPY",
     "테라피 시작하기",
     "分享，邀请朋友们奢享肌疗体验"
   ],
   "ShareWithFriend":[
-    "Share with a friend",
+    "SHARE WITH A FRIEND",
     "친구와 공유하기",
     "分享"
   ],
   "WatchAHCKBeauty":[
-    "Watch AHC’s KOREAN AESTHETIC TUTORIALS here.",
+    "WATCH AHC’S KOREAN AESTHETIC TUTORIALS HERE.",
     "튜토리얼을 통해 K-뷰티 사용법을 확인해보세요!",
     "观看AHC肌疗美肤私教课"
   ],
   "FindOutMore":[
-    "Find out more",
+    "FIND OUT MORE",
     "AHC 제품 둘러보기",
     "探索更多精彩"
   ]

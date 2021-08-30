@@ -100,34 +100,32 @@
 
 <script src="quizScene/script.js"></script>
 <script>
-        document.getElementById('skipLinkScene').addEventListener('click', function(e) {
-        window.location.href="sceneFolder/indexEXTROVERT.html";
-    });
+
         document.getElementById('start-btnIntro').addEventListener('click', function(e) {
-        document.getElementById('firstVideo').style.display="block";
-        document.getElementById('language').style.display="none";
-        document.getElementById('skipButton').style.display="flex";
-        document.getElementById('skipLink').style.display="flex";
-        document.getElementById('controlsIntro').style.display = "none";
-        document.getElementById('firstVideo').play();
-       });
+          document.getElementById('firstVideo').style.display="block";
+          document.getElementById('language').style.display="none";
+          document.getElementById('skipButton').style.display="flex";
+          document.getElementById('skipLink').style.display="flex";
+          document.getElementById('controlsIntro').style.display = "none";
+          document.getElementById('firstVideo').play();
+         });
 
         document.getElementById('firstVideo').addEventListener("ended",function(){
-            document.getElementById('skipButton').style.display="none";
-        document.getElementById('firstVideo').style.display="none";
+          document.getElementById('skipButton').style.display="none";
+          document.getElementById('firstVideo').style.display="none";
 
-        document.getElementById('skipLink').style.display="none";
-        document.getElementById('controls_id').style.display="flex";
-        document.getElementById('quesitonDiv').style.display="flex";
-        document.getElementById('archid').style.display="flex";
-        document.getElementById('middleText2').style.display="flex";
-        document.getElementById('btnCSS2').style.display="flex";
+          document.getElementById('skipLink').style.display="none";
+          document.getElementById('controls_id').style.display="flex";
+          document.getElementById('quesitonDiv').style.display="flex";
+          document.getElementById('archid').style.display="flex";
+          document.getElementById('middleText2').style.display="flex";
+          document.getElementById('btnCSS2').style.display="flex";
 
-        document.getElementById('firstVideo').pause();
-        document.getElementById("ahc-logo-beauty-imgIntro").src="quizScene/images/AHCLOGO.png"
-        document.getElementById('IntroDiv').style.backgroundImage = "url(quizScene/images/colorPalette.jpg)";
-        document.getElementById('IntroDiv').style.backgroundRepeat = "no-repeat";
-    },false);
+          document.getElementById('firstVideo').pause();
+          document.getElementById("ahc-logo-beauty-imgIntro").src="quizScene/images/AHCLOGO.png"
+          document.getElementById('IntroDiv').style.backgroundImage = "url(quizScene/images/colorPalette.jpg)";
+          document.getElementById('IntroDiv').style.backgroundRepeat = "no-repeat";
+      },false);
 
     document.getElementById('skipLink').addEventListener('click', function(e) {
         document.getElementById('skipButton').style.display="none";

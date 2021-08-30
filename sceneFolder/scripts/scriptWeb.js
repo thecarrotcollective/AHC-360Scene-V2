@@ -1,6 +1,12 @@
 import * as THREE from './three.module.js';
 import {OrbitControls} from './Orbit.js';
 
+var url = window.location.href;
+var selectedLanguage = url.substr(url.indexOf('#')+1, 2);
+var selectedPersonality = url.substr(url.indexOf('-')+1, 2);
+
+console.log("language is " + selectedLanguage);
+console.log("personality is " + selectedPersonality);
 
 var sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_000.jpg"
 var sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_001.jpg"
@@ -176,7 +182,7 @@ function init() {
 	controls.rotateSpeed = - 0.25;
 	controls.update();
 
-	
+
 
 
 	listener = new THREE.AudioListener();
@@ -309,7 +315,7 @@ function init() {
 			MiddleRoomScene.add(MiddleRoomArrow);
 
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-	
+
 			VideoPlayBottleScene.position.set(-20,1.4,-36.5);
 			VideoPlayBottleScene.rotation.set(0,1.5,0)
 			VideoPlayBottleScene.scale.set(0.75,0.81,1)
@@ -480,7 +486,7 @@ function init() {
 			  PoolEntranceArrow.scale.copy(navArrowScale)
 			//   orbVideoMask.play()
 			//   orbVideo.play()
-		
+
 			  video.play()
 			  video3.play()
 			  orbProductVideo.play()
@@ -840,7 +846,7 @@ function animate() {
 			if(orbVideoPlayed == false){
 				orbVideo.play();
 				orbVideoMask.play()
-		
+
 				orbVideoPlayed = true
 			}
 
@@ -1264,6 +1270,9 @@ function checkTheVideoLoad(){
 // 	}
 // }
 
+
+/* @matt - check this out again? jquery might need to be reimported
+
 var input = document.getElementById('phone');
 input.oninvalid = function(event) {
 	event.target.setCustomValidity('Phone number is 18 digit maximum');
@@ -1276,6 +1285,7 @@ $(document).ready(function() {
 	const submit = document.getElementById('share-submit');
 	submit.addEventListener('click', sendUser);
 });
+*/
 
 function sendUser() {
 	let phoneNumber = document.getElementById('phone').value;
