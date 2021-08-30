@@ -9,6 +9,7 @@ const fullscreenOverlay = document.getElementById('canvas-fullscreen')
 const closeBtn = document.getElementById('close-button')
 const downloadBtn = document.getElementById('download-button')
 const shareBtn = document.getElementById('share-button')
+const backBtn = document.getElementById('back-button')
 
 var cameraFlashSound = document.getElementById('camera-flash')
 // cameraFlashSound.src = '../../sceneFolder/sounds/sfx/flash.mp3';
@@ -44,6 +45,7 @@ var deepAR = DeepAR({
             console.log("effect loaded")
             takePicBtn.style.opacity = 1;
             fullscreenOverlay.style.opacity = 0;
+            backBtn.style.display = "block";
             readyForSelfie = true;
             console.log("selfie  ready");
 
@@ -150,6 +152,8 @@ takePicBtn.addEventListener("click", async () => {
         // await navigator.share({ title: "Example Page", url: "" });
         // console.log("Data was shared successfully");
         console.log("taken a screenshot")
+        backBtn.style.display = "none";
+
         deepAR.takeScreenshot();
 
     } catch (err) {
@@ -159,6 +163,7 @@ takePicBtn.addEventListener("click", async () => {
 });
 
 closeBtn.addEventListener("click", async () => {
+  backBtn.style.display = "block";
 
   closeBtn.style.opacity = 0;
   downloadBtn.style.opacity = 0;
@@ -185,6 +190,9 @@ shareBtn.addEventListener("click", async () => {
   share(screenshot);
 });
 
+backBtn.addEventListener("click", async () => {
+  window.location.href="../sceneFolder/index.html";
+});
 
 /* Canvas Donwload */
 function download(canvas, filename) {
