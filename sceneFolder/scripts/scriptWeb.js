@@ -29,7 +29,8 @@ let orbVideoPlane, orbVideo, orbVideoMask,orbVideoTex, orbVideoMaskTex, orbVideo
 let videoMatBottleScene,VideoPlayBottleScene,firtVideoChecker,secondVideoChecker,selfieSceneClick;
 let bilboardVideo, bilboardVideoTex,orbProductPlane, orbProductTex,orbProductAlpha,orbProductMat,orbProduct;
 let PoolEntranceArrow, ProcuctBaseArrow ,PoolEntranceScene, ProcuctBaseScene
-let orbProductVideo,orbProductVideoMask,orbProductVideoTex,orbProductVideoMaskTex
+let orbProductVideo,orbProductVideoMask,orbProductVideoTex,orbProductVideoMaskTex, orbGlowScene;
+let orbGlowPlane, orbGlowVideo, orbGlowVideoMask,orbGlowVideoTex,orbGlowVideoMaskTex,orbGlowMat,orbGlow
 const mouse = new THREE.Vector2();
 var clickableVideo,manager,videoManager,arrowMat,productbool,orbProductScene;
 var loaderCheck = false;
@@ -132,7 +133,6 @@ function init() {
 	OrbVideoScene = new THREE.Scene();
 	filterScene = new THREE.Scene();
 	BottleRoomVideoPlayScene = new THREE.Scene();
-
 	ProductIconScene1 = new THREE.Scene();
 	ProductIconScene2 = new THREE.Scene();
 	ProductIconScene3 = new THREE.Scene();
@@ -140,7 +140,10 @@ function init() {
 	MiddleRoomScene =  new THREE.Scene();
 	PoolEntranceScene =  new THREE.Scene();
 	ProcuctBaseScene =  new THREE.Scene();
-	orbProductScene = new THREE.Scene()
+	orbProductScene = new THREE.Scene();
+	orbGlowScene = new THREE.Scene();
+
+	scene.add(orbGlowScene)
 	scene.add(orbProductScene)
 	scene.add(PoolEntranceScene)
 	scene.add(ProcuctBaseScene)
@@ -465,14 +468,21 @@ function init() {
 			orbVideoMask.currentTime = 0;
 			orbProductVideo.currentTime = 0;
 			orbProductVideoMask.currentTime = 0;
+			orbGlowVideo.currentTime = 0;
+			orbGlowVideoMask.currentTime = 0;
+
 			console.log("MAIN scene runned")
+			orbGlowScene.add(orbGlow)
 			OrbVideoScene.add(orbVideoMesh)
 			orbProductScene.add(orbProduct)
-			  MiddleRoomScene.add(MiddleRoomArrow)
-			  PoolEntranceScene.add(PoolEntranceArrow);
-			  RoomVideoPlayScene.add(RoomVideoPlay);
+			MiddleRoomScene.add(MiddleRoomArrow)
+			PoolEntranceScene.add(PoolEntranceArrow);
+			RoomVideoPlayScene.add(RoomVideoPlay);
+
 			  orbProduct.position.set(-8.2,1.75,1.1)
 			  orbProduct.rotation.set(0,2,0)
+			  orbGlow.position.set(-8.3,1.75,1.1)
+			  orbGlow.rotation.set(0,1.9,0)
 
 			  orbVideoMesh.position.set(-8,1.75,1.01)
 			  orbVideoMesh.rotation.set(0,2,0)
@@ -599,6 +609,26 @@ function init() {
 	const selfiMat = new THREE.MeshBasicMaterial( {color: 0xffff00, transparent: true,opacity:0, side: THREE.DoubleSide} );
 	SelfiePlane = new THREE.Mesh( selfiMesh, selfiMat );
 
+
+	//***********************ORB GLOW VIDEO********************
+	orbGlowPlane = new THREE.PlaneGeometry( 4, 4 );
+	orbGlowVideo = document.createElement('video');
+	orbGlowVideo.src = "video/Glitter2.mp4";
+	orbGlowVideo.muted = true;
+	
+	
+	orbGlowVideoMask = document.createElement('video');
+	orbGlowVideoMask.src = "video/Glitter_Alpha.mp4";
+	orbGlowVideoMask.muted = true;
+
+	orbGlowVideoTex =  new THREE.VideoTexture(orbGlowVideo)
+	orbGlowVideoMaskTex = new THREE.VideoTexture(orbGlowVideoMask)
+
+	orbGlowMat = new THREE.MeshBasicMaterial( {map:orbGlowVideoTex , transparent: true,opacity:1,side: THREE.DoubleSide});
+	orbGlowMat.alphaMap = orbGlowVideoMaskTex
+	orbGlow = new THREE.Mesh( orbGlowPlane, orbGlowMat );
+
+	//***********************ORB PRODUCT VIDEO********************
 	orbProductPlane = new THREE.PlaneGeometry( 4, 4 );
 	orbProductVideo = document.createElement('video');
 	orbProductVideo.src = "video/AHC_Cream.mp4";
@@ -846,7 +876,11 @@ function animate() {
 			if(orbVideoPlayed == false){
 				orbVideo.play();
 				orbVideoMask.play()
-
+				orbVideo.addEventListener("ended",function(){
+					orbGlowVideo.play()
+					orbGlowVideoMask.play()
+				})
+	
 				orbVideoPlayed = true
 			}
 
@@ -1200,8 +1234,8 @@ function DisableEverything(){
 	document.getElementById('beauty-btn').style.pointerEvents = 'none';
 	document.getElementById('pool-btn').style.pointerEvents = 'none';
 	document.getElementById('selfie-btn').style.pointerEvents = 'none';
-	let ArrowArray = [orbProduct,ProcuctBaseArrow,PoolEntranceArrow,orbVideoMesh,MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
-	let ArrowScene = [orbProductScene,ProcuctBaseScene,PoolEntranceScene,OrbVideoScene,MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
+	let ArrowArray = [orbGlow,orbProduct,ProcuctBaseArrow,PoolEntranceArrow,orbVideoMesh,MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
+	let ArrowScene = [orbGlowScene,orbProductScene,ProcuctBaseScene,PoolEntranceScene,OrbVideoScene,MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
 
 	setTimeout(function(){
 		for (var i = 0; i < ArrowArray.length; i++) {
