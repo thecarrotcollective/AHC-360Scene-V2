@@ -932,6 +932,7 @@ video{
 #share-close {
   position: absolute;
   right: 2em;
+  top: 1.5em;
   border: none;
   background-color: transparent;
   /*color: white;*/

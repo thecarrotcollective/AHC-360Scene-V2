@@ -1305,7 +1305,6 @@ function checkTheVideoLoad(){
 // }
 
 
-/* @matt - check this out again? jquery might need to be reimported
 
 var input = document.getElementById('phone');
 input.oninvalid = function(event) {
@@ -1319,7 +1318,6 @@ $(document).ready(function() {
 	const submit = document.getElementById('share-submit');
 	submit.addEventListener('click', sendUser);
 });
-*/
 
 function sendUser() {
 	let phoneNumber = document.getElementById('phone').value;
@@ -1341,6 +1339,7 @@ function sendUser() {
 function transferComplete(evt) {
 	console.log("The transfer is complete.");
 	input.value = "";
+	shareContainer.style.display = 'none';
 	copyLink();
 }
 
