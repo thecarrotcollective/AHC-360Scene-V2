@@ -858,6 +858,10 @@ video{
   transition: opacity 0.5s;
 
 }
+
+
+
+
 #ui-container{
   display: none;
 }
@@ -958,5 +962,13 @@ video{
   text-align: center;
   border-radius: 3rem;
   width: 25px;
-  filter: invert(1);
+
 }
+
+
+@media only screen and (max-width: 599px) {
+  #share-container {
+    width: 70%;
+  }
+}
+

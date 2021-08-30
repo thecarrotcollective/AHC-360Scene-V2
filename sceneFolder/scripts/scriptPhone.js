@@ -112,8 +112,13 @@ startButton.addEventListener( 'click', function () {
 	document.getElementById('productIntro1').style.display = 'none'
 	document.getElementById('ui-container').style.display = 'block'
 } );
+
 const shareLinkBtn = document.getElementById('share-btn');
-shareLinkBtn.addEventListener('click', copyLink)
+shareLinkBtn.addEventListener('click', sharePopup);
+const shareSubmit = document.getElementById('share-submit');
+shareSubmit.addEventListener('click', sendUser)
+const shareContainer = document.getElementById('share-container')
+const shareClose = document.getElementById('share-close')
 
 
 const navArrowScale = new THREE.Vector3(4,2,4)
@@ -1311,6 +1316,55 @@ function checkTheVideoLoad(){
 }
 
 
+var input = document.getElementById('phone');
+input.oninvalid = function(event) {
+	event.target.setCustomValidity('Phone number is 18 digit maximum');
+}
+
+var xmlhttp;
+var post_url = 'post_user.php';
+
+$(document).ready(function() {
+	const submit = document.getElementById('share-submit');
+	submit.addEventListener('click', sendUser);
+});
+
+function sendUser() {
+	let phoneNumber = document.getElementById('phone').value;
+	console.log(phoneNumber)
+	if (phoneNumber==null){
+		// console.log("No entry, try again");
+
+	} else {
+		xmlhttp=new XMLHttpRequest();
+		xmlhttp.open("POST", post_url, true);
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+		console.log("sendUser phone = " + phoneNumber);
+		xmlhttp.send("phone="+phoneNumber);
+		xmlhttp.addEventListener("load", transferComplete);
+	}
+}
+
+function transferComplete(evt) {
+	console.log("The transfer is complete.");
+	input.value = "";
+	shareContainer.style.display = 'none';
+	copyLink();
+}
+
+function sharePopup() {
+	shareContainer.style.display = 'block';
+	console.log('show share-container')
+
+	// add close button listener
+	shareClose.addEventListener('click', closeSharePopup);
+}
+
+function closeSharePopup() {
+	shareContainer.style.display = 'none'
+}
+
 function copyLink() {
 	const linkToCopy = "https://us.ahcbeauty.com/";
 
@@ -1319,29 +1373,25 @@ function copyLink() {
 			title: 'AHC You Spa',
 			url: linkToCopy
 		}).then(() => {
-			shareLinkBtn.innerText = 'LINK COPIED'
-				setTimeout(() => {
-					shareLinkBtn.innerText = 'Share Experience With a Friend'
-				}, 2000)
+
+			setTimeout(() => {
+				shareContainer.style.display = 'none;'
+			}, 2000)
 		})
 			.catch(console.error);
 	} else {
 		// TODO Add fallback to copy Link
-		// navigator.clipboard.writeText(linkToCopy)
-		// 	.then(() => {
-		// 		// alert(`Copied!`)
-		// 		shareLinkBtn.innerText = 'LINK COPIED'
-		// 		// shareLinkBtn.style.color = 'white'
-		// 		// shareLinkBtn.style.backgroundColor = 'black'
-		// 		setTimeout(() => {
-		// 			shareLinkBtn.innerText = 'Share Experience With a Friend'
-		// 			// shareLinkBtn.style.color = 'black'
-		// 			// shareLinkBtn.style.backgroundColor = 'white'
-		// 		}, 2000)
-		//
-		// 	})
-		// 	.catch((error) => {
-		// 		alert(`Copy failed! ${error}`)
-		// 	})
+		navigator.clipboard.writeText(linkToCopy)
+			.then(() => {
+				shareSubmit.innerText = 'LINK COPIED'
+				setTimeout(() => {
+					shareSubmit.innerText = 'Share Experience With a Friend'
+					shareContainer.style.display = 'none;'
+				}, 2000)
+
+			})
+			.catch((error) => {
+				alert('Copy failed! ${error}')
+			})
 	}
 }
