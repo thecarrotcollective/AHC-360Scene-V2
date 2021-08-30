@@ -39,7 +39,7 @@ var deepAR = DeepAR({
 
         // or we can setup the video element externally and call deepAR.setVideoElement (see startExternalVideo function below)
         console.log("initialized")
-        deepAR.switchEffect(0, 'slot', './effects/background_segmentation5', function() {
+        deepAR.switchEffect(0, 'slot', './effects/background_segmentation6', function() {
             // effect loaded
             console.log("effect loaded")
             takePicBtn.style.opacity = 1;
