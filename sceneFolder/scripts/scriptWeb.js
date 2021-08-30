@@ -3,7 +3,8 @@ import {OrbitControls} from './Orbit.js';
 
 var url = window.location.href;
 var selectedLanguage = url.substr(url.indexOf('#')+1, 2);
-var selectedPersonality = url.substr(url.indexOf('-')+1, 2);
+var url_params = url.substr(url.indexOf('#')+1)
+var selectedPersonality = url_params.substr(url_params.indexOf('-')+1, 2);
 var sceneUrl0,sceneUrl1,sceneUrl2,sceneUrl3,sceneUrl4,sceneUrl5,sceneUrl6,sceneUrl7,sceneUrl8,sceneUrl9,sceneUrl10
 console.log("language is " + selectedLanguage);
 console.log("personality is " + selectedPersonality);
@@ -544,9 +545,9 @@ function init() {
 			orbPlusScene.add(orbPlus)
 
 
-			
 
-								
+
+
 			orbPlus.position.set(-7,-0.5,1.8)
 			orbPlus.rotation.set(0,5,0)
 			orbPlus.scale.set(0.8,0.8,0.8)
@@ -688,8 +689,8 @@ function init() {
 	orbGlowVideo = document.createElement('video');
 	orbGlowVideo.src = "video/Glitter2.mp4";
 	orbGlowVideo.muted = true;
-	
-	
+
+
 	orbGlowVideoMask = document.createElement('video');
 	orbGlowVideoMask.src = "video/Glitter_Alpha.mp4";
 	orbGlowVideoMask.muted = true;
@@ -926,7 +927,7 @@ function animate() {
 
 
 	var dirVector = new THREE.Vector3();
-	
+
 	if(currState === SELFIE){
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
@@ -995,8 +996,8 @@ function animate() {
 				orbGlowVideo.addEventListener("ended",function(){
 					new TWEEN.Tween( orbPlusMat ).to( { opacity: 1 }, 500 ).start();
 				})
-			
-				
+
+
 				orbVideoPlayed = true
 			}
 
@@ -1092,16 +1093,16 @@ function clickTrigger(){
 				new TWEEN.Tween( orbPlusMat ).to( { opacity: 0 }, 500 ).start();
 				document.getElementById('orb-vid').addEventListener("click", function(e){
 				  console.log("clicked")
-			   
+
 				  document.getElementById("video_id").style.height= "100%"
 				  document.getElementById("video_id").style.width= "100%"
 				  document.getElementById("video_id").style.transform = `translateX(0%) translateY(0%)`;
 				  player.play();
 				  document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
-				  
+
 				});
 				document.getElementById('close-btn').addEventListener("click", closeVideo);
-			
+
 				player.on('ended', function () {
 					  closeVideo();
 					  new TWEEN.Tween( orbPlusMat ).to( { opacity: 1 }, 500 ).start();
@@ -1115,35 +1116,35 @@ function clickTrigger(){
 				})
 				player.on('tap', function () {
 				  console.log("clicked")
-			   
+
 				  makeFullScreen()
 				  player.play();
 				  document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
 				})
 			  }
-			  
+
 				function closeVideo(){
 					sound.play()
 					document.getElementById("video_id").style.height= "50%"
 					document.getElementById("video_id").style.width= "50%"
 					document.getElementById("video_id").style.transform = `translateX(50%) translateY(50%)`;
-			
+
 					// document.getElementById('video2').removeEventListener("click", closeVideo);
 					// document.getElementById('video-close-overlay').style.display = 'none';
-		
+
 					document.getElementById('orb-vid').style.display = 'none';
-				
+
 					document.getElementById('blackScreen').style.display = 'none';
 					document.getElementById('video_id').style.display = 'none';
 					document.getElementById('close-btn').style.display = 'none';
 					document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
 					// player
-			
+
 					videojs('#orb-vid').reset()
 					videojs('#video2').reset()
-				
+
 				}
-  
+
 
 		}
 		//***********************POOL SCENE**************************
