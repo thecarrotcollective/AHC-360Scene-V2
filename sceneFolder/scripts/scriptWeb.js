@@ -56,8 +56,8 @@ var PRODENTRANCE = 7
 var MIDDLE = 8
 var POOLENTRACE =9
 var PRODUCTBASE = 10
-const startButton = document.getElementById( 'start-btn' );
-startButton.addEventListener( 'click', function () {
+
+window.addEventListener('load', (event) => {
 	init();
 	animate();
 	currState = INTRO
@@ -66,6 +66,11 @@ startButton.addEventListener( 'click', function () {
 	checkTheVideoLoad()
 	document.getElementById('productIntro1').style.display = 'none'
 	document.getElementById('ui-container').style.display = 'block'
+
+  });
+const startButton = document.getElementById( 'start-btn' );
+startButton.addEventListener( 'click', function () {
+
 } );
 
 

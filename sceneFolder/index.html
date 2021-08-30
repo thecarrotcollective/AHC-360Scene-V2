@@ -37,7 +37,7 @@
   </head>
   <body id="mainPage">
 
-    <div class="productIntro" style="display: flex;" id="productIntro1">
+    <div class="productIntro" style="display: none;" id="productIntro1">
       <img id="productIntroImage" src="UIAssets/productAHC.png" alt="Snow">
 
       <button id="start-btn" class="start-btn" >ACCEPT</button>
@@ -192,6 +192,7 @@
             // Load a mobile JS file
             loadJS('scripts/scriptPhone.js');
             console.log('phone loaded');
+            document.getElementById('productIntro1').style.display = 'flex'
         }
     });
 
@@ -201,6 +202,7 @@
             // Load a tablet JS file
             loadJS('scripts/scriptPhone.js');
             console.log('tablet loaded');
+            document.getElementById('productIntro1').style.display = 'flex'
         }
     });
 
@@ -211,6 +213,7 @@
             loadJS('scripts/scriptWeb.js');
 
             console.log('desktop loaded');
+            document.getElementById('productIntro1').style.display = 'none'
         }
     });
 
@@ -236,8 +239,9 @@
       var video = document.getElementById('video2');
       // video.requestFullscreen();
       player.play();
-      document.getElementById('video2_html5_api').addEventListener("click", function(e){
+      document.getElementById('video2').addEventListener("click", function(e){
         console.log("clicked")
+     
         makeFullScreen()
         player.play();
         document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
@@ -256,7 +260,11 @@
         }
       })
       player.on('tap', function () {
-        closeVideo();
+        console.log("clicked")
+     
+        makeFullScreen()
+        player.play();
+        document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
       })
     }
     function makeFullScreen(){
@@ -459,8 +467,8 @@
 
     function closeVideo(){
       document.getElementById("video_id").style.height= "50%"
-        document.getElementById("video_id").style.width= "50%"
-        document.getElementById("video_id").style.transform = `translateX(50%) translateY(50%)`;
+      document.getElementById("video_id").style.width= "50%"
+      document.getElementById("video_id").style.transform = `translateX(50%) translateY(50%)`;
       console.log('close video');
       document.getElementById('video2').removeEventListener("click", closeVideo);
       // document.getElementById('video-close-overlay').style.display = 'none';
