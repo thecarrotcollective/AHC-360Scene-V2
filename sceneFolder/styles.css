@@ -869,3 +869,8 @@ video{
   width: 100%;
 
 }
+
+#share-close {
+  position: absolute;
+  right: 2em;
+}
