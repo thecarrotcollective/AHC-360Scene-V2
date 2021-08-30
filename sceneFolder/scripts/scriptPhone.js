@@ -1,6 +1,13 @@
 import * as THREE from './three.module.js';
 import { DeviceOrientationControls } from './DeviceOrientationWithOrbit.js';
 
+var url = window.location.href;
+var selectedLanguage = url.substr(url.indexOf('#')+1, 2);
+var selectedPersonality = url.substr(url.indexOf('-')+1, 2);
+
+console.log("language is " + selectedLanguage);
+console.log("personality is " + selectedPersonality);
+
 //DELETE AFTER CSS FIX
 import {OrbitControls} from './Orbit.js';
 var sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_000.jpg"
@@ -22,9 +29,10 @@ let scene,materials,skyBox,ProductRoomScene,ProductRoomArrow,MiddleRoomScene,Mid
 let RoomVideoPlay,RoomVideoPlayScene,filterScene,SceneObjectVideo1,videoPlane,selfieRoomArrow;
 let OrbVideoScene,orbVideoPlane, orbVideo, orbVideoMask,orbVideoTex, orbVideoMaskTex, orbVideoMat, orbVideoMesh;
 let videoMatBottleScene,VideoPlayBottleScene,firtVideoChecker,secondVideoChecker,selfieSceneClick;
-
+let orbProductVideo,orbProductVideoMask,orbProductVideoTex,orbProductVideoMaskTex,orbGlowScene
 let bilboardVideo, bilboardVideoTex,orbProductPlane, orbProductTex,orbProductAlpha,orbProductMat,orbProduct;
 let PoolEntranceArrow, ProcuctBaseArrow ,PoolEntranceScene, ProcuctBaseScene
+let orbGlowPlane, orbGlowVideo, orbGlowVideoMask,orbGlowVideoTex,orbGlowVideoMaskTex,orbGlowMat,orbGlow
 const mouse = new THREE.Vector2();
 var clickableVideo,manager,videoManager,arrowMat;
 var loaderCheck = false;
@@ -123,7 +131,9 @@ function init() {
 	MiddleRoomScene =  new THREE.Scene();
 	PoolEntranceScene =  new THREE.Scene();
 	ProcuctBaseScene =  new THREE.Scene();
+	orbGlowScene = new THREE.Scene();
 
+	scene.add(orbGlowScene)
 	scene.add(PoolEntranceScene)
 	scene.add(ProcuctBaseScene)
 	scene.add(OrbVideoScene)
@@ -154,9 +164,9 @@ function init() {
 	camera.rotation.z = 0
 	skydome.camera.position.z =0.0000000000001;
 	// controls = new DeviceOrientationControls( skydome.camera );
-	// controls = new OrbitControls( skydome.camera, renderer.domElement );
+	controls = new OrbitControls( skydome.camera, renderer.domElement );
 
-	controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
+	// controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
 
 
 
@@ -441,14 +451,23 @@ function init() {
 			video3.currentTime = 0;
 			orbVideo.currentTime = 0;
 			orbVideoMask.currentTime = 0;
+			orbProductVideo.currentTime = 0;
+			orbProductVideoMask.currentTime = 0;
+			orbGlowVideo.currentTime = 0;
+			orbGlowVideoMask.currentTime = 0;
 			console.log("MAIN scene runned")
 				OrbVideoScene.add(orbVideoMesh)
 				OrbVideoScene.add(orbProduct)
 			  MiddleRoomScene.add(MiddleRoomArrow)
 			  PoolEntranceScene.add(PoolEntranceArrow);
 			  RoomVideoPlayScene.add(RoomVideoPlay);
-			  orbProduct.position.set(-8.1,1.75,1.01)
-			  orbProduct.rotation.set(0,2,0)
+			  orbGlowScene.add(orbGlow)
+
+			  orbProduct.position.set(-8.2,1.75,1.1)
+			  orbProduct.rotation.set(0,1.9,0)
+
+			  orbGlow.position.set(-8.3,1.75,1.1)
+			  orbGlow.rotation.set(0,1.9,0)
 
 			  orbVideoMesh.position.set(-8,1.75,1.01)
 			  orbVideoMesh.rotation.set(0,2,0)
@@ -463,7 +482,8 @@ function init() {
 
 			  video.play()
 			  video3.play()
-
+			  orbProductVideo.play()
+			  orbProductVideoMask.play()
 			  videoMat.alphaMap = videoMask2
 
 			  TweenFadeInForVideos(videoMat)
@@ -570,24 +590,56 @@ function init() {
 	const selfiMesh = new THREE.PlaneGeometry( 1, 1 );
 	const selfiMat = new THREE.MeshBasicMaterial( {color: 0xffff00, transparent: true,opacity:0, side: THREE.DoubleSide} );
 	SelfiePlane = new THREE.Mesh( selfiMesh, selfiMat );
+	//***********************ORB GLOW VIDEO********************
+	orbGlowPlane = new THREE.PlaneGeometry( 4, 4 );
+	orbGlowVideo = document.createElement('video');
+	orbGlowVideo.src = "video/Glitter_1.mp4";
+	orbGlowVideo.muted = true;
+	
+	
+	orbGlowVideoMask = document.createElement('video');
+	orbGlowVideoMask.src = "video/Glitter_Alpha.mp4";
+	orbGlowVideoMask.muted = true;
 
-	orbProductPlane = new THREE.PlaneGeometry( 3, 3 );
-	orbProductTex =new THREE.TextureLoader().load("images/AHC.HEROPRODUCT.BASE.jpg");
-	orbProductAlpha =new THREE.TextureLoader().load("images/AHC.HEROPRODUCT.ALPHA.jpg");
+	orbGlowVideoTex =  new THREE.VideoTexture(orbGlowVideo)
+	orbGlowVideoMaskTex = new THREE.VideoTexture(orbGlowVideoMask)
 
-	orbProductMat = new THREE.MeshBasicMaterial( {map:orbProductTex ,alphaMap:orbProductAlpha, transparent: true,opacity:1,side: THREE.DoubleSide});
+	orbGlowMat = new THREE.MeshBasicMaterial( {map:orbGlowVideoTex , transparent: true,opacity:1,side: THREE.DoubleSide});
+	orbGlowMat.alphaMap = orbGlowVideoMaskTex
+	orbGlow = new THREE.Mesh( orbGlowPlane, orbGlowMat );
+
+	//***********************ORB PRODUCT VIDEO********************
+	orbProductPlane = new THREE.PlaneGeometry( 4, 4 );
+	orbProductVideo = document.createElement('video');
+	orbProductVideo.src = "video/AHC_Cream.mp4";
+	orbProductVideo.playsInline = true;
+	orbProductVideo.muted = true;
+	orbProductVideo.loop = true;
+
+	orbProductVideoMask = document.createElement('video');
+	orbProductVideoMask.src = "video/AHC_Cream_Alpha.mp4";
+	orbProductVideoMask.playsInline = true;
+	orbProductVideoMask.muted = true;
+	orbProductVideoMask.loop = true
+	orbProductVideoTex =  new THREE.VideoTexture(orbProductVideo)
+	orbProductVideoMaskTex = new THREE.VideoTexture(orbProductVideoMask)
+
+
+	orbProductMat = new THREE.MeshBasicMaterial( {map:orbProductVideoTex , transparent: true,opacity:1,side: THREE.DoubleSide});
+	orbProductMat.alphaMap = orbProductVideoMaskTex
 	orbProduct = new THREE.Mesh( orbProductPlane, orbProductMat );
+	//***********************ORB VIDEO********************
 
 		//***********************ORB VIDEO********************
 		orbVideoPlane = new THREE.PlaneGeometry( 9, 9 );
 		orbVideo = document.createElement('video');
-		orbVideo.src = "video/ORBREVEALBASE.mp4";
+		orbVideo.src = "video/Ahc.Reveal.v5.BASE.mp4";
 		orbVideo.playsInline = true;
 		orbVideo.muted = true;
 		orbVideo.loop = false;
 
 		orbVideoMask = document.createElement('video');
-		orbVideoMask.src = "video/ORBREVEALALPHA.mp4";
+		orbVideoMask.src = "video/Ahc.Reveal.v6.ALPHA.mp4";
 		orbVideoMask.muted = true;
 		orbVideoMask.playsInline = true;
 
@@ -761,7 +813,7 @@ function animate() {
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
 
-		if(dirVector.z > 0.25 && dirVector.z < 0.75 && dirVector.y > -0.3 && dirVector.x > 0.8 ){ // need to stress test
+		if(dirVector.z > -0.4 && dirVector.z < 0.9 && dirVector.y > -0.3 && dirVector.x > 0 && dirVector.x < 1   ){ // need to stress test
 			document.getElementById('pool-text').style.opacity = 1;
 			document.getElementById('pool-btn').style.opacity = 1;
 			document.getElementById('pool-btn').style.pointerEvents = "auto";
@@ -775,7 +827,7 @@ function animate() {
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
 
-		if(dirVector.z > -0.65 && dirVector.z < 0 && dirVector.y > -0.3 && dirVector.x < -0.75 ){ // need to stress test
+		if(dirVector.z > -0.95 && dirVector.z < 0 && dirVector.y > -0.3 && dirVector.x < -0.35 ){ // need to stress test
 			document.getElementById('beauty-text').style.opacity = 1;
 			document.getElementById('beauty-btn').style.opacity = 1;
 			document.getElementById('beauty-btn').style.pointerEvents = "auto";
@@ -794,6 +846,10 @@ function animate() {
 			if(orbVideoPlayed == false){
 				orbVideo.play();
 				orbVideoMask.play()
+				orbVideo.addEventListener("ended",function(){
+					orbGlowVideo.play()
+					orbGlowVideoMask.play()
+				})
 				orbVideoPlayed = true
 			}
 			// orbVideo.addEventListener("ended",function(){
@@ -1161,8 +1217,8 @@ function DisableEverything(){
 	document.getElementById('beauty-btn').style.pointerEvents = "auto";
 	document.getElementById('selfie-btn').style.pointerEvents = "auto";
 
-	let ArrowArray = [orbProduct,ProcuctBaseArrow,PoolEntranceArrow,orbVideoMesh,MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
-	let ArrowScene = [OrbVideoScene,ProcuctBaseScene,PoolEntranceScene,OrbVideoScene,MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
+	let ArrowArray = [orbGlow,orbProduct,ProcuctBaseArrow,PoolEntranceArrow,orbVideoMesh,MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
+	let ArrowScene = [orbGlowScene,OrbVideoScene,ProcuctBaseScene,PoolEntranceScene,OrbVideoScene,MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
 
 	setTimeout(function(){
 		for (var i = 0; i < ArrowArray.length; i++) {

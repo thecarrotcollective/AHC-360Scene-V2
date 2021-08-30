@@ -7,35 +7,54 @@
     <!-- <link rel="preload" href="quizScene/script.js" as="script"> -->
     <!-- <link rel="preload" href="../style.css" as="style"> -->
 </head>
-<body class="selfiePage">
+<body class="mainIntroPage">
     <div id="IntroDiv">
-        <div class="pageIntro">
-          <div class="header", id="header_id">
-              <div id = "ahc-logo-beauty"><img id="ahc-logo-beauty-img" src="../quizScene/images/AHCLOGO.png"></div>
-              <h2 id='question' class="question">TAKE A SELFIE WITH KOREAN SUPERSTAR KRYSTAL JUNG!</h2>
-          </div>
-             <!-- <div class="headerIntro", id="header_idIntro">
-                <div id = "ahc-logo-beautyIntro"><img id="ahc-logo-beauty-imgIntro" src="../quizScene/images/AHCLOGO.png"></div>
-             </div> -->
-           <div class="contentIntro">
-              <!-- <div id = "ahc-logo-beautyIntro2"><img id="ahc-logo-beauty-imgIntro" src="../quizScene/images/AHCLOGO_white.png"></div> -->
-              <div class="controlsIntro">
-                  <button id="start-btnIntro" class="blackClr bn3637 bn37" >TAKE A SELFIE</button>
-              </div>
-           </div>
-           <div class="productIntro" style="display: none;" id="productIntro1">
-               <img id="productIntroImage" src="../quizScene/images/camera-perm.png" alt="Camera Permissions">
-               <button id="productIntroButton-1" class="btn" >ACCEPT</button>
-          </div>
+      <div class="container">
+        <div class="safe_area">
+            <div class="ahc-logo-Intro" id = "ahc-logo-Intro"><img id="ahc-logo-beauty-imgIntro" src="../quizScene/images/AHCLOGO.png"></div>
+            <div class="quizquestion" style="display: flex;" id="quesitonDiv">
+              <h2 id='question'  class="question">TAKE A SELFIE WITH KOREAN SUPERSTAR KRYSTAL JUNG!</h2>
+            </div>
+
+            <div class="grid_container" id="grid_container">
+                <section>
+                    <div class="header" id="header">
+
+                    </div>
+                </section>
+                <section>
+                    <div class="content" id="content">
+                      <div class="productIntro"  id="productIntro1">
+                        <img id="productIntroImage" src="../quizScene/images/camera-perm.png" alt="Snow">
+                  
+                        <button id="selfie-btn" class="selfie-btn" >ACCEPT</button>
+                      </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="footer" id="footer">
+                      <div class="controls" style="display: flex;" id="controls_id">
+                        <button id="start-quiz-btn" class="bn3639 bn39" >TAKE A SELFIE</button>
+                    </div>
+
+                    </div>
+                </section>
+            </div>
+
         </div>
     </div>
+
+
+</div>
+    </div>
     <script>
-      document.getElementById('start-btnIntro').addEventListener('click', function(e) {
-        document.getElementById('productIntro1').style.display = 'block';
-        document.getElementById('start-btnIntro').style.display = 'none';
-        document.getElementById('question').style.display = 'none';
+      document.getElementById('start-quiz-btn').addEventListener('click', function(e) {
+        document.getElementById('productIntro1').style.display = 'flex';
+        document.getElementById('start-quiz-btn').style.display = 'none';
+        document.getElementById('quesitonDiv').style.display = 'none';
       });
-      document.getElementById('productIntroButton-1').addEventListener('click', function(e) {
+      document.getElementById('selfie-btn').addEventListener('click', function(e) {
         window.location.href="../selfie/camera.html";
       });
 

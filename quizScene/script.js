@@ -5,6 +5,86 @@ var INTROVERT = 1
 var FEELER = 2
 var THINKER = 3
 
+var personalityTypes = ["extrovert", "introvert", "feeler", "thinker"]
+
+function loadJSON(callback) {
+   var xobj = new XMLHttpRequest();
+   xobj.overrideMimeType("application/json");
+   xobj.open('GET', 'shared/copy.json', true);
+   xobj.onreadystatechange = function () {
+         if (xobj.readyState == 4 && xobj.status == "200") {
+           // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+           callback(xobj.responseText);
+         }
+   };
+   xobj.send(null);
+}
+
+function setEnglish(){
+  languageID = 0
+  setLang(languageID)
+}
+function setKorean(){
+  languageID = 1
+  setLang(languageID)
+}
+function setChinese(){
+  languageID = 2
+  setLang(languageID)
+}
+
+function setLang(id){
+  for(i in copyJSON.code){
+    console.log(copyJSON.code[i]);
+    if(copyJSON.code[id].localeCompare(copyJSON.code[i]) === 0){
+      document.getElementById(copyJSON.code[i]+'-btn').style.opacity=1
+    } else {
+      document.getElementById(copyJSON.code[i]+'-btn').style.opacity=0.5
+    }
+  }
+  document.getElementById('start-btnIntro').innerHTML = copyJSON.StartJourney[id]
+  document.getElementById('skipLink').innerHTML = copyJSON.Skip[id]
+  document.getElementById('skipLinkScene').innerHTML = copyJSON.Skip[id]
+  document.getElementById('start-quiz-btn').innerHTML = copyJSON.StartExperience[id]
+  document.getElementById('question').innerHTML = copyJSON.PersonalityTestTitle[id]
+  document.getElementById('personality2').innerHTML = copyJSON.PersonalityTest[id]
+
+  document.documentElement.lang = copyJSON.code[id];
+
+  questions = [
+    new Question(copyJSON.PersonalityTestQ1[id], ["baby", "light", "city", "moon"], "baby"),
+    new Question(copyJSON.PersonalityTestQ2[id], ["sea", "plant", "shell", "mozai"], "sea"),
+    new Question(copyJSON.PersonalityTestQ3[id], ["color1", "color2", "color3",  "color4"], "color1")
+  ];
+  quiz = new Quiz(questions);
+}
+var copyJSON;
+var languageID = 0;
+
+loadJSON(function(response) {
+
+ // Parse JSON string into object
+   copyJSON = JSON.parse(response);
+   // console.log(actual_JSON);
+   var url = window.location.href;
+   var selectedLanguage = url.substr(url.indexOf('#')+1, 2);
+   console.log("language is "+selectedLanguage);
+   if(selectedLanguage.localeCompare("cn") === 0){
+     languageID = 2
+   } else if (selectedLanguage.localeCompare("kr") === 0){
+     languageID = 1
+   } else {
+     languageID = 0
+   }
+   setLang(languageID)
+
+   document.getElementById('en-btn').addEventListener('click', setEnglish)
+   document.getElementById('ko-btn').addEventListener('click', setKorean)
+   document.getElementById('zh-btn').addEventListener('click', setChinese)
+
+});
+
+
 var images = {
     "baby"  : "quizScene/images/1-dog.jpg",
     "light" : "quizScene/images/1-mountain.jpg",
@@ -52,8 +132,6 @@ startButton.addEventListener('click', startGame);
 
 
 function startGame() {
-
- 
   document.getElementById('archid').style.display = 'none';
   document.getElementById('middleText2').style.display = 'none';
   document.getElementById('controls_id').style.display = 'none';
@@ -141,33 +219,33 @@ function showScores() {
   var optionChoice;
   if(option1Counter ==finalOption){
     optionChoice = 1
-    personiltyType = "IT SEEMS LIKE YOU ARE AN"
+    personiltyType = copyJSON.ExtrovertHeadline[languageID]
     imageurl ="quizScene/images/arch2.png";
-    spaText="EXTROVERT!";
+    spaText=copyJSON.Extrovert[languageID]
     currState = EXTROVERT
-    infoText="EXTROVERTS ARE LIKELY <br> OUTGOING AND ACTIVE!"
+    infoText=copyJSON.ExtrovertExplanation[languageID]
   }else if(option2Counter ==finalOption){
     optionChoice = 2
-    personiltyType = "IT SEEMS LIKE YOU ARE AN"
+    personiltyType = copyJSON.IntrovertHeadline[languageID]
     imageurl ="quizScene/images/arch4.png";
-    spaText="INTROVERT!";
+    spaText=copyJSON.Introvert[languageID]
     currState = INTROVERT
-    infoText="INTROVERTS ARE LIKELY <br> CALM AND RELIABLE!"
+    infoText=copyJSON.IntrovertExplanation[languageID]
   }
   else if(option3Counter ==finalOption){
     optionChoice = 3
-    personiltyType = "IT SEEMS LIKE YOU ARE A"
+    personiltyType = copyJSON.ThinkerHeadline[languageID]
     imageurl ="quizScene/images/arch3.png";
-    spaText="THINKER!";
+    spaText=copyJSON.Thinker[languageID]
     currState = THINKER
-    infoText="THINKER ARE LIKELY <br> TO CREATE GREAT IDEAS!"
+    infoText=copyJSON.ThinkerExplanation[languageID]
   }else if(option4Counter ==finalOption){
     optionChoice = 4
-    personiltyType = "IT SEEMS LIKE YOU ARE A"
+    personiltyType = copyJSON.FeelerHeadline[languageID]
     imageurl ="quizScene/images/arch5.png";
-    spaText="FEELER!";
+    spaText=copyJSON.Feeler[languageID]
     currState = FEELER
-    infoText="FEELERS ARE LIKELY <br> ARTISTIC AND CONSIDERATE!"
+    infoText=copyJSON.FeelerExplanation[languageID]
 
   }
   console.log("last option = " + finalOption)
@@ -181,7 +259,7 @@ function showScores() {
   document.getElementById('process_id').style.display = 'none';
 
 
-  var personiltyTypeHtml = "<h2 id='question' >"+personiltyType+"</h2>";
+  var personiltyTypeHtml = "<h3 id='question' >"+personiltyType+"</h3>";
   var  gameOverHTML = '';
   document.getElementById("middleText2").style.top = "45%";
   gameOverHTML += "<h1 id='score'> Option: " + optionChoice + "</h1>";
@@ -192,7 +270,7 @@ function showScores() {
   element2.innerHTML = personiltyTypeHtml;
 
 
-  var buttonText =" <button id='start-btn' class='bn3639 bn39' style='background-color:"+ buttonColor + ";' >TAKE ME TO MY SPA</button>";
+  var buttonText =" <button id='start-btn' class='bn3639 bn39'  >"+copyJSON.GoToSpa[languageID]+"</button>";
   var element3 = document.getElementById("controls_id")
   element3.innerHTML = buttonText;
 
@@ -204,21 +282,15 @@ function showScores() {
   element5.innerHTML = infoTextHtml;
 
   document.getElementById('start-btn').addEventListener('click', function(e) {
-    if(currState === EXTROVERT){
-      window.location.href="sceneFolder/indexEXTROVERT.html";
-    } else if(currState === INTROVERT){
-      window.location.href="sceneFolder/indexINTROVERT.html";
-    }else if(currState === FEELER){
-      window.location.href="sceneFolder/indexFEELER.html";
-    }else if(currState === THINKER){
-      window.location.href="sceneFolder/indexTHINKER.html";
-    }
-
-
-    // document.body.style.background ="rgbe(254, 245, 240,0)";
-});
-
+    console.log("navigating to " + copyJSON.code[languageID]+'-'+personalityTypes[currState]);
+    window.location.href="sceneFolder/index.html#"+copyJSON.code[languageID]+'-'+personalityTypes[currState];
+  });
 };
+
+document.getElementById('skipLinkScene').addEventListener('click', function(e) {
+  console.log("navigating to " + copyJSON.code[languageID]+'-'+personalityTypes[2]);
+  window.location.href="sceneFolder/index.html#"+copyJSON.code[languageID]+'-'+personalityTypes[2];
+});
 
 var questions = [
   new Question("CHOOSE AN IMAGE THAT <br> REPRESENTS YOU BEST", ["baby", "light", "city", "moon"], "baby"),
