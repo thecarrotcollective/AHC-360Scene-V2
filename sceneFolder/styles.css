@@ -58,6 +58,11 @@ video{
   height: 100%;
   width: 100%;
 }
+#orb-vid{
+  z-index: 52;
+  height: 100%;
+  width: 100%;
+}
 
 .video-js{
   background-color: rgba(0, 0, 0, 0) !important;

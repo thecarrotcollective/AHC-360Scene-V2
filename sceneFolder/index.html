@@ -105,6 +105,17 @@
           data-setup='{"controls": true}'>
             <source src="video/beauty3.mp4" type="video/mp4">
           </video>
+          <video
+          id="orb-vid"
+          preload="none"
+          class="video-js vjs-default-skin"
+          controls: true
+          width="auto"
+          height="auto"
+          aspectRatio= '9:16'
+          data-setup='{"controls": true}'>
+            <source src="video/orbvideo.mp4" type="video/mp4">
+          </video>
         </div>
         <!-- <div id="video-close-overlay"></div> -->
 
@@ -170,6 +181,7 @@
       <div id="beauty-text" class="hover-text">
         <!-- Watch AHC's KOREAN AESTHETIC TUTORIALS here. -->
       </div>
+    
     </div>
 
     <div id="buttons-container">
@@ -184,6 +196,7 @@
       <button id="beauty-btn" class="CTA-btn">
         WATCH AHC's KOREAN AESTHETIC TUTORIALS HERE
       </button>
+
     </div>
 
   <script type="text/javascript">
@@ -268,6 +281,10 @@
         document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
       })
     }
+
+    
+
+
     function makeFullScreen(){
       document.getElementById("video_id").style.height= "100%"
         document.getElementById("video_id").style.width= "100%"
@@ -474,6 +491,7 @@
       document.getElementById('video2').removeEventListener("click", closeVideo);
       // document.getElementById('video-close-overlay').style.display = 'none';
       document.getElementById('video2').style.display = 'none';
+      document.getElementById('orb-vid').style.display = 'none';
       document.getElementById('vid-1').style.display = 'none';
       document.getElementById('vid-2').style.display = 'none';
       document.getElementById('vid-3').style.display = 'none';
@@ -483,6 +501,7 @@
       document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
       // player
       videojs('#video2').reset()
+      videojs('#orb-vid').reset()
       videojs('#vid-1').reset()
       videojs('#vid-2').reset()
       videojs('#vid-3').reset()
