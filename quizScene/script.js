@@ -270,7 +270,7 @@ function showScores() {
   element2.innerHTML = personiltyTypeHtml;
 
 
-  var buttonText =" <button id='start-btn' class='bn3639 bn39' style='background-color:"+ buttonColor + ";' >"+copyJSON.GoToSpa[languageID]+"</button>";
+  var buttonText =" <button id='start-btn' class='bn3639 bn39' style='background-color:rgb(0,0,0); " >+copyJSON.GoToSpa[languageID]+"</button>";
   var element3 = document.getElementById("controls_id")
   element3.innerHTML = buttonText;
 
