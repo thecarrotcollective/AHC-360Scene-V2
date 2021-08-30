@@ -7,7 +7,16 @@ var selectedPersonality = url.substr(url.indexOf('-')+1, 2);
 
 console.log("language is " + selectedLanguage);
 console.log("personality is " + selectedPersonality);
-
+if(selectedPersonality === 'fe'){
+	playAudio('sounds/sfx/feeler_sound.mp3')
+}else if(selectedPersonality === 'in'){
+	playAudio('sounds/sfx/introvert_sound.mp3')
+}
+else if(selectedPersonality === 'th'){
+	playAudio('sounds/sfx/thinker_sound.mp3')
+}else{
+	playAudio('sounds/sfx/extrovert_sound.mp3')
+}
 var sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_000.jpg"
 var sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_001.jpg"
 var sceneUrl2 ="scenes/EXTROVERT/EXTRO_CUBEMAP_002.jpg"
@@ -31,6 +40,7 @@ let bilboardVideo, bilboardVideoTex,orbProductPlane, orbProductTex,orbProductAlp
 let PoolEntranceArrow, ProcuctBaseArrow ,PoolEntranceScene, ProcuctBaseScene
 let orbProductVideo,orbProductVideoMask,orbProductVideoTex,orbProductVideoMaskTex, orbGlowScene;
 let orbGlowPlane, orbGlowVideo, orbGlowVideoMask,orbGlowVideoTex,orbGlowVideoMaskTex,orbGlowMat,orbGlow
+let orbPlusScene,orbPlus,orbPlusMat
 const mouse = new THREE.Vector2();
 var clickableVideo,manager,videoManager,arrowMat,productbool,orbProductScene;
 var loaderCheck = false;
@@ -56,8 +66,8 @@ var PRODENTRANCE = 7
 var MIDDLE = 8
 var POOLENTRACE =9
 var PRODUCTBASE = 10
-const startButton = document.getElementById( 'start-btn' );
-startButton.addEventListener( 'click', function () {
+
+window.addEventListener('load', (event) => {
 	init();
 	animate();
 	currState = INTRO
@@ -66,11 +76,28 @@ startButton.addEventListener( 'click', function () {
 	checkTheVideoLoad()
 	document.getElementById('productIntro1').style.display = 'none'
 	document.getElementById('ui-container').style.display = 'block'
-} );
+
+  });
+
 
 
 /* The below code triggers the experience. We will likely remove / refactor it later */
+function playAudio(audioUrl){
+	const listener = new THREE.AudioListener();
+	// camera.add( listener );
 
+	// create a global audio source
+	const sound = new THREE.Audio( listener );
+
+	// load a sound and set it as the Audio object's buffer
+	const audioLoader = new THREE.AudioLoader();
+	audioLoader.load( audioUrl, function( buffer ) {
+		sound.setBuffer( buffer );
+		sound.setLoop( true );
+		sound.setVolume( 1 );
+		sound.play();
+	});
+}
 
 const shareLinkBtn = document.getElementById('share-btn');
 shareLinkBtn.addEventListener('click', sharePopup);
@@ -142,7 +169,8 @@ function init() {
 	ProcuctBaseScene =  new THREE.Scene();
 	orbProductScene = new THREE.Scene();
 	orbGlowScene = new THREE.Scene();
-
+	orbPlusScene = new THREE.Scene();
+	scene.add(orbPlusScene)
 	scene.add(orbGlowScene)
 	scene.add(orbProductScene)
 	scene.add(PoolEntranceScene)
@@ -478,7 +506,16 @@ function init() {
 			MiddleRoomScene.add(MiddleRoomArrow)
 			PoolEntranceScene.add(PoolEntranceArrow);
 			RoomVideoPlayScene.add(RoomVideoPlay);
+			orbPlusScene.add(orbPlus)
 
+
+			
+
+								
+			orbPlus.position.set(-7,-0.5,1.8)
+			orbPlus.rotation.set(0,5,0)
+			orbPlus.scale.set(0.8,0.8,0.8)
+			// orbPlus.lookAt(camera)
 			  orbProduct.position.set(-8.2,1.75,1.1)
 			  orbProduct.rotation.set(0,2,0)
 			  orbGlow.position.set(-8.3,1.75,1.1)
@@ -600,10 +637,11 @@ function init() {
 	const ProductMesh = new THREE.PlaneGeometry( 1, 1, 1 );
 	var ProductTexture = new THREE.TextureLoader().load( ProductIconUrl );
 	var ProductMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: true,opacity:1,side: THREE.DoubleSide} );
-
+	orbPlusMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: true,opacity:0,side: THREE.DoubleSide} );
 	ProductIcon1 = new THREE.Mesh( ProductMesh, ProductMat );
 	ProductIcon2 = new THREE.Mesh( ProductMesh, ProductMat );
 	ProductIcon3 = new THREE.Mesh( ProductMesh, ProductMat );
+	orbPlus = new THREE.Mesh( ProductMesh, orbPlusMat );
 	// ProductIcon1.rotation.set(0,0,90)
 	const selfiMesh = new THREE.PlaneGeometry( 1, 1 );
 	const selfiMat = new THREE.MeshBasicMaterial( {color: 0xffff00, transparent: true,opacity:0, side: THREE.DoubleSide} );
@@ -764,7 +802,39 @@ function onWindowResize() {
 
 
 var endbool;
+var hoverButtonChecker = false
+document.getElementById('pool-btn').addEventListener("click", function(e){
+	hoverButtonChecker = true
+});
+document.getElementById('beauty-btn').addEventListener("click", function(e){
+	console.log("clicked")
+	hoverButtonChecker = true
+});
+if(currState === POOL || currState === MAIN){
+	document.getElementById('close-btn').addEventListener("click", function(e){
+		hoverButtonChecker = false
+	});
+}
 
+document.getElementById('back-btn').addEventListener("click", function(e){
+	hoverButtonChecker = false
+});
+var player = videojs('#video2');
+player.on('ended', function () {
+	hoverButtonChecker = false
+  })
+  var player1 = videojs('#vid-1');
+  player1.on('ended', function () {
+	hoverButtonChecker = false
+  })
+  var player2 = videojs('#vid-2');
+  player2.on('ended', function () {
+	hoverButtonChecker = false
+  })
+  var player3 = videojs('#vid-3');
+  player3.on('ended', function () {
+	hoverButtonChecker = false
+  })
 var orbVideoPlayed = false
 function animate() {
 
@@ -816,7 +886,7 @@ function animate() {
 
 
 	var dirVector = new THREE.Vector3();
-
+	
 	if(currState === SELFIE){
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
@@ -845,7 +915,7 @@ function animate() {
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
 
-		if(dirVector.z > -0.4 && dirVector.z < 0.9 && dirVector.y > -0.3 && dirVector.x > 0 && dirVector.x < 1   ){ // need to stress test
+		if(hoverButtonChecker === false && dirVector.z > -0.4 && dirVector.z < 0.9 && dirVector.y > -0.3 && dirVector.x > 0 && dirVector.x < 1   ){ // need to stress test
 			document.getElementById('pool-text').style.opacity = 1;
 			document.getElementById('pool-btn').style.opacity = 1;
 			document.getElementById('pool-btn').style.pointerEvents = "auto";
@@ -858,7 +928,7 @@ function animate() {
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
 
-		if(dirVector.z > -0.95 && dirVector.z < 0 && dirVector.y > -0.3 && dirVector.x < -0.35 ){ // need to stress test
+		if(hoverButtonChecker === false && dirVector.z > -0.95 && dirVector.z < 0 && dirVector.y > -0.3 && dirVector.x < -0.35 ){ // need to stress test
 			document.getElementById('beauty-text').style.opacity = 1;
 			document.getElementById('beauty-btn').style.opacity = 1;
 			document.getElementById('beauty-btn').style.pointerEvents = "auto";
@@ -871,7 +941,6 @@ function animate() {
 		camera.getWorldDirection(dirVector)
 
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
-
 		if(dirVector.z > -0.8 && dirVector.z < 0.8 && dirVector.y > -0.3 && dirVector.x < 0 ){ // need to stress test
 			if(orbVideoPlayed == false){
 				orbVideo.play();
@@ -880,9 +949,14 @@ function animate() {
 					orbGlowVideo.play()
 					orbGlowVideoMask.play()
 				})
-	
+				orbGlowVideo.addEventListener("ended",function(){
+					new TWEEN.Tween( orbPlusMat ).to( { opacity: 1 }, 500 ).start();
+				})
+			
+				
 				orbVideoPlayed = true
 			}
+
 
 			// orbVideo.addEventListener("ended",function(){
 
@@ -890,6 +964,7 @@ function animate() {
 			// }
 
 		} else {
+
 			// orbVideo.pause();
 			// 	orbVideoMask.pause()
 
@@ -950,6 +1025,81 @@ function clickTrigger(){
 		var intersectsPoolEntrance = raycaster.intersectObjects( PoolEntranceScene.children, false );
 		var intersectsProductBase = raycaster.intersectObjects( ProcuctBaseScene.children, false );
 		var intersectsMiddleRoom = raycaster.intersectObjects( MiddleRoomScene.children, false );
+		var intersectsOrbPlus = raycaster.intersectObjects( orbPlusScene.children, false );
+		if ( intersectsOrbPlus.length > 0 ) {
+			openOrbVideo();
+			document.getElementById('close-btn').addEventListener("click", function(e){
+				new TWEEN.Tween( orbPlusMat ).to( { opacity: 1 }, 500 ).start();
+			});
+			function openOrbVideo(){
+				document.getElementById('vid-2').style.display = "none"
+				document.getElementById('vid-1').style.display = "none"
+				document.getElementById('vid-3').style.display = "none"
+				document.getElementById('orb-vid').style.display = 'block';
+				document.getElementById('video_id').style.display = 'block';
+				document.getElementById('blackScreen').style.display = 'block';
+				document.getElementById('close-btn').style.display = 'block';
+				document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
+				var player = videojs('#orb-vid');
+				player.src('./video/orbvideo.mp4')
+				var video = document.getElementById('orb-vid');
+				// video.requestFullscreen();
+				player.play();
+				new TWEEN.Tween( orbPlusMat ).to( { opacity: 0 }, 500 ).start();
+				document.getElementById('orb-vid').addEventListener("click", function(e){
+				  console.log("clicked")
+			   
+				  document.getElementById("video_id").style.height= "100%"
+				  document.getElementById("video_id").style.width= "100%"
+				  document.getElementById("video_id").style.transform = `translateX(0%) translateY(0%)`;
+				  player.play();
+				  document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
+				  
+				});
+				document.getElementById('close-btn').addEventListener("click", closeVideo);
+			
+				player.on('ended', function () {
+					  closeVideo();
+					  new TWEEN.Tween( orbPlusMat ).to( { opacity: 1 }, 500 ).start();
+					})
+				player.on('fullscreenchange', function () {
+				  if (this.isFullscreen()){
+					console.log('fullscreen');
+				  } else {
+					closeVideo();
+				  }
+				})
+				player.on('tap', function () {
+				  console.log("clicked")
+			   
+				  makeFullScreen()
+				  player.play();
+				  document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
+				})
+			  }
+			  
+				function closeVideo(){
+					document.getElementById("video_id").style.height= "50%"
+					document.getElementById("video_id").style.width= "50%"
+					document.getElementById("video_id").style.transform = `translateX(50%) translateY(50%)`;
+			
+					document.getElementById('video2').removeEventListener("click", closeVideo);
+					// document.getElementById('video-close-overlay').style.display = 'none';
+		
+					document.getElementById('orb-vid').style.display = 'none';
+				
+					document.getElementById('blackScreen').style.display = 'none';
+					document.getElementById('video_id').style.display = 'none';
+					document.getElementById('close-btn').style.display = 'none';
+					document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
+					// player
+			
+					videojs('#orb-vid').reset()
+				
+				}
+  
+
+		}
 		//***********************POOL SCENE**************************
 		if ( intersectsPoolRoom.length > 0 ) {
 				setTimeout(function(){
@@ -1234,8 +1384,8 @@ function DisableEverything(){
 	document.getElementById('beauty-btn').style.pointerEvents = 'none';
 	document.getElementById('pool-btn').style.pointerEvents = 'none';
 	document.getElementById('selfie-btn').style.pointerEvents = 'none';
-	let ArrowArray = [orbGlow,orbProduct,ProcuctBaseArrow,PoolEntranceArrow,orbVideoMesh,MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
-	let ArrowScene = [orbGlowScene,orbProductScene,ProcuctBaseScene,PoolEntranceScene,OrbVideoScene,MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
+	let ArrowArray = [orbPlus,orbGlow,orbProduct,ProcuctBaseArrow,PoolEntranceArrow,orbVideoMesh,MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
+	let ArrowScene = [orbPlusScene,orbGlowScene,orbProductScene,ProcuctBaseScene,PoolEntranceScene,OrbVideoScene,MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
 
 	setTimeout(function(){
 		for (var i = 0; i < ArrowArray.length; i++) {

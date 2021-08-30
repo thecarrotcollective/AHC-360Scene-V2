@@ -37,7 +37,7 @@
   </head>
   <body id="mainPage">
 
-    <div class="productIntro" style="display: flex;" id="productIntro1">
+    <div class="productIntro" style="display: none;" id="productIntro1">
       <img id="productIntroImage" src="UIAssets/productAHC.png" alt="Snow">
 
       <button id="start-btn" class="start-btn" >ACCEPT</button>
@@ -66,7 +66,7 @@
           preload="auto"
           width="auto"
           height="auto"
-          aspectRatio= '9:16'
+         
           data-setup='{"controls": true}'
         >
         <source src="video/AHC-SPA-VIDEO.mp4" type="video/mp4" />
@@ -104,6 +104,17 @@
           aspectRatio= '9:16'
           data-setup='{"controls": true}'>
             <source src="video/beauty3.mp4" type="video/mp4">
+          </video>
+          <video
+          id="orb-vid"
+          preload="none"
+          class="video-js vjs-default-skin"
+          controls: true
+          width="auto"
+          height="auto"
+          aspectRatio= '9:16'
+          data-setup='{"controls": true}'>
+            <source src="video/orbvideo.mp4" type="video/mp4">
           </video>
         </div>
         <!-- <div id="video-close-overlay"></div> -->
@@ -170,6 +181,7 @@
       <div id="beauty-text" class="hover-text">
         <!-- Watch AHC's KOREAN AESTHETIC TUTORIALS here. -->
       </div>
+    
     </div>
 
     <div id="buttons-container">
@@ -184,6 +196,7 @@
       <button id="beauty-btn" class="CTA-btn">
         WATCH AHC's KOREAN AESTHETIC TUTORIALS HERE
       </button>
+
     </div>
 
   <script type="text/javascript">
@@ -193,6 +206,10 @@
             // Load a mobile JS file
             loadJS('scripts/scriptPhone.js');
             console.log('phone loaded');
+         
+            document.body.style.backgroundImage = "url('./UIAssets/OPENNING.jpg') ";
+            document.body.style.backgroundRepeat = "no-repeat";
+            document.getElementById('productIntro1').style.display = 'flex'
         }
     });
 
@@ -202,6 +219,7 @@
             // Load a tablet JS file
             loadJS('scripts/scriptPhone.js');
             console.log('tablet loaded');
+            document.getElementById('productIntro1').style.display = 'flex'
         }
     });
 
@@ -212,6 +230,7 @@
             loadJS('scripts/scriptWeb.js');
 
             console.log('desktop loaded');
+            document.getElementById('productIntro1').style.display = 'none'
         }
     });
 
@@ -224,6 +243,7 @@
     }
 
     function openTherapy(){
+      document.getElementById('orb-vid').style.display = 'none';
       document.getElementById('vid-2').style.display = "none"
           document.getElementById('vid-1').style.display = "none"
           document.getElementById('vid-3').style.display = "none"
@@ -237,12 +257,21 @@
       var video = document.getElementById('video2');
       // video.requestFullscreen();
       player.play();
-      document.getElementById('video2_html5_api').addEventListener("click", function(e){
+      document.getElementById('pool-text').style.opacity = 0;
+			document.getElementById('pool-btn').style.opacity = 0;
+			document.getElementById('pool-btn').style.pointerEvents = "none";
+      document.getElementById('video2').addEventListener("click", function(e){
         console.log("clicked")
+     
         makeFullScreen()
         player.play();
         document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
         
+      });
+      document.getElementById('close-btn').addEventListener("click", function(e){
+        document.getElementById('pool-text').style.opacity = 1;
+			document.getElementById('pool-btn').style.opacity = 1;
+			document.getElementById('pool-btn').style.pointerEvents = "auto";
       });
       document.getElementById('close-btn').addEventListener("click", closeVideo);
   
@@ -257,9 +286,17 @@
         }
       })
       player.on('tap', function () {
-        closeVideo();
+        console.log("clicked")
+     
+        makeFullScreen()
+        player.play();
+        document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
       })
     }
+
+    
+
+
     function makeFullScreen(){
       document.getElementById("video_id").style.height= "100%"
         document.getElementById("video_id").style.width= "100%"
@@ -273,6 +310,7 @@
     document.getElementById('beauty-vid-3').addEventListener("click", playVideo3);
 
     function playVideo1(){
+      document.getElementById('orb-vid').style.display = 'none';
       document.getElementById('vid-2_html5_api').style.display = "none"
       document.getElementById('vid-1_html5_api').style.display = "block"
       document.getElementById('vid-3_html5_api').style.display = "none"
@@ -289,12 +327,15 @@
       var video = document.getElementById('vid-1');
       // video.requestFullscreen();
       player.play();
+     
+
       document.getElementById('vid-1').addEventListener("click",function(e){
         makeFullScreen()
         document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
         player.play();
       })
       document.getElementById('close-btn').addEventListener("click", closeVideo);
+    
       setTimeout(function(){
         document.getElementById('close-btn').addEventListener("click", openBeauty);
 
@@ -319,6 +360,7 @@
     }
 
     function playVideo2(){
+      document.getElementById('orb-vid').style.display = 'none';
       document.getElementById('beauty-treatment-overlay').style.display = "none"
       document.getElementById('vid-2_html5_api').style.display = "block"
       document.getElementById('vid-1_html5_api').style.display = "none"
@@ -368,8 +410,8 @@
     }
 
         function playVideo3(){
+          document.getElementById('orb-vid').style.display = 'none';
           document.getElementById('beauty-treatment-overlay').style.display = "none"
-       
           document.getElementById('vid-1').style.display = 'none';
           document.getElementById('vid-2').style.display = 'none';
           document.getElementById('vid-3').style.display = 'block';
@@ -418,6 +460,10 @@
       document.getElementById('blackScreen').style.display = 'block';
       document.getElementById('blackScreen').style.animation = " opacityAnim 1.5s ease-in-out forwards";
       document.getElementById('blackScreen').style.zIndex = '1';
+
+      document.getElementById('beauty-text').style.opacity = 0;
+			document.getElementById('beauty-btn').style.opacity = 0;
+			document.getElementById('beauty-btn').style.pointerEvents = "none";
     }
 
     document.getElementById('productButton-1').addEventListener("click", productLink1);
@@ -460,12 +506,13 @@
 
     function closeVideo(){
       document.getElementById("video_id").style.height= "50%"
-        document.getElementById("video_id").style.width= "50%"
-        document.getElementById("video_id").style.transform = `translateX(50%) translateY(50%)`;
+      document.getElementById("video_id").style.width= "50%"
+      document.getElementById("video_id").style.transform = `translateX(50%) translateY(50%)`;
       console.log('close video');
       document.getElementById('video2').removeEventListener("click", closeVideo);
       // document.getElementById('video-close-overlay').style.display = 'none';
       document.getElementById('video2').style.display = 'none';
+      document.getElementById('orb-vid').style.display = 'none';
       document.getElementById('vid-1').style.display = 'none';
       document.getElementById('vid-2').style.display = 'none';
       document.getElementById('vid-3').style.display = 'none';
@@ -475,6 +522,7 @@
       document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
       // player
       videojs('#video2').reset()
+      videojs('#orb-vid').reset()
       videojs('#vid-1').reset()
       videojs('#vid-2').reset()
       videojs('#vid-3').reset()

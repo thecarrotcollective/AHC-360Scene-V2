@@ -20,8 +20,8 @@ body {
   margin: 0 !important;
   padding: 0 !important;
   font-family: "Pangram-Regular";
-  background-color: rgb(254, 245, 240);
-  background: url('UIAssets/OPENNING.jpg') no-repeat;
+  background-color: rgb(204, 203, 203);
+  /* background: url('UIAssets/OPENNING.jpg') no-repeat; */
   background-position: center; /* Center the image */
   background-size: cover; /* Resize the background image to cover the entire container */
 
@@ -38,10 +38,10 @@ video{
   transform: translateY(-50%); */
 }
 
-.beauty-options{
+/* .beauty-options{
   width:100%;
   height: 20%;
-}
+} */
 
 #vid-1{
   z-index: 52;
@@ -54,6 +54,11 @@ video{
   width: 100%;
 }
 #vid-3{
+  z-index: 52;
+  height: 100%;
+  width: 100%;
+}
+#orb-vid{
   z-index: 52;
   height: 100%;
   width: 100%;
@@ -254,21 +259,7 @@ video{
 		cursor: pointer;
 	} */
 
-  #video_id{
-    position: absolute;
-    /* width: 100%;
-    height: 100%; */
-    background: rgb(0, 0, 0);
-    height: 50%;
-    width: 50%;
-    transform: translate(50%, 50%);
-    display: none;
-    text-align: center;
-    opacity: 0;
-    animation: opacityAnim 1.5s ease-in-out forwards;
-    overflow: hidden;
-    z-index: 15;
-  }
+ 
 
   #video-close-overlay{
     width:100%;
@@ -315,24 +306,7 @@ video{
     }
   }
 
-  #video2{
-      /* transform: scale(0.5); */
-      z-index: 50;
-      position: absolute;
-      display: none;
-     
-      height: 100%;
-      width: 100%;
-      top: 0;
-      left: 0;
 
-      display: none;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-
-
-  }
   #closeButton{
     height: 100px;
     width: 100px;
@@ -369,6 +343,39 @@ video{
        animation: pulse 1s ease-in-out forwards;
     
     }
+    #video_id{
+      position: absolute;
+      /* width: 100%;
+      height: 100%; */
+      background: rgb(0, 0, 0);
+      height: 50%;
+      width: 50%;
+      transform: translate(50%, 50%);
+      display: none;
+      text-align: center;
+      opacity: 0;
+      animation: opacityAnim 1.5s ease-in-out forwards;
+      overflow: hidden;
+      z-index: 15;
+    }
+      #video2{
+      /* transform: scale(0.5); */
+      z-index: 50;
+      position: absolute;
+      display: none;
+     
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+
+  }
     #start-btn {
       position: absolute;
       top: 75%;
@@ -430,12 +437,19 @@ video{
     .beauty-options-container{
       display: flex;
       height: 100%;
-      width: 120%;
+      width: 150%;
       align-items: center;
       justify-content: space-between;
     }
     .beauty-options:hover{
       transform: scale(1.025);
+    }
+    #ahc-logo-beauty{
+      /* position:fixed; */
+      /* top:0; */
+      /* transform: scale(2); */
+      
+      /* margin-bottom: 2em; */
     }
 
     #close-product{
@@ -454,9 +468,9 @@ video{
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      max-width: 900px;
+      max-width: 1000px;
       font-family: "Pangram-ExtraBold" !important;
-      font-size: 1.5em;
+      font-size: 2em;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -502,7 +516,9 @@ video{
       color: white;
       text-align: center;
       margin-top: 5%;
-      margin-bottom: 2em;
+      margin-bottom: 7.5%;
+  
+    
     }
 
   }
@@ -610,18 +626,21 @@ video{
     z-index: 20;
 
     opacity: 0;
-    animation: opacityAnim2 1.5s ease-in-out forwards;
-    /* display: none; */
-  }
+    animation: opacityAnim 1.5s ease-in-out forwards;
+    /* display: none; */  }
   .beauty-options-container{
-    height: 100%;
+    height: 60%;
     width: 100%;
   }
+  .beauty-options {
+    width: 100%;
+    height: 33%;
+}
   #beauty-title{
     color: white;
     text-align: center;
-    margin-top: 5%;
-    margin-bottom: 2em;
+    margin-top: 10%;
+    margin-bottom: 10%
   }
 
   #back-btn{
