@@ -66,7 +66,7 @@
           preload="auto"
           width="auto"
           height="auto"
-          aspectRatio= '9:16'
+         
           data-setup='{"controls": true}'
         >
         <source src="video/AHC-SPA-VIDEO.mp4" type="video/mp4" />
@@ -206,6 +206,9 @@
             // Load a mobile JS file
             loadJS('scripts/scriptPhone.js');
             console.log('phone loaded');
+         
+            document.body.style.backgroundImage = "url('./UIAssets/OPENNING.jpg') ";
+            document.body.style.backgroundRepeat = "no-repeat";
             document.getElementById('productIntro1').style.display = 'flex'
         }
     });
@@ -240,6 +243,7 @@
     }
 
     function openTherapy(){
+      document.getElementById('orb-vid').style.display = 'none';
       document.getElementById('vid-2').style.display = "none"
           document.getElementById('vid-1').style.display = "none"
           document.getElementById('vid-3').style.display = "none"
@@ -253,6 +257,9 @@
       var video = document.getElementById('video2');
       // video.requestFullscreen();
       player.play();
+      document.getElementById('pool-text').style.opacity = 0;
+			document.getElementById('pool-btn').style.opacity = 0;
+			document.getElementById('pool-btn').style.pointerEvents = "none";
       document.getElementById('video2').addEventListener("click", function(e){
         console.log("clicked")
      
@@ -260,6 +267,11 @@
         player.play();
         document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
         
+      });
+      document.getElementById('close-btn').addEventListener("click", function(e){
+        document.getElementById('pool-text').style.opacity = 1;
+			document.getElementById('pool-btn').style.opacity = 1;
+			document.getElementById('pool-btn').style.pointerEvents = "auto";
       });
       document.getElementById('close-btn').addEventListener("click", closeVideo);
   
@@ -298,6 +310,7 @@
     document.getElementById('beauty-vid-3').addEventListener("click", playVideo3);
 
     function playVideo1(){
+      document.getElementById('orb-vid').style.display = 'none';
       document.getElementById('vid-2_html5_api').style.display = "none"
       document.getElementById('vid-1_html5_api').style.display = "block"
       document.getElementById('vid-3_html5_api').style.display = "none"
@@ -314,12 +327,15 @@
       var video = document.getElementById('vid-1');
       // video.requestFullscreen();
       player.play();
+     
+
       document.getElementById('vid-1').addEventListener("click",function(e){
         makeFullScreen()
         document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
         player.play();
       })
       document.getElementById('close-btn').addEventListener("click", closeVideo);
+    
       setTimeout(function(){
         document.getElementById('close-btn').addEventListener("click", openBeauty);
 
@@ -344,6 +360,7 @@
     }
 
     function playVideo2(){
+      document.getElementById('orb-vid').style.display = 'none';
       document.getElementById('beauty-treatment-overlay').style.display = "none"
       document.getElementById('vid-2_html5_api').style.display = "block"
       document.getElementById('vid-1_html5_api').style.display = "none"
@@ -393,8 +410,8 @@
     }
 
         function playVideo3(){
+          document.getElementById('orb-vid').style.display = 'none';
           document.getElementById('beauty-treatment-overlay').style.display = "none"
-       
           document.getElementById('vid-1').style.display = 'none';
           document.getElementById('vid-2').style.display = 'none';
           document.getElementById('vid-3').style.display = 'block';
@@ -443,6 +460,10 @@
       document.getElementById('blackScreen').style.display = 'block';
       document.getElementById('blackScreen').style.animation = " opacityAnim 1.5s ease-in-out forwards";
       document.getElementById('blackScreen').style.zIndex = '1';
+
+      document.getElementById('beauty-text').style.opacity = 0;
+			document.getElementById('beauty-btn').style.opacity = 0;
+			document.getElementById('beauty-btn').style.pointerEvents = "none";
     }
 
     document.getElementById('productButton-1').addEventListener("click", productLink1);

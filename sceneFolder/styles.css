@@ -20,8 +20,8 @@ body {
   margin: 0 !important;
   padding: 0 !important;
   font-family: "Pangram-Regular";
-  background-color: rgb(254, 245, 240);
-  background: url('UIAssets/OPENNING.jpg') no-repeat;
+  background-color: rgb(204, 203, 203);
+  /* background: url('UIAssets/OPENNING.jpg') no-repeat; */
   background-position: center; /* Center the image */
   background-size: cover; /* Resize the background image to cover the entire container */
 
