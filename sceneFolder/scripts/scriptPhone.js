@@ -4,23 +4,67 @@ import { DeviceOrientationControls } from './DeviceOrientationWithOrbit.js';
 var url = window.location.href;
 var selectedLanguage = url.substr(url.indexOf('#')+1, 2);
 var selectedPersonality = url.substr(url.indexOf('-')+1, 2);
-
+var sceneUrl0,sceneUrl1,sceneUrl2,sceneUrl3,sceneUrl4,sceneUrl5,sceneUrl6,sceneUrl7,sceneUrl8,sceneUrl9,sceneUrl10
 console.log("language is " + selectedLanguage);
 console.log("personality is " + selectedPersonality);
+if(selectedPersonality === 'fe'){
+	playAudio('sounds/sfx/feeler_sound.mp3')
+	sceneUrl0 ="scenes/FEELER/FEELER_CUBEMAP_0000.jpg"
+	sceneUrl1 ="scenes/FEELER/FEELER_CUBEMAP_0001.jpg"
+	sceneUrl2 ="scenes/FEELER/FEELER_CUBEMAP_0002.jpg"
+	sceneUrl3 ="scenes/FEELER/FEELER_CUBEMAP_0003.jpg"
+	sceneUrl4 ="scenes/FEELER/FEELER_CUBEMAP_0004.jpg"
+	sceneUrl5 ="scenes/FEELER/FEELER_CUBEMAP_0005.jpg"
+	sceneUrl6 ="scenes/FEELER/FEELER_CUBEMAP_0006.jpg"
+	sceneUrl7 ="scenes/FEELER/FEELER_CUBEMAP_0007.jpg"
+	sceneUrl8 ="scenes/FEELER/FEELER_CUBEMAP_0008.jpg"
+	sceneUrl9 ="scenes/FEELER/FEELER_CUBEMAP_0009.jpg"
+	sceneUrl10 ="scenes/FEELER/FEELER_CUBEMAP_0010.jpg"
 
+}else if(selectedPersonality === 'in'){
+	playAudio('sounds/sfx/introvert_sound.mp3')
+	sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_0000.jpg"
+	sceneUrl1 ="scenes/THINKER/THINKER_CUBEMAP_0001.jpg"
+	sceneUrl2 ="scenes/THINKER/THINKER_CUBEMAP_0002.jpg"
+	sceneUrl3 ="scenes/THINKER/THINKER_CUBEMAP_0003.jpg"
+	sceneUrl4 ="scenes/THINKER/THINKER_CUBEMAP_0004.jpg"
+	sceneUrl5 ="scenes/THINKER/THINKER_CUBEMAP_0005.jpg"
+	sceneUrl6 ="scenes/THINKER/THINKER_CUBEMAP_0006.jpg"
+	sceneUrl7 ="scenes/THINKER/THINKER_CUBEMAP_0007.jpg"
+	sceneUrl8 ="scenes/THINKER/THINKER_CUBEMAP_0008.jpg"
+	sceneUrl9 ="scenes/THINKER/THINKER_CUBEMAP_0009.jpg"
+	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
+}
+else if(selectedPersonality === 'th'){
+	playAudio('sounds/sfx/thinker_sound.mp3')
+	sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_0000.jpg"
+	sceneUrl1 ="scenes/THINKER/THINKER_CUBEMAP_0001.jpg"
+	sceneUrl2 ="scenes/THINKER/THINKER_CUBEMAP_0002.jpg"
+	sceneUrl3 ="scenes/THINKER/THINKER_CUBEMAP_0003.jpg"
+	sceneUrl4 ="scenes/THINKER/THINKER_CUBEMAP_0004.jpg"
+	sceneUrl5 ="scenes/THINKER/THINKER_CUBEMAP_0005.jpg"
+	sceneUrl6 ="scenes/THINKER/THINKER_CUBEMAP_0006.jpg"
+	sceneUrl7 ="scenes/THINKER/THINKER_CUBEMAP_0007.jpg"
+	sceneUrl8 ="scenes/THINKER/THINKER_CUBEMAP_0008.jpg"
+	sceneUrl9 ="scenes/THINKER/THINKER_CUBEMAP_0009.jpg"
+	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
+}else{
+	playAudio('sounds/sfx/extrovert_sound.mp3')
+	sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0000.jpg"
+	sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0001.jpg"
+	sceneUrl2 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0002.jpg"
+	sceneUrl3 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0003.jpg"
+	sceneUrl4 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0004.jpg"
+	sceneUrl5 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0005.jpg"
+	sceneUrl6 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0006.jpg"
+	sceneUrl7 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0007.jpg"
+	sceneUrl8 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0008.jpg"
+	sceneUrl9 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0009.jpg"
+	sceneUrl10 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0010.jpg"
+}
 //DELETE AFTER CSS FIX
 import {OrbitControls} from './Orbit.js';
-var sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_000.jpg"
-var sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_001.jpg"
-var sceneUrl2 ="scenes/EXTROVERT/EXTRO_CUBEMAP_002.jpg"
-var sceneUrl3 ="scenes/EXTROVERT/EXTRO_CUBEMAP_003.jpg"
-var sceneUrl4 ="scenes/EXTROVERT/EXTRO_CUBEMAP_004.jpg"
-var sceneUrl5 ="scenes/EXTROVERT/EXTRO_CUBEMAP_005.jpg"
-var sceneUrl6 ="scenes/EXTROVERT/EXTRO_CUBEMAP_006.jpg"
-var sceneUrl7 ="scenes/EXTROVERT/EXTRO_CUBEMAP_007.jpg"
-var sceneUrl8 ="scenes/EXTROVERT/EXTRO_CUBEMAP_008.jpg"
-var sceneUrl9 ="scenes/EXTROVERT/EXTRO_CUBEMAP_009.jpg"
-var sceneUrl10 ="scenes/EXTROVERT/EXTRO_CUBEMAP_010.jpg"
+
 // TODO - check if some of these can be lists / arrays + use as state machine?
 let camera, controls,videoMat,ProductIcon1,ProductIcon2,ProductIcon3,ProductIconScene1,ProductIconScene2,ProductIconScene3,video3,videoMask,videoMask2,videoTexture;
 let renderer,video,skydome,BottleRoomVideoPlayScene,SelfiePlane,SelfiePlaneScene,video2;
