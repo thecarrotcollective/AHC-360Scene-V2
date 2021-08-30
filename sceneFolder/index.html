@@ -67,7 +67,7 @@
           width="auto"
           height="auto"
           aspectRatio= '9:16'
-          data-setup='{"fluid": true,"controls": true}'
+          data-setup='{"controls": true}'
         >
         <source src="video/AHC-SPA-VIDEO.mp4" type="video/mp4" />
             <!-- <source type="video/mp4" /> -->
@@ -75,33 +75,34 @@
           <video
           id="vid-1"
           preload="none"
-          controls
-          class="video-js"
+          controls: true
+          class="video-js vjs-default-skin"
           width="auto"
           height="auto"
           aspectRatio= '9:16'
-          data-setup='{"fluid": true}'>
+          data-setup='{"controls": true}'>
             <source src="video/beauty1.mp4" type="video/mp4">
           </video>
           <video
           id="vid-2"
           preload="none"
-          controls
-          class="video-js"
+          controls: true
+          class="video-js vjs-default-skin"
           width="auto"
           height="auto"
           aspectRatio= '9:16'
-          data-setup='{"fluid": true}'>
+          data-setup='{"controls": true}'>
             <source src="video/beauty2.mp4" type="video/mp4">
           </video>
           <video
           id="vid-3"
           preload="none"
-          class="video-js"
+          class="video-js vjs-default-skin"
+          controls: true
           width="auto"
           height="auto"
           aspectRatio= '9:16'
-          data-setup='{"fluid": true}'>
+          data-setup='{"controls": true}'>
             <source src="video/beauty3.mp4" type="video/mp4">
           </video>
         </div>
@@ -237,7 +238,8 @@
       player.play();
       document.getElementById('video2_html5_api').addEventListener("click", function(e){
         console.log("clicked")
-        makeFullScreen("video2_html5_api")
+        makeFullScreen()
+        player.play();
         document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
         
       });
@@ -257,16 +259,13 @@
         closeVideo();
       })
     }
-    function makeFullScreen(video_id_url){
-      document.getElementById(video_id_url).style.height= "100%"
-        document.getElementById(video_id_url).style.width= "100%"
-        document.getElementById(video_id_url).style.transform = `translateX(0%) translateY(0%)`;
+    function makeFullScreen(){
+      document.getElementById("video_id").style.height= "100%"
+        document.getElementById("video_id").style.width= "100%"
+        document.getElementById("video_id").style.transform = `translateX(0%) translateY(0%)`;
+
     }
-    function reverseMakeFullScreen(video_id_url){
-      document.getElementById(video_id_url).style.height= "50%"
-        document.getElementById(video_id_url).style.width= "50%"
-        document.getElementById(video_id_url).style.transform = `translateX(50%) translateY(50%)`;
-    }
+
     document.getElementById('back-btn').addEventListener("click", closeBeauty);
     document.getElementById('beauty-vid-1').addEventListener("click", playVideo1);
     document.getElementById('beauty-vid-2').addEventListener("click", playVideo2);
@@ -278,6 +277,8 @@
       document.getElementById('vid-3_html5_api').style.display = "none"
       document.getElementById('beauty-treatment-overlay').style.display = "none"
       document.getElementById('vid-1').style.display = 'block';
+      document.getElementById('vid-2').style.display = 'none';
+      document.getElementById('vid-3').style.display = 'none';
       document.getElementById('video_id').style.display = 'block';
       document.getElementById('blackScreen').style.display = 'block';
       document.getElementById('close-btn').style.display = 'block';
@@ -288,13 +289,21 @@
       // video.requestFullscreen();
       player.play();
       document.getElementById('vid-1').addEventListener("click",function(e){
-        makeFullScreen("vid-1_html5_api")
+        makeFullScreen()
         document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
+        player.play();
       })
       document.getElementById('close-btn').addEventListener("click", closeVideo);
-   
+      setTimeout(function(){
+        document.getElementById('close-btn').addEventListener("click", openBeauty);
+
+				}, 50)
       player.on('ended', function () {
             closeVideo();
+            setTimeout(function(){
+            document.getElementById('close-btn').addEventListener("click", openBeauty);
+
+            }, 50)
           })
       player.on('fullscreenchange', function () {
         if (this.isFullscreen()){
@@ -313,7 +322,9 @@
       document.getElementById('vid-2_html5_api').style.display = "block"
       document.getElementById('vid-1_html5_api').style.display = "none"
       document.getElementById('vid-3_html5_api').style.display = "none"
+      document.getElementById('vid-1').style.display = 'none';
       document.getElementById('vid-2').style.display = 'block';
+      document.getElementById('vid-3').style.display = 'none';
       document.getElementById('video_id').style.display = 'block';
       document.getElementById('blackScreen').style.display = 'block';
       document.getElementById('close-btn').style.display = 'block';
@@ -324,14 +335,24 @@
       // video.requestFullscreen();
       player.play();
       document.getElementById('vid-2').addEventListener("click",function(e){
-        makeFullScreen("vid-2_html5_api")
+        makeFullScreen()
         document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
+        player.play();
       })
 
       document.getElementById('close-btn').addEventListener("click", closeVideo);
-      document.getElementById('vid-2').addEventListener("ended",closeVideo);
+      setTimeout(function(){
+        document.getElementById('close-btn').addEventListener("click", openBeauty);
+
+				}, 50)
+ 
+
       player.on('ended', function () {
             closeVideo();
+            setTimeout(function(){
+            document.getElementById('close-btn').addEventListener("click", openBeauty);
+
+            }, 50)
           })
       player.on('fullscreenchange', function () {
         if (this.isFullscreen()){
@@ -347,9 +368,9 @@
 
         function playVideo3(){
           document.getElementById('beauty-treatment-overlay').style.display = "none"
-          document.getElementById('vid-2_html5_api').style.display = "none"
-          document.getElementById('vid-1_html5_api').style.display = "none"
-          document.getElementById('vid-3_html5_api').style.display = "block"
+       
+          document.getElementById('vid-1').style.display = 'none';
+          document.getElementById('vid-2').style.display = 'none';
           document.getElementById('vid-3').style.display = 'block';
           document.getElementById('video_id').style.display = 'block';
           document.getElementById('blackScreen').style.display = 'block';
@@ -361,13 +382,22 @@
           // video.requestFullscreen();
           player.play();
           document.getElementById('vid-3').addEventListener("click",function(e){
-            makeFullScreen("vid-3_html5_api")
+            makeFullScreen()
             document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
+            player.play();
           })
           document.getElementById('close-btn').addEventListener("click", closeVideo);
+          setTimeout(function(){
+            document.getElementById('close-btn').addEventListener("click", openBeauty);
+
+            }, 50)
           // document.getElementById('vid-3').addEventListener("ended",closeVideo);
           player.on('ended', function () {
             closeVideo();
+            setTimeout(function(){
+            document.getElementById('close-btn').addEventListener("click", openBeauty);
+
+            }, 50)
           })
           player.on('fullscreenchange', function () {
             if (this.isFullscreen()){
@@ -428,10 +458,9 @@
 
 
     function closeVideo(){
-      reverseMakeFullScreen("vid-1_html5_api")
-      reverseMakeFullScreen("vid-2_html5_api")
-      reverseMakeFullScreen("vid-3_html5_api")
-      reverseMakeFullScreen("video2_html5_api")
+      document.getElementById("video_id").style.height= "50%"
+        document.getElementById("video_id").style.width= "50%"
+        document.getElementById("video_id").style.transform = `translateX(50%) translateY(50%)`;
       console.log('close video');
       document.getElementById('video2').removeEventListener("click", closeVideo);
       // document.getElementById('video-close-overlay').style.display = 'none';
