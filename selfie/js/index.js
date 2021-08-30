@@ -181,8 +181,11 @@ closeBtn.addEventListener("click", async () => {
 downloadBtn.addEventListener("click", async () => {
   download(screenshot, 'AHC Selfie with Krystal Jung.png');
 });
+
 shareBtn.addEventListener("click", async () => {
-  share(screenshot);
+  sharePopup();
+
+    // share(screenshot);
 });
 
 
@@ -262,3 +265,94 @@ async function share(image){
 //     console.error("Share failed:", err.message);
 //   }
 // });
+
+
+const shareSubmit = document.getElementById('share-submit');
+shareSubmit.addEventListener('click', sendUser)
+const shareContainer = document.getElementById('share-container')
+const shareClose = document.getElementById('share-close')
+
+var input = document.getElementById('phone');
+input.oninvalid = function(event) {
+    event.target.setCustomValidity('Phone number is 18 digit maximum');
+}
+
+var xmlhttp;
+var post_url = 'post_user.php';
+
+$(document).ready(function() {
+    const submit = document.getElementById('share-submit');
+    submit.addEventListener('click', sendUser);
+});
+
+function sendUser() {
+    let phoneNumber = document.getElementById('phone').value;
+    console.log(phoneNumber)
+    if (phoneNumber==null){
+        // console.log("No entry, try again");
+
+    } else {
+        xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("POST", post_url, true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        console.log("sendUser phone = " + phoneNumber);
+        xmlhttp.send("phone="+phoneNumber);
+        xmlhttp.addEventListener("load", transferComplete);
+    }
+}
+
+function transferComplete(evt) {
+    console.log("The transfer is complete.");
+    input.value = "";
+    shareContainer.style.display = 'none';
+
+    // copyLink();
+    share(screenshot);
+
+
+}
+
+
+function sharePopup() {
+    shareContainer.style.display = 'block';
+    console.log('show share-container')
+
+    // add close button listener
+    shareClose.addEventListener('click', closeSharePopup);
+}
+
+function closeSharePopup() {
+    shareContainer.style.display = 'none'
+}
+
+// function copyLink() {
+//     const linkToCopy = "https://us.ahcbeauty.com/";
+//
+//     if (navigator.share) {
+//         navigator.share({
+//             title: 'AHC You Spa',
+//             url: linkToCopy
+//         }).then(() => {
+//
+//             setTimeout(() => {
+//                 shareContainer.style.display = 'none;'
+//             }, 2000)
+//         })
+//             .catch(console.error);
+//     } else {
+//         // TODO Add fallback to copy Link
+//         navigator.clipboard.writeText(linkToCopy)
+//             .then(() => {
+//                 shareSubmit.innerText = 'LINK COPIED'
+//                 setTimeout(() => {
+//                     shareSubmit.innerText = 'Share Experience With a Friend'
+//                     shareContainer.style.display = 'none;'
+//                 }, 2000)
+//
+//             })
+//             .catch((error) => {
+//                 alert('Copy failed! ${error}')
+//             })
+//     }
+// }
