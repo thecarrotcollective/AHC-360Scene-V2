@@ -75,7 +75,7 @@ let bilboardVideo, bilboardVideoTex,orbProductPlane, orbProductTex,orbProductAlp
 let PoolEntranceArrow, ProcuctBaseArrow ,PoolEntranceScene, ProcuctBaseScene
 let orbProductVideo,orbProductVideoMask,orbProductVideoTex,orbProductVideoMaskTex, orbGlowScene;
 let orbGlowPlane, orbGlowVideo, orbGlowVideoMask,orbGlowVideoTex,orbGlowVideoMaskTex,orbGlowMat,orbGlow
-let orbPlusScene,orbPlus,orbPlusMat,sound
+let orbPlusScene,orbPlus,orbPlusMat;
 const mouse = new THREE.Vector2();
 var clickableVideo,manager,videoManager,arrowMat,productbool,orbProductScene;
 var loaderCheck = false;
@@ -114,7 +114,7 @@ window.addEventListener('load', (event) => {
 
   });
 
-
+var sound;
 
 /* The below code triggers the experience. We will likely remove / refactor it later */
 function playAudio(audioUrl){
@@ -1075,6 +1075,7 @@ function clickTrigger(){
 				new TWEEN.Tween( orbPlusMat ).to( { opacity: 1 }, 500 ).start();
 			});
 			function openOrbVideo(){
+				sound.pause()
 				document.getElementById('vid-2').style.display = "none"
 				document.getElementById('vid-1').style.display = "none"
 				document.getElementById('vid-3').style.display = "none"
@@ -1122,6 +1123,7 @@ function clickTrigger(){
 			  }
 			  
 				function closeVideo(){
+					sound.play()
 					document.getElementById("video_id").style.height= "50%"
 					document.getElementById("video_id").style.width= "50%"
 					document.getElementById("video_id").style.transform = `translateX(50%) translateY(50%)`;
