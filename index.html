@@ -2,53 +2,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-
-    <script>
-
-      function loadJSON(callback) {
-         var xobj = new XMLHttpRequest();
-         xobj.overrideMimeType("application/json");
-         xobj.open('GET', 'shared/copy.json', true); // Replace 'my_data' with the path to your file
-         xobj.onreadystatechange = function () {
-               if (xobj.readyState == 4 && xobj.status == "200") {
-                 // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-                 callback(xobj.responseText);
-               }
-         };
-         xobj.send(null);
-      }
-
-      loadJSON(function(response) {
-       // Parse JSON string into object
-         var copyJSON = JSON.parse(response);
-         // console.log(actual_JSON);
-         var url = window.location.href;
-         var selectedLanguage = url.substr(url.indexOf('#')+1, 2);
-         var languageID = 0;
-         console.log("language is "+selectedLanguage);
-         if(selectedLanguage.localeCompare("cn") === 0){
-           languageID = 2
-         } else if (selectedLanguage.localeCompare("kr") === 0){
-           languageID = 1
-         } else {
-           languageID = 0
-         }
-         window.document.title = copyJSON.Title[languageID]
-  
-         document.getElementById('start-btnIntro').innerHTML = copyJSON.StartJourney[languageID]
-         document.documentElement.lang = copyJSON.code[languageID];
-      });
-
-
-
-    </script>
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
 
-    <!-- <title>AHC Spa at Home</title> -->
+    <title>AHC Spa at Home</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preload" href="quizScene/script.js" as="script">
     <!-- <link rel="preload" href="style.css" as="style"> -->
@@ -101,9 +61,9 @@
                                     <button id="start-btnIntro" class="startBtn startBtn1 whiteClr" >START YOUR JOURNEY!</button>
                                     <div id="tandc">BY CLICKING "START YOUR JOURNEY!"<br> YOU AGREE TO OUR <a class="links" href="privacy.html">PRIVACY POLICY</a></div>
                                     <div id="language" class="language">
-                                        <button id="eng" class="language-btn language-btn1">EN</button>
-                                        <button id="kr" class="language-btn language-btn1" style="opacity: 0.5;">KR</button>
-                                        <button id="ch" class="language-btn language-btn1" style="opacity: 0.5;">CH</button>
+                                        <button id="en-btn" class="language-btn language-btn1">EN</button>
+                                        <button id="ko-btn" class="language-btn language-btn1" style="opacity: 0.5;">KR</button>
+                                        <button id="zh-btn" class="language-btn language-btn1" style="opacity: 0.5;">CH</button>
                                     </div>
                                 </div>
                                 <div id="skipButton">
@@ -123,7 +83,7 @@
 
                                 </div>
                                 <div id="btnCSS2"><button class="bn3636 bn36" id="skipLinkScene">SKIP</button></div>
-            
+
                             </div>
                         </section>
                     </div>
@@ -185,30 +145,6 @@
         document.getElementById('IntroDiv').style.backgroundImage = "url(quizScene/images/colorPalette.jpg)";
         document.getElementById('IntroDiv').style.backgroundRepeat = "no-repeat";
     });
-
-    
-    document.getElementById('eng').addEventListener('click', function(e) {
-        document.getElementById('eng').style.opacity=1
-        document.getElementById('kr').style.opacity= 0.5
-        document.getElementById('ch').style.opacity=0.5
-      
-    });
-    document.getElementById('kr').addEventListener('click', function(e) {
-        document.getElementById('kr').style.opacity= 1
-        document.getElementById('eng').style.opacity= 0.5
-        document.getElementById('ch').style.opacity= 0.5
-
-    });
-    document.getElementById('ch').addEventListener('click', function(e) {
-        
-        document.getElementById('ch').style.opacity=1
-        document.getElementById('eng').style.opacity= 0.5
-        document.getElementById('kr').style.opacity= 0.5
-      
-    });
-
-
-
 
 </script>
 

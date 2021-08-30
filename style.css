@@ -81,22 +81,22 @@
       background-color: rgba(254, 245, 240, 0);
       background: url('quizScene/images/OPENNING.jpg') no-repeat;
       background-position: center; /* Center the image */
-      background-size: cover; 
-    
-      
+      background-size: cover;
+
+
   }
-  
-    
+
+
     .container {
       position: absolute;
       display: block;
       top: 50%;
       left: 50%;
-   
+
       -webkit-transform: translate(-50%,-50%);
-   
+
           -ms-transform: translate(-50%,-50%);
-   
+
               transform: translate(-50%,-50%);
       width: calc(90vh*9/19.5);
       height: 90vh;
@@ -104,7 +104,7 @@
       border-radius: 20px;
       /* overflow: hidden; */
     }
-    
+
     .safe_area {
       position: relative;
       height: 100%;
@@ -136,21 +136,21 @@
       /* box-sizing: border-box;
       overflow: hidden; */
       grid-auto-rows: 0fr 5fr 1fr;
-  
+
     }
-  
-  
-    
+
+
+
     section:first-of-type{
-      
+
     }
-    
+
     section:nth-child(even){
-  
+
      -webkit-transform: translate(0%, 0%) scale(1);
-  
+
          -ms-transform: translate(0%, 0%) scale(1);
-  
+
              transform: translate(0%, 0%) scale(1);
     }
     section:nth-child(odd){
@@ -158,7 +158,7 @@
       -webkit-transform: translate(0%, 0%);
           -ms-transform: translate(0%, 0%);
               transform: translate(0%, 0%);
-  
+
     }
     .header{
         width: 100%;
@@ -168,7 +168,7 @@
                 animation-delay: 1.5s;
         -webkit-animation: pulse 1s ease-in-out forwards;
                 animation: pulse 1s ease-in-out forwards;
-    
+
     }
     .content{
       width: 100%;
@@ -203,7 +203,7 @@
               animation-delay: 1.5s;
       -webkit-animation: pulse 1s ease-in-out forwards;
               animation: pulse 1s ease-in-out forwards;
-  
+
   }
   .process{
     /* padding-bottom: 500px; */
@@ -224,11 +224,11 @@
         -ms-flex-pack: center;
             justify-content: center;
     /* margin-top: 10%; */
-  
-  
+
+
   }
   .dots{
-  
+
     top: 0px;
     width: 6px;
     height: 6px;
@@ -265,7 +265,7 @@
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
-  
+
   }
   .quizquestion{
     display: none;
@@ -287,7 +287,7 @@
             justify-content: flex-start;
 }
 .question {
- 
+
   font-size: 22.5px;
   position: absolute;
   text-align: center;
@@ -298,9 +298,9 @@
   opacity: 0;
   -webkit-animation-delay: 1.5s;
           animation-delay: 1.5s;
-  
+
   -webkit-animation: pulse 2s ease-in-out forwards;
-  
+
           animation: pulse 2s ease-in-out forwards;
 }
 .arch{
@@ -343,8 +343,8 @@
 .middleText{
   position: absolute;
   display: none;
-   width: 85%; 
-  height: 85%; 
+   width: 85%;
+  height: 85%;
   z-index: 2;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -404,7 +404,7 @@
       display: -ms-flexbox;
       display: flex;
       position: absolute;
-      
+
       width: 100%;
       height: 100%;
       -webkit-box-orient: vertical;
@@ -468,12 +468,12 @@
             animation-delay: 3s;
     -webkit-animation: pulse 2s ease-in-out forwards;
             animation: pulse 2s ease-in-out forwards;
-  
+
   }
   #infoText{
     font-family: "Pangram-Regular";
     font-size: 20px;
-  
+
     text-align: center;
     color: #000000db;
     letter-spacing: 2.5px;
@@ -518,29 +518,29 @@
     border-color: transparent;
     opacity: 1;
     z-index: 5;
-    
-  
-  
+
+
+
   }
   .buttons .btn0_class{
     -webkit-animation: myframe 2.5s ease-in-out 0s;
             animation: myframe 2.5s ease-in-out 0s;
-  
+
   }
   .buttons .btn1_class{
     -webkit-animation: myframe 2s ease-in-out 0s;
             animation: myframe 2s ease-in-out 0s;
-  
+
   }
   .buttons .btn2_class{
     -webkit-animation: myframe 1.5s ease-in-out 0s;
             animation: myframe 1.5s ease-in-out 0s;
-  
+
   }
   .buttons .btn3_class{
     -webkit-animation: myframe 1s ease-in-out 0s;
             animation: myframe 1s ease-in-out 0s;
-  
+
   }
   #btnCSS2{
     position: absolute;
@@ -568,7 +568,7 @@
       margin-left: 100%;
       opacity: 0;
     }
-  
+
     100% {
       /* width: 1200px; */
       margin-left: 0%;
@@ -581,7 +581,7 @@
       margin-left: 100%;
       opacity: 0;
     }
-  
+
     100% {
       /* width: 1200px; */
       margin-left: 0%;
@@ -620,7 +620,7 @@
     transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
     transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95), -webkit-transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
   }
-  
+
   .bn39:hover {
     -webkit-transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
             transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
@@ -665,7 +665,7 @@
       transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
       transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95), -webkit-transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
   }
-  
+
   .startBtn1:hover {
       -webkit-transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
               transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
@@ -704,7 +704,7 @@
                 transform: scale(1);
       }
     }
-  
+
   #firstVideo{
       position: fixed;
       right: 0%;
@@ -719,7 +719,7 @@
       -webkit-animation: pulse 1s ease-in-out forwards;
               animation: pulse 1s ease-in-out forwards;
   }
-  
+
   #secondVideo {
       z-index: -1;
       position: fixed;
@@ -734,7 +734,7 @@
       -webkit-animation: pulse 1s ease-in-out forwards;
               animation: pulse 1s ease-in-out forwards;
     }
-    
+
   #skipButton{
       -webkit-box-pack: end;
           -ms-flex-pack: end;
@@ -755,7 +755,7 @@
       -webkit-animation: pulse 1s ease-in-out forwards;
       animation: pulse 1s ease-in-out forwards;
   }
-  
+
   .skipBtn {
       display: -webkit-inline-box;
       display: -ms-inline-flexbox;
@@ -778,9 +778,9 @@
       backface-visibility: hidden;
       border: none;
       border-radius: 4rem;
-    
+
     }
-    
+
     .skipBtn38 {
       border-color: rgb(255, 255, 255);
       background-color: rgb(255, 255, 255);
@@ -791,9 +791,9 @@
       transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
       transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95), -webkit-transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
     }
-    
-    
-    
+
+
+
     .skipBtn38:hover {
       -webkit-transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
               transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
@@ -809,7 +809,7 @@
        opacity: 0;
        -webkit-animation: pulse 1s ease-in-out forwards;
        animation: pulse 1s ease-in-out forwards;
-    
+
     }
     #selfie-btn {
       position: absolute;
@@ -824,7 +824,7 @@
       padding: 12px 24px;
       border: none;
       cursor: pointer;
-    
+
       text-align: center;
       padding: 1.5rem 7rem;
       border-radius: 3rem;
@@ -837,7 +837,7 @@
     }
     .bn3636 {
       /* filter: drop-shadow(2px 4px 8px #58585888); */
- 
+
       display: -webkit-inline-box;
       display: -ms-inline-flexbox;
       display: inline-flex;
@@ -860,9 +860,9 @@
           backface-visibility: hidden;
       border: none;
       border-radius: 3rem;
-  
+
     }
-  
+
     .bn36 {
       border-color: rgba(255, 255, 255, 0);
       background-color: transparent;
@@ -873,13 +873,13 @@
       transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
       transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95), -webkit-transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
     }
-  
+
     .bn36:hover {
       -webkit-transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
               transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
     }
     .language{
-    
+
       display: flex;
       width: 100%;
       height: 15%;
@@ -891,11 +891,11 @@
       z-index: 1;
   }
 
-    
+
 
     .language-btn {
       /* filter: drop-shadow(2px 4px 8px #58585888); */
- 
+
       display: -webkit-inline-box;
       display: -ms-inline-flexbox;
       display: inline-flex;
@@ -918,14 +918,14 @@
           backface-visibility: hidden;
       border: none;
       border-radius: 3rem;
-  
+
     }
-  
+
     .language-btn1 {
       border-color: rgba(255, 255, 255, 0);
       background-color: transparent;
-      color: rgb(0, 0, 0);
-   
+      /* color: rgb(0, 0, 0); */
+
     }
     .productIntro {
       display: none;
@@ -933,12 +933,12 @@
         /* width: 50%; */
         top: 50%;
        left: 50%;
-      
+
       transform: translate(-50%, -50%)scale(1);
        opacity: 0;
        -webkit-animation: pulse 1s ease-in-out forwards;
        animation: pulse 1s ease-in-out forwards;
-    
+
     }
     /* #start-btn {
 
@@ -954,22 +954,22 @@
       padding: 12px 24px;
       border: none;
       cursor: pointer;
-    
+
       text-align: center;
       padding: 1.5rem 7rem;
       border-radius: 3rem;
     } */
-  
-  
+
+
   }
-  
 
 
 
 
 
 
- 
+
+
 
 
 
@@ -1001,9 +1001,9 @@
   background-color: rgba(254, 245, 240, 0);
   background: url('quizScene/images/OPENNING.jpg') no-repeat;
   background-position: center; /* Center the image */
-  background-size: cover; 
+  background-size: cover;
 
-  
+
 }
 
 
@@ -1278,7 +1278,7 @@ animation: scaleArch 2s 1 forwards ; */
       /* width: 0px; */
       transform: scale(1.3);
     }
-  
+
     100% {
       transform: scale(1);
     }
@@ -1287,12 +1287,12 @@ animation: scaleArch 2s 1 forwards ; */
     from {
       transform: scale(1.3);
     }
-  
+
     to {
       transform: scale(1);
     }
   }
- 
+
 
 .middleText2{
 position: absolute;
@@ -1317,8 +1317,8 @@ opacity: 0;
 .middleText{
 position: absolute;
 display: none;
- width: 85%; 
-height: 85%; 
+ width: 85%;
+height: 85%;
 z-index: 2;
 -webkit-box-align: center;
     -ms-flex-align: center;
@@ -1693,7 +1693,7 @@ border-color: rgb(255, 255, 255) !important;
 .language-btn1 {
   border-color: rgba(255, 255, 255, 0);
   background-color: transparent;
-  color: rgb(0, 0, 0);
+  /* color: rgb(0, 0, 0); */
 
 }
 .links{
@@ -1710,7 +1710,7 @@ border-color: rgb(255, 255, 255) !important;
             transform: scale(1);
   }
 
-  
+
 }
 
 #firstVideo{
@@ -1838,7 +1838,7 @@ border-color: rgb(255, 255, 255) !important;
 }
 .bn3636 {
   /* filter: drop-shadow(2px 4px 8px #58585888); */
- 
+
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;

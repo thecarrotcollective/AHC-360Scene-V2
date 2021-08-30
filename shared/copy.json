@@ -10,12 +10,12 @@
     "zh"
   ],
   "StartJourney":[
-    "Start Your Journey",
+    "START YOUR JOURNEY",
     "시작하기",
     "悦享SPA之旅"
   ],
   "Skip":[
-    "Skip",
+    "SKIP",
     "건너뛰기",
     "跳过"
   ],
@@ -30,9 +30,14 @@
     "接受"
   ],
   "PersonalityTestTitle":[
-    "Personality tests are an essential trait of Korean culture",
-    "내 성향에 따른 맞춤형 스파를 경험해보세요",
+    "PERSONALITY TESTS ARE AN ESSENTIAL<br>TRAIT OF KOREAN CULTURE.",
+    "내 성향에 따른 맞춤형 <br>스파를 경험해보세요",
     "性格测试，开启你的专属肌疗SPA之旅"
+  ],
+  "PersonalityTest":[
+    "PERSONALITY<br>TEST",
+    "PERSONALITY<br>TEST",
+    "PERSONALITY<br>TEST"
   ],
   "StartExperience":[
     "Start Experience",
@@ -40,39 +45,79 @@
     "开始"
   ],
   "PersonalityTestQ1":[
-    "Choose an image that represents you best",
-    "당신을 이미지로 표현한다면 다음 중 어떤 것이 가장 어울리나요?",
+    "CHOOSE AN IMAGE THAT <br> REPRESENTS YOU BEST",
+    "당신을 이미지로 표현한다면 다음 <br> 중 어떤 것이 가장 어울리나요?",
     "选择最能代表你的图片"
   ],
   "PersonalityTestQ2":[
-    "Choose an image that makes you feel more relaxed",
-    "가장 안정감이 느껴지는 이미지는 무엇인가요?",
+    "CHOOSE AN IMAGE THAT <br> MAKES YOU FEEL MORE RELAXED",
+    "가장 안정감이 느껴지는 <br>이미지는 무엇인가요?",
     "选择最让你放松的图片"
   ],
   "PersonalityTestQ3":[
-    "Choose a color that you like the most",
-    "가장 마음에 드는 색깔은 무엇인가요?",
+    "CHOOSE A COLOR THAT  <br> YOU LIKE THE MOST",
+    "가장 마음에 드는 <br>색깔은 무엇인가요?",
     "选择你最喜欢的颜色"
   ],
+  "ExtrovertHeadline":[
+    "IT SEEMS LIKE YOU ARE AN",
+    "",
+    ""
+  ],
   "Extrovert":[
-    "It seems like you are an Extrovert. Extroverts are often outgoing and active",
-    "\"외향적\"인 성격인 것 같아요 외향적인 사람들은 활발하고 활동적인 편이에요",
-    "外向型。通常表现得开朗且积极主动"
+    "EXTROVERT!",
+    "외향적",
+    "外向型"
+  ],
+  "ExtrovertExplanation":[
+    "EXTROVERTS ARE OFTEN<br> OUTGOING AND ACTIVE!",
+    "인 성격인 것 같아요 외향적인 <br>사람들은 활발하고 활동적인 편이에요",
+    "通常表现得开朗且积极主动"
+  ],
+  "IntrovertHeadline":[
+    "IT SEEMS LIKE YOU ARE AN",
+    "",
+    ""
   ],
   "Introvert":[
-    "It seems like you are an Introvert. Introverts are often calm and reliable",
-    "\"내향적\"인 성격인 것 같아요 내향적인 사람들은 침착하고 듬직한 편이에요",
-    "内向型。通常表现得冷静且可靠"
+    "INTROVERT!",
+    "내향적",
+    "内向型"
+  ],
+  "IntrovertExplanation":[
+    "INTROVERTS ARE OFTEN <br> CALM AND RELIABLE!",
+    "인 성격인 것 같아요 내향적인 <br> 사람들은 침착하고 듬직한 편이에요",
+    "通常表现得冷静且可靠"
+  ],
+  "FeelerHeadline":[
+    "IT SEEMS LIKE YOU ARE A",
+    "",
+    ""
   ],
   "Feeler":[
-    "It seems like you are a feeler. Feelers are often artistic and considerate",
-    "\"감성적\"인 성격인 것 같아요 감성적인 사람들은 예술적이고 배려심이 많은 편이에요",
-    "感知型。富有艺术感且细心体贴"
+    "FEELER!",
+    "감성적",
+    "感知型"
+  ],
+  "FeelerExplanation":[
+    "FEELERS ARE OFTEN <br> ARTISTIC AND CONSIDERATE!",
+    "인 성격인 것 같아요 감성적인 <br> 사람들은 예술적이고 배려심이 많은 편이에요",
+    "富有艺术感且细心体贴"
+  ],
+  "ThinkerHeadline":[
+    "IT SEEMS LIKE YOU ARE A",
+    "",
+    ""
   ],
   "Thinker":[
-    "It seems like you are a thinker. Thinkers are often to create great ideas",
-    "\"사상가적\"인 성격인 것 같아요 사상가적인 사람들은 좋은 아이디어가 많은 편이에요",
-    "思考型。总是能创造出伟大的想法"
+    "THINKER!",
+    "사상가적",
+    "思考型"
+  ],
+  "ThinkerExplanation":[
+    "THINKERS OFTEN <br> CREATE GREAT IDEAS!",
+    "인 성격인 것 같아요 사상가적인 <br> 사람들은 좋은 아이디어가 많은 편이에요",
+    "总是能创造出伟大的想法"
   ],
   "GoToSpa":[
     "Take me to my spa",
