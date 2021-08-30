@@ -129,7 +129,7 @@ function playAudio(audioUrl){
 	audioLoader.load( audioUrl, function( buffer ) {
 		sound.setBuffer( buffer );
 		sound.setLoop( true );
-		sound.setVolume( 1 );
+		sound.setVolume( 0.8 );
 		sound.play();
 	});
 }

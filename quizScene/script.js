@@ -328,18 +328,18 @@ Question.prototype.isCorrectAnswer = function(choice) {
     option1Counter +=2
     console.log(option1Counter)
   }else if(choice == "plant"){
-    option2Counter +=4
+    option2Counter +=3
   }
   else if(choice == "shell"){
     option3Counter +=2
   }else if(choice == "mozai"){
-    option4Counter +=3
+    option4Counter +=1
   }
   if(choice === "color1"){
-    option1Counter +=2
+    option1Counter +=3
     console.log(option1Counter)
   }else if(choice == "color2"){
-    option2Counter +=3
+    option2Counter +=2
   }
   else if(choice == "color3"){
     option3Counter +=3
