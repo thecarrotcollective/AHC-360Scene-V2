@@ -81,9 +81,9 @@ const shareLinkBtn = document.getElementById('share-btn');
 shareLinkBtn.addEventListener('click', sharePopup);
 const shareSubmit = document.getElementById('share-submit');
 shareSubmit.addEventListener('click', sendUser)
-// shareSubmit.addEventListener('click', copyLink)
-const shareContainer = document.getElementById('share-container')
 
+const shareContainer = document.getElementById('share-container')
+const shareClose = document.getElementById('share-close')
 
 const navArrowScale = new THREE.Vector3(4,2,4)
 
@@ -1310,7 +1310,6 @@ function checkTheVideoLoad(){
 // }
 
 
-/* @matt - check this out again? jquery might need to be reimported
 
 var input = document.getElementById('phone');
 input.oninvalid = function(event) {
@@ -1318,13 +1317,12 @@ input.oninvalid = function(event) {
 }
 
 var xmlhttp;
-var post_url = "post_user.php";
+var post_url = 'post_user.php';
 
 $(document).ready(function() {
 	const submit = document.getElementById('share-submit');
 	submit.addEventListener('click', sendUser);
 });
-*/
 
 function sendUser() {
 	let phoneNumber = document.getElementById('phone').value;
@@ -1346,12 +1344,20 @@ function sendUser() {
 function transferComplete(evt) {
 	console.log("The transfer is complete.");
 	input.value = "";
+	shareContainer.style.display = 'none';
 	copyLink();
 }
 
 function sharePopup() {
 	shareContainer.style.display = 'block';
 	console.log('show share-container')
+
+	// add close button listener
+	shareClose.addEventListener('click', closeSharePopup);
+}
+
+function closeSharePopup() {
+	shareContainer.style.display = 'none'
 }
 
 function copyLink() {
@@ -1372,7 +1378,6 @@ function copyLink() {
 		// TODO Add fallback to copy Link
 		navigator.clipboard.writeText(linkToCopy)
 			.then(() => {
-				// alert(`Copied!`)
 				shareSubmit.innerText = 'LINK COPIED'
 				setTimeout(() => {
 					shareSubmit.innerText = 'Share Experience With a Friend'
@@ -1381,7 +1386,7 @@ function copyLink() {
 
 			})
 			.catch((error) => {
-				alert(`Copy failed! ${error}`)
+				alert('Copy failed! ${error}')
 			})
 	}
 }
