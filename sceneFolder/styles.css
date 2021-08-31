@@ -259,7 +259,7 @@ video{
 		cursor: pointer;
 	} */
 
- 
+
 
   #video-close-overlay{
     width:100%;
@@ -330,24 +330,24 @@ video{
   }
 
   @media only screen and (min-width: 600px) {
-   
+
     .productIntro {
       position: absolute;
         /* width: 50%; */
         top: 50%;
        left: 50%;
-      
+
       transform: translate(-50%, -50%)scale(1);
        opacity: 0;
        -webkit-animation: pulse 1s ease-in-out forwards;
        animation: pulse 1s ease-in-out forwards;
-    
+
     }
     #video_id{
       position: absolute;
       /* width: 100%;
       height: 100%; */
-      background: rgb(0, 0, 0);
+      /* background: rgb(0, 0, 0); */
       height: 50%;
       width: 50%;
       transform: translate(50%, 50%);
@@ -363,7 +363,7 @@ video{
       z-index: 50;
       position: absolute;
       display: none;
-     
+
       height: 100%;
       width: 100%;
       top: 0;
@@ -389,7 +389,7 @@ video{
       padding: 12px 24px;
       border: none;
       cursor: pointer;
-    
+
       text-align: center;
       padding: 1.5rem 7rem;
       border-radius: 3rem;
@@ -433,7 +433,7 @@ video{
       width: 30%;
       height: 100%;
   }
-    
+
     .beauty-options-container{
       display: flex;
       height: 100%;
@@ -448,7 +448,7 @@ video{
       /* position:fixed; */
       /* top:0; */
       /* transform: scale(2); */
-      
+
       /* margin-bottom: 2em; */
     }
 
@@ -517,8 +517,8 @@ video{
       text-align: center;
       margin-top: 5%;
       margin-bottom: 7.5%;
-  
-    
+
+
     }
 
   }
@@ -545,7 +545,7 @@ video{
      opacity: 0;
      -webkit-animation: pulse 1s ease-in-out forwards;
      animation: pulse 1s ease-in-out forwards;
-  
+
   }
   #start-btn {
     position: absolute;
@@ -560,7 +560,7 @@ video{
     padding: 12px 24px;
     border: none;
     cursor: pointer;
-  
+
     text-align: center;
     padding: 1.5rem 7rem;
     border-radius: 3rem;
@@ -665,7 +665,7 @@ video{
     position: absolute;
     /* width: 100%;
     height: 100%; */
-    background: rgb(0, 0, 0);
+    /* background: rgb(0, 0, 0); */
     height: 50%;
     width: 50%;
     transform: translate(50%, 50%);
@@ -678,12 +678,12 @@ video{
 
   }
    #video2{
-  
+
       /* transform: scale(0.5); */
       z-index: 50;
       position: absolute;
       display: none;
-     
+
       height: 100%;
       width: 100%;
       top: 0;
@@ -695,7 +695,7 @@ video{
       flex-direction: column;
 
 
-} 
+}
   #closeButton{
     height: 50px;
     width: 50px;
@@ -971,4 +971,3 @@ video{
     width: 70%;
   }
 }
-
