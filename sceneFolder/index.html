@@ -329,7 +329,7 @@
       var video = document.getElementById('vid-1');
       // video.requestFullscreen();
       player.play();
-
+      
 
       document.getElementById('vid-1').addEventListener("click",function(e){
         makeFullScreen()
@@ -349,13 +349,16 @@
 
             }, 50)
           })
-      player.on('fullscreenchange', function () {
-        if (this.isFullscreen()){
-          console.log('fullscreen');
-        } else {
-          closeVideo();
-        }
-      })
+          player.on('closed', function () {
+            openBeauty();
+          })
+      // player.on('fullscreenchange', function () {
+      //   if (this.isFullscreen()){
+      //     console.log('fullscreen');
+      //   } else {
+      //     closeVideo();
+      //   }
+      // })
       player.on('tap', function () {
         closeVideo();
       })
@@ -399,13 +402,13 @@
 
             }, 50)
           })
-      player.on('fullscreenchange', function () {
-        if (this.isFullscreen()){
-          console.log('fullscreen');
-        } else {
-          closeVideo();
-        }
-      })
+      // player.on('fullscreenchange', function () {
+      //   if (this.isFullscreen()){
+      //     console.log('fullscreen');
+      //   } else {
+      //     closeVideo();
+      //   }
+      // })
       player.on('tap', function () {
         closeVideo();
       })
@@ -444,13 +447,13 @@
 
             }, 50)
           })
-          player.on('fullscreenchange', function () {
-            if (this.isFullscreen()){
-              console.log('fullscreen');
-            } else {
-              closeVideo();
-            }
-          })
+          // player.on('fullscreenchange', function () {
+          //   if (this.isFullscreen()){
+          //     console.log('fullscreen');
+          //   } else {
+          //     closeVideo();
+          //   }
+          // })
           // player.on('tap', function () {
 
           // })
