@@ -856,7 +856,7 @@ orbPlusMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: tru
 	// const selfieText = new THREE.Mesh( selfieTextGeo, selfieTextMat );
 
 
-	window.addEventListener( 'resize', onWindowResize );
+	// window.addEventListener( 'resize', onWindowResize ); 
 
 	clickTrigger();
 	console.log("v2");
