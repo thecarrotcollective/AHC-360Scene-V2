@@ -863,9 +863,7 @@ document.getElementById('beauty-vid-2').addEventListener("click", function(e){
 document.getElementById('beauty-vid-3').addEventListener("click", function(e){
 	sound.pause()
 });
-if(currState === BEAUTY){
 
-}
 if( currState === MAIN){
 	document.getElementById('close-btn').addEventListener("click", function(e){
 		hoverButtonChecker = false
@@ -883,14 +881,17 @@ player.on('ended', function () {
   })
   var player1 = videojs('#vid-1');
   player1.on('ended', function () {
+	sound.pause()
 	hoverButtonChecker = false
   })
   var player2 = videojs('#vid-2');
   player2.on('ended', function () {
+	sound.pause()
 	hoverButtonChecker = false
   })
   var player3 = videojs('#vid-3');
   player3.on('ended', function () {
+	sound.pause()
 	hoverButtonChecker = false
   })
   var player3 = videojs('#orb-vid');
@@ -1447,6 +1448,7 @@ function DisableEverything(){
 	loaderCheck = false
 	orbVideoPlayed = false
 	console.log(loaderCheck)
+	new TWEEN.Tween( orbPlusMat ).to( { opacity: 0 }, 250 ).start();
 	document.getElementById('selfie-text').style.display = 'none';
 	document.getElementById('selfie-btn').style.display = 'none';
 	document.getElementById('pool-text').style.display = 'none';
