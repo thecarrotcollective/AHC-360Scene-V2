@@ -153,8 +153,7 @@ var POOLENTRACE =9
 var PRODUCTBASE = 10
 var sound;
 
-const startButton = document.getElementById( 'start-btn' );
-startButton.addEventListener( 'click', function () {
+window.addEventListener('load', (event) => {
 	if(selectedPersonality === 'fe'){
 		playAudio('sounds/sfx/feeler.mp3')
 
@@ -304,9 +303,9 @@ function init() {
 	camera.rotation.z = 0
 	skydome.camera.position.z =0.0000000000001;
 	// controls = new DeviceOrientationControls( skydome.camera );
-	// controls = new OrbitControls( skydome.camera, renderer.domElement );
+	controls = new OrbitControls( skydome.camera, renderer.domElement );
 
-	controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
+	// controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
 
 
 

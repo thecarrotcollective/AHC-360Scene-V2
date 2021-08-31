@@ -131,8 +131,24 @@ var option4Counter = 0
 const startButton = document.getElementById('start-quiz-btn');
 startButton.addEventListener('click', startGame);
 
+document.getElementById('firstVideo').addEventListener("ended",function(){
+  setTimeout(function(){
+    startGame()
+  
+  }, 5000)
+},false);
+document.getElementById('skipLink').addEventListener('click', function(e) {
+  setTimeout(function(){
+    startGame()
+  
+  }, 5000)
+});
+
+
+
 
 function startGame() {
+  console.log(document.getElementById('controls_id').style.display === "flex")
   document.getElementById('archid').style.display = 'none';
   document.getElementById('middleText2').style.display = 'none';
   document.getElementById('controls_id').style.display = 'none';
