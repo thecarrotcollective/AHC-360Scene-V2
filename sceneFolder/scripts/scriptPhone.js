@@ -534,7 +534,7 @@ function init() {
 			orbGlowVideoMask.currentTime = 0;
 			console.log("MAIN scene runned")
 				OrbVideoScene.add(orbVideoMesh)
-				OrbVideoScene.add(orbProduct)
+				orbProductScene.add(orbProduct)
 			  MiddleRoomScene.add(MiddleRoomArrow)
 			  PoolEntranceScene.add(PoolEntranceArrow);
 			  RoomVideoPlayScene.add(RoomVideoPlay);
@@ -679,11 +679,12 @@ orbPlusMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: tru
 	orbGlowVideo = document.createElement('video');
 	orbGlowVideo.src = "video/Glitter2.mp4";
 	orbGlowVideo.muted = true;
-
+	orbGlowVideo.playsInline = true;
 
 	orbGlowVideoMask = document.createElement('video');
 	orbGlowVideoMask.src = "video/Glitter_Alpha.mp4";
 	orbGlowVideoMask.muted = true;
+	orbGlowVideoMask.playsInline = true;
 
 	orbGlowVideoTex =  new THREE.VideoTexture(orbGlowVideo)
 	orbGlowVideoMaskTex = new THREE.VideoTexture(orbGlowVideoMask)
@@ -1441,6 +1442,7 @@ function DisableEverything(){
 	loaderCheck = false
 	orbVideoPlayed = false
 	console.log(loaderCheck)
+	new TWEEN.Tween( orbPlusMat ).to( { opacity: 0 }, 250 ).start();
 	document.getElementById('selfie-text').style.display = 'none';
 	document.getElementById('pool-text').style.display = 'none';
 	document.getElementById('beauty-text').style.display = 'none';
