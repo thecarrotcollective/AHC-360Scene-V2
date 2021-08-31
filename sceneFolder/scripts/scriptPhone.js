@@ -1056,10 +1056,10 @@ function animate() {
 				orbVideo.addEventListener("ended",function(){
 					orbGlowVideo.play()
 					orbGlowVideoMask.play()
-				})
-				orbGlowVideo.addEventListener("ended",function(){
 					new TWEEN.Tween( orbPlusMat ).to( { opacity: 1 }, 500 ).start();
 				})
+				// orbGlowVideo.addEventListener("ended",function(){
+				// })
 
 
 				orbVideoPlayed = true
