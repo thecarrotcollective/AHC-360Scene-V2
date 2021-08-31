@@ -101,7 +101,7 @@ var PRODENTRANCE = 7
 var MIDDLE = 8
 var POOLENTRACE =9
 var PRODUCTBASE = 10
-
+var sound;
 
 const startButton = document.getElementById( 'start-btn' );
 startButton.addEventListener( 'click', function () {
@@ -109,12 +109,13 @@ startButton.addEventListener( 'click', function () {
 	animate();
 	currState = INTRO
 	renderer.autoclear = false;
+	sound.play()
 	// TweenFadeInForVideos(videoMat)
 	checkTheVideoLoad()
 	document.getElementById('productIntro1').style.display = 'none'
 	document.getElementById('ui-container').style.display = 'block'
 } );
-var sound
+
 function playAudio(audioUrl){
 	const listener = new THREE.AudioListener();
 	// camera.add( listener );
