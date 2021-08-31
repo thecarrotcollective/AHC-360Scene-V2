@@ -145,9 +145,14 @@
     "访问"
   ],
   "SharePopUp":[
-    "SHARE THIS EXPERIENCE. ENTER YOUR PHONE NUMBER",
-    "친구에게 AHC SPA 공유하기 휴대전화 번호 입력",
-    ""
+    "SHARE THIS EXPERIENCE. ",
+    "친구에게 AHC SPA 공유하기",
+    "SHARE THIS EXPERIENCE."
+  ],
+  "EnterPhone":[
+    "ENTER YOUR PHONE NUMBER",
+    "휴대전화 번호 입력",
+    "ENTER YOUR PHONE NUMBER"
   ],
   "ShareButton":[
     "SHARE",

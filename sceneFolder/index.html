@@ -153,11 +153,11 @@
     <div id="share-container">
       <div id="share-ui">
         <img id="share-close" src="UIAssets/close-black.png">
-        <div>Share this experience</div>
+        <div id="share-experience-title">Share this experience</div>
         <br><br>
 
         <form id="userform" method="post">
-          <label for="phone">Enter Your Phone Number</label><br>
+          <label id="enter-phone" for="phone">Enter Your Phone Number</label><br>
           <input
                   type="tel"
                   id="phone"
@@ -494,19 +494,19 @@
     document.getElementById('close-product2').addEventListener("click", closeProductPreview);
     document.getElementById('close-product3').addEventListener("click", closeProductPreview);
     function productLink1(){
-      window.open('https://us.ahcbeauty.com/products/aqualuronic-emulsion')
+      window.open('https://www.ahc.co.kr/shop/product/productView?prdIdx=1140')
 
       document.getElementById('product1').style.display = 'none';
 
     }
     function productLink2(){
-      window.open('https://us.ahcbeauty.com/products/aqualuronic-toner')
+      window.open('https://www.ahc.co.kr/brand/product/productView?prdIdx=462')
 
       document.getElementById('product2').style.display = 'none';
 
     }
     function productLink3(){
-      window.open('https://us.ahcbeauty.com/products/aqualuronic-cleanser')
+      window.open('https://www.ahc.co.kr/shop/product/productView?prdIdx=270&prdCategory=0078&skinCategory=0089')
 
       document.getElementById('product3').style.display = 'none';
 

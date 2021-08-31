@@ -33,6 +33,13 @@ function setLang(id){
 	}
 	document.getElementById('selfie-btn').innerHTML = copyJSON.TakeSelfieCTA[id]
 	document.getElementById('beauty-btn').innerHTML = copyJSON.WatchAHCKBeauty[id]
+	document.getElementById('productButton-1').innerHTML = copyJSON.FindOutMore[id]
+	document.getElementById('productButton-2').innerHTML = copyJSON.FindOutMore[id]
+	document.getElementById('productButton-3').innerHTML = copyJSON.FindOutMore[id]
+	document.getElementById('share-experience-title').innerHTML = copyJSON.SharePopUp[id]
+	document.getElementById('enter-phone').innerHTML = copyJSON.EnterPhone[id]
+	document.getElementById('share-submit').innerHTML = copyJSON.ShareButton[id]
+
 	document.documentElement.lang = copyJSON.code[id];
 }
 

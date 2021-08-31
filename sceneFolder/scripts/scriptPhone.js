@@ -31,6 +31,11 @@ function setLang(id){
 	}
 	document.getElementById('selfie-btn').innerHTML = copyJSON.TakeSelfieCTA[id]
 	document.getElementById('beauty-btn').innerHTML = copyJSON.WatchAHCKBeauty[id]
+
+	document.getElementById('productButton-1').innerHTML = copyJSON.FindOutMore[id]
+	document.getElementById('productButton-2').innerHTML = copyJSON.FindOutMore[id]
+	document.getElementById('productButton-3').innerHTML = copyJSON.FindOutMore[id]
+	
 	document.documentElement.lang = copyJSON.code[id];
 }
 
