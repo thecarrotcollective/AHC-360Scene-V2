@@ -105,6 +105,21 @@ var sound;
 
 const startButton = document.getElementById( 'start-btn' );
 startButton.addEventListener( 'click', function () {
+	if(selectedPersonality === 'fe'){
+		playAudio('sounds/sfx/feeler.mp3')
+
+	
+	}else if(selectedPersonality === 'in'){
+		playAudio('sounds/sfx/introvert.mp3')
+	
+	}
+	else if(selectedPersonality === 'th'){
+		playAudio('sounds/sfx/thinker.mp3')
+
+	}else{
+		playAudio('sounds/sfx/extrovert.mp3')
+	
+	}
 	init();
 	animate();
 	currState = INTRO
