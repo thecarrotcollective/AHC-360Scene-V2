@@ -208,14 +208,16 @@
             // Load a mobile JS file
             loadJS('scripts/scriptPhone.js');
             console.log('phone loaded');
-
+            enquire.unregister("screen and (max-width: 599px)");
+            enquire.unregister("screen and (min-width: 600px) and (max-width: 899px)");
+            enquire.unregister("screen and (min-width: 900px)");
             document.body.style.backgroundImage = "url('./UIAssets/OPENNING.jpg') ";
             document.body.style.backgroundRepeat = "no-repeat";
             document.getElementById('productIntro1').style.display = 'flex'
             document.getElementById('video2').addEventListener("click", function(e){
-              console.log("clicked")
+            console.log("clicked")
 
-             
+
 
             });
         }
@@ -229,6 +231,9 @@
             document.body.style.backgroundImage = "url('./UIAssets/OPENNING.jpg') ";
             document.body.style.backgroundRepeat = "no-repeat";
             console.log('tablet loaded');
+            enquire.unregister("screen and (max-width: 599px)");
+            enquire.unregister("screen and (min-width: 600px) and (max-width: 899px)");
+            enquire.unregister("screen and (min-width: 900px)");
             document.getElementById('productIntro1').style.display = 'flex'
         }
     });
@@ -240,6 +245,9 @@
             loadJS('scripts/scriptWeb.js');
 
             console.log('desktop loaded');
+            enquire.unregister("screen and (max-width: 599px)");
+            enquire.unregister("screen and (min-width: 600px) and (max-width: 899px)");
+            enquire.unregister("screen and (min-width: 900px)");
             document.getElementById('productIntro1').style.display = 'none'
         }
     });
@@ -255,8 +263,8 @@
     function openTherapy(){
       document.getElementById('orb-vid').style.display = 'none';
       document.getElementById('vid-2').style.display = "none"
-          document.getElementById('vid-1').style.display = "none"
-          document.getElementById('vid-3').style.display = "none"
+      document.getElementById('vid-1').style.display = "none"
+      document.getElementById('vid-3').style.display = "none"
       document.getElementById('video2').style.display = 'block';
       document.getElementById('video_id').style.display = 'block';
 			document.getElementById('blackScreen').style.display = 'block';
@@ -337,7 +345,7 @@
       var video = document.getElementById('vid-1');
       // video.requestFullscreen();
       player.play();
-      
+
 
       document.getElementById('vid-1').addEventListener("click",function(e){
         makeFullScreen()
