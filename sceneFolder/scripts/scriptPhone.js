@@ -37,6 +37,7 @@ function setLang(id){
 	document.getElementById('productButton-3').innerHTML = copyJSON.FindOutMore[id]
 	
 	document.documentElement.lang = copyJSON.code[id];
+	
 }
 
 loadJSON(function(response) {
@@ -152,14 +153,19 @@ var MIDDLE = 8
 var POOLENTRACE =9
 var PRODUCTBASE = 10
 var sound;
-var fakeButton =document.getElementById('mainPage')
-window.addEventListener('load', (event) => {
-	fakeButton.click();
 
-} );
+var fakeButton =document.getElementById('mainPage');
+fakeButton.click();
+// document.addEventListener('load', (event) => {
+// 	console.log("DOMContentLoaded worked")
 
-fakeButton.addEventListener( 'click', function () {
+
+// } );
+
+fakeButton.addEventListener( 'click touchstart', function () {
+	console.log("fake button")
 	if(selectedPersonality === 'fe'){
+		
 		playAudio('sounds/sfx/feeler.mp3')
 
 
@@ -184,11 +190,11 @@ fakeButton.addEventListener( 'click', function () {
 
 	// TweenFadeInForVideos(videoMat)
 	checkTheVideoLoad()
-	document.getElementById('productIntro1').style.display = 'none'
 	document.getElementById('ui-container').style.display = 'block'
 })
 
 function playAudio(audioUrl){
+	console.log("play audio")
 	const listener = new THREE.AudioListener();
 	// camera.add( listener );
 
@@ -201,7 +207,9 @@ function playAudio(audioUrl){
 		sound.setBuffer( buffer );
 		sound.setLoop( true );
 		sound.setVolume( 0.65 );
+		sound.resume();
 		sound.play();
+		
 	});
 }
 
