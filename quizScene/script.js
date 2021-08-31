@@ -58,6 +58,7 @@ function setLang(id){
   ];
   quiz = new Quiz(questions);
 }
+
 var copyJSON;
 var languageID = 0;
 

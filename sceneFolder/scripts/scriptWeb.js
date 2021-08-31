@@ -1,10 +1,57 @@
 import * as THREE from './three.module.js';
 import {OrbitControls} from './Orbit.js';
 
+
+
+var copyJSON;
+var languageID = 0;
+
 var url = window.location.href;
 var selectedLanguage = url.substr(url.indexOf('#')+1, 2);
 var url_params = url.substr(url.indexOf('#')+1)
 var selectedPersonality = url_params.substr(url_params.indexOf('-')+1, 2);
+
+function loadJSON(callback) {
+   var xobj = new XMLHttpRequest();
+   xobj.overrideMimeType("application/json");
+   xobj.open('GET', '../shared/copy.json', true);
+   xobj.onreadystatechange = function () {
+         if (xobj.readyState == 4 && xobj.status == "200") {
+           // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+           callback(xobj.responseText);
+         }
+   };
+   xobj.send(null);
+}
+
+function setLang(id){
+  document.getElementById('share-btn').innerHTML = copyJSON.ShareWithFriend[id]
+	if(selectedPersonality.localeCompare("fe") === 0 || selectedPersonality.localeCompare("ex") === 0){
+		document.getElementById('pool-btn').innerHTML = copyJSON.SensorialCTAExtrovertFeeler[id] +' '+ copyJSON.StartTherapyButton[id]
+	} else {
+		document.getElementById('pool-btn').innerHTML = copyJSON.SensorialCTAIntrovertThinker[id] +' '+ copyJSON.StartTherapyButton[id]
+	}
+	document.getElementById('selfie-btn').innerHTML = copyJSON.TakeSelfieCTA[id]
+	document.getElementById('beauty-btn').innerHTML = copyJSON.WatchAHCKBeauty[id]
+	document.documentElement.lang = copyJSON.code[id];
+}
+
+loadJSON(function(response) {
+
+ // Parse JSON string into object
+   copyJSON = JSON.parse(response);
+   console.log(copyJSON);
+   console.log("language is "+selectedLanguage);
+   if(selectedLanguage.localeCompare("zh") === 0){
+     languageID = 2
+   } else if (selectedLanguage.localeCompare("ko") === 0){
+     languageID = 1
+   } else {
+     languageID = 0
+   }
+   setLang(languageID)
+});
+
 var sceneUrl0,sceneUrl1,sceneUrl2,sceneUrl3,sceneUrl4,sceneUrl5,sceneUrl6,sceneUrl7,sceneUrl8,sceneUrl9,sceneUrl10
 console.log("language is " + selectedLanguage);
 console.log("personality is " + selectedPersonality);
@@ -391,7 +438,7 @@ function init() {
 				VideoPlayBottleScene.rotation.set(0,1.5,0)
 				VideoPlayBottleScene.scale.set(0.75,0.81,1)
 			}
-		
+
 			bilboardVideo.play();
 			videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(-20)));
 			BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(30)));
@@ -983,7 +1030,7 @@ function animate() {
 		document.getElementById('close-btn').addEventListener("click", function(e){
 			hoverButtonChecker = false
 			sound.play();
-		
+
 		});
 		if(hoverButtonChecker == false && dirVector.z > -0.4 && dirVector.z < 0.9 && dirVector.y > -0.3 && dirVector.x > 0 && dirVector.x < 1   ){ // need to stress test
 			document.getElementById('pool-text').style.opacity = 1;
