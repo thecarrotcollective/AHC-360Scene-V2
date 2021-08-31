@@ -152,8 +152,13 @@ var MIDDLE = 8
 var POOLENTRACE =9
 var PRODUCTBASE = 10
 var sound;
-
+var fakeButton =document.getElementById('mainPage')
 window.addEventListener('load', (event) => {
+	fakeButton.click();
+
+} );
+
+fakeButton.addEventListener( 'click', function () {
 	if(selectedPersonality === 'fe'){
 		playAudio('sounds/sfx/feeler.mp3')
 
@@ -181,7 +186,7 @@ window.addEventListener('load', (event) => {
 	checkTheVideoLoad()
 	document.getElementById('productIntro1').style.display = 'none'
 	document.getElementById('ui-container').style.display = 'block'
-} );
+})
 
 function playAudio(audioUrl){
 	const listener = new THREE.AudioListener();
