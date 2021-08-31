@@ -127,7 +127,7 @@ function playAudio(audioUrl){
 	audioLoader.load( audioUrl, function( buffer ) {
 		sound.setBuffer( buffer );
 		sound.setLoop( true );
-		sound.setVolume( 1 );
+		sound.setVolume( 0.65 );
 		sound.play();
 	});
 }
@@ -374,9 +374,15 @@ function init() {
 			MiddleRoomScene.add(MiddleRoomArrow);
 
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-			VideoPlayBottleScene.position.set(-20,1.4,-36.5);
-			VideoPlayBottleScene.rotation.set(0,1.5,0)
-			VideoPlayBottleScene.scale.set(0.75,0.81,1)
+			if(selectedPersonality === 'th'){
+				VideoPlayBottleScene.position.set(-20,1.4,-31.5);
+				VideoPlayBottleScene.rotation.set(0,1.5,0)
+				VideoPlayBottleScene.scale.set(0.75,0.81,1)
+			}else{
+				VideoPlayBottleScene.position.set(-20,1.4,-36.5);
+				VideoPlayBottleScene.rotation.set(0,1.5,0)
+				VideoPlayBottleScene.scale.set(0.75,0.81,1)
+			}
 			bilboardVideo.play();
 			videoRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(-20)));
 			BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(30)));
@@ -528,7 +534,7 @@ function init() {
 			orbGlowVideoMask.currentTime = 0;
 			console.log("MAIN scene runned")
 				OrbVideoScene.add(orbVideoMesh)
-				OrbVideoScene.add(orbProduct)
+				orbProductScene.add(orbProduct)
 			  MiddleRoomScene.add(MiddleRoomArrow)
 			  PoolEntranceScene.add(PoolEntranceArrow);
 			  RoomVideoPlayScene.add(RoomVideoPlay);
@@ -673,11 +679,12 @@ orbPlusMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: tru
 	orbGlowVideo = document.createElement('video');
 	orbGlowVideo.src = "video/Glitter2.mp4";
 	orbGlowVideo.muted = true;
-
+	orbGlowVideo.playsInline = true;
 
 	orbGlowVideoMask = document.createElement('video');
 	orbGlowVideoMask.src = "video/Glitter_Alpha.mp4";
 	orbGlowVideoMask.muted = true;
+	orbGlowVideoMask.playsInline = true;
 
 	orbGlowVideoTex =  new THREE.VideoTexture(orbGlowVideo)
 	orbGlowVideoMaskTex = new THREE.VideoTexture(orbGlowVideoMask)
@@ -828,34 +835,57 @@ var endbool;
 var hoverButtonChecker = false
 document.getElementById('pool-btn').addEventListener("click", function(e){
 	hoverButtonChecker = true
+	sound.pause()
 });
 document.getElementById('beauty-btn').addEventListener("click", function(e){
 	console.log("clicked")
 	hoverButtonChecker = true
+
 });
-if(currState === POOL || currState === MAIN){
+document.getElementById('beauty-vid-1').addEventListener("click", function(e){
+	sound.pause()
+});
+document.getElementById('beauty-vid-2').addEventListener("click", function(e){
+	sound.pause()
+});
+document.getElementById('beauty-vid-3').addEventListener("click", function(e){
+	sound.pause()
+});
+
+if( currState === MAIN){
 	document.getElementById('close-btn').addEventListener("click", function(e){
 		hoverButtonChecker = false
 	});
 }
 
+
 document.getElementById('back-btn').addEventListener("click", function(e){
 	hoverButtonChecker = false
+	sound.play()
 });
 var player = videojs('#video2');
 player.on('ended', function () {
 	hoverButtonChecker = false
+	sound.play()
   })
   var player1 = videojs('#vid-1');
   player1.on('ended', function () {
+	sound.pause()
 	hoverButtonChecker = false
   })
   var player2 = videojs('#vid-2');
   player2.on('ended', function () {
+	sound.pause()
 	hoverButtonChecker = false
   })
   var player3 = videojs('#vid-3');
   player3.on('ended', function () {
+	sound.pause()
+	hoverButtonChecker = false
+  })
+  var player3 = videojs('#orb-vid');
+  player3.on('ended', function () {
+	sound.play()
 	hoverButtonChecker = false
   })
 var orbVideoPlayed = false
@@ -927,6 +957,7 @@ function animate() {
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
 		document.getElementById('close-btn').addEventListener("click", function(e){
 			hoverButtonChecker = false
+			sound.play();
 			console.log("worked")
 		});
 		if(hoverButtonChecker === false && dirVector.z > -0.4 && dirVector.z < 0.9 && dirVector.y > -0.3 && dirVector.x > 0 && dirVector.x < 1   ){ // need to stress test
@@ -941,7 +972,9 @@ function animate() {
 	} else if(currState === BEAUTY){
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
-
+		document.getElementById('close-btn').addEventListener("click", function(e){
+			sound.play()
+		});
 		if(hoverButtonChecker === false && dirVector.z > -0.95 && dirVector.z < 0 && dirVector.y > -0.3 && dirVector.x < -0.35 ){ // need to stress test
 			document.getElementById('beauty-text').style.opacity = 1;
 			document.getElementById('beauty-btn').style.opacity = 1;
@@ -1051,6 +1084,7 @@ function clickTrigger(){
 				new TWEEN.Tween( orbPlusMat ).to( { opacity: 1 }, 500 ).start();
 			});
 			function openOrbVideo(){
+				sound.pause()
 				document.getElementById('vid-2').style.display = "none"
 				document.getElementById('vid-1').style.display = "none"
 				document.getElementById('vid-3').style.display = "none"
@@ -1098,10 +1132,11 @@ function clickTrigger(){
 			  }
 
 				function closeVideo(){
+					sound.play()
 					document.getElementById("video_id").style.height= "50%"
 					document.getElementById("video_id").style.width= "50%"
 					document.getElementById("video_id").style.transform = `translateX(50%) translateY(50%)`;
-
+					document.getElementById('beauty-treatment-overlay').style.display = "none"
 					document.getElementById('video2').removeEventListener("click", closeVideo);
 					// document.getElementById('video-close-overlay').style.display = 'none';
 
@@ -1407,6 +1442,7 @@ function DisableEverything(){
 	loaderCheck = false
 	orbVideoPlayed = false
 	console.log(loaderCheck)
+	new TWEEN.Tween( orbPlusMat ).to( { opacity: 0 }, 250 ).start();
 	document.getElementById('selfie-text').style.display = 'none';
 	document.getElementById('pool-text').style.display = 'none';
 	document.getElementById('beauty-text').style.display = 'none';
