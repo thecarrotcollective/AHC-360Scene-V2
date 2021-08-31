@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="575d4313-8bca-47aa-8235-d6e57d1f4900" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/selfie/camera.html" beforeDir="false" afterPath="$PROJECT_DIR$/selfie/camera.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sceneFolder/scripts/scriptPhone.js" beforeDir="false" afterPath="$PROJECT_DIR$/sceneFolder/scripts/scriptPhone.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sceneFolder/scripts/scriptWeb.js" beforeDir="false" afterPath="$PROJECT_DIR$/sceneFolder/scripts/scriptWeb.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/selfie/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/selfie/js/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,13 +33,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/selfie" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="advanced.settings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\AHC-360Scene-V2\selfie" />
       <recent name="C:\xampp\htdocs\AHC-360Scene-V2\private" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -63,7 +66,7 @@
       <workItem from="1630072989564" duration="7565000" />
       <workItem from="1630330422229" duration="13322000" />
       <workItem from="1630358992665" duration="311000" />
-      <workItem from="1630359482299" duration="2450000" />
+      <workItem from="1630359482299" duration="3876000" />
     </task>
     <servers />
   </component>
