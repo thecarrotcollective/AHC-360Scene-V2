@@ -993,8 +993,6 @@ function animate() {
 			setTimeout(function(){
 				selfieSceneClick = true
 			}, 500);
-
-
 		}
 	});
 

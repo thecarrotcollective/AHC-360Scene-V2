@@ -251,7 +251,9 @@
             document.getElementById('productIntro1').style.display = 'none'
         }
     });
-
+    if(window.innerHeight > window.innerWidth){
+    document.getElementsByTagName("body")[0].style.transform = "rotate(90deg)";
+    }
     document.getElementById('selfie-btn').addEventListener("click", openSelfie);
     document.getElementById('pool-btn').addEventListener("click", openTherapy);
     document.getElementById('beauty-btn').addEventListener("click", openBeauty);
