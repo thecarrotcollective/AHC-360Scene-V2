@@ -37,7 +37,7 @@ function setLang(id){
 	document.getElementById('productButton-3').innerHTML = copyJSON.FindOutMore[id]
 	
 	document.documentElement.lang = copyJSON.code[id];
-	
+	fakeButton.click();
 }
 
 loadJSON(function(response) {
@@ -154,15 +154,17 @@ var POOLENTRACE =9
 var PRODUCTBASE = 10
 var sound;
 
-var fakeButton =document.getElementById('mainPage');
-fakeButton.click();
+var fakeButton =document.getElementById('fakeButton_id');
+fakeButton.addEventListener('click', (event) => {
+	buttonClicked();
+});
+// 
 // document.addEventListener('load', (event) => {
 // 	console.log("DOMContentLoaded worked")
 
 
 // } );
-
-fakeButton.addEventListener( 'click touchstart', function () {
+function buttonClicked(){
 	console.log("fake button")
 	if(selectedPersonality === 'fe'){
 		
@@ -191,7 +193,8 @@ fakeButton.addEventListener( 'click touchstart', function () {
 	// TweenFadeInForVideos(videoMat)
 	checkTheVideoLoad()
 	document.getElementById('ui-container').style.display = 'block'
-})
+}
+
 
 function playAudio(audioUrl){
 	console.log("play audio")
@@ -207,7 +210,7 @@ function playAudio(audioUrl){
 		sound.setBuffer( buffer );
 		sound.setLoop( true );
 		sound.setVolume( 0.65 );
-		sound.resume();
+	
 		sound.play();
 		
 	});
