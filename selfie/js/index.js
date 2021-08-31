@@ -296,8 +296,8 @@ $(document).ready(function() {
 function sendUser() {
     let phoneNumber = document.getElementById('phone').value;
     console.log(phoneNumber)
-    if (phoneNumber==null){
-        // console.log("No entry, try again");
+    if (phoneNumber==null || phoneNumber === ""){
+        alert("Phone number invalid, try again");
 
     } else {
         xmlhttp=new XMLHttpRequest();
