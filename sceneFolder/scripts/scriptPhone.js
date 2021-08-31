@@ -114,13 +114,13 @@ startButton.addEventListener( 'click', function () {
 	document.getElementById('productIntro1').style.display = 'none'
 	document.getElementById('ui-container').style.display = 'block'
 } );
-
+var sound
 function playAudio(audioUrl){
 	const listener = new THREE.AudioListener();
 	// camera.add( listener );
 
 	// create a global audio source
-	const sound = new THREE.Audio( listener );
+	sound = new THREE.Audio( listener );
 
 	// load a sound and set it as the Audio object's buffer
 	const audioLoader = new THREE.AudioLoader();
@@ -235,9 +235,9 @@ function init() {
 	camera.rotation.z = 0
 	skydome.camera.position.z =0.0000000000001;
 	// controls = new DeviceOrientationControls( skydome.camera );
-	// controls = new OrbitControls( skydome.camera, renderer.domElement );
+	controls = new OrbitControls( skydome.camera, renderer.domElement );
 
-	controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
+	// controls = new DeviceOrientationControls( skydome.camera, renderer.domElement );
 
 
 
@@ -958,7 +958,7 @@ function animate() {
 		document.getElementById('close-btn').addEventListener("click", function(e){
 			hoverButtonChecker = false
 			sound.play();
-			console.log("worked")
+	
 		});
 		if(hoverButtonChecker === false && dirVector.z > -0.4 && dirVector.z < 0.9 && dirVector.y > -0.3 && dirVector.x > 0 && dirVector.x < 1   ){ // need to stress test
 			document.getElementById('pool-text').style.opacity = 1;

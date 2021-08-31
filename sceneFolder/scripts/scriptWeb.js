@@ -872,6 +872,7 @@ if( currState === MAIN){
 
 document.getElementById('back-btn').addEventListener("click", function(e){
 	hoverButtonChecker = false
+	document.getElementById('beauty-treatment-overlay').style.display = "none"
 	sound.play()
 });
 var player = videojs('#video2');
@@ -982,7 +983,7 @@ function animate() {
 		document.getElementById('close-btn').addEventListener("click", function(e){
 			hoverButtonChecker = false
 			sound.play();
-			console.log("worked")
+		
 		});
 		if(hoverButtonChecker == false && dirVector.z > -0.4 && dirVector.z < 0.9 && dirVector.y > -0.3 && dirVector.x > 0 && dirVector.x < 1   ){ // need to stress test
 			document.getElementById('pool-text').style.opacity = 1;
@@ -996,6 +997,7 @@ function animate() {
 	} else if(currState === BEAUTY){
 		camera.getWorldDirection(dirVector)
 		document.getElementById('close-btn').addEventListener("click", function(e){
+			hoverButtonChecker = true
 			sound.play()
 		});
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
