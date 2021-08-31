@@ -211,7 +211,8 @@
             enquire.unregister("screen and (max-width: 599px)");
             enquire.unregister("screen and (min-width: 600px) and (max-width: 899px)");
             enquire.unregister("screen and (min-width: 900px)");
-            document.body.style.backgroundImage = "url('./UIAssets/OPENNING.jpg') ";
+            // document.body.style.backgroundImage = "url('./UIAssets/OPENNING.jpg') ";
+            document.body.style.backgroundImage = "url('./UIAssets/OPENNING_qual80.jpg') ";  // compressed with squoosh mozjpeg quality 80%
             document.body.style.backgroundRepeat = "no-repeat";
             document.getElementById('productIntro1').style.display = 'flex'
             document.getElementById('video2').addEventListener("click", function(e){
@@ -228,7 +229,8 @@
         match : function() {
             // Load a tablet JS file
             loadJS('scripts/scriptPhone.js');
-            document.body.style.backgroundImage = "url('./UIAssets/OPENNING.jpg') ";
+            // document.body.style.backgroundImage = "url('./UIAssets/OPENNING.jpg') ";
+            document.body.style.backgroundImage = "url('./UIAssets/OPENNING_qual80.jpg') ";  // compressed with squoosh mozjpeg quality 80%
             document.body.style.backgroundRepeat = "no-repeat";
             console.log('tablet loaded');
             enquire.unregister("screen and (max-width: 599px)");
