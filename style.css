@@ -1347,12 +1347,12 @@ template {
   margin: none;
   padding: none;
   background-color: rgba(254, 245, 240, 0);
-<<<<<<< HEAD
+
   /*background: url('quizScene/images/OPENNING.jpg') no-repeat;*/
   background: url('quizScene/images/OPENNING_qual80.jpg') no-repeat;
-=======
+
   background: url('quizScene/images/OPENNING.webp') no-repeat;
->>>>>>> e50d6818180e10232a2cae31805f349f4ec6222b
+
   background-position: center; /* Center the image */
   background-size: cover;
 
