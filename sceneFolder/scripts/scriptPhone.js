@@ -174,7 +174,10 @@ startButton.addEventListener( 'click', function () {
 	animate();
 	currState = INTRO
 	renderer.autoclear = false;
-	sound.play()
+	setTimeout(function(){
+		sound.play()
+	}, 500);
+
 	// TweenFadeInForVideos(videoMat)
 	checkTheVideoLoad()
 	document.getElementById('productIntro1').style.display = 'none'
@@ -194,7 +197,7 @@ function playAudio(audioUrl){
 		sound.setBuffer( buffer );
 		sound.setLoop( true );
 		sound.setVolume( 0.65 );
-		sound.play();
+		// sound.play();
 	});
 }
 
