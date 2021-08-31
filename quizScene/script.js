@@ -48,7 +48,7 @@ function setLang(id){
   document.getElementById('start-quiz-btn').innerHTML = copyJSON.StartExperience[id]
   document.getElementById('question').innerHTML = copyJSON.PersonalityTestTitle[id]
   document.getElementById('personality2').innerHTML = copyJSON.PersonalityTest[id]
-
+  document.getElementById('tandc').innerHTML = copyJSON.PrivacyPolicy[id]
   document.documentElement.lang = copyJSON.code[id];
 
   questions = [
