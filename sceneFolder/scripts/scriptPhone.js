@@ -750,6 +750,8 @@ function init() {
 	var ProductTexture = new THREE.TextureLoader().load( ProductIconUrl );
 	var ProductMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: true,opacity:1,side: THREE.DoubleSide} );
 orbPlusMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: true,opacity:0,side: THREE.DoubleSide} );
+
+
 	ProductIcon1 = new THREE.Mesh( ProductMesh, ProductMat );
 	ProductIcon2 = new THREE.Mesh( ProductMesh, ProductMat );
 	ProductIcon3 = new THREE.Mesh( ProductMesh, ProductMat );

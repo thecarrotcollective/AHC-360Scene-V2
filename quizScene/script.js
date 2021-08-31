@@ -87,18 +87,18 @@ loadJSON(function(response) {
 
 
 var images = {
-    "baby"  : "quizScene/images/1-dog.jpg",
-    "light" : "quizScene/images/1-mountain.jpg",
-    "city" : "quizScene/images/1-city.jpg",
-    "moon"   : "quizScene/images/1-math.jpg",
-    "sea"   : "quizScene/images/2-beach.jpg",
-    "plant"   : "quizScene/images/2-math.jpg",
-    "shell"   : "quizScene/images/2-light.jpg",
-    "mozai"   : "quizScene/images/2-tech.jpg",
-    "color1"   : "quizScene/images/color1.jpg",
-    "color2"   : "quizScene/images/color2.jpg",
-    "color3"   : "quizScene/images/color3.jpg",
-    "color4"   : "quizScene/images/color4.jpg"
+    "baby"  : "quizScene/images/opt/1-dog.webp",
+    "light" : "quizScene/images/opt/1-mountain.webp",
+    "city" : "quizScene/images/opt/1-city.webp",
+    "moon"   : "quizScene/images/opt/1-math.webp",
+    "sea"   : "quizScene/images/opt/2-beach.webp",
+    "plant"   : "quizScene/images/opt/2-math.webp",
+    "shell"   : "quizScene/images/opt/2-light.webp",
+    "mozai"   : "quizScene/images/opt/2-tech.webp",
+    "color1"   : "quizScene/images/opt/color1.webp",
+    "color2"   : "quizScene/images/opt/color2.webp",
+    "color3"   : "quizScene/images/opt/color3.webp",
+    "color4"   : "quizScene/images/opt/color4.webp"
 
     }
 var myimages=new Array()
@@ -109,18 +109,18 @@ function preloadimages(){
   }
   console.log("loaded")
 }
-preloadimages("quizScene/images/1-dog.jpg",
-"quizScene/images/1-mountain.jpg",
-"quizScene/images/1-city.jpg",
-"quizScene/images/1-math.jpg",
-"quizScene/images/2-beach.jpg",
-"quizScene/images/2-math.jpg",
-"quizScene/images/2-light.jpg",
-"quizScene/images/2-tech.jpg",
-"quizScene/images/color1.jpg",
-"quizScene/images/color2.jpg",
-"quizScene/images/color3.jpg",
-"quizScene/images/color4.jpg");
+preloadimages("quizScene/images/opt/1-dog.webp",
+"quizScene/images/opt/1-mountain.webp",
+"quizScene/images/opt/1-city.webp",
+"quizScene/images/opt/1-math.webp",
+"quizScene/images/opt/2-beach.webp",
+"quizScene/images/opt/2-math.webp",
+"quizScene/images/opt/2-light.webp",
+"quizScene/images/opt/2-tech.webp",
+"quizScene/images/opt/color1.webp",
+"quizScene/images/opt/color2.webp",
+"quizScene/images/opt/color3.webp",
+"quizScene/images/opt/color4.webp");
 
 
 var option1Counter = 0
@@ -237,14 +237,14 @@ function showScores() {
   if(option1Counter ==finalOption){
     optionChoice = 1
     personiltyType = copyJSON.ExtrovertHeadline[languageID]
-    imageurl ="quizScene/images/arch2.png";
+    imageurl ="quizScene/images/opt/arch2.webp";
     spaText=copyJSON.Extrovert[languageID]
     currState = EXTROVERT
     infoText=copyJSON.ExtrovertExplanation[languageID]
   }else if(option2Counter ==finalOption){
     optionChoice = 2
     personiltyType = copyJSON.IntrovertHeadline[languageID]
-    imageurl ="quizScene/images/arch4.png";
+    imageurl ="quizScene/images/opt/arch4.webp";
     spaText=copyJSON.Introvert[languageID]
     currState = INTROVERT
     infoText=copyJSON.IntrovertExplanation[languageID]
@@ -252,14 +252,14 @@ function showScores() {
   else if(option3Counter ==finalOption){
     optionChoice = 3
     personiltyType = copyJSON.ThinkerHeadline[languageID]
-    imageurl ="quizScene/images/arch3.png";
+    imageurl ="quizScene/images/opt/arch3.webp";
     spaText=copyJSON.Thinker[languageID]
     currState = THINKER
     infoText=copyJSON.ThinkerExplanation[languageID]
   }else if(option4Counter ==finalOption){
     optionChoice = 4
     personiltyType = copyJSON.FeelerHeadline[languageID]
-    imageurl ="quizScene/images/arch5.png";
+    imageurl ="quizScene/images/opt/arch5.webp";
     spaText=copyJSON.Feeler[languageID]
     currState = FEELER
     infoText=copyJSON.FeelerExplanation[languageID]
