@@ -66,7 +66,7 @@
           preload="auto"
           width="auto"
           height="auto"
-         
+
           data-setup='{"controls": true}'
         >
         <source src="video/AHC-SPA-VIDEO.mp4" type="video/mp4" />
@@ -150,7 +150,7 @@
 
     <div id="share-container">
       <div id="share-ui">
-        <img id="share-close" src="UIAssets/close.png">
+        <img id="share-close" src="UIAssets/close-black.png">
         <div>Share this experience</div>
         <br><br>
 
@@ -181,7 +181,7 @@
       <div id="beauty-text" class="hover-text">
         <!-- Watch AHC's KOREAN AESTHETIC TUTORIALS here. -->
       </div>
-    
+
     </div>
 
     <div id="buttons-container">
@@ -206,7 +206,7 @@
             // Load a mobile JS file
             loadJS('scripts/scriptPhone.js');
             console.log('phone loaded');
-         
+
             document.body.style.backgroundImage = "url('./UIAssets/OPENNING.jpg') ";
             document.body.style.backgroundRepeat = "no-repeat";
             document.getElementById('productIntro1').style.display = 'flex'
@@ -262,11 +262,11 @@
 			document.getElementById('pool-btn').style.pointerEvents = "none";
       document.getElementById('video2').addEventListener("click", function(e){
         console.log("clicked")
-     
+
         makeFullScreen()
         player.play();
         document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
-        
+
       });
       document.getElementById('close-btn').addEventListener("click", function(e){
         document.getElementById('pool-text').style.opacity = 1;
@@ -274,7 +274,7 @@
 			document.getElementById('pool-btn').style.pointerEvents = "auto";
       });
       document.getElementById('close-btn').addEventListener("click", closeVideo);
-  
+
       player.on('ended', function () {
             closeVideo();
           })
@@ -287,14 +287,14 @@
       })
       player.on('tap', function () {
         console.log("clicked")
-     
+
         makeFullScreen()
         player.play();
         document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
       })
     }
 
-    
+
 
 
     function makeFullScreen(){
@@ -327,7 +327,7 @@
       var video = document.getElementById('vid-1');
       // video.requestFullscreen();
       player.play();
-     
+
 
       document.getElementById('vid-1').addEventListener("click",function(e){
         makeFullScreen()
@@ -335,7 +335,7 @@
         player.play();
       })
       document.getElementById('close-btn').addEventListener("click", closeVideo);
-    
+
       setTimeout(function(){
         document.getElementById('close-btn').addEventListener("click", openBeauty);
 
@@ -388,7 +388,7 @@
         document.getElementById('close-btn').addEventListener("click", openBeauty);
 
 				}, 50)
- 
+
 
       player.on('ended', function () {
             closeVideo();
@@ -450,7 +450,7 @@
             }
           })
           // player.on('tap', function () {
-      
+
           // })
         }
 
