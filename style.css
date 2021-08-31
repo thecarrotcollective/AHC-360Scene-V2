@@ -427,7 +427,7 @@ template {
       animation-delay: 0.5s;
       animation: pulse 1s ease-in-out forwards; */
       background-color: rgba(254, 245, 240, 0);
-      background: url('quizScene/images/OPENNING.jpg') no-repeat;
+      background: url('quizScene/images/OPENNING.webp') no-repeat;
       background-position: center; /* Center the image */
       background-size: cover;
 
@@ -1347,7 +1347,7 @@ template {
   margin: none;
   padding: none;
   background-color: rgba(254, 245, 240, 0);
-  background: url('quizScene/images/OPENNING.jpg') no-repeat;
+  background: url('quizScene/images/OPENNING.webp') no-repeat;
   background-position: center; /* Center the image */
   background-size: cover;
 
