@@ -59,7 +59,7 @@ var sceneUrl0,sceneUrl1,sceneUrl2,sceneUrl3,sceneUrl4,sceneUrl5,sceneUrl6,sceneU
 console.log("language is " + selectedLanguage);
 console.log("personality is " + selectedPersonality);
 if(selectedPersonality === 'fe'){
-	playAudio('sounds/sfx/feeler.mp3')
+
 	sceneUrl0 ="scenes/FEELER/FEELER_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/FEELER/FEELER_CUBEMAP_0001.jpg"
 	sceneUrl2 ="scenes/FEELER/FEELER_CUBEMAP_0002.jpg"
@@ -73,7 +73,7 @@ if(selectedPersonality === 'fe'){
 	sceneUrl10 ="scenes/FEELER/FEELER_CUBEMAP_0010.jpg"
 
 }else if(selectedPersonality === 'in'){
-	playAudio('sounds/sfx/introvert.mp3')
+
 	sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/THINKER/THINKER_CUBEMAP_0001.jpg"
 	sceneUrl2 ="scenes/THINKER/THINKER_CUBEMAP_0002.jpg"
@@ -87,7 +87,7 @@ if(selectedPersonality === 'fe'){
 	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
 }
 else if(selectedPersonality === 'th'){
-	playAudio('sounds/sfx/thinker.mp3')
+
 	sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/THINKER/THINKER_CUBEMAP_0001.jpg"
 	sceneUrl2 ="scenes/THINKER/THINKER_CUBEMAP_0002.jpg"
@@ -100,7 +100,7 @@ else if(selectedPersonality === 'th'){
 	sceneUrl9 ="scenes/THINKER/THINKER_CUBEMAP_0009.jpg"
 	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
 }else{
-	playAudio('sounds/sfx/extrovert.mp3')
+
 	sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0001.jpg"
 	sceneUrl2 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0002.jpg"
@@ -174,9 +174,9 @@ startButton.addEventListener( 'click', function () {
 	animate();
 	currState = INTRO
 	renderer.autoclear = false;
-	setTimeout(function(){
-		sound.play()
-	}, 500);
+	// setTimeout(function(){
+	// 	sound.play()
+	// }, 500);
 
 	// TweenFadeInForVideos(videoMat)
 	checkTheVideoLoad()
@@ -197,7 +197,7 @@ function playAudio(audioUrl){
 		sound.setBuffer( buffer );
 		sound.setLoop( true );
 		sound.setVolume( 0.65 );
-		// sound.play();
+		sound.play();
 	});
 }
 
