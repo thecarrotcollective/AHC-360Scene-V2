@@ -121,7 +121,7 @@
         }
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
-                loadJSON.getJSON('http://ws.geonames.org/countryCode', {
+                loadJSON('http://ws.geonames.org/countryCode', {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
                     type: 'JSON'
