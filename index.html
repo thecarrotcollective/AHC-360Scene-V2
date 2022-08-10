@@ -122,14 +122,11 @@
         }
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
-                loadJSON('http://ws.geonames.org/countryCode', {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                    type: 'JSON'
-                }, function(result) {
+                loadJSON('http://ws.geonames.org/countryCode', 
+                function(result) {
                     alert(result.countryName);
-                }, function(xhr) { 
-                    console.error(xhr); 
+                }, function(xhr) {
+                    console.error(xhr);
                 }
               );
             });
