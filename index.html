@@ -101,7 +101,38 @@
 <script src="quizScene/script.js"></script>
 
 <script>
-
+        function loadJSON(path, success, error)
+        {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function()
+            {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        if (success)
+                            success(JSON.parse(xhr.responseText));
+                    } else {
+                        if (error)
+                            error(xhr);
+                    }
+                }
+            };
+            xhr.open("GET", path, true);
+            xhr.send();
+        }
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                loadJSON.getJSON('http://ws.geonames.org/countryCode', {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                    type: 'JSON'
+                }, function(result) {
+                    alert(result.countryName);
+                }, function(xhr) { 
+                    console.error(xhr); 
+                }
+              );
+            });
+        }​
         document.getElementById('start-btnIntro').addEventListener('click', function(e) {
           document.getElementById('firstVideo').style.display="block";
           document.getElementById('language').style.display="none";
