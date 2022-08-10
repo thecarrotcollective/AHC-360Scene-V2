@@ -101,36 +101,31 @@
 <script src="quizScene/script.js"></script>
 
 <script>
-        function loadJSON(path, success, error)
-        {
-            console.log('loadJSON')
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function()
-            {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        if (success)
-                            success(JSON.parse(xhr.responseText));
-                    } else {
-                        if (error)
-                            error(xhr);
-                    }
-                }
-            };
-            xhr.open("GET", path, true);
-            xhr.send();
-        }
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                loadJSON('http://ws.geonames.org/countryCode', 
-                function(result) {
-                    alert(result.countryName);
-                }, function(xhr) {
-                    console.error(xhr);
-                }
-              );
-            });
-        }​
+         function showLocation(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            alert("Latitude : " + latitude + " Longitude: " + longitude);
+         }
+
+         function errorHandler(err) {
+            if(err.code == 1) {
+               alert("Error: Access is denied!");
+            } else if( err.code == 2) {
+               alert("Error: Position is unavailable!");
+            }
+         }
+			
+         function getLocation() {
+
+            if(navigator.geolocation) {
+               
+               // timeout at 60000 milliseconds (60 seconds)
+               var options = {timeout:60000};
+               navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
+            } else {
+               alert("Sorry, browser does not support geolocation!");
+            }
+         }
         document.getElementById('start-btnIntro').addEventListener('click', function(e) {
           document.getElementById('firstVideo').style.display="block";
           document.getElementById('language').style.display="none";
