@@ -101,12 +101,27 @@
 <script src="quizScene/script.js"></script>
 
 <script>
-         function showLocation(position) {
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
-            alert("Latitude : " + latitude + " Longitude: " + longitude);
-         }
-
+	function showLocation(position) {
+		var latitude = position.coords.latitude;
+		var longitude = position.coords.longitude;
+		var location = "unknown";
+		if(latitude > 1.22887 && latitude < 1.461453  && longitude > 103.605549 && longitude <  104.019253 {
+		   	location = "Singapore";
+		   } else if(latitude >40.528871 && latitude < 41.065310  && longitude >-74.015289 && longitude < -73.444415 {
+		  	 location = "New York";
+		   } else if(latitude >36.159499 && latitude < 47.088358  && longitude >6.969746 && longitude < 15.140183 {
+		  	 location = "Italy";
+		   } else if(latitude >6.770989 && latitude < 36.259778  && longitude >68.337844 && longitude < 86.113120 {
+		  	 location = "India";
+		   } else if(latitude >9.207849 && latitude < 22.367856  && longitude >102.979295 && longitude < 108.601961 {
+		  	 location = "Vietnam";
+		   }else if(latitude >5.669285 && latitude < 21.175448  && longitude >116.088199 && longitude < 127.684948 {
+		  	 location = "Philippines";
+		   } else {
+			location = "Malaysia"
+		}
+		alert("Current location : " + location);
+	}
          function errorHandler(err) {
             if(err.code == 1) {
                alert("Error: Access is denied!");
